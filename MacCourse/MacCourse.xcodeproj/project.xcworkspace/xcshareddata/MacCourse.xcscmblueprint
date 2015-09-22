@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "BCB83FB73E31DC6128058BA61091B72740002092",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "BCB83FB73E31DC6128058BA61091B72740002092" : 0,
+    "0A03EBD4CD995230B16F63031F821485FD041FCA" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C50D2C94-68E4-428D-A603-D655B79FCA35",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "BCB83FB73E31DC6128058BA61091B72740002092" : "IDAP_CollegeRepo\/",
+    "0A03EBD4CD995230B16F63031F821485FD041FCA" : "IDAP_iOS\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MacCourse",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "MacCourse\/MacCourse.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/kadze\/IDAP_iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0A03EBD4CD995230B16F63031F821485FD041FCA"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/kadze\/IDAP_College.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BCB83FB73E31DC6128058BA61091B72740002092"
+    }
+  ]
+}

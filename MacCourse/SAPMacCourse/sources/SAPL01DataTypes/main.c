@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include "SAPLesson1Tests.h"
 #include "SAPMamaOrPapa.h"
+#include "SAPRunFunctionCreateMacros.h"
 
 
 
@@ -23,6 +24,11 @@ int main(int argc, const char * argv[]) {
     for (int i = 0; i < iterationAmount; i++) {
         SAPDefineMamaOrPapa(i);
     }
+    
+    //leson 2
+    
+    //function creation and performing with macros
+    SAPRunFunctionCreationMacros();
     
     return 0;
 }
