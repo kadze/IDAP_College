@@ -1,0 +1,289 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ECCFECF21BAAB27C00E19EBF /* SAPLesson1Tests.c in Sources */ = {isa = PBXBuildFile; fileRef = ECCFECF01BAAB27C00E19EBF /* SAPLesson1Tests.c */; };
+		ECCFECF51BAAB34900E19EBF /* SAPPrintTypesSize.c in Sources */ = {isa = PBXBuildFile; fileRef = ECCFECF31BAAB34900E19EBF /* SAPPrintTypesSize.c */; };
+		ECCFECF81BAAB79100E19EBF /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = ECCFECF71BAAB79100E19EBF /* main.c */; };
+		ECCFECFC1BAAC17400E19EBF /* SAPMamaOrPapa.c in Sources */ = {isa = PBXBuildFile; fileRef = ECCFECFA1BAAC17400E19EBF /* SAPMamaOrPapa.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EC96D86A1BA83CD1008C8F6F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		EC96D86C1BA83CD1008C8F6F /* MacCourse */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MacCourse; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECCFECF01BAAB27C00E19EBF /* SAPLesson1Tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SAPLesson1Tests.c; path = SAPMacCourse/tests/SAPL01DataTypes/SAPLesson1Tests.c; sourceTree = SOURCE_ROOT; };
+		ECCFECF11BAAB27C00E19EBF /* SAPLesson1Tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAPLesson1Tests.h; path = SAPMacCourse/tests/SAPL01DataTypes/SAPLesson1Tests.h; sourceTree = SOURCE_ROOT; };
+		ECCFECF31BAAB34900E19EBF /* SAPPrintTypesSize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SAPPrintTypesSize.c; path = SAPMacCourse/sources/SAPL01DataTypes/SAPPrintTypesSize.c; sourceTree = SOURCE_ROOT; };
+		ECCFECF41BAAB34900E19EBF /* SAPPrintTypesSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAPPrintTypesSize.h; path = SAPMacCourse/sources/SAPL01DataTypes/SAPPrintTypesSize.h; sourceTree = SOURCE_ROOT; };
+		ECCFECF71BAAB79100E19EBF /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		ECCFECFA1BAAC17400E19EBF /* SAPMamaOrPapa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SAPMamaOrPapa.c; sourceTree = "<group>"; };
+		ECCFECFB1BAAC17400E19EBF /* SAPMamaOrPapa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPMamaOrPapa.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EC96D8691BA83CD1008C8F6F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EC96D8631BA83CD1008C8F6F = {
+			isa = PBXGroup;
+			children = (
+				ECCFECEB1BAAAC5A00E19EBF /* sources */,
+				ECCFECEC1BAAACAE00E19EBF /* tests */,
+				EC96D86D1BA83CD1008C8F6F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EC96D86D1BA83CD1008C8F6F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EC96D86C1BA83CD1008C8F6F /* MacCourse */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ECCFECEB1BAAAC5A00E19EBF /* sources */ = {
+			isa = PBXGroup;
+			children = (
+				ECCFECED1BAAADEB00E19EBF /* SAPL01DataTypes */,
+			);
+			name = sources;
+			path = SAPMacCourse/sources;
+			sourceTree = "<group>";
+		};
+		ECCFECEC1BAAACAE00E19EBF /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				ECCFECEF1BAAB1D700E19EBF /* SAPL01DataTypes */,
+			);
+			name = tests;
+			path = SAPMacCourse/tests;
+			sourceTree = "<group>";
+		};
+		ECCFECED1BAAADEB00E19EBF /* SAPL01DataTypes */ = {
+			isa = PBXGroup;
+			children = (
+				ECCFECF71BAAB79100E19EBF /* main.c */,
+				ECCFECF31BAAB34900E19EBF /* SAPPrintTypesSize.c */,
+				ECCFECF41BAAB34900E19EBF /* SAPPrintTypesSize.h */,
+				ECCFECFA1BAAC17400E19EBF /* SAPMamaOrPapa.c */,
+				ECCFECFB1BAAC17400E19EBF /* SAPMamaOrPapa.h */,
+			);
+			path = SAPL01DataTypes;
+			sourceTree = "<group>";
+		};
+		ECCFECEF1BAAB1D700E19EBF /* SAPL01DataTypes */ = {
+			isa = PBXGroup;
+			children = (
+				ECCFECF01BAAB27C00E19EBF /* SAPLesson1Tests.c */,
+				ECCFECF11BAAB27C00E19EBF /* SAPLesson1Tests.h */,
+			);
+			name = SAPL01DataTypes;
+			path = SAPMacCourse/tests/SAPL01DataTypes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EC96D86B1BA83CD1008C8F6F /* MacCourse */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC96D8731BA83CD1008C8F6F /* Build configuration list for PBXNativeTarget "MacCourse" */;
+			buildPhases = (
+				EC96D8681BA83CD1008C8F6F /* Sources */,
+				EC96D8691BA83CD1008C8F6F /* Frameworks */,
+				EC96D86A1BA83CD1008C8F6F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MacCourse;
+			productName = MacCourse;
+			productReference = EC96D86C1BA83CD1008C8F6F /* MacCourse */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EC96D8641BA83CD1008C8F6F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Yosemite Retail";
+				TargetAttributes = {
+					EC96D86B1BA83CD1008C8F6F = {
+						CreatedOnToolsVersion = 6.4;
+					};
+				};
+			};
+			buildConfigurationList = EC96D8671BA83CD1008C8F6F /* Build configuration list for PBXProject "MacCourse" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EC96D8631BA83CD1008C8F6F;
+			productRefGroup = EC96D86D1BA83CD1008C8F6F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EC96D86B1BA83CD1008C8F6F /* MacCourse */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EC96D8681BA83CD1008C8F6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECCFECF51BAAB34900E19EBF /* SAPPrintTypesSize.c in Sources */,
+				ECCFECF21BAAB27C00E19EBF /* SAPLesson1Tests.c in Sources */,
+				ECCFECF81BAAB79100E19EBF /* main.c in Sources */,
+				ECCFECFC1BAAC17400E19EBF /* SAPMamaOrPapa.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		EC96D8711BA83CD1008C8F6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		EC96D8721BA83CD1008C8F6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		EC96D8741BA83CD1008C8F6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EC96D8751BA83CD1008C8F6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EC96D8671BA83CD1008C8F6F /* Build configuration list for PBXProject "MacCourse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC96D8711BA83CD1008C8F6F /* Debug */,
+				EC96D8721BA83CD1008C8F6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC96D8731BA83CD1008C8F6F /* Build configuration list for PBXNativeTarget "MacCourse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC96D8741BA83CD1008C8F6F /* Debug */,
+				EC96D8751BA83CD1008C8F6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EC96D8641BA83CD1008C8F6F /* Project object */;
+}
