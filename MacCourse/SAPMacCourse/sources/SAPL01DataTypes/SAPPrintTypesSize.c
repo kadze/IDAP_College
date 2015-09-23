@@ -9,6 +9,9 @@
 #include "SAPPrintTypesSize.h"
 
 
+#pragma mark -
+#pragma mark Private implementations
+
 #define SAPSizeofOutput(type) \
     printf("Size of type " #type " = %lu\n", sizeof(type))
 

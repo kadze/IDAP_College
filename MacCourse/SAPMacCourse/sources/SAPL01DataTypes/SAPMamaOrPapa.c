@@ -8,21 +8,37 @@
 
 #include "SAPMamaOrPapa.h"
 
-int SAPDefineMamaOrPapa(int param){
+#pragma mark -
+#pragma mark Private implementations
+
+static const int kMamaDivider = 3;
+static const int kPapaDivider = 5;
+static const int kMamapapaDivider = 15;
+
+parents SAPDefineMamaOrPapa(int param){
     
-    int mamapapaDivider = 15;
-    int papaDivider = 5;
-    int mamaDivider = 3;
-    int nonConditional = 0;
-    if (param % mamapapaDivider ==0) {
-        printf("mamapapa\n");
-        return mamapapaDivider;
-    } else if (param % papaDivider == 0){
-        printf("papa\n");
-        return papaDivider;
-    } else if (param % 3 == 0){
-        printf("mama\n");
-        return mamaDivider;
+    
+    parents result;
+    if (param % kMamapapaDivider == 0) {
+        result = mamapapa;
+    } else if (param % kPapaDivider == 0){
+        result =  papa;
+    } else if (param % kMamaDivider == 0){
+        result =  mama;
     } else
-        return nonConditional;
+        result = outOfCondition;
+    
+    return result;
+}
+
+char* getParentName(parents parent){
+    char* result = "";
+    if(parent == mama)
+        result = "mama";
+    else if(parent == papa)
+        result = "papa";
+    else
+        result = "";
+    
+    return result;
 }

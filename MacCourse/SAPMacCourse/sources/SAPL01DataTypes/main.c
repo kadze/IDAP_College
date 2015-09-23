@@ -16,14 +16,11 @@
 int main(int argc, const char * argv[]) {
 
     //testing
-    SAPTestPrintTypesSize();
-    SAPTestDefineMamaOrPapa();
     
-    //loop
-    int iterationAmount = 1000;
-    for (int i = 0; i < iterationAmount; i++) {
-        SAPDefineMamaOrPapa(i);
-    }
+    //lesson 1
+    SAPTestPrintTypesSize();
+    SAPTest1DefineMamaOrPapa();
+    SAPTest2DefineMamaOrPapa();
     
     //leson 2
     

@@ -9,8 +9,10 @@
 #ifndef __MacCourse__SAPPrintTypesSize__
 #define __MacCourse__SAPPrintTypesSize__
 
+#pragma mark -
+#pragma mark Public declarations
+
 void SAPPrintTypesSize();
 
-#include <stdio.h>
 
 #endif /* defined(__MacCourse__SAPPrintTypesSize__) */

@@ -8,6 +8,8 @@
 
 #include "SAPLesson1Tests.h"
 
+# pragma mark-
+# pragma mark Private implementations
 
 int SAPTestPrintTypesSize(){
     SAPPrintTypesSize();
@@ -15,16 +17,44 @@ int SAPTestPrintTypesSize(){
     return 0; //success
 }
 
-int SAPTestDefineMamaOrPapa(){
+int SAPTest1DefineMamaOrPapa(){
+    int testParameterMamaPapa = 30;
+    int testParameterPapa = 10;
+    int testParameterMama = 9;
+    int testParameterOutOfCondition = 11;
+    parents result;
+    printf("================================\n");
     printf("Define mama or papa Testing: \n");
-    printf("Try to define with 30 variable value. Suppose mamapapa. \n");
-    SAPDefineMamaOrPapa(30);
-    printf("Try to define with 10 variable value. Suppose papa. \n");
-    SAPDefineMamaOrPapa(10);
-    printf("Try to define with 9 variable value. Suppose mama. \n");
-    SAPDefineMamaOrPapa(9);
-    printf("Try to define with 11 variable value. Suppose suppose nothing bat return value 0. \n");
-    int returnValue = SAPDefineMamaOrPapa(11);
-    printf("returnvalue = %d\n", returnValue);
-    return 0;//success
+    printf("Try to define with %d variable paramter. Suppose mamapapa. \n", testParameterMamaPapa);
+    result = SAPDefineMamaOrPapa(testParameterMamaPapa);
+    assert(result == mamapapa);
+    printf("mamapapa test result : SUCCESS\n");
+    printf("Try to define with %d variable paramter. Suppose papa. \n", testParameterPapa);
+    result = SAPDefineMamaOrPapa(testParameterPapa);
+    assert(result == papa);
+    printf("papa test result : SUCCESS\n");
+    printf("Try to define with %d variable value. Suppose mama. \n", testParameterMama);
+    result = SAPDefineMamaOrPapa(testParameterMama);
+    assert(result == mama);
+    printf("mama test result : SUCCESS\n");
+    printf("Try to define with %d variable value. Suppose suppose nothing bat return value 0. \n", testParameterOutOfCondition);
+    result = SAPDefineMamaOrPapa(testParameterOutOfCondition);
+    assert(result == outOfCondition);
+    printf("outOfCondition test result : SUCCESS\n");
+    
+    return 0;
+}
+
+int SAPTest2DefineMamaOrPapa(){
+    
+    printf("================================\n");
+    printf("DefineMamaOrPapa testing #2\n");
+    int iterationAmount = 1000;
+    parents parent = outOfCondition;
+    for (int i = 0; i < iterationAmount; i++) {
+        parent = SAPDefineMamaOrPapa(i);
+        printf("Input %d output %s\n", i, getParentName(parent));
+    }
+    
+    return 0;
 }
