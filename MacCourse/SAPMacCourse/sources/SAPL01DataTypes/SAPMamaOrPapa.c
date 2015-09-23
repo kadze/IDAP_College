@@ -15,7 +15,7 @@ static const int kMamaDivider = 3;
 static const int kPapaDivider = 5;
 static const int kMamapapaDivider = 15;
 
-parents SAPDefineMamaOrPapa(int param){
+parents SAPDefineParent(int param){
     
     
     parents result;

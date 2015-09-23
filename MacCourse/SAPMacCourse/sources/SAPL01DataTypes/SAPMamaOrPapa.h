@@ -9,8 +9,6 @@
 #ifndef __MacCourse__SAPMamaOrPapa__
 #define __MacCourse__SAPMamaOrPapa__
 
-//#include <stdio.h>
-
 
 #pragma mark -
 #pragma mark Public implementations
@@ -26,7 +24,10 @@ typedef enum {
 #pragma mark -
 #pragma mark Public declarations
 
+extern
 char* getParentName(parents);
-parents SAPDefineMamaOrPapa(int param);
+
+extern
+parents SAPDefineParent(int param);
 
 #endif /* defined(__MacCourse__SAPMamaOrPapa__) */

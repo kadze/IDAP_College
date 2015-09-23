@@ -12,7 +12,8 @@
 #pragma mark -
 #pragma mark Public declarations
 
-void SAPPrintTypesSize();
+extern
+void SAPPrintTypeSize();
 
 
 #endif /* defined(__MacCourse__SAPPrintTypesSize__) */

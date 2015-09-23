@@ -8,38 +8,24 @@
 
 #include <stdio.h>
 #include "SAPRunFunctionCreateMacros.h"
-
-
-//macros for creation function to print any value of any primitive type
-#define SAPOutputFunction(type, specifier) \
-void Output_##type(type val){\
-printf("Value of type " #type " is "specifier "\n", val);\
-}
-
-//macros to invoke function from SAPOutputFunction macros
-#define SAPRunFunctionFromMacros(type, value) Output_##type(value)
+#include "SAPFunctionCreationMacros.h"
 
 
 SAPOutputFunction(char, "%c")
-//SAPOutputFunction(short int, "%i")
+SAPOutputFunction(short, "%i")
 SAPOutputFunction(int, "%i")
-//SAPOutputFunction(long int, "%f")
-//SAPOutputFunction(unsigned char, "%c")
-//SAPOutputFunction(unsigned short int, "%i")
-//SAPOutputFunction(unsigned int, "%u")
-//SAPOutputFunction(unsigned long int, "%li")
+SAPOutputFunction(long, "%li")
 SAPOutputFunction(float, "%f")
 SAPOutputFunction(double, "%f")
-//SAPOutputFunction(long double, "%LF")
-
-
 
 void SAPRunFunctionCreationMacros(){
     
-    SAPRunFunctionFromMacros(char, 'A');
-    SAPRunFunctionFromMacros(int, 3);
-    
-    SAPRunFunctionFromMacros(float, 3.5);
-    SAPRunFunctionFromMacros(double, 5.5);
+    printf("================================\n");
+    printf("Macros for creation and applying function testing:\n");
+    SAPOutputValueOfType(char, 'A');
+    SAPOutputValueOfType(int, 3);
+    SAPOutputValueOfType(long, 2000000000l);
+    SAPOutputValueOfType(float, 3.5f);
+    SAPOutputValueOfType(double, 5.5);
     
 }

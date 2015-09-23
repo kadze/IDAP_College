@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EC5B71291BB1991600FB8D06 /* SAPFunctionCreationMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = EC5B71271BB1991600FB8D06 /* SAPFunctionCreationMacros.c */; settings = {ASSET_TAGS = (); }; };
 		EC5B712E1BB19E9A00FB8D06 /* SAPRunFunctionCreateMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = EC5B712C1BB19E7D00FB8D06 /* SAPRunFunctionCreateMacros.c */; settings = {ASSET_TAGS = (); }; };
 		ECCFECF21BAAB27C00E19EBF /* SAPLesson1Tests.c in Sources */ = {isa = PBXBuildFile; fileRef = ECCFECF01BAAB27C00E19EBF /* SAPLesson1Tests.c */; };
-		ECCFECF51BAAB34900E19EBF /* SAPPrintTypesSize.c in Sources */ = {isa = PBXBuildFile; fileRef = ECCFECF31BAAB34900E19EBF /* SAPPrintTypesSize.c */; };
+		ECCFECF51BAAB34900E19EBF /* SAPPrintTypeSize.c in Sources */ = {isa = PBXBuildFile; fileRef = ECCFECF31BAAB34900E19EBF /* SAPPrintTypeSize.c */; };
 		ECCFECF81BAAB79100E19EBF /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = ECCFECF71BAAB79100E19EBF /* main.c */; };
 		ECCFECFC1BAAC17400E19EBF /* SAPMamaOrPapa.c in Sources */ = {isa = PBXBuildFile; fileRef = ECCFECFA1BAAC17400E19EBF /* SAPMamaOrPapa.c */; };
 /* End PBXBuildFile section */
@@ -28,15 +27,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		EC5B71271BB1991600FB8D06 /* SAPFunctionCreationMacros.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SAPFunctionCreationMacros.c; sourceTree = "<group>"; };
 		EC5B71281BB1991600FB8D06 /* SAPFunctionCreationMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPFunctionCreationMacros.h; sourceTree = "<group>"; };
 		EC5B712C1BB19E7D00FB8D06 /* SAPRunFunctionCreateMacros.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = SAPRunFunctionCreateMacros.c; sourceTree = "<group>"; };
 		EC5B712D1BB19E7D00FB8D06 /* SAPRunFunctionCreateMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPRunFunctionCreateMacros.h; sourceTree = "<group>"; };
 		EC96D86C1BA83CD1008C8F6F /* MacCourse */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MacCourse; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECCFECF01BAAB27C00E19EBF /* SAPLesson1Tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SAPLesson1Tests.c; path = SAPMacCourse/tests/SAPL01DataTypes/SAPLesson1Tests.c; sourceTree = SOURCE_ROOT; };
 		ECCFECF11BAAB27C00E19EBF /* SAPLesson1Tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAPLesson1Tests.h; path = SAPMacCourse/tests/SAPL01DataTypes/SAPLesson1Tests.h; sourceTree = SOURCE_ROOT; };
-		ECCFECF31BAAB34900E19EBF /* SAPPrintTypesSize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SAPPrintTypesSize.c; path = SAPMacCourse/sources/SAPL01DataTypes/SAPPrintTypesSize.c; sourceTree = SOURCE_ROOT; };
-		ECCFECF41BAAB34900E19EBF /* SAPPrintTypesSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAPPrintTypesSize.h; path = SAPMacCourse/sources/SAPL01DataTypes/SAPPrintTypesSize.h; sourceTree = SOURCE_ROOT; };
+		ECCFECF31BAAB34900E19EBF /* SAPPrintTypeSize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SAPPrintTypeSize.c; path = SAPMacCourse/sources/SAPL01DataTypes/SAPPrintTypeSize.c; sourceTree = SOURCE_ROOT; };
+		ECCFECF41BAAB34900E19EBF /* SAPPrintTypeSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAPPrintTypeSize.h; path = SAPMacCourse/sources/SAPL01DataTypes/SAPPrintTypeSize.h; sourceTree = SOURCE_ROOT; };
 		ECCFECF71BAAB79100E19EBF /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = main.c; path = SAPL01DataTypes/main.c; sourceTree = "<group>"; };
 		ECCFECFA1BAAC17400E19EBF /* SAPMamaOrPapa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SAPMamaOrPapa.c; sourceTree = "<group>"; };
 		ECCFECFB1BAAC17400E19EBF /* SAPMamaOrPapa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPMamaOrPapa.h; sourceTree = "<group>"; };
@@ -56,7 +54,6 @@
 		EC5B71261BB198DC00FB8D06 /* SAPL02FunctionCreationMacros */ = {
 			isa = PBXGroup;
 			children = (
-				EC5B71271BB1991600FB8D06 /* SAPFunctionCreationMacros.c */,
 				EC5B71281BB1991600FB8D06 /* SAPFunctionCreationMacros.h */,
 			);
 			path = SAPL02FunctionCreationMacros;
@@ -112,8 +109,8 @@
 		ECCFECED1BAAADEB00E19EBF /* SAPL01DataTypes */ = {
 			isa = PBXGroup;
 			children = (
-				ECCFECF31BAAB34900E19EBF /* SAPPrintTypesSize.c */,
-				ECCFECF41BAAB34900E19EBF /* SAPPrintTypesSize.h */,
+				ECCFECF31BAAB34900E19EBF /* SAPPrintTypeSize.c */,
+				ECCFECF41BAAB34900E19EBF /* SAPPrintTypeSize.h */,
 				ECCFECFA1BAAC17400E19EBF /* SAPMamaOrPapa.c */,
 				ECCFECFB1BAAC17400E19EBF /* SAPMamaOrPapa.h */,
 			);
@@ -186,11 +183,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECCFECF51BAAB34900E19EBF /* SAPPrintTypesSize.c in Sources */,
+				ECCFECF51BAAB34900E19EBF /* SAPPrintTypeSize.c in Sources */,
 				ECCFECF21BAAB27C00E19EBF /* SAPLesson1Tests.c in Sources */,
 				ECCFECF81BAAB79100E19EBF /* main.c in Sources */,
 				EC5B712E1BB19E9A00FB8D06 /* SAPRunFunctionCreateMacros.c in Sources */,
-				EC5B71291BB1991600FB8D06 /* SAPFunctionCreationMacros.c in Sources */,
 				ECCFECFC1BAAC17400E19EBF /* SAPMamaOrPapa.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

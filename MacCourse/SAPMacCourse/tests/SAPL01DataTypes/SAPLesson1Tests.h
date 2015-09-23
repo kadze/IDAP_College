@@ -9,17 +9,16 @@
 #ifndef __MacCourse__SAPLesson1Tests__
 #define __MacCourse__SAPLesson1Tests__
 
-#include <stdio.h>
-#include <assert.h>
-#include "SAPPrintTypesSize.h"
-#include "SAPMamaOrPapa.h"
-
-
 #pragma mark -
 #pragma mark Public declarations
 
-int SAPTestPrintTypesSize();
-int SAPTest1DefineMamaOrPapa();
-int SAPTest2DefineMamaOrPapa();
+extern
+int SAPPerformTestPrintTypeSize();
+
+extern
+int SAPPerformTestDefineParent();
+
+extern
+int SAPPeformTestDefineParentInLoop();
 
 #endif /* defined(__MacCourse__SAPLesson1Tests__) */
