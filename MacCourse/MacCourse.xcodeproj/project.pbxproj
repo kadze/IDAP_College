@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		EC5B712E1BB19E9A00FB8D06 /* SAPRunFunctionCreateMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = EC5B712C1BB19E7D00FB8D06 /* SAPRunFunctionCreateMacros.c */; settings = {ASSET_TAGS = (); }; };
+		EC5B71321BB3E71F00FB8D06 /* SAPStructures.c in Sources */ = {isa = PBXBuildFile; fileRef = EC5B71301BB3E71F00FB8D06 /* SAPStructures.c */; settings = {ASSET_TAGS = (); }; };
+		EC5B71361BB3EE1700FB8D06 /* SAPStructuresTest.c in Sources */ = {isa = PBXBuildFile; fileRef = EC5B71341BB3EE1700FB8D06 /* SAPStructuresTest.c */; settings = {ASSET_TAGS = (); }; };
+		EC5B71391BB420C600FB8D06 /* SAPBinaryData.c in Sources */ = {isa = PBXBuildFile; fileRef = EC5B71371BB420C600FB8D06 /* SAPBinaryData.c */; settings = {ASSET_TAGS = (); }; };
 		ECCFECF21BAAB27C00E19EBF /* SAPLesson1Tests.c in Sources */ = {isa = PBXBuildFile; fileRef = ECCFECF01BAAB27C00E19EBF /* SAPLesson1Tests.c */; };
 		ECCFECF51BAAB34900E19EBF /* SAPPrintTypeSize.c in Sources */ = {isa = PBXBuildFile; fileRef = ECCFECF31BAAB34900E19EBF /* SAPPrintTypeSize.c */; };
 		ECCFECF81BAAB79100E19EBF /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = ECCFECF71BAAB79100E19EBF /* main.c */; };
@@ -30,6 +33,12 @@
 		EC5B71281BB1991600FB8D06 /* SAPFunctionCreationMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPFunctionCreationMacros.h; sourceTree = "<group>"; };
 		EC5B712C1BB19E7D00FB8D06 /* SAPRunFunctionCreateMacros.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = SAPRunFunctionCreateMacros.c; sourceTree = "<group>"; };
 		EC5B712D1BB19E7D00FB8D06 /* SAPRunFunctionCreateMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPRunFunctionCreateMacros.h; sourceTree = "<group>"; };
+		EC5B71301BB3E71F00FB8D06 /* SAPStructures.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SAPStructures.c; sourceTree = "<group>"; };
+		EC5B71311BB3E71F00FB8D06 /* SAPStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPStructures.h; sourceTree = "<group>"; };
+		EC5B71341BB3EE1700FB8D06 /* SAPStructuresTest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SAPStructuresTest.c; sourceTree = "<group>"; };
+		EC5B71351BB3EE1700FB8D06 /* SAPStructuresTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPStructuresTest.h; sourceTree = "<group>"; };
+		EC5B71371BB420C600FB8D06 /* SAPBinaryData.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SAPBinaryData.c; sourceTree = "<group>"; };
+		EC5B71381BB420C600FB8D06 /* SAPBinaryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPBinaryData.h; sourceTree = "<group>"; };
 		EC96D86C1BA83CD1008C8F6F /* MacCourse */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MacCourse; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECCFECF01BAAB27C00E19EBF /* SAPLesson1Tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SAPLesson1Tests.c; path = SAPMacCourse/tests/SAPL01DataTypes/SAPLesson1Tests.c; sourceTree = SOURCE_ROOT; };
 		ECCFECF11BAAB27C00E19EBF /* SAPLesson1Tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAPLesson1Tests.h; path = SAPMacCourse/tests/SAPL01DataTypes/SAPLesson1Tests.h; sourceTree = SOURCE_ROOT; };
@@ -68,6 +77,26 @@
 			path = SAP02OutputTypeMacros;
 			sourceTree = "<group>";
 		};
+		EC5B712F1BB3E5B100FB8D06 /* SAPL03StructureAndBinary */ = {
+			isa = PBXGroup;
+			children = (
+				EC5B71301BB3E71F00FB8D06 /* SAPStructures.c */,
+				EC5B71311BB3E71F00FB8D06 /* SAPStructures.h */,
+				EC5B71371BB420C600FB8D06 /* SAPBinaryData.c */,
+				EC5B71381BB420C600FB8D06 /* SAPBinaryData.h */,
+			);
+			path = SAPL03StructureAndBinary;
+			sourceTree = "<group>";
+		};
+		EC5B71331BB3EDA700FB8D06 /* SAPL03StructureAndBinary */ = {
+			isa = PBXGroup;
+			children = (
+				EC5B71341BB3EE1700FB8D06 /* SAPStructuresTest.c */,
+				EC5B71351BB3EE1700FB8D06 /* SAPStructuresTest.h */,
+			);
+			path = SAPL03StructureAndBinary;
+			sourceTree = "<group>";
+		};
 		EC96D8631BA83CD1008C8F6F = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +120,7 @@
 				ECCFECF71BAAB79100E19EBF /* main.c */,
 				ECCFECED1BAAADEB00E19EBF /* SAPL01DataTypes */,
 				EC5B71261BB198DC00FB8D06 /* SAPL02FunctionCreationMacros */,
+				EC5B712F1BB3E5B100FB8D06 /* SAPL03StructureAndBinary */,
 			);
 			name = sources;
 			path = SAPMacCourse/sources;
@@ -101,6 +131,7 @@
 			children = (
 				ECCFECEF1BAAB1D700E19EBF /* SAPL01DataTypes */,
 				EC5B712B1BB19E7D00FB8D06 /* SAP02OutputTypeMacros */,
+				EC5B71331BB3EDA700FB8D06 /* SAPL03StructureAndBinary */,
 			);
 			name = tests;
 			path = SAPMacCourse/tests;
@@ -184,10 +215,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECCFECF51BAAB34900E19EBF /* SAPPrintTypeSize.c in Sources */,
+				EC5B71361BB3EE1700FB8D06 /* SAPStructuresTest.c in Sources */,
 				ECCFECF21BAAB27C00E19EBF /* SAPLesson1Tests.c in Sources */,
+				EC5B71391BB420C600FB8D06 /* SAPBinaryData.c in Sources */,
 				ECCFECF81BAAB79100E19EBF /* main.c in Sources */,
 				EC5B712E1BB19E9A00FB8D06 /* SAPRunFunctionCreateMacros.c in Sources */,
 				ECCFECFC1BAAC17400E19EBF /* SAPMamaOrPapa.c in Sources */,
+				EC5B71321BB3E71F00FB8D06 /* SAPStructures.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

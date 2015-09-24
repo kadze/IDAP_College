@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include "SAPLesson1Tests.h"
 #include "SAPRunFunctionCreateMacros.h"
+#include "SAPStructuresTest.h"
+#include "SAPBinaryData.h"
 
 int main(int argc, const char * argv[]) {
 
@@ -23,6 +25,12 @@ int main(int argc, const char * argv[]) {
     
     //function creation and performing with macros
     SAPRunFunctionCreationMacros();
+    
+    //lesson 3
+    //structures
+    SAPPerformTestPrintSizeOfStructures();
+    
+    SAPPrintIntNumberBits(35);
     
     return 0;
 }
