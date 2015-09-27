@@ -17,10 +17,27 @@
 
 
 #define SAPStructSize(Struct) \
-size_t SAPSizeof##Struct(){\
-return sizeof(Struct);\
-}
-# define SAPPrintStructSize(Struct) printf("The size of " #Struct " is %lu\n", SAPSizeof##Struct())
+    size_t SAPSizeof##Struct(){\
+        return sizeof(Struct);\
+    }
+#define SAPPrintStructSize(Struct) printf("The size of " #Struct " is %lu\n", SAPSizeof##Struct())
+
+#define SAPPrintStructMemberPositions(Struct) \
+printf("======Positions of structure " #Struct " =======\n");\
+printf("Position of myShort1 is %lu\n",__builtin_offsetof(Struct, myShort1));\
+printf("Position of myShort2 is %lu\n",__builtin_offsetof(Struct, myShort2));\
+printf("Position of myShort3 is %lu\n",__builtin_offsetof(Struct, myShort3));\
+printf("Position of myBool1 is %lu\n",__builtin_offsetof(Struct, myBool1));\
+printf("Position of myBool2 is %lu\n",__builtin_offsetof(Struct, myBool2));\
+printf("Position of myBool3 is %lu\n",__builtin_offsetof(Struct, myBool3));\
+printf("Position of myBool4 is %lu\n",__builtin_offsetof(Struct, myBool4));\
+printf("Position of myBool5 is %lu\n",__builtin_offsetof(Struct, myBool5));\
+printf("Position of myBool6 is %lu\n",__builtin_offsetof(Struct, myBool6));\
+printf("Position of myInt1 is %lu\n",__builtin_offsetof(Struct, myInt1));\
+printf("Position of myFloat1 is %lu\n",__builtin_offsetof(Struct, myFloat1));\
+printf("Position of myDouble1 is %lu\n",__builtin_offsetof(Struct, myDouble1));\
+printf("Position of myLongLong1 is %lu\n",__builtin_offsetof(Struct, myLongLong1));\
+printf("Position of *myStringPointer is %lu\n",__builtin_offsetof(Struct, myStringPointer));
 
 //create data structure which stores randomly settled
 //6 bool, 1 float, 1 int, 1 long long, 3 short, 1 double, 1 string pointer

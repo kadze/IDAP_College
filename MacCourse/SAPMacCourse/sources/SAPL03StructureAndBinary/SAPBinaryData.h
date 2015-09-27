@@ -9,6 +9,8 @@
 #ifndef SAPBinaryData_h
 #define SAPBinaryData_h
 
+#include <stdlib.h>
 void SAPPrintIntNumberBits(int intNumber);
+void SAPPrintBitsOfAnyTypeNumber(void *value, size_t size);
 
 #endif /* SAPBinaryData_h */

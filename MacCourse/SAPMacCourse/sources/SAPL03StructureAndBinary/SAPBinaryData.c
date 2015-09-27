@@ -6,32 +6,23 @@
 //  Copyright © 2015 Yosemite Retail. All rights reserved.
 //
 
+//#include <stdlib.h>
 #include "SAPBinaryData.h"
 
-void SAPPrintIntNumberBits(int intNumber){
-    short intSize = sizeof(int);
-    short arraySize = intSize * 8;
-    short position = arraySize - 1;
-    short bit = 0;
-    short resultArray[arraySize];
-    //initialize array with values
-    for (short i = 0; i < arraySize; i++){
-        resultArray[i] = 0;
-    }
-    int tempResult = intNumber;
-    short rest = 0;
-    while (tempResult > 0){
-        rest = tempResult % 2;
-        tempResult = tempResult / 2;
-        resultArray[position] = rest;
-        position = position - 1;
-    };
+//create universal method to output bits of the number of any type into consol
+void SAPPrintBitsOfAnyTypeNumber(void *AnyTypeNumberPointer, size_t size){
+        
+    size = 1;
+    char num = 255;
+    typeof(num);
     
-    for (short i = 0; i < arraySize; i++) {
-        printf("%d",resultArray[i]);
+    //нипоняв как из входного параметра функции сделать переменную конкретного типа с конкретным значением
+    for(int i = size << 3; i != 0; i--){
+        if(((num >> (i - 1)) & 1) != 0)
+            printf ("1");
+        else
+            printf ("0");
     }
     printf("\n");
-}
-void SAPPrintAnyTypeNumberBits(*NumberPointer){
     
 }

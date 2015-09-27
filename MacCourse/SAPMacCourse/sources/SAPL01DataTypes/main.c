@@ -10,7 +10,7 @@
 #include "SAPLesson1Tests.h"
 #include "SAPRunFunctionCreateMacros.h"
 #include "SAPStructuresTest.h"
-#include "SAPBinaryData.h"
+#include "SAPBinaryTest.h"
 
 int main(int argc, const char * argv[]) {
 
@@ -29,8 +29,11 @@ int main(int argc, const char * argv[]) {
     //lesson 3
     //structures
     SAPPerformTestPrintSizeOfStructures();
+    SAPPerformTestPrintStructMemberPositions();
     
-    SAPPrintIntNumberBits(35);
+    
+    //binary data
+    SAPPerformTestPrintBitsOfAnyTypeNumber();
     
     return 0;
 }
