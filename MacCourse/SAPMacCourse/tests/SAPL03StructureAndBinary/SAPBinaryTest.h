@@ -11,10 +11,13 @@
 
 #pragma mark -
 #pragma mark Public declarations
+
 extern
 void SAPPerformTestPrintBitsOfAnyTypeNumber();
 
 extern
 void SAPPerformTestPrintStructMemberPositions();
 
+extern
+void SAPPerformTestGetEndian();
 #endif /* SAPBinaryTest_h */

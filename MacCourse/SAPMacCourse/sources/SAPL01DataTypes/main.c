@@ -35,6 +35,7 @@ int main(int argc, const char * argv[]) {
     //binary data
     SAPPerformTestPrintBitsOfAnyTypeNumber();
     
+    SAPPerformTestGetEndian();
     return 0;
 }
 
