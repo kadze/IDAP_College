@@ -10,9 +10,6 @@
 #define __MacCourse__SAPMamaOrPapa__
 
 
-#pragma mark -
-#pragma mark Public implementations
-
 //enum dividers;
 typedef enum {
     papa,
@@ -20,9 +17,6 @@ typedef enum {
     mamapapa,
     outOfCondition
 } parents;
-
-#pragma mark -
-#pragma mark Public declarations
 
 extern
 char* getParentName(parents);

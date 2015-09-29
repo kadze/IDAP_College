@@ -12,10 +12,6 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-#pragma mark -
-#pragma mark Public implementations
-
-
 #define SAPStructSize(Struct) \
     size_t SAPSizeof##Struct(){\
         return sizeof(Struct);\

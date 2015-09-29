@@ -11,8 +11,6 @@
 
 #include <stdlib.h>
 
-#pragma mark--
-#pragma mark Public declarations
 typedef enum{
     BigEndian,
     LittleEndian

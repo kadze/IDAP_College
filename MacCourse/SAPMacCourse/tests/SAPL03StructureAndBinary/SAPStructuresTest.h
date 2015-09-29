@@ -9,9 +9,6 @@
 #ifndef Structures_h
 #define Structures_h
 
-#pragma mark -
-#pragma mark Public declarations
-
 extern
 void SAPPerformTestPrintSizeOfStructures();
 

@@ -9,9 +9,6 @@
 #ifndef SAPBinaryTest_h
 #define SAPBinaryTest_h
 
-#pragma mark -
-#pragma mark Public declarations
-
 extern
 void SAPPerformTestPrintBitsOfAnyTypeNumber();
 

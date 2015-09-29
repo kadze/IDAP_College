@@ -9,9 +9,6 @@
 #ifndef __MacCourse__SAPLesson1Tests__
 #define __MacCourse__SAPLesson1Tests__
 
-#pragma mark -
-#pragma mark Public declarations
-
 extern
 int SAPPerformTestPrintTypeSize();
 
