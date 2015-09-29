@@ -20,6 +20,7 @@ void SAPOutputByte(uint8_t byte);
 #pragma mark Public implementations
 
 //create universal method to output bits of the number of any type into consol
+
 void SAPPrintBitsOfAnyTypeNumberBigEndian(void *AnyTypeNumberPointer, size_t size){
     for(size_t index = 0; index < size; index++){
         uint8_t byte = *((uint8_t *)AnyTypeNumberPointer + index);
@@ -45,10 +46,12 @@ void SAPOutputByte(uint8_t byte){
 }
 
 
+//create method to output bytes in direct or reverse order according to the flag
 void SAPValueBitOutput(void *data, size_t size, SAPEndian endian){
     endian == LittleEndian ? SAPPrintBitsOfAnyTypeNumberLittleEndian(data, size) : SAPPrintBitsOfAnyTypeNumberBigEndian(data, size);
 }
 
+//revise byte output so that it works on the machines with direct and indirect byte order
 void SAPValueBitOutputAnyEndian(void *data, size_t size){
     SAPGetEndianWithUnion() == LittleEndian ? SAPPrintBitsOfAnyTypeNumberLittleEndian(data, size) : SAPPrintBitsOfAnyTypeNumberBigEndian(data, size);
 }
