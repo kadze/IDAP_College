@@ -27,5 +27,5 @@ void SAPPerformTestPrintSizeOfStructures(){
 void SAPPerformTestPrintStructMemberPositions(){
     SAPPrintStructMemberPositions(SAPBigStructure)
     SAPPrintStructMemberPositions(SAPSmallerStructure)
-    //SAPPrintStructMemberPositions(SAPSmallStructure)
+    SAPPrintSmallStructMemberPositions(SAPSmallStructure)
 }
