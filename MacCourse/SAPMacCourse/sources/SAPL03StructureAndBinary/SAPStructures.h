@@ -18,34 +18,36 @@
     }
 #define SAPPrintStructSize(Struct) printf("The size of " #Struct " is %lu\n", SAPSizeof##Struct())
 
+#define SAPPrintOffsetof(Struct, variable)\
+    printf("Position of " #variable " is %lu\n",__builtin_offsetof(Struct, variable));
+
 #define SAPPrintSmallStructMemberPositions(Struct)\
     printf("======Positions of structure " #Struct " =======\n");\
-    printf("Position of myShort1 is %lu\n",__builtin_offsetof(Struct, myShort1));\
-    printf("Position of myShort2 is %lu\n",__builtin_offsetof(Struct, myShort2));\
-    printf("Position of myShort3 is %lu\n",__builtin_offsetof(Struct, myShort3));\
-    printf("Position of myInt1 is %lu\n",__builtin_offsetof(Struct, myInt1));\
-    printf("Position of myFloat1 is %lu\n",__builtin_offsetof(Struct, myFloat1));\
-    printf("Position of myDouble1 is %lu\n",__builtin_offsetof(Struct, myDouble1));\
-    printf("Position of myLongLong1 is %lu\n",__builtin_offsetof(Struct, myLongLong1));\
-    printf("Position of *myStringPointer is %lu\n",__builtin_offsetof(Struct, myStringPointer));\
-    printf("Position of boolFlags is %lu\n",__builtin_offsetof(Struct, boolFlags));
+    SAPPrintOffsetof(Struct, myShort1)\
+    SAPPrintOffsetof(Struct, myShort2)\
+    SAPPrintOffsetof(Struct, myShort3)\
+    SAPPrintOffsetof(Struct, myInt1)\
+    SAPPrintOffsetof(Struct, myFloat1)\
+    SAPPrintOffsetof(Struct, myDouble1)\
+    SAPPrintOffsetof(Struct, myLongLong1)\
+    SAPPrintOffsetof(Struct, myStringPointer)\
+    SAPPrintOffsetof(Struct, boolFlags)
 
 #define SAPPrintStructMemberPositions(Struct) \
     printf("======Positions of structure " #Struct " =======\n");\
-    printf("Position of myShort1 is %lu\n",__builtin_offsetof(Struct, myShort1));\
-    printf("Position of myShort2 is %lu\n",__builtin_offsetof(Struct, myShort2));\
-    printf("Position of myShort3 is %lu\n",__builtin_offsetof(Struct, myShort3));\
-    printf("Position of myBool1 is %lu\n",__builtin_offsetof(Struct, myBool1));\
-    printf("Position of myBool2 is %lu\n",__builtin_offsetof(Struct, myBool2));\
-    printf("Position of myBool3 is %lu\n",__builtin_offsetof(Struct, myBool3));\
-    printf("Position of myBool4 is %lu\n",__builtin_offsetof(Struct, myBool4));\
-    printf("Position of myBool5 is %lu\n",__builtin_offsetof(Struct, myBool5));\
-    printf("Position of myBool6 is %lu\n",__builtin_offsetof(Struct, myBool6));\
-    printf("Position of myInt1 is %lu\n",__builtin_offsetof(Struct, myInt1));\
-    printf("Position of myFloat1 is %lu\n",__builtin_offsetof(Struct, myFloat1));\
-    printf("Position of myDouble1 is %lu\n",__builtin_offsetof(Struct, myDouble1));\
-    printf("Position of myLongLong1 is %lu\n",__builtin_offsetof(Struct, myLongLong1));\
-    printf("Position of *myStringPointer is %lu\n",__builtin_offsetof(Struct, myStringPointer));
+    SAPPrintOffsetof(Struct, myShort1)\
+    SAPPrintOffsetof(Struct, myShort2)\
+    SAPPrintOffsetof(Struct, myShort3)\
+    SAPPrintOffsetof(Struct, myBool1)\
+    SAPPrintOffsetof(Struct, myBool2)\
+    SAPPrintOffsetof(Struct, myBool3)\
+    SAPPrintOffsetof(Struct, myBool4)\
+    SAPPrintOffsetof(Struct, myBool5)\
+    SAPPrintOffsetof(Struct, myBool6)\
+    SAPPrintOffsetof(Struct, myInt1)\
+    SAPPrintOffsetof(Struct, myDouble1)\
+    SAPPrintOffsetof(Struct, myLongLong1)\
+    SAPPrintOffsetof(Struct, myStringPointer)
 
 #define SAPPrintBoolFlagsPosition(Struct)\
     printf("Position of boolFlags is %lu\n",__builtin_offsetof(Struct, boolFlags));
