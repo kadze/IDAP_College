@@ -10,6 +10,6 @@
 #define SAPRunFunctionCreateMacros_h
 
 extern
-void SAPRunFunctionCreationMacros();
+void SAPRunFunctionCreationMacros(void);
 
 #endif /* SAPRunFunctionCreateMacros_h */

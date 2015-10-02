@@ -6,7 +6,6 @@
 //  Copyright © 2015 Yosemite Retail. All rights reserved.
 //
 
-//#include <std
 #include "SAPBinaryData.h"
 
 static const int SAPBitCount = 8;
@@ -48,32 +47,32 @@ void SAPOutputByte(uint8_t byte){
 
 //create method to output bytes in direct or reverse order according to the flag
 void SAPValueBitOutput(void *data, size_t size, SAPEndian endian){
-    endian == LittleEndian ? SAPPrintBitsOfAnyTypeNumberLittleEndian(data, size) : SAPPrintBitsOfAnyTypeNumberBigEndian(data, size);
+    kSAPLittleEndian == endian ? SAPPrintBitsOfAnyTypeNumberLittleEndian(data, size) : SAPPrintBitsOfAnyTypeNumberBigEndian(data, size);
 }
 
 //revise byte output so that it works on the machines with direct and indirect byte order
 void SAPValueBitOutputAnyEndian(void *data, size_t size){
-    SAPGetEndianWithUnion() == LittleEndian ? SAPPrintBitsOfAnyTypeNumberLittleEndian(data, size) : SAPPrintBitsOfAnyTypeNumberBigEndian(data, size);
+    kSAPLittleEndian == SAPGetEndianWithUnion() ? SAPPrintBitsOfAnyTypeNumberLittleEndian(data, size) : SAPPrintBitsOfAnyTypeNumberBigEndian(data, size);
 }
 
-SAPEndian SAPGetEndianWithPointer(){
+SAPEndian SAPGetEndianWithPointer(void){
     int x = 1;
     if(*(char *)&x == 1){
-        return LittleEndian;
+        return kSAPLittleEndian;
     } else{
-        return BigEndian;
+        return kSAPBigEndian;
     }
 }
 
-SAPEndian SAPGetEndianWithUnion(){
+SAPEndian SAPGetEndianWithUnion(void){
     union{
         int i;
         char c[sizeof(int)];
     } x;
     x.i = 1;
     if(x.c[0] == 1){
-        return LittleEndian;
+        return kSAPLittleEndian;
     }else{
-        return BigEndian;
+        return kSAPBigEndian;
     }
 }

@@ -10,11 +10,11 @@
 #define SAPBinaryTest_h
 
 extern
-void SAPPerformTestPrintBitsOfAnyTypeNumber();
+void SAPPerformTestPrintBitsOfAnyTypeNumber(void);
 
 extern
-void SAPPerformTestPrintStructMemberPositions();
+void SAPPerformTestPrintStructMemberPositions(void);
 
 extern
-void SAPPerformTestGetEndian();
+void SAPPerformTestGetEndian(void);
 #endif /* SAPBinaryTest_h */

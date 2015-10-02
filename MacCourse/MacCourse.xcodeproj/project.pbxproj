@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		EC5B712E1BB19E9A00FB8D06 /* SAPRunFunctionCreateMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = EC5B712C1BB19E7D00FB8D06 /* SAPRunFunctionCreateMacros.c */; settings = {ASSET_TAGS = (); }; };
-		EC5B71321BB3E71F00FB8D06 /* SAPStructures.c in Sources */ = {isa = PBXBuildFile; fileRef = EC5B71301BB3E71F00FB8D06 /* SAPStructures.c */; settings = {ASSET_TAGS = (); }; };
 		EC5B71361BB3EE1700FB8D06 /* SAPStructuresTest.c in Sources */ = {isa = PBXBuildFile; fileRef = EC5B71341BB3EE1700FB8D06 /* SAPStructuresTest.c */; settings = {ASSET_TAGS = (); }; };
 		EC5B71391BB420C600FB8D06 /* SAPBinaryData.c in Sources */ = {isa = PBXBuildFile; fileRef = EC5B71371BB420C600FB8D06 /* SAPBinaryData.c */; settings = {ASSET_TAGS = (); }; };
 		EC5B713C1BB837A600FB8D06 /* SAPBinaryTest.c in Sources */ = {isa = PBXBuildFile; fileRef = EC5B713A1BB837A600FB8D06 /* SAPBinaryTest.c */; settings = {ASSET_TAGS = (); }; };
@@ -34,7 +33,6 @@
 		EC5B71281BB1991600FB8D06 /* SAPFunctionCreationMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPFunctionCreationMacros.h; sourceTree = "<group>"; };
 		EC5B712C1BB19E7D00FB8D06 /* SAPRunFunctionCreateMacros.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = SAPRunFunctionCreateMacros.c; sourceTree = "<group>"; };
 		EC5B712D1BB19E7D00FB8D06 /* SAPRunFunctionCreateMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPRunFunctionCreateMacros.h; sourceTree = "<group>"; };
-		EC5B71301BB3E71F00FB8D06 /* SAPStructures.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SAPStructures.c; sourceTree = "<group>"; };
 		EC5B71311BB3E71F00FB8D06 /* SAPStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPStructures.h; sourceTree = "<group>"; };
 		EC5B71341BB3EE1700FB8D06 /* SAPStructuresTest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SAPStructuresTest.c; sourceTree = "<group>"; };
 		EC5B71351BB3EE1700FB8D06 /* SAPStructuresTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPStructuresTest.h; sourceTree = "<group>"; };
@@ -83,7 +81,6 @@
 		EC5B712F1BB3E5B100FB8D06 /* SAPL03StructureAndBinary */ = {
 			isa = PBXGroup;
 			children = (
-				EC5B71301BB3E71F00FB8D06 /* SAPStructures.c */,
 				EC5B71311BB3E71F00FB8D06 /* SAPStructures.h */,
 				EC5B71371BB420C600FB8D06 /* SAPBinaryData.c */,
 				EC5B71381BB420C600FB8D06 /* SAPBinaryData.h */,
@@ -227,7 +224,6 @@
 				ECCFECF81BAAB79100E19EBF /* main.c in Sources */,
 				EC5B712E1BB19E9A00FB8D06 /* SAPRunFunctionCreateMacros.c in Sources */,
 				ECCFECFC1BAAC17400E19EBF /* SAPMamaOrPapa.c in Sources */,
-				EC5B71321BB3E71F00FB8D06 /* SAPStructures.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

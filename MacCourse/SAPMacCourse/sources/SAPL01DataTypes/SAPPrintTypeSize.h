@@ -9,6 +9,9 @@
 #ifndef __MacCourse__SAPPrintTypesSize__
 #define __MacCourse__SAPPrintTypesSize__
 
+#define SAPSizeofOutput(type) \
+    printf("Size of type " #type " = %lu\n", sizeof(type))
+
 extern
 void SAPPrintTypeSize();
 

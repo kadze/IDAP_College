@@ -10,12 +10,12 @@
 #define __MacCourse__SAPLesson1Tests__
 
 extern
-int SAPPerformTestPrintTypeSize();
+int SAPPerformTestPrintTypeSize(void);
 
 extern
-int SAPPerformTestDefineParent();
+int SAPPerformTestDefineParent(void);
 
 extern
-int SAPPeformTestDefineParentInLoop();
+int SAPPeformTestDefineParentInLoop(void);
 
 #endif /* defined(__MacCourse__SAPLesson1Tests__) */

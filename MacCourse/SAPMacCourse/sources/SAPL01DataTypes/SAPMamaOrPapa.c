@@ -16,26 +16,24 @@ static const int kPapaDivider = 5;
 static const int kMamapapaDivider = 15;
 
 parents SAPDefineParent(int param){
-    
-    
     parents result;
     if (param % kMamapapaDivider == 0) {
-        result = mamapapa;
+        result = kSAPMamapapa;
     } else if (param % kPapaDivider == 0){
-        result =  papa;
+        result =  kSAPPapa;
     } else if (param % kMamaDivider == 0){
-        result =  mama;
+        result =  kSAPMama;
     } else
-        result = outOfCondition;
+        result = kSAPOutOfCondition;
     
     return result;
 }
 
 char* getParentName(parents parent){
     char* result = "";
-    if(parent == mama)
+    if(kSAPMama == parent)
         result = "mama";
-    else if(parent == papa)
+    else if(kSAPPapa == parent)
         result = "papa";
     else
         result = "";

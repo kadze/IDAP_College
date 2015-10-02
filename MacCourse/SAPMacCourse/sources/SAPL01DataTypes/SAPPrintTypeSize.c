@@ -6,14 +6,12 @@
 //  Copyright (c) 2015 Yosemite Retail. All rights reserved.
 //
 #include <stdio.h>
+#include "SAPPrintTypeSize.h"
 
 #pragma mark -
 #pragma mark Private implementations
 
-#define SAPSizeofOutput(type) \
-    printf("Size of type " #type " = %lu\n", sizeof(type))
-
-void SAPPrintTypeSize(){
+void SAPPrintTypeSize(void){
     
     SAPSizeofOutput(char);
     SAPSizeofOutput(short int);

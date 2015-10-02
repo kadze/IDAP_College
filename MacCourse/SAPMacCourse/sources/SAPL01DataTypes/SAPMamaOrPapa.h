@@ -9,13 +9,12 @@
 #ifndef __MacCourse__SAPMamaOrPapa__
 #define __MacCourse__SAPMamaOrPapa__
 
-
 //enum dividers;
 typedef enum {
-    papa,
-    mama,
-    mamapapa,
-    outOfCondition
+    kSAPPapa,
+    kSAPMama,
+    kSAPMamapapa,
+    kSAPOutOfCondition
 } parents;
 
 extern
