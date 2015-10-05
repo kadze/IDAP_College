@@ -36,6 +36,7 @@ int main(int argc, const char * argv[]) {
     SAPPerformTestPrintBitsOfAnyTypeNumber();
     
     SAPPerformTestGetEndian();
+    
     return 0;
 }
 
