@@ -11,27 +11,34 @@
 
 # include <stdbool.h>
 
+static const int kSAPChildrenLimit = 20;
+
 typedef enum{
     SAPHumanGenderMale,
     SAPHumanGenderFemale
-} SAPHumanGender;
+} SAPGender;
 
 typedef struct SAPHuman SAPHuman;
 struct SAPHuman{
+    uint64_t _referenceCount;
     char *_name;
-    int _age;
-    SAPHumanGender _gender;
+    SAPGender _gender;
     SAPHuman *_partner;
     SAPHuman *_mother;
     SAPHuman *_father;
     SAPHuman *_children[20];
-    bool _isMarried;
+    uint8_t _age;
 };
 
 extern
 SAPHuman *SAPHumanCreate(void);
 extern
-void SAPHumanDeallocate(SAPHuman *object);
+SAPHuman *SAPHumanCreateWithParameters(SAPHuman *mother, SAPHuman *Father, SAPGender gender);
+
+extern
+void SAPHumanRelease(SAPHuman *object);
+extern
+void SAPHumanRetain(SAPHuman *object);
 
 extern
 char *SAPHumanName(SAPHuman *object);
@@ -39,9 +46,17 @@ extern
 void SAPHumanSetName(SAPHuman *object, char *name);
 
 extern
-int SAPHumanAge(SAPHuman *object);
+SAPGender SAPHumanGender(SAPHuman *object);
 extern
-void SAPHumanSetAge(SAPHuman *object, int *age);
+void SAPHumanSetGender(SAPHuman *object, SAPGender gender);
+
+extern
+uint8_t SAPHumanAge(SAPHuman *object);
+extern
+void SAPHumanSetAge(SAPHuman *object, uint8_t *age);
+
+extern
+void SAPHumanBornChild(SAPHuman *object);
 
 extern
 int SAPHumanChildrenCount(SAPHuman *object);
@@ -52,12 +67,12 @@ extern
 void SAPHumanSetPartner(SAPHuman *object, SAPHuman *partner);
 
 extern
-SAPHuman *SAPHunmanObjectMother(SAPHuman *object);
+SAPHuman *SAPHumanMother(SAPHuman *object);
 extern
 void SAPHumanSetMother(SAPHuman *object, SAPHuman *mother);
 
 extern
-SAPHuman *SAPHunmanObjectFather(SAPHuman *object);
+SAPHuman *SAPHumanFather(SAPHuman *object);
 extern
 void SAPHumanSetFather(SAPHuman *object, SAPHuman *father);
 

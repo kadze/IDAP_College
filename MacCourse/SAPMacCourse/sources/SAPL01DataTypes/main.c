@@ -11,6 +11,7 @@
 #include "SAPRunFunctionCreateMacros.h"
 #include "SAPStructuresTest.h"
 #include "SAPBinaryTest.h"
+#include "SAPHumanTests.h"
 
 int main(int argc, const char * argv[]) {
 
@@ -36,6 +37,9 @@ int main(int argc, const char * argv[]) {
     SAPPerformTestPrintBitsOfAnyTypeNumber();
     
     SAPPerformTestGetEndian();
+    
+    //Human
+    SAPPerformAllHumanTests();
     
     return 0;
 }
