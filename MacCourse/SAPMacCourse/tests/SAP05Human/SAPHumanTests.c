@@ -6,8 +6,11 @@
 //  Copyright (c) 2015 Yosemite Retail. All rights reserved.
 //
 
+#include <assert.h>
 #include <stdio.h>
+#include <string.h>
 #include "SAPHuman.h"
+
 //#include "SAPHumanTests.h"
 
 
@@ -82,7 +85,9 @@ void SAPPerformTestSAPHumanSetName(void){
     printf("===Perform SAPHumanSetName() test===\n");
     SAPHuman *testHuman = SAPHumanCreate();
     printf("Human's name before setting name is %s\n", SAPHumanName(testHuman));
-    SAPHumanSetName(testHuman, "Petya");
+    char *name = "Petya";
+    SAPHumanSetName(testHuman, name);
+    assert(0 == strcmp(name, SAPHumanName(testHuman)));
     printf("Human's name after setting name is %s\n", SAPHumanName(testHuman));
     SAPHumanRelease(testHuman);
 }
@@ -93,6 +98,7 @@ void SAPPerformTestSAPHumanSetGender(){
     printf("Human's gender before setting name is %s\n",
            SAPHumanGenderMale == SAPHumanGender(testHuman) ? "Male(0)" : "Female(1)");
     SAPHumanSetGender(testHuman, SAPHumanGenderFemale);
+    assert(SAPHumanGenderFemale == SAPHumanGender(testHuman));
     printf("Human's gender after setting is %s\n",
            SAPHumanGenderMale == SAPHumanGender(testHuman) ? "Male(0)" : "Female(1)");
     SAPHumanRelease(testHuman);
@@ -103,6 +109,7 @@ void SAPPerformTestSAPHumanSetAge(void){
     SAPHuman *testHuman = SAPHumanCreate();
     printf("Human's age before setting age is %d\n", SAPHumanAge(testHuman));
     SAPHumanSetAge(testHuman, 20);
+    assert(20 == SAPHumanAge(testHuman));
     printf("Human's age after setting age is %d\n", SAPHumanAge(testHuman));
     SAPHumanRelease(testHuman);
 }
@@ -114,6 +121,7 @@ void SAPPerformTestSAPHumanSetPartner(void){
     SAPHuman *testPartner = SAPHumanCreate();
     SAPHumanSetName(testPartner, "Josefina");
     SAPHumanSetPartner(testHuman, testPartner);
+    assert(testPartner == SAPHumanPartner(testHuman));
     printf("Human's name after setting name is %s\n", SAPHumanName(SAPHumanPartner(testHuman)));
     SAPHumanRelease(testPartner);
     SAPHumanRelease(testHuman);
