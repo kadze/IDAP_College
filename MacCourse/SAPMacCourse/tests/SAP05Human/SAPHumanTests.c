@@ -11,15 +11,8 @@
 #include <string.h>
 #include "SAPHuman.h"
 
-//#include "SAPHumanTests.h"
-
-
-void SAPPrintChildrenArray(SAPHuman *children){
-    for (int counter = 0; counter < kSAPChildrenLimit; counter ++) {
-        printf("child[%d] %s\n", counter, SAPHumanName(children));
-        children++;
-    }
-}
+#pragma mark --
+#pragma mark Private implementations
 
 //auto create human with some parameters
 SAPHuman *SAPCreateSpecialTestHumanWithParameters(void){
@@ -42,112 +35,58 @@ void SAPReleaseSpecialTestHumanWithParameters(SAPHuman *testHuman){
 void SAPPerformHumanCreateTest(void){
     printf("===Perform SAPHumanCreate() test ===\n");
     SAPHuman *testHuman = SAPHumanCreate();
-    printf("All fields have to be nulled\n");
-    printf("age = %d\n", SAPHumanAge(testHuman));
-    printf("name = %s\n", SAPHumanName(testHuman));
-    printf("gender = %s\n", SAPHumanGenderMale == SAPHumanGender(testHuman) ? "Male(0)" : "Female(1)");
-    printf("mother = %s\n", SAPHumanMother(testHuman));
-    printf("father = %s\n", SAPHumanFather(testHuman));
-    SAPPrintChildrenArray(testHuman->_children);
+    assert(NULL != testHuman);
+    //All fields have to be empty
+    assert(0 == SAPHumanAge(testHuman));
+    assert(NULL == SAPHumanName(testHuman));
+    assert(SAPHumanGenderMale == SAPHumanGender(testHuman));
+    assert(NULL == SAPHumanMother(testHuman));
+    assert(NULL == SAPHumanFather(testHuman));
+    //SAPPrintChildrenArray(testHuman->_children);
+    for (int childIndex = 0; childIndex < 20; childIndex ++) {
+        assert(NULL == testHuman->_children[childIndex]);
+    }
     SAPHumanRelease(testHuman);
 }
-
-//
-//void SAPPerformTestSAPHumanDeallocate(void){
-//    printf("===Perform SAPHumanDeallocate() test ===\n");
-//    SAPHuman *testHuman = SAPCreateSpecialTestHumanWithParameters();
-//    SAPHuman *testGirfriend = SAPHumanCreate();
-//    SAPHumanSetName(testGirfriend, "Juddy");
-//    SAPHumanSetGender(testGirfriend, SAPHumanGenderFemale);
-//    SAPHumanSetPartner(testHuman, testGirfriend);
-//    SAPHumanSetAge(testHuman, 20); //20 - let's set age of human
-//    SAPHumanBornChild(testHuman);
-//    
-//    SAPHumanDeallocate(testHuman);
-//    
-//    
-//}
-
 
 void SAPPerformTestHumanCreateWithParameters(void){
     printf("===Perform SAPHumanCreateWithParameters() test ===\n");
     SAPHuman *testHuman = SAPCreateSpecialTestHumanWithParameters();
-    printf("Created human with parameters. Human's initial properties are: \
-           Mother %s\nFather %s\nGender %s\n",
-           SAPHumanName(SAPHumanMother(testHuman)),
-           SAPHumanName(SAPHumanFather(testHuman)),
-           SAPHumanGenderMale == SAPHumanGender(testHuman) ? "Male(0)" : "Female(1)");
-    
+    //human object must be created
+    assert(NULL != testHuman);
+    //fields Mother, Fatrer and Gender must be set.
+    assert(0 == strcmp("Mommy",SAPHumanName(SAPHumanMother(testHuman))));
+    assert(0 == strcmp("Daddy", SAPHumanName(SAPHumanFather(testHuman))));
+    assert(SAPHumanGenderMale == SAPHumanGender(testHuman));
     SAPReleaseSpecialTestHumanWithParameters(testHuman);
 }
 
 void SAPPerformTestSAPHumanSetName(void){
     printf("===Perform SAPHumanSetName() test===\n");
     SAPHuman *testHuman = SAPHumanCreate();
-    printf("Human's name before setting name is %s\n", SAPHumanName(testHuman));
     char *name = "Petya";
     SAPHumanSetName(testHuman, name);
+    //object must have the right name after setting
     assert(0 == strcmp(name, SAPHumanName(testHuman)));
-    printf("Human's name after setting name is %s\n", SAPHumanName(testHuman));
-    SAPHumanRelease(testHuman);
-}
-
-void SAPPerformTestSAPHumanSetGender(){
-    printf("===Perform SAPHumanSetGender() test===\n");
-    SAPHuman *testHuman = SAPHumanCreate();
-    printf("Human's gender before setting name is %s\n",
-           SAPHumanGenderMale == SAPHumanGender(testHuman) ? "Male(0)" : "Female(1)");
-    SAPHumanSetGender(testHuman, SAPHumanGenderFemale);
-    assert(SAPHumanGenderFemale == SAPHumanGender(testHuman));
-    printf("Human's gender after setting is %s\n",
-           SAPHumanGenderMale == SAPHumanGender(testHuman) ? "Male(0)" : "Female(1)");
+    //the property must not be string constant
+    assert("Petya" != SAPHumanName(testHuman));
+    //the property must be the copy of the string
+    assert(name != SAPHumanName(testHuman));
     SAPHumanRelease(testHuman);
 }
 
 void SAPPerformTestSAPHumanSetAge(void){
     printf("===Perform SAPHumanSetAge() test===\n");
     SAPHuman *testHuman = SAPHumanCreate();
-    printf("Human's age before setting age is %d\n", SAPHumanAge(testHuman));
+    //printf("Human's age before setting age is %d\n", SAPHumanAge(testHuman));
     SAPHumanSetAge(testHuman, 20);
     assert(20 == SAPHumanAge(testHuman));
-    printf("Human's age after setting age is %d\n", SAPHumanAge(testHuman));
+   // printf("Human's age after setting age is %d\n", SAPHumanAge(testHuman));
     SAPHumanRelease(testHuman);
 }
-
-void SAPPerformTestSAPHumanSetPartner(void){
-    printf("===Perform SAPHumanSetPartner() test===\n");
-    SAPHuman *testHuman = SAPHumanCreate();
-    printf("Human's Partner before setting is %s\n", SAPHumanName(SAPHumanPartner(testHuman)));
-    SAPHuman *testPartner = SAPHumanCreate();
-    SAPHumanSetName(testPartner, "Josefina");
-    SAPHumanSetPartner(testHuman, testPartner);
-    assert(testPartner == SAPHumanPartner(testHuman));
-    printf("Human's name after setting name is %s\n", SAPHumanName(SAPHumanPartner(testHuman)));
-    SAPHumanRelease(testPartner);
-    SAPHumanRelease(testHuman);
-}
-
-//void SAPPerformTestSAPHumanSetMother(void){
-//    printf("===Perform SAPHumanSetMother() test===\n");
-//    SAPHuman *testHuman = SAPHumanCreate();
-//    printf("Human's name before setting name is %s\n", testHuman->_name);
-//    SAPHumanSetName(testHuman, "Petya");
-//    printf("Human's name after setting name is %s\n", testHuman->_name);
-//    SAPHumanRelease(testHuman);
-//}
-//
-//void SAPPerformTestSAPHumanSetFather(void){
-//    printf("===Perform SAPHumanSetFather() test===\n");
-//    SAPHuman *testHuman = SAPHumanCreate();
-//    printf("Human's name before setting name is %s\n", testHuman->_name);
-//    SAPHumanSetName(testHuman, "Petya");
-//    printf("Human's name after setting name is %s\n", testHuman->_name);
-//    SAPHumanRelease(testHuman);
-//}
 
 void SAPPerformTestSAPHumanChildrenCount(void){
     printf("===Perform SAPHumanChildrenCount() test===\n");
-    printf("expecting 3 children as a result\n");
     SAPHuman *testHuman = SAPCreateSpecialTestHumanWithParameters();
     SAPHuman *child1 = SAPCreateSpecialTestHumanWithParameters();
     SAPHuman *child2 = SAPCreateSpecialTestHumanWithParameters();
@@ -155,24 +94,21 @@ void SAPPerformTestSAPHumanChildrenCount(void){
     testHuman->_children[0] = child1;
     testHuman->_children[1] = child2;
     testHuman->_children[2] = child3;
-    printf("The result is %d children", SAPHumanChildrenCount(testHuman));
+    assert(3 == SAPHumanChildrenCount(testHuman));
     SAPReleaseSpecialTestHumanWithParameters(testHuman);
     SAPReleaseSpecialTestHumanWithParameters(child1);
     SAPReleaseSpecialTestHumanWithParameters(child2);
     SAPReleaseSpecialTestHumanWithParameters(child3);
 }
 
+#pragma mark --
+#pragma mark Public implementations
+
 void SAPPerformAllHumanTests(void){
     printf("=====================H U M A N======================\n");
     SAPPerformHumanCreateTest();
     SAPPerformTestSAPHumanSetName();
-    SAPPerformTestSAPHumanSetGender();
     SAPPerformTestHumanCreateWithParameters();
     SAPPerformTestSAPHumanChildrenCount();
     
-//    SAPHuman *children[kSAPChildrenLimit];
-//    SAPHuman *child = SAPHumanCreate();
-//    SAPHumanSetName(child, "Petya");
-//    children[0] = child;
-//    SAPPrintChildrenArray(*children);
 }

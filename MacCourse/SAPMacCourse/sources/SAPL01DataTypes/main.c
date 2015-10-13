@@ -15,28 +15,28 @@
 
 int main(int argc, const char * argv[]) {
 
-    //testing
-    
-    //lesson 1
-    SAPPerformTestPrintTypeSize();
-    SAPPerformTestDefineParent();
-    SAPPeformTestDefineParentInLoop();
-    
-    //leson 2
-    
-    //function creation and performing with macros
-    SAPRunFunctionCreationMacros();
-    
-    //lesson 3
-    //structures
-    SAPPerformTestPrintSizeOfStructures();
-    SAPPerformTestPrintStructMemberPositions();
-    
-    
-    //binary data
-    SAPPerformTestPrintBitsOfAnyTypeNumber();
-    
-    SAPPerformTestGetEndian();
+//    //testing
+//    
+//    //lesson 1
+//    SAPPerformTestPrintTypeSize();
+//    SAPPerformTestDefineParent();
+//    SAPPeformTestDefineParentInLoop();
+//    
+//    //leson 2
+//    
+//    //function creation and performing with macros
+//    SAPRunFunctionCreationMacros();
+//    
+//    //lesson 3
+//    //structures
+//    SAPPerformTestPrintSizeOfStructures();
+//    SAPPerformTestPrintStructMemberPositions();
+//    
+//    
+//    //binary data
+//    SAPPerformTestPrintBitsOfAnyTypeNumber();
+//    
+//    SAPPerformTestGetEndian();
     
     //Human
     SAPPerformAllHumanTests();

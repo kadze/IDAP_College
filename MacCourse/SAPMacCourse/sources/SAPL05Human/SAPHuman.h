@@ -47,8 +47,6 @@ void SAPHumanSetName(SAPHuman *object, char *name);
 
 extern
 SAPGender SAPHumanGender(SAPHuman *object);
-extern
-void SAPHumanSetGender(SAPHuman *object, SAPGender gender);
 
 extern
 uint8_t SAPHumanAge(SAPHuman *object);
@@ -56,42 +54,26 @@ extern
 void SAPHumanSetAge(SAPHuman *object, uint8_t *age);
 
 extern
-void SAPHumanBornChild(SAPHuman *object);
+SAPHuman *SAPHumanBornChild(SAPHuman *object);
 
 extern
 int SAPHumanChildrenCount(SAPHuman *object);
 
 extern
 SAPHuman *SAPHumanPartner(SAPHuman *object);
-extern
-void SAPHumanSetPartner(SAPHuman *object, SAPHuman *partner);
 
 extern
 SAPHuman *SAPHumanMother(SAPHuman *object);
-extern
-void SAPHumanSetMother(SAPHuman *object, SAPHuman *mother);
 
 extern
 SAPHuman *SAPHumanFather(SAPHuman *object);
-extern
-void SAPHumanSetFather(SAPHuman *object, SAPHuman *father);
 
-//SAPHuman *SAPHumanChildren(SAPHuman *object){
-//    static SAPHuman children[20];
-//    children[20] = object->children;
-//    return children;
-//}
 extern
 bool SAPHumanIsMarried(SAPHuman *object);
 
 extern
-void SAPHumanMarry(SAPHuman *object, SAPHuman *spouse);
+bool SAPHumanMarry(SAPHuman *object, SAPHuman *spouse);
 extern
 void SAPHumanDivorce(SAPHuman *object);
-
-//SAPHuman *SAPHumanProcreate(SAPHuman *object){
-//    SAPHuman *child = SAPHumanCreate();
-//    children
-//}
 
 #endif /* defined(__MacCourse__SAPHuman__) */
