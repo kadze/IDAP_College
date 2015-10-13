@@ -165,6 +165,11 @@ void SAPPerformBehaviorTest(void){
     assert(1 == SAPHumanChildrenCount(testWoman));
     assert(1 == SAPHumanChildrenCount(SAPHumanPartner(testWoman)));
     
+    SAPReleaseSpecialTestHumanWithParameters(testMan);
+    SAPReleaseSpecialTestHumanWithParameters(testMan2);
+    SAPHumanRelease(testWoman);
+    SAPHumanRelease(child);
+    
 }
 
 #pragma mark --
