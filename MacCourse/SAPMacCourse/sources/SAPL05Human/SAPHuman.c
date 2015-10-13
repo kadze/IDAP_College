@@ -170,13 +170,18 @@ bool SAPHumanIsMarried(SAPHuman *object){
 
 //behavior umplementing functions
 
-SAPHuman *SAPHumanBornChild(SAPHuman *object){
+SAPHuman *SAPHumanBornChild(SAPHuman *object, SAPGender gender){
     if(NULL != object
        && NULL != SAPHumanPartner(object)
        && SAPHumanGender(object) != SAPHumanGender(SAPHumanPartner(object))){
+        
+        SAPHuman *bornChild = SAPHumanCreate();
+        _SAPHumanSetGender(bornChild, gender);
+        
+        //add child to object's children
         for (int childIndex = 0; childIndex < kSAPChildrenLimit; childIndex++) {
+
             if(NULL == object->_children[childIndex]){
-                SAPHuman *bornChild = SAPHumanCreate();
                 object->_children[childIndex] = bornChild;
                 if(SAPHumanGender(object) == SAPHumanGenderMale){
                     _SAPHumanSetFather(bornChild, object);
@@ -186,9 +191,21 @@ SAPHuman *SAPHumanBornChild(SAPHuman *object){
                     _SAPHumanSetFather(bornChild, SAPHumanPartner(object));
                 }
                 
-                return bornChild;
+                break;
             }
         }
+        
+        //add child to object partner's children
+        for (int childIndex = 0; childIndex < kSAPChildrenLimit; childIndex++) {
+            
+            if(NULL == SAPHumanPartner(object)->_children[childIndex]){
+                SAPHumanPartner(object)->_children[childIndex] = bornChild;
+                
+                break;
+            }
+        }
+        
+        return bornChild;
     }
     
     return NULL;
@@ -205,6 +222,7 @@ bool SAPHumanMarry(SAPHuman *object, SAPHuman *spouse){
         return married;
     }
     SAPHumanDivorce(object);
+    SAPHumanDivorce(spouse);
     if(SAPHumanGenderMale == SAPHumanGender(object)){
         _SAPHumanSetPartner(object, spouse);
         spouse->_partner = object;
@@ -217,16 +235,21 @@ bool SAPHumanMarry(SAPHuman *object, SAPHuman *spouse){
     return married;
 }
 
-void SAPHumanDivorce(SAPHuman *object){
-    if(NULL == object){
-        return;
+bool SAPHumanDivorce(SAPHuman *object){
+    bool divorceComplete = false;
+    if(NULL == object
+       || NULL == SAPHumanPartner(object)){
+        return divorceComplete;
     }
-    if(SAPHumanGenderMale == object){
+    if(SAPHumanGenderMale == SAPHumanGender(object)){
         object->_partner->_partner = NULL;
         _SAPHumanSetPartner(object, NULL);
     } else{
-        object->_partner = NULL;
         _SAPHumanSetPartner(SAPHumanPartner(object), NULL);
+        object->_partner = NULL;
     }
+    divorceComplete = true;
+    
+    return divorceComplete;
 }
 

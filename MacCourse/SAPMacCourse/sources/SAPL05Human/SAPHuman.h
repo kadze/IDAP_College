@@ -54,7 +54,7 @@ extern
 void SAPHumanSetAge(SAPHuman *object, uint8_t *age);
 
 extern
-SAPHuman *SAPHumanBornChild(SAPHuman *object);
+SAPHuman *SAPHumanBornChild(SAPHuman *object, SAPGender gender);
 
 extern
 int SAPHumanChildrenCount(SAPHuman *object);
@@ -74,6 +74,6 @@ bool SAPHumanIsMarried(SAPHuman *object);
 extern
 bool SAPHumanMarry(SAPHuman *object, SAPHuman *spouse);
 extern
-void SAPHumanDivorce(SAPHuman *object);
+bool SAPHumanDivorce(SAPHuman *object);
 
 #endif /* defined(__MacCourse__SAPHuman__) */
