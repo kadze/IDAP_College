@@ -43,7 +43,7 @@ void SAPPerformHumanCreateTest(void){
     assert(NULL == SAPHumanMother(testHuman));
     assert(NULL == SAPHumanFather(testHuman));
     //SAPPrintChildrenArray(testHuman->_children);
-    for (int childIndex = 0; childIndex < 20; childIndex ++) {
+    for (int childIndex = 0; childIndex < kSAPChildrenLimit; childIndex ++) {
         assert(NULL == testHuman->_children[childIndex]);
     }
     SAPHumanRelease(testHuman);
@@ -79,8 +79,8 @@ void SAPPerformTestSAPHumanSetAge(void){
     printf("===Perform SAPHumanSetAge() test===\n");
     SAPHuman *testHuman = SAPHumanCreate();
     //printf("Human's age before setting age is %d\n", SAPHumanAge(testHuman));
-    SAPHumanSetAge(testHuman, 20);
-    assert(20 == SAPHumanAge(testHuman));
+    SAPHumanSetAge(testHuman, 22);
+    assert(22 == SAPHumanAge(testHuman));
    // printf("Human's age after setting age is %d\n", SAPHumanAge(testHuman));
     SAPHumanRelease(testHuman);
 }
@@ -156,8 +156,6 @@ void SAPPerformBehaviorTest(void){
     SAPHumanSetName(child, "Baby1");
     //human can't born child without a partner
     assert(NULL != SAPHumanPartner(testWoman));
-    //human can't born child with the equal genger partner
-    assert(SAPHumanGender(testWoman) != SAPHumanGender(SAPHumanPartner(testWoman)));
     //child must have parents
     assert(testWoman == SAPHumanMother(child));
     assert(testMan2 == SAPHumanFather(child));

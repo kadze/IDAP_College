@@ -19,14 +19,15 @@ typedef enum{
 } SAPGender;
 
 typedef struct SAPHuman SAPHuman;
+
 struct SAPHuman{
     uint64_t _referenceCount;
     char *_name;
-    SAPGender _gender;
     SAPHuman *_partner;
     SAPHuman *_mother;
     SAPHuman *_father;
-    SAPHuman *_children[20];
+    SAPHuman *_children[kSAPChildrenLimit];
+    SAPGender _gender;
     uint8_t _age;
 };
 
@@ -51,7 +52,7 @@ SAPGender SAPHumanGender(SAPHuman *object);
 extern
 uint8_t SAPHumanAge(SAPHuman *object);
 extern
-void SAPHumanSetAge(SAPHuman *object, uint8_t *age);
+void SAPHumanSetAge(SAPHuman *object, uint8_t age);
 
 extern
 SAPHuman *SAPHumanBornChild(SAPHuman *object, SAPGender gender);

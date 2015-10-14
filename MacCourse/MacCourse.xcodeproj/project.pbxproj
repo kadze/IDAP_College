@@ -73,8 +73,7 @@
 				2E5E1F051BC5BF77005A1550 /* SAPHumanTests.c */,
 				2E5E1F061BC5BF77005A1550 /* SAPHumanTests.h */,
 			);
-			name = SAP05Human;
-			path = SAPMacCourse/tests/SAP05Human;
+			path = SAP05Human;
 			sourceTree = "<group>";
 		};
 		2E6B89151BC19B7900B0C256 /* SAPL05Human */ = {
@@ -129,7 +128,6 @@
 			children = (
 				ECCFECEB1BAAAC5A00E19EBF /* sources */,
 				ECCFECEC1BAAACAE00E19EBF /* tests */,
-				2E5E1F041BC5BF4F005A1550 /* SAP05Human */,
 				EC96D86D1BA83CD1008C8F6F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -161,6 +159,7 @@
 				ECCFECEF1BAAB1D700E19EBF /* SAPL01DataTypes */,
 				EC5B712B1BB19E7D00FB8D06 /* SAP02OutputTypeMacros */,
 				EC5B71331BB3EDA700FB8D06 /* SAPL03StructureAndBinary */,
+				2E5E1F041BC5BF4F005A1550 /* SAP05Human */,
 			);
 			name = tests;
 			path = SAPMacCourse/tests;
