@@ -145,10 +145,8 @@ void SAPPerformBehaviorTest(void){
     assert(testWoman == SAPHumanPartner(testMan2));
     
     //in this test the initial amount of children of each partner is 0
-    int amountOfChildrenPartner1Before = SAPHumanChildrenCount(testWoman);
-    int amountOfChildrenPartner2Before = SAPHumanChildrenCount(SAPHumanPartner(testWoman));
-    assert(0 == amountOfChildrenPartner1Before);
-    assert(0 == amountOfChildrenPartner2Before);
+    assert(0 == SAPHumanChildrenCount(testWoman));
+    assert(0 == SAPHumanChildrenCount(SAPHumanPartner(testWoman)));
     SAPHuman *child = SAPHumanBornChild(testWoman, SAPHumanGenderMale);
     assert(NULL != child);
     //woman born boy
@@ -174,7 +172,7 @@ void SAPPerformBehaviorTest(void){
 #pragma mark Public implementations
 
 void SAPPerformAllHumanTests(void){
-    printf("=====================H U M A N======================\n");
+    printf("=====================H U M A N ======================\n");
     SAPPerformHumanCreateTest();
     SAPPerformTestSAPHumanSetName();
     SAPPerformTestHumanCreateWithParameters();

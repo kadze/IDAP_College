@@ -29,6 +29,12 @@ static
 void SAPHumanSetMother(SAPHuman *object, SAPHuman *mother);
 static
 void SAPHumanSetFather(SAPHuman *object, SAPHuman *father);
+static
+void SAPHumanRemoveAllChildren(SAPHuman *object);
+static
+void SAPSetChildAtIndex(SAPHuman *object, SAPHuman *child, int childIndex);
+static
+SAPHuman *SAPChildAtIndex(SAPHuman *object, int childIndex);
 
 #pragma mark --
 #pragma mark Private implementations
@@ -51,10 +57,6 @@ void SAPHumanSetGender(SAPHuman *object, SAPGender gender){
 
 static
 void SAPHumanSetMother(SAPHuman *object, SAPHuman *mother){
-//    if(NULL != object && object->_mother != mother){
-//        SAPHumanRetain(mother);
-//        SAPHumanRelease(object->_mother);
-//        object->_mother = mother;
     if(NULL != object){
         object->_mother = mother;
     }
@@ -62,29 +64,43 @@ void SAPHumanSetMother(SAPHuman *object, SAPHuman *mother){
 
 static
 void SAPHumanSetFather(SAPHuman *object, SAPHuman *father){
-//    if(NULL != object && object->_father != father){
-//        SAPHumanRetain(father);
-//        SAPHumanRelease(object->_father);
-//        object->_father = father;
-//    }
     if(NULL != object){
         object->_father = father;
     }
 }
 
 static
-void SAPHumanRemoveAllChildren(SAPHuman *object){
-    for (int childrenCounter = 0; childrenCounter < kSAPChildrenLimit; childrenCounter++) {
-        object->_children[childrenCounter] = NULL;
+void SAPHumanRemoveAllChildren(SAPHuman *parent){
+    for (int childIndex = 0; childIndex < kSAPChildrenLimit; childIndex++) {
+        SAPHuman *child = SAPChildAtIndex(parent, childIndex);
+        SAPHumanGender(parent) == SAPHumanGenderMale ? SAPHumanSetFather(child, NULL)
+                                                     : SAPHumanSetMother(child, NULL);
+        SAPHumanRelease(child);
+        SAPSetChildAtIndex(parent, NULL, childIndex);
+        
     }
+}
+
+static
+void SAPSetChildAtIndex(SAPHuman *object, SAPHuman *child, int childIndex){
+    if(NULL != object){
+        object->_children[childIndex] = child;
+    }
+    
+    return;
+}
+
+static
+SAPHuman *SAPChildAtIndex(SAPHuman *object, int childIndex){
+    return NULL != object ? object->_children[childIndex] : NULL;
 }
 
 static
 void SAPHumanAddChild(SAPHuman *object, SAPHuman *child){
     for (int childIndex = 0; childIndex < kSAPChildrenLimit; childIndex++) {
-        
-        if(NULL == object->_children[childIndex]){
-            object->_children[childIndex] = child;
+        if(NULL == SAPChildAtIndex(object, childIndex)){
+            SAPSetChildAtIndex(object, child, childIndex);
+            SAPHumanRetain(child);
             return;
         }
     }
@@ -177,7 +193,7 @@ int SAPHumanChildrenCount(SAPHuman *object){
     int childrenCounter = 0;
     if(NULL != object){
         for (int index = 0; index < kSAPChildrenLimit; index++) {
-            if(NULL != object->_children[index]){
+            if(NULL != SAPChildAtIndex(object, index)){
                 childrenCounter++;
             }
         }
@@ -210,12 +226,6 @@ SAPHuman *SAPHumanBornChild(SAPHuman *object, SAPGender gender){
         SAPHuman *mother = (father == object) ? SAPHumanPartner(object) : object;
         
         SAPHuman *bornChild = SAPHumanCreateWithParameters(mother, father, gender);
-        
-        SAPHumanAddChild(mother, bornChild);
-        SAPHumanAddChild(father, bornChild);
-        
-        SAPHumanSetMother(bornChild, mother);
-        SAPHumanSetFather(bornChild, father);
         
         return bornChild;
     }
