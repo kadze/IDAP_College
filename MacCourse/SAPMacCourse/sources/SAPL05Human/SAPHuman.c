@@ -7,13 +7,12 @@
 //
 
 
-
-//#include <string.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <assert.h>
 #include <string.h>
 #include "SAPHuman.h"
+#include "SAPObject.h"
 
 #define SAPObjectIVarGetterSynthesize(ivar) \
 return NULL != object ? object->ivar : NULL
@@ -21,8 +20,6 @@ return NULL != object ? object->ivar : NULL
 #pragma mark --
 #pragma mark Private declarations
 
-//static
-//void SAPHumanSetPartner(SAPHuman *object, SAPHuman *partner);
 static
 void SAPHumanSetGender(SAPHuman *object, SAPGender gender);
 static
@@ -38,15 +35,6 @@ SAPHuman *SAPChildAtIndex(SAPHuman *object, int childIndex);
 
 #pragma mark --
 #pragma mark Private implementations
-
-//static
-//void SAPHumanSetPartner(SAPHuman *object, SAPHuman *partner){
-//    if(NULL != object && object->_partner != partner){
-//        SAPHumanRetain(partner);
-//        SAPHumanRelease(object->_partner);
-//        object->_partner = partner;
-//    }
-//}
 
 static
 void SAPHumanSetGender(SAPHuman *object, SAPGender gender){
@@ -73,9 +61,12 @@ static
 void SAPHumanRemoveAllChildren(SAPHuman *parent){
     for (int childIndex = 0; childIndex < kSAPChildrenLimit; childIndex++) {
         SAPHuman *child = SAPChildAtIndex(parent, childIndex);
+        if(NULL == child){
+            continue;
+        }
         SAPHumanGender(parent) == SAPHumanGenderMale ? SAPHumanSetFather(child, NULL)
                                                      : SAPHumanSetMother(child, NULL);
-        SAPHumanRelease(child);
+        SAPObjectRelease(child);
         SAPSetChildAtIndex(parent, NULL, childIndex);
         
     }
@@ -97,10 +88,13 @@ SAPHuman *SAPChildAtIndex(SAPHuman *object, int childIndex){
 
 static
 void SAPHumanAddChild(SAPHuman *object, SAPHuman *child){
+    if(NULL == object || NULL == child){
+        return;
+    }
     for (int childIndex = 0; childIndex < kSAPChildrenLimit; childIndex++) {
         if(NULL == SAPChildAtIndex(object, childIndex)){
             SAPSetChildAtIndex(object, child, childIndex);
-            SAPHumanRetain(child);
+            SAPObjectRetain(child);
             return;
         }
     }
@@ -111,9 +105,8 @@ void SAPHumanAddChild(SAPHuman *object, SAPHuman *child){
 #pragma mark Public implementations
 
 SAPHuman *SAPHumanCreate(void){
-    SAPHuman *object = calloc(1, sizeof(SAPHuman));
-    object->_referenceCount = 1;
-    assert(NULL != object);
+    SAPHuman *object = SAPObjectCreateOfType(SAPHuman);
+    //SAPHuman *object = __SAPObjectCreate(sizeof(SAPHuman), __SAPHumanDeallocate);
     
     return object;
 }
@@ -129,31 +122,30 @@ SAPHuman *SAPHumanCreateWithParameters(SAPHuman *mother, SAPHuman *father, SAPGe
     return object;
 }
 
-//memory management functions
-
-void _SAPHumanDeallocate(SAPHuman *object){
+void __SAPHumanDeallocate(SAPHuman *object){
     SAPHumanSetName(object, NULL);
     SAPHumanDivorce(object);
-//    SAPHumanSetPartner(object, NULL);
-//    SAPHumanSetMother(object, NULL);
-//    SAPHumanSetFather(object, NULL);
     SAPHumanRemoveAllChildren(object);
-    free(object);
+    __SAPObjectDeallocate(object);
 }
 
-void SAPHumanRelease(SAPHuman *object){
-    if(NULL != object){
-        if(0 == --(object->_referenceCount)){
-            _SAPHumanDeallocate(object);
-        }
-    }
-}
+//memory management functions
 
-void SAPHumanRetain(SAPHuman *object){
-    if(object){
-        object->_referenceCount++;
-    }
-}
+
+
+//void SAPHumanRelease(SAPHuman *object){
+//    if(NULL != object){
+//        if(0 == --(object->_referenceCount)){
+//            __SAPHumanDeallocate(object);
+//        }
+//    }
+//}
+//
+//void SAPHumanRetain(SAPHuman *object){
+//    if(object){
+//        object->_referenceCount++;
+//    }
+//}
 
 #pragma mark -
 #pragma mark Accessors
@@ -252,7 +244,7 @@ bool SAPHumanMarry(SAPHuman *object, SAPHuman *spouse){
     SAPHumanDivorce(weak);
 
     strong->_partner = weak;
-    SAPHumanRetain(weak);
+    SAPObjectRetain(weak);
     weak->_partner = strong;
 
     married = true;
@@ -272,7 +264,7 @@ bool SAPHumanDivorce(SAPHuman *object){
     
     weak->_partner = NULL;
     strong->_partner = NULL;
-    SAPHumanRelease(weak);
+    SAPObjectRelease(weak);
    
     divorceComplete = true;
     

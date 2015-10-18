@@ -9,7 +9,8 @@
 #ifndef __MacCourse__SAPHuman__
 #define __MacCourse__SAPHuman__
 
-# include <stdbool.h>
+#include <stdbool.h>
+#include "SAPObject.h"
 
 static const int kSAPChildrenLimit = 20;
 
@@ -21,7 +22,7 @@ typedef enum{
 typedef struct SAPHuman SAPHuman;
 
 struct SAPHuman{
-    uint64_t _referenceCount;
+    SAPObject _super;
     char *_name;
     SAPHuman *_partner;
     SAPHuman *_mother;
@@ -37,9 +38,12 @@ extern
 SAPHuman *SAPHumanCreateWithParameters(SAPHuman *mother, SAPHuman *Father, SAPGender gender);
 
 extern
-void SAPHumanRelease(SAPHuman *object);
-extern
-void SAPHumanRetain(SAPHuman *object);
+void __SAPHumanDeallocate(SAPHuman *object);
+
+//extern
+//void SAPHumanRelease(SAPHuman *object);
+//extern
+//void SAPHumanRetain(SAPHuman *object);
 
 extern
 char *SAPHumanName(SAPHuman *object);

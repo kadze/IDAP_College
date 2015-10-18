@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E48CE5B1BD1429D00B58272 /* SAPObject.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E48CE591BD1429D00B58272 /* SAPObject.c */; };
 		2E5E1F071BC5BF77005A1550 /* SAPHumanTests.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E5E1F051BC5BF77005A1550 /* SAPHumanTests.c */; };
 		2E6B89181BC19C5F00B0C256 /* SAPHuman.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E6B89161BC19C5F00B0C256 /* SAPHuman.c */; };
 		EC5B712E1BB19E9A00FB8D06 /* SAPRunFunctionCreateMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = EC5B712C1BB19E7D00FB8D06 /* SAPRunFunctionCreateMacros.c */; };
@@ -32,6 +33,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2E48CE591BD1429D00B58272 /* SAPObject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SAPObject.c; sourceTree = "<group>"; };
+		2E48CE5A1BD1429D00B58272 /* SAPObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPObject.h; sourceTree = "<group>"; };
 		2E5E1F051BC5BF77005A1550 /* SAPHumanTests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SAPHumanTests.c; sourceTree = "<group>"; };
 		2E5E1F061BC5BF77005A1550 /* SAPHumanTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPHumanTests.h; sourceTree = "<group>"; };
 		2E6B89161BC19C5F00B0C256 /* SAPHuman.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SAPHuman.c; path = SAPL05Human/SAPHuman.c; sourceTree = "<group>"; };
@@ -67,6 +70,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E48CE581BD1425E00B58272 /* SAPObject */ = {
+			isa = PBXGroup;
+			children = (
+				2E48CE591BD1429D00B58272 /* SAPObject.c */,
+				2E48CE5A1BD1429D00B58272 /* SAPObject.h */,
+			);
+			path = SAPObject;
+			sourceTree = "<group>";
+		};
 		2E5E1F041BC5BF4F005A1550 /* SAP05Human */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +160,7 @@
 				EC5B71261BB198DC00FB8D06 /* SAPL02FunctionCreationMacros */,
 				EC5B712F1BB3E5B100FB8D06 /* SAPL03StructureAndBinary */,
 				2E6B89151BC19B7900B0C256 /* SAPL05Human */,
+				2E48CE581BD1425E00B58272 /* SAPObject */,
 			);
 			name = sources;
 			path = SAPMacCourse/sources;
@@ -249,6 +262,7 @@
 				ECCFECF21BAAB27C00E19EBF /* SAPLesson1Tests.c in Sources */,
 				EC5B71391BB420C600FB8D06 /* SAPBinaryData.c in Sources */,
 				ECCFECF81BAAB79100E19EBF /* main.c in Sources */,
+				2E48CE5B1BD1429D00B58272 /* SAPObject.c in Sources */,
 				EC5B712E1BB19E9A00FB8D06 /* SAPRunFunctionCreateMacros.c in Sources */,
 				ECCFECFC1BAAC17400E19EBF /* SAPMamaOrPapa.c in Sources */,
 				2E5E1F071BC5BF77005A1550 /* SAPHumanTests.c in Sources */,
