@@ -18,7 +18,7 @@ SAPOutputFunction(long, "%li")
 SAPOutputFunction(float, "%f")
 SAPOutputFunction(double, "%f")
 
-void SAPRunFunctionCreationMacros(void){
+void SAPRunFunctionCreationMacros(void) {
     
     printf("================================\n");
     printf("Macros for creation and applying function testing:\n");

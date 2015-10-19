@@ -9,9 +9,6 @@
 #ifndef __MacCourse__SAPHumanTests__
 #define __MacCourse__SAPHumanTests__
 
-//#define PrintFildValue(fieldName, fieldType) adsf
-//#define PrintTestTitle(testName) printf("Perform"testName )
-
 extern
 void SAPPerformAllHumanTests(void);
 

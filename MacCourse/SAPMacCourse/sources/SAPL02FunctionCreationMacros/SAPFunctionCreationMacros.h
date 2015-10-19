@@ -11,7 +11,7 @@
 
 //macros for creation function to print any value of any primitive type
 #define SAPOutputFunction(type, specifier) \
-    void SAPOutput_##type(type val){\
+    void SAPOutput_##type(type val) {\
         printf("Value of type " #type " is "specifier "\n", val);\
     }
 

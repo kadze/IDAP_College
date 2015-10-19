@@ -12,7 +12,7 @@
 #pragma mark -
 #pragma mark Public Implementations
 
-void *__SAPObjectCreate(size_t size, SAPObjectDeallocator deallocator){
+void *__SAPObjectCreate(size_t size, SAPObjectDeallocator deallocator) {
     assert(0 != size);
     assert(NULL != deallocator);
     
@@ -26,18 +26,18 @@ void *__SAPObjectCreate(size_t size, SAPObjectDeallocator deallocator){
     return object;
 }
 
-void __SAPObjectDeallocate(void *object){
-    if(NULL != object){
+void __SAPObjectDeallocate(void *object) {
+    if (NULL != object) {
         free(object);
     }
 }
 
-uint64_t SAPObjectRetainCount(void *object){
+uint64_t SAPObjectRetainCount(void *object) {
     return object ? ((SAPObject *)object)->_retainCount : 0;
 }
 
-void SAPObjectRelease(void *object){
-    if(NULL != object){
+void SAPObjectRelease(void *object) {
+    if (NULL != object) {
         SAPObject *releasedObject = (SAPObject *)object;
         if (0 == --(releasedObject->_retainCount)) {
             SAPObjectDeallocator deallocator = releasedObject -> _deallocatorFunctionPointer;
@@ -47,8 +47,8 @@ void SAPObjectRelease(void *object){
     
 }
 
-void *SAPObjectRetain(void *object){
-    if(NULL != object){
+void *SAPObjectRetain(void *object) {
+    if (NULL != object) {
         ((SAPObject*)object)->_retainCount++;
     }
     return object;

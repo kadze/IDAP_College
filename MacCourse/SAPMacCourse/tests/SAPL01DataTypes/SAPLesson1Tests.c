@@ -14,13 +14,13 @@
 # pragma mark-
 # pragma mark Private implementations
 
-int SAPPerformTestPrintTypeSize(void){
+int SAPPerformTestPrintTypeSize(void) {
     SAPPrintTypeSize();
     
     return 0; //success
 }
 
-int SAPPerformTestDefineParent(void){
+int SAPPerformTestDefineParent(void) {
     int testParameterMamaPapa = 30;
     int testParameterPapa = 10;
     int testParameterMama = 9;
@@ -48,7 +48,7 @@ int SAPPerformTestDefineParent(void){
     return 0;
 }
 
-int SAPPeformTestDefineParentInLoop(void){
+int SAPPeformTestDefineParentInLoop(void) {
     printf("================================\n");
     printf("DefineParent testing in loop \n");
     int iterationAmount = 1000;

@@ -47,7 +47,7 @@
     printf("Position of boolFlags is %lu\n",__builtin_offsetof(Struct, boolFlags));
 
 #define SAPStructSize(Struct) \
-    size_t SAPSizeof##Struct(){\
+    size_t SAPSizeof##Struct() {\
         return sizeof(Struct);\
 }
 
@@ -58,4 +58,5 @@ void SAPPerformTestPrintSizeOfStructures(void);
 
 extern
 void SAPPerformTestPrintStructMemberPositions(void);
+
 #endif /* Structures_h */

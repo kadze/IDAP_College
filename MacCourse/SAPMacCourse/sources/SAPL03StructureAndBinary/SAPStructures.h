@@ -64,8 +64,10 @@ typedef struct{
             bool myBool5 :1;
             bool myBool6 :1;
         };
+        
         char boolFlags;
     };
+    
     char *myStringPointer;
 } SAPSmallStructure;
 

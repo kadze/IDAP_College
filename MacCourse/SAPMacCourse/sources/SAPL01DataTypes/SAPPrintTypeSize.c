@@ -11,7 +11,7 @@
 #pragma mark -
 #pragma mark Private implementations
 
-void SAPPrintTypeSize(void){
+void SAPPrintTypeSize(void) {
     
     SAPSizeofOutput(char);
     SAPSizeofOutput(short int);

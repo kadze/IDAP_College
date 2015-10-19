@@ -11,7 +11,7 @@
 #pragma mark--
 #pragma mark Public implementations
 
-void SAPPerformTestPrintBitsOfAnyTypeNumber(void){
+void SAPPerformTestPrintBitsOfAnyTypeNumber(void) {
     printf("====================BINARY==============\n");
     int value = 5;
     void* valuePointer = &value;
@@ -24,17 +24,18 @@ void SAPPerformTestPrintBitsOfAnyTypeNumber(void){
     SAPValueBitOutputAnyEndian(valuePointer, sizeof(value));
 }
 
-void SAPPerformTestGetEndian(void){
+void SAPPerformTestGetEndian(void) {
     printf("===Test determining endian with pointer===\n");
-    if (kSAPLittleEndian == SAPGetEndianWithPointer()){
+    if (kSAPLittleEndian == SAPGetEndianWithPointer()) {
         printf("Little-endian\n");
-    } else{
+    } else {
         printf("Big-endian\n");
     }
+    
     printf("===Test determining endian with union===\n");
-    if (kSAPLittleEndian == SAPGetEndianWithUnion()){
+    if (kSAPLittleEndian == SAPGetEndianWithUnion()) {
         printf("Little-endian\n");
-    } else{
+    } else {
         printf("Big-endian\n");
     }
 }

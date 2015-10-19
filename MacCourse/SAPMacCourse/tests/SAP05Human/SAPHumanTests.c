@@ -12,11 +12,17 @@
 #include "SAPHuman.h"
 #include "SAPObject.h"
 
-#pragma mark --
+#pragma mark -
+#pragma mark Private declarations
+
+SAPHuman *SAPCreateSpecialTestHumanWithParameters(SAPGender gender);
+void SAPReleaseSpecialTestHumanWithParameters(SAPHuman *testHuman);
+
+#pragma mark -
 #pragma mark Private implementations
 
 //auto create human with some parameters
-SAPHuman *SAPCreateSpecialTestHumanWithParameters(SAPGender gender){
+SAPHuman *SAPCreateSpecialTestHumanWithParameters(SAPGender gender) {
     SAPHuman *testMother = SAPHumanCreateWithParameters(NULL, NULL, SAPHumanGenderFemale);
     SAPHumanSetName(testMother, "Mommy");
     SAPHuman *testFather = SAPHumanCreate();
@@ -26,14 +32,14 @@ SAPHuman *SAPCreateSpecialTestHumanWithParameters(SAPGender gender){
     return testHuman;
 }
 
-void SAPReleaseSpecialTestHumanWithParameters(SAPHuman *testHuman){
+void SAPReleaseSpecialTestHumanWithParameters(SAPHuman *testHuman) {
     SAPObjectRelease(SAPHumanMother(testHuman));
     SAPObjectRelease(SAPHumanFather(testHuman));
     SAPObjectRelease(testHuman);
 }
 
 //ensure that object created and initialized with null or zero values
-void SAPPerformHumanCreateTest(void){
+void SAPPerformHumanCreateTest(void) {
     printf("===Perform SAPHumanCreate() test ===\n");
     SAPHuman *testHuman = SAPHumanCreate();
     assert(NULL != testHuman);
@@ -48,6 +54,7 @@ void SAPPerformHumanCreateTest(void){
     for (int childIndex = 0; childIndex < kSAPChildrenLimit; childIndex ++) {
         assert(NULL == testHuman->_children[childIndex]);
     }
+    
     SAPObjectRelease(testHuman);
     //after release test Human doesn't exist, and at this case release() method must return 0.
     assert(0 == SAPObjectRetainCount(testHuman));
@@ -55,7 +62,7 @@ void SAPPerformHumanCreateTest(void){
     printf("OK\n");
 }
 
-void SAPPerformTestHumanCreateWithParameters(void){
+void SAPPerformTestHumanCreateWithParameters(void) {
     printf("===Perform SAPHumanCreateWithParameters() test ===\n");
     SAPHuman *testHuman = SAPCreateSpecialTestHumanWithParameters(SAPHumanGenderMale);
     //human object must be created
@@ -75,7 +82,7 @@ void SAPPerformTestHumanCreateWithParameters(void){
     printf("OK\n");
 }
 
-void SAPPerformTestSAPHumanSetName(void){
+void SAPPerformTestSAPHumanSetName(void) {
     printf("===Perform SAPHumanSetName() test===\n");
     SAPHuman *testHuman = SAPHumanCreate();
     char *name = "Petya";
@@ -91,18 +98,18 @@ void SAPPerformTestSAPHumanSetName(void){
     printf("OK\n");
 }
 
-void SAPPerformTestSAPHumanSetAge(void){
+void SAPPerformTestSAPHumanSetAge(void) {
     printf("===Perform SAPHumanSetAge() test===\n");
     SAPHuman *testHuman = SAPHumanCreate();
     //printf("Human's age before setting age is %d\n", SAPHumanAge(testHuman));
     SAPHumanSetAge(testHuman, 22);
     assert(22 == SAPHumanAge(testHuman));
-   // printf("Human's age after setting age is %d\n", SAPHumanAge(testHuman));
+    // printf("Human's age after setting age is %d\n", SAPHumanAge(testHuman));
     SAPObjectRelease(testHuman);
     printf("OK\n");
 }
 
-void SAPPerformTestSAPHumanChildrenCount(void){
+void SAPPerformTestSAPHumanChildrenCount(void) {
     printf("===Perform SAPHumanChildrenCount() test===\n");
     SAPHuman *testHuman = SAPCreateSpecialTestHumanWithParameters(SAPHumanGenderMale);
     SAPHuman *child1 = SAPCreateSpecialTestHumanWithParameters(SAPHumanGenderMale);
@@ -119,7 +126,7 @@ void SAPPerformTestSAPHumanChildrenCount(void){
     printf("OK\n");
 }
 
-void SAPPerformBehaviorTest(void){
+void SAPPerformBehaviorTest(void) {
     printf("===Perform behavior test===\n");
     SAPHuman *testMan = SAPCreateSpecialTestHumanWithParameters(SAPHumanGenderMale);
     SAPHumanSetName(testMan, "TestMan");
@@ -185,7 +192,7 @@ void SAPPerformBehaviorTest(void){
     printf("OK\n");
 }
 
-void SAPPerformMemoryManagementTest(void){
+void SAPPerformMemoryManagementTest(void) {
     printf("===Perform memory management test===\n");
     SAPHuman *testMan = SAPCreateSpecialTestHumanWithParameters(SAPHumanGenderMale);
     SAPHumanSetName(testMan, "TestMan");
@@ -228,10 +235,10 @@ void SAPPerformMemoryManagementTest(void){
     printf("OK\n");
 }
 
-#pragma mark --
+#pragma mark -
 #pragma mark Public implementations
 
-void SAPPerformAllHumanTests(void){
+void SAPPerformAllHumanTests(void) {
     printf("=====================H U M A N ======================\n");
     SAPPerformHumanCreateTest();
     SAPPerformTestSAPHumanSetName();

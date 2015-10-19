@@ -14,14 +14,14 @@ SAPStructSize(SAPSmallerStructure)
 SAPStructSize(SAPSmallStructure)
 
 //create test method so as to output the size of the entire structure
-void SAPPerformTestPrintSizeOfStructures(void){
+void SAPPerformTestPrintSizeOfStructures(void) {
     SAPPrintStructSize(SAPBigStructure);
     SAPPrintStructSize(SAPSmallerStructure);
     SAPPrintStructSize(SAPSmallStructure);
 }
 
 //create test method to output the possition of the each member of structure with the help of "offsetof"
-void SAPPerformTestPrintStructMemberPositions(void){
+void SAPPerformTestPrintStructMemberPositions(void) {
     SAPPrintStructMemberPositions(SAPBigStructure)
     SAPPrintStructMemberPositions(SAPSmallerStructure)
     SAPPrintSmallStructMemberPositions(SAPSmallStructure)
