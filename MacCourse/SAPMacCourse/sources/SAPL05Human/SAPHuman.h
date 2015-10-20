@@ -40,11 +40,6 @@ SAPHuman *SAPHumanCreateWithParameters(SAPHuman *mother, SAPHuman *Father, SAPGe
 extern
 void __SAPHumanDeallocate(SAPHuman *object);
 
-//extern
-//void SAPHumanRelease(SAPHuman *object);
-//extern
-//void SAPHumanRetain(SAPHuman *object);
-
 extern
 char *SAPHumanName(SAPHuman *object);
 extern

@@ -11,17 +11,17 @@
 #pragma mark -
 #pragma mark Private implementations
 
-static const int kMamaDivider = 3;
-static const int kPapaDivider = 5;
-static const int kMamapapaDivider = 15;
+static const int kSAPMamaDivider       = 3;
+static const int kSAPPapaDivider       = 5;
+static const int kSAPMamapapaDivider   = 15;
 
 parents SAPDefineParent(int param) {
     parents result;
-    if (param % kMamapapaDivider == 0) {
+    if (param % kSAPMamapapaDivider == 0) {
         result = kSAPMamapapa;
-    } else if (param % kPapaDivider == 0) {
+    } else if (param % kSAPPapaDivider == 0) {
         result = kSAPPapa;
-    } else if (param % kMamaDivider == 0) {
+    } else if (param % kSAPMamaDivider == 0) {
         result =  kSAPMama;
     } else {
         result = kSAPOutOfCondition;

@@ -6,10 +6,11 @@
 //  Copyright © 2015 Yosemite Retail. All rights reserved.
 //
 
+#include <stdio.h>
 #include "SAPBinaryData.h"
 
-static const int SAPBitCount = 8;
-static const int SAPLowerBitMask = 1;
+static const int kSAPBitCount = 8;
+static const int kSAPLowerBitMask = 1;
 
 #pragma mark-
 #pragma mark Private declarations
@@ -19,7 +20,7 @@ void SAPOutputByte(uint8_t byte);
 #pragma mark Private implementations
 
 void SAPOutputByte(uint8_t byte) {
-    int maxBitIndex = SAPBitCount - 1;
+    int maxBitIndex = kSAPBitCount - 1;
     for (int bitIndex = maxBitIndex; bitIndex >= 0; bitIndex--) {
         printf("%c", byte >> bitIndex & 1 ? '1' : '0');
     }

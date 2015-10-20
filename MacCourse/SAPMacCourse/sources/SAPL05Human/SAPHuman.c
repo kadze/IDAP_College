@@ -247,6 +247,7 @@ bool SAPHumanDivorce(SAPHuman *object) {
     bool divorceComplete = false;
     if (NULL == object
        || NULL == SAPHumanPartner(object)) {
+        
         return divorceComplete;
     }
     
