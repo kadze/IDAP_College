@@ -21,7 +21,7 @@ int main(int argc, const char * argv[]) {
 //    SAPPerformTestPrintTypeSize();
 //    SAPPerformTestDefineParent();
 //    SAPPeformTestDefineParentInLoop();
-//    
+//
 //    //leson 2
 //    
 //    //function creation and performing with macros

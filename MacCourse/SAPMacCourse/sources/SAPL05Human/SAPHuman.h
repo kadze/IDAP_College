@@ -14,14 +14,14 @@
 
 static const int kSAPChildrenLimit = 20;
 
-typedef enum{
-    SAPHumanGenderMale,
-    SAPHumanGenderFemale
+typedef enum {
+    kSAPHumanGenderMale,
+    kSAPHumanGenderFemale
 } SAPGender;
 
 typedef struct SAPHuman SAPHuman;
 
-struct SAPHuman{
+struct SAPHuman {
     SAPObject _super;
     char *_name;
     SAPHuman *_partner;
@@ -34,14 +34,16 @@ struct SAPHuman{
 
 extern
 SAPHuman *SAPHumanCreate(void);
+
 extern
-SAPHuman *SAPHumanCreateWithParameters(SAPHuman *mother, SAPHuman *Father, SAPGender gender);
+SAPHuman *SAPHumanCreateWithParameters(SAPHuman *mother, SAPHuman *father, SAPGender gender);
 
 extern
 void __SAPHumanDeallocate(SAPHuman *object);
 
 extern
 char *SAPHumanName(SAPHuman *object);
+
 extern
 void SAPHumanSetName(SAPHuman *object, char *name);
 
@@ -50,6 +52,7 @@ SAPGender SAPHumanGender(SAPHuman *object);
 
 extern
 uint8_t SAPHumanAge(SAPHuman *object);
+
 extern
 void SAPHumanSetAge(SAPHuman *object, uint8_t age);
 
@@ -57,7 +60,7 @@ extern
 SAPHuman *SAPHumanBornChild(SAPHuman *object, SAPGender gender);
 
 extern
-int SAPHumanChildrenCount(SAPHuman *object);
+uint8_t SAPHumanChildrenCount(SAPHuman *object);
 
 extern
 SAPHuman *SAPHumanPartner(SAPHuman *object);
@@ -73,6 +76,7 @@ bool SAPHumanIsMarried(SAPHuman *object);
 
 extern
 bool SAPHumanMarry(SAPHuman *object, SAPHuman *spouse);
+
 extern
 bool SAPHumanDivorce(SAPHuman *object);
 

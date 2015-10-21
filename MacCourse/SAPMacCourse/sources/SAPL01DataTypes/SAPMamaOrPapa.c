@@ -13,29 +13,32 @@
 
 static const int kSAPMamaDivider       = 3;
 static const int kSAPPapaDivider       = 5;
-static const int kSAPMamapapaDivider   = 15;
+//static const int kSAPMamapapaDivider   = 15;
 
-parents SAPDefineParent(int param) {
-    parents result;
-    if (param % kSAPMamapapaDivider == 0) {
-        result = kSAPMamapapa;
-    } else if (param % kSAPPapaDivider == 0) {
-        result = kSAPPapa;
-    } else if (param % kSAPMamaDivider == 0) {
-        result =  kSAPMama;
-    } else {
-        result = kSAPOutOfCondition;
+SAPParents SAPDefineParent(int param) {
+    SAPParents result = kSAPOutOfCondition;
+    if (0 == param){
+
+        return result;
+    }
+    if (param % kSAPMamaDivider == 0) {
+        result = kSAPMama;
+    }
+    if (param % kSAPPapaDivider == 0) {
+        result = (kSAPMama == result) ? kSAPMamapapa : kSAPPapa;
     }
     
     return result;
 }
 
-char* getParentName(parents parent) {
+char* getParentName(SAPParents parent) {
     char* result = "";
     if (kSAPMama == parent) {
         result = "mama";
     } else if (kSAPPapa == parent) {
         result = "papa";
+    } else if (kSAPMamapapa == parent) {
+        result = "mamapapa";
     }
     
     return result;

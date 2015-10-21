@@ -5,7 +5,7 @@
 //  Created by Yosemite Retail on 9/27/15.
 //  Copyright © 2015 Yosemite Retail. All rights reserved.
 //
-
+#include <stdio.h>
 #include "SAPBinaryData.h"
 
 #pragma mark--

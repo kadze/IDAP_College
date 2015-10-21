@@ -11,16 +11,16 @@
 
 //enum dividers;
 typedef enum {
+    kSAPOutOfCondition,
     kSAPPapa,
     kSAPMama,
-    kSAPMamapapa,
-    kSAPOutOfCondition
-} parents;
+    kSAPMamapapa    
+} SAPParents;
 
 extern
-char* getParentName(parents);
+char* getParentName(SAPParents);
 
 extern
-parents SAPDefineParent(int param);
+SAPParents SAPDefineParent(int param);
 
 #endif /* defined(__MacCourse__SAPMamaOrPapa__) */

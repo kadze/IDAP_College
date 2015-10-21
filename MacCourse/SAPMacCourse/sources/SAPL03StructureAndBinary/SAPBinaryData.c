@@ -22,7 +22,7 @@ void SAPOutputByte(uint8_t byte);
 void SAPOutputByte(uint8_t byte) {
     int maxBitIndex = kSAPBitCount - 1;
     for (int bitIndex = maxBitIndex; bitIndex >= 0; bitIndex--) {
-        printf("%c", byte >> bitIndex & 1 ? '1' : '0');
+        printf("%c", byte >> bitIndex & kSAPLowerBitMask ? '1' : '0');
     }
     
     printf(" ");
@@ -62,23 +62,27 @@ void SAPValueBitOutputAnyEndian(void *data, size_t size) {
 }
 
 SAPEndian SAPGetEndianWithPointer(void) {
-    int x = 1;
-    if (*(char *)&x == 1) {
+    int one = 1;
+    if (*(char *)&one == 1) {
+        
         return kSAPLittleEndian;
     } else {
+        
         return kSAPBigEndian;
     }
 }
 
 SAPEndian SAPGetEndianWithUnion(void) {
-    union{
-        int i;
-        char c[sizeof(int)];
-    } x;
-    x.i = 1;
-    if (x.c[0] == 1) {
+    union {
+        int intOne;
+        char charArray[sizeof(int)];
+    } definingUnion;
+    definingUnion.intOne = 1;
+    if (definingUnion.charArray[0] == 1) {
+        
         return kSAPLittleEndian;
-    }else {
+    } else {
+        
         return kSAPBigEndian;
     }
 }

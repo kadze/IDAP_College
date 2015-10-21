@@ -20,8 +20,8 @@ void *__SAPObjectCreate(size_t size, SAPObjectDeallocator deallocator) {
     
     assert(NULL != object);
     
-    object ->_retainCount = 1;
-    object ->_deallocatorFunctionPointer = deallocator;
+    object->_retainCount = 1;
+    object->_deallocatorFunctionPointer = deallocator;
     
     return object;
 }
@@ -40,7 +40,7 @@ void SAPObjectRelease(void *object) {
     if (NULL != object) {
         SAPObject *releasedObject = (SAPObject *)object;
         if (0 == --(releasedObject->_retainCount)) {
-            SAPObjectDeallocator deallocator = releasedObject -> _deallocatorFunctionPointer;
+            SAPObjectDeallocator deallocator = releasedObject->_deallocatorFunctionPointer;
             deallocator(object);
         }
     }
@@ -51,5 +51,6 @@ void *SAPObjectRetain(void *object) {
     if (NULL != object) {
         ((SAPObject*)object)->_retainCount++;
     }
+    
     return object;
 }

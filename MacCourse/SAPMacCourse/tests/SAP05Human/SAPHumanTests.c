@@ -23,7 +23,7 @@ void SAPReleaseSpecialTestHumanWithParameters(SAPHuman *testHuman);
 
 //auto create human with some parameters
 SAPHuman *SAPCreateSpecialTestHumanWithParameters(SAPGender gender) {
-    SAPHuman *testMother = SAPHumanCreateWithParameters(NULL, NULL, SAPHumanGenderFemale);
+    SAPHuman *testMother = SAPHumanCreateWithParameters(NULL, NULL, kSAPHumanGenderFemale);
     SAPHumanSetName(testMother, "Mommy");
     SAPHuman *testFather = SAPHumanCreate();
     SAPHumanSetName(testFather, "Daddy");
@@ -48,7 +48,7 @@ void SAPPerformHumanCreateTest(void) {
     //All fields have to be empty
     assert(0 == SAPHumanAge(testHuman));
     assert(NULL == SAPHumanName(testHuman));
-    assert(SAPHumanGenderMale == SAPHumanGender(testHuman));
+    assert(kSAPHumanGenderMale == SAPHumanGender(testHuman));
     assert(NULL == SAPHumanMother(testHuman));
     assert(NULL == SAPHumanFather(testHuman));
     for (int childIndex = 0; childIndex < kSAPChildrenLimit; childIndex ++) {
@@ -64,18 +64,18 @@ void SAPPerformHumanCreateTest(void) {
 
 void SAPPerformTestHumanCreateWithParameters(void) {
     printf("===Perform SAPHumanCreateWithParameters() test ===\n");
-    SAPHuman *testHuman = SAPCreateSpecialTestHumanWithParameters(SAPHumanGenderMale);
+    SAPHuman *testHuman = SAPCreateSpecialTestHumanWithParameters(kSAPHumanGenderMale);
     //human object must be created
     assert(NULL != testHuman);
     //special testHuman must be male
-    assert(SAPHumanGenderMale == SAPHumanGender(testHuman));
+    assert(kSAPHumanGenderMale == SAPHumanGender(testHuman));
     //initial retainCount must be 1 + mother and father retained it. Hence retain count = 3.
     assert(3 == SAPObjectRetainCount(testHuman));
     //fields Mother, Fatrer and Gender must be set.
     assert(0 == strcmp("Mommy",SAPHumanName(SAPHumanMother(testHuman))));
-    assert(SAPHumanGenderFemale == SAPHumanGender(SAPHumanMother(testHuman)));
+    assert(kSAPHumanGenderFemale == SAPHumanGender(SAPHumanMother(testHuman)));
     assert(0 == strcmp("Daddy", SAPHumanName(SAPHumanFather(testHuman))));
-    assert(SAPHumanGenderMale == SAPHumanGender(SAPHumanFather(testHuman)));
+    assert(kSAPHumanGenderMale == SAPHumanGender(SAPHumanFather(testHuman)));
     SAPReleaseSpecialTestHumanWithParameters(testHuman);
     //this special function must release human and his parents
     assert(0 == SAPObjectRetainCount(testHuman));
@@ -111,10 +111,10 @@ void SAPPerformTestSAPHumanSetAge(void) {
 
 void SAPPerformTestSAPHumanChildrenCount(void) {
     printf("===Perform SAPHumanChildrenCount() test===\n");
-    SAPHuman *testHuman = SAPCreateSpecialTestHumanWithParameters(SAPHumanGenderMale);
-    SAPHuman *child1 = SAPCreateSpecialTestHumanWithParameters(SAPHumanGenderMale);
-    SAPHuman *child2 = SAPCreateSpecialTestHumanWithParameters(SAPHumanGenderMale);
-    SAPHuman *child3 = SAPCreateSpecialTestHumanWithParameters(SAPHumanGenderMale);
+    SAPHuman *testHuman = SAPCreateSpecialTestHumanWithParameters(kSAPHumanGenderMale);
+    SAPHuman *child1 = SAPCreateSpecialTestHumanWithParameters(kSAPHumanGenderMale);
+    SAPHuman *child2 = SAPCreateSpecialTestHumanWithParameters(kSAPHumanGenderMale);
+    SAPHuman *child3 = SAPCreateSpecialTestHumanWithParameters(kSAPHumanGenderMale);
     testHuman->_children[0] = child1;
     testHuman->_children[1] = child2;
     testHuman->_children[2] = child3;
@@ -128,9 +128,9 @@ void SAPPerformTestSAPHumanChildrenCount(void) {
 
 void SAPPerformBehaviorTest(void) {
     printf("===Perform behavior test===\n");
-    SAPHuman *testMan = SAPCreateSpecialTestHumanWithParameters(SAPHumanGenderMale);
+    SAPHuman *testMan = SAPCreateSpecialTestHumanWithParameters(kSAPHumanGenderMale);
     SAPHumanSetName(testMan, "TestMan");
-    SAPHuman *testWoman = SAPCreateSpecialTestHumanWithParameters(SAPHumanGenderFemale);
+    SAPHuman *testWoman = SAPCreateSpecialTestHumanWithParameters(kSAPHumanGenderFemale);
     SAPHumanSetName(testWoman, "TestWoman");
     assert(true == SAPHumanMarry(testMan, testWoman));
     //only human of different gender can marry
@@ -156,7 +156,7 @@ void SAPPerformBehaviorTest(void) {
     
     //marry again for another test
     assert(true == SAPHumanMarry(testMan, testWoman));
-    SAPHuman *testMan2 = SAPCreateSpecialTestHumanWithParameters(SAPHumanGenderMale);
+    SAPHuman *testMan2 = SAPCreateSpecialTestHumanWithParameters(kSAPHumanGenderMale);
     SAPHumanSetName(testMan2, "TestMan2");
     //marry again for further test
     assert(true == SAPHumanMarry(testMan2, testWoman));
@@ -171,10 +171,10 @@ void SAPPerformBehaviorTest(void) {
     //in this test the initial amount of children of each partner is 0
     assert(0 == SAPHumanChildrenCount(testWoman));
     assert(0 == SAPHumanChildrenCount(SAPHumanPartner(testWoman)));
-    SAPHuman *child = SAPHumanBornChild(testWoman, SAPHumanGenderMale);
+    SAPHuman *child = SAPHumanBornChild(testWoman, kSAPHumanGenderMale);
     assert(NULL != child);
     //woman born boy
-    assert(SAPHumanGenderMale == SAPHumanGender(child));
+    assert(kSAPHumanGenderMale == SAPHumanGender(child));
     SAPHumanSetName(child, "Baby1");
     //human can't born child without a partner
     assert(NULL != SAPHumanPartner(testWoman));
@@ -194,10 +194,10 @@ void SAPPerformBehaviorTest(void) {
 
 void SAPPerformMemoryManagementTest(void) {
     printf("===Perform memory management test===\n");
-    SAPHuman *testMan = SAPCreateSpecialTestHumanWithParameters(SAPHumanGenderMale);
+    SAPHuman *testMan = SAPCreateSpecialTestHumanWithParameters(kSAPHumanGenderMale);
     SAPHumanSetName(testMan, "TestMan");
     assert(3 == SAPObjectRetainCount(testMan));
-    SAPHuman *testWoman = SAPCreateSpecialTestHumanWithParameters(SAPHumanGenderFemale);
+    SAPHuman *testWoman = SAPCreateSpecialTestHumanWithParameters(kSAPHumanGenderFemale);
     SAPHumanSetName(testWoman, "TestWoman");
     assert(3 == SAPObjectRetainCount(testWoman));
     SAPHumanMarry(testMan, testWoman);
@@ -212,7 +212,7 @@ void SAPPerformMemoryManagementTest(void) {
     assert(3 == SAPObjectRetainCount(testWoman));
     SAPHumanMarry(testMan, testWoman);
     //here testWoman's retainCount again 4, testMan's 3
-    SAPHuman *testMan2 = SAPCreateSpecialTestHumanWithParameters(SAPHumanGenderMale);
+    SAPHuman *testMan2 = SAPCreateSpecialTestHumanWithParameters(kSAPHumanGenderMale);
     //testMan2's initial retain count is 3
     assert(3 == SAPObjectRetainCount(testMan2));
     SAPHumanSetName(testMan2, "TestMan2");
@@ -221,7 +221,7 @@ void SAPPerformMemoryManagementTest(void) {
     assert(3 == SAPObjectRetainCount(testMan));
     assert(3 == SAPObjectRetainCount(testMan2));
     assert(4 == SAPObjectRetainCount(testWoman));
-    SAPHuman *child = SAPHumanBornChild(testWoman, SAPHumanGenderMale);
+    SAPHuman *child = SAPHumanBornChild(testWoman, kSAPHumanGenderMale);
     //child's retain count must be 3 (initial 1 + mother's retain + father's retain)
     assert(3 == SAPObjectRetainCount(child));
     SAPReleaseSpecialTestHumanWithParameters(testMan);

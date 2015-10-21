@@ -25,7 +25,7 @@ int SAPPerformTestDefineParent(void) {
     int testParameterPapa = 10;
     int testParameterMama = 9;
     int testParameterOutOfCondition = 11;
-    parents result;
+    SAPParents result;
     printf("================================\n");
     printf("Define parent Testing: \n");
     printf("Try to define with %d variable paramter. Suppose mamapapa. \n", testParameterMamaPapa);
@@ -52,7 +52,7 @@ int SAPPeformTestDefineParentInLoop(void) {
     printf("================================\n");
     printf("DefineParent testing in loop \n");
     int iterationAmount = 1000;
-    parents parent = kSAPOutOfCondition;
+    SAPParents parent = kSAPOutOfCondition;
     for (int i = 0; i < iterationAmount; i++) {
         parent = SAPDefineParent(i);
         printf("Input %d output %s\n", i, getParentName(parent));

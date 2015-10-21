@@ -13,12 +13,12 @@
 
 typedef void(*SAPObjectDeallocator)(void *object);
 
-typedef struct{
+typedef struct {
     uint64_t _retainCount;
     SAPObjectDeallocator _deallocatorFunctionPointer;
 } SAPObject;
 
-#define SAPObjectCreateOfType(type) __SAPObjectCreate(sizeof(type), __ ##type ##Deallocate)
+#define SAPObjectCreateOfType(type) __SAPObjectCreate(sizeof(type), (SAPObjectDeallocator)__ ##type ##Deallocate)
 
 extern
 void *__SAPObjectCreate(size_t size, SAPObjectDeallocator);

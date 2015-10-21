@@ -11,7 +11,7 @@
 
 //create data structure which stores randomly settled
 //6 bool, 1 float, 1 int, 1 long long, 3 short, 1 double, 1 string pointer
-typedef struct{
+typedef struct {
     short myShort1;
     short myShort2;         //2
     int myInt1;             //4
@@ -29,7 +29,7 @@ typedef struct{
 } SAPBigStructure;
 
 //extra task: second variant of the original structure with rearranged for tructure to have minimal size
-typedef struct{
+typedef struct {
     double myDouble1;
     long long myLongLong1;
     float myFloat1;
@@ -47,16 +47,17 @@ typedef struct{
 } SAPSmallerStructure;
 
 //int this variant place boolean variables into bit field and create union
-typedef struct{
+typedef struct {
     double myDouble1;
     long long myLongLong1;
     float myFloat1;
     int myInt1;
+    char *myStringPointer;
     short myShort1;
     short myShort2;
     short myShort3;
     union {
-        struct{
+        struct {
             bool myBool1 :1;
             bool myBool2 :1;
             bool myBool3 :1;
@@ -64,11 +65,10 @@ typedef struct{
             bool myBool5 :1;
             bool myBool6 :1;
         };
-        
+    
         char boolFlags;
     };
     
-    char *myStringPointer;
 } SAPSmallStructure;
 
 #endif /* SAPStructures_h */
