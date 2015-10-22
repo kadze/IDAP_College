@@ -9,7 +9,7 @@
 #ifndef SAPStringTest_h
 #define SAPStringTest_h
 
-#include <stdio.h>
+//#include <stdio.h>
 
 extern
 void SAPPerformAllSAPStringTests(void);

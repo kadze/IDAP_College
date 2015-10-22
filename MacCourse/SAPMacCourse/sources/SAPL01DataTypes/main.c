@@ -12,6 +12,7 @@
 #include "SAPStructuresTest.h"
 #include "SAPBinaryTest.h"
 #include "SAPHumanTests.h"
+#include "SAPStringTest.h"
 
 int main(int argc, const char * argv[]) {
 
@@ -39,8 +40,10 @@ int main(int argc, const char * argv[]) {
 //    SAPPerformTestGetEndian();
     
     //Human
-    SAPPerformAllHumanTests();
+//    SAPPerformAllHumanTests();
     
+    //SAPString
+    SAPPerformAllSAPStringTests();
     return 0;
 }
 
