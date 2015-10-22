@@ -83,7 +83,7 @@ void __SAPHumanDeallocate(SAPHuman *object) {
 
 char *SAPHumanName(SAPHuman *object) {
     SAPObjectIVarGetterSynthesize(object, _name);
-};
+}
 
 void SAPHumanSetName(SAPHuman *object, char *name) {
     if (NULL == object || name == object->_name) {

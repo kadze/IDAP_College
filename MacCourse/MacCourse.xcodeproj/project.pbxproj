@@ -10,6 +10,9 @@
 		2E48CE5B1BD1429D00B58272 /* SAPObject.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E48CE591BD1429D00B58272 /* SAPObject.c */; };
 		2E5E1F071BC5BF77005A1550 /* SAPHumanTests.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E5E1F051BC5BF77005A1550 /* SAPHumanTests.c */; };
 		2E6B89181BC19C5F00B0C256 /* SAPHuman.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E6B89161BC19C5F00B0C256 /* SAPHuman.c */; };
+		CA35AB671BD8CFB600D558C6 /* SAPArray.c in Sources */ = {isa = PBXBuildFile; fileRef = CA35AB651BD8CFB600D558C6 /* SAPArray.c */; settings = {ASSET_TAGS = (); }; };
+		CA35AB6B1BD8D84400D558C6 /* SAPStringTest.c in Sources */ = {isa = PBXBuildFile; fileRef = CA35AB691BD8D84400D558C6 /* SAPStringTest.c */; settings = {ASSET_TAGS = (); }; };
+		CADDBAD51BD78BFD007924A9 /* SAPString.c in Sources */ = {isa = PBXBuildFile; fileRef = CADDBAD31BD78BFD007924A9 /* SAPString.c */; settings = {ASSET_TAGS = (); }; };
 		EC5B712E1BB19E9A00FB8D06 /* SAPRunFunctionCreateMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = EC5B712C1BB19E7D00FB8D06 /* SAPRunFunctionCreateMacros.c */; };
 		EC5B71361BB3EE1700FB8D06 /* SAPStructuresTest.c in Sources */ = {isa = PBXBuildFile; fileRef = EC5B71341BB3EE1700FB8D06 /* SAPStructuresTest.c */; };
 		EC5B71391BB420C600FB8D06 /* SAPBinaryData.c in Sources */ = {isa = PBXBuildFile; fileRef = EC5B71371BB420C600FB8D06 /* SAPBinaryData.c */; };
@@ -39,6 +42,12 @@
 		2E5E1F061BC5BF77005A1550 /* SAPHumanTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPHumanTests.h; sourceTree = "<group>"; };
 		2E6B89161BC19C5F00B0C256 /* SAPHuman.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SAPHuman.c; path = SAPL05Human/SAPHuman.c; sourceTree = "<group>"; };
 		2E6B89171BC19C5F00B0C256 /* SAPHuman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAPHuman.h; path = SAPL05Human/SAPHuman.h; sourceTree = "<group>"; };
+		CA35AB651BD8CFB600D558C6 /* SAPArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SAPArray.c; sourceTree = "<group>"; };
+		CA35AB661BD8CFB600D558C6 /* SAPArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPArray.h; sourceTree = "<group>"; };
+		CA35AB691BD8D84400D558C6 /* SAPStringTest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SAPStringTest.c; sourceTree = "<group>"; };
+		CA35AB6A1BD8D84400D558C6 /* SAPStringTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPStringTest.h; sourceTree = "<group>"; };
+		CADDBAD31BD78BFD007924A9 /* SAPString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SAPString.c; sourceTree = "<group>"; };
+		CADDBAD41BD78BFD007924A9 /* SAPString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPString.h; sourceTree = "<group>"; };
 		EC5B71281BB1991600FB8D06 /* SAPFunctionCreationMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPFunctionCreationMacros.h; sourceTree = "<group>"; };
 		EC5B712C1BB19E7D00FB8D06 /* SAPRunFunctionCreateMacros.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = SAPRunFunctionCreateMacros.c; sourceTree = "<group>"; };
 		EC5B712D1BB19E7D00FB8D06 /* SAPRunFunctionCreateMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPRunFunctionCreateMacros.h; sourceTree = "<group>"; };
@@ -95,6 +104,26 @@
 				2E6B89171BC19C5F00B0C256 /* SAPHuman.h */,
 			);
 			name = SAPL05Human;
+			sourceTree = "<group>";
+		};
+		CA35AB681BD8D82800D558C6 /* SAPObjects */ = {
+			isa = PBXGroup;
+			children = (
+				CA35AB691BD8D84400D558C6 /* SAPStringTest.c */,
+				CA35AB6A1BD8D84400D558C6 /* SAPStringTest.h */,
+			);
+			path = SAPObjects;
+			sourceTree = "<group>";
+		};
+		CADDBAD21BD78B9E007924A9 /* SAPObjects */ = {
+			isa = PBXGroup;
+			children = (
+				CADDBAD31BD78BFD007924A9 /* SAPString.c */,
+				CADDBAD41BD78BFD007924A9 /* SAPString.h */,
+				CA35AB651BD8CFB600D558C6 /* SAPArray.c */,
+				CA35AB661BD8CFB600D558C6 /* SAPArray.h */,
+			);
+			path = SAPObjects;
 			sourceTree = "<group>";
 		};
 		EC5B71261BB198DC00FB8D06 /* SAPL02FunctionCreationMacros */ = {
@@ -161,6 +190,7 @@
 				EC5B712F1BB3E5B100FB8D06 /* SAPL03StructureAndBinary */,
 				2E6B89151BC19B7900B0C256 /* SAPL05Human */,
 				2E48CE581BD1425E00B58272 /* SAPObject */,
+				CADDBAD21BD78B9E007924A9 /* SAPObjects */,
 			);
 			name = sources;
 			path = SAPMacCourse/sources;
@@ -173,6 +203,7 @@
 				EC5B712B1BB19E7D00FB8D06 /* SAP02OutputTypeMacros */,
 				EC5B71331BB3EDA700FB8D06 /* SAPL03StructureAndBinary */,
 				2E5E1F041BC5BF4F005A1550 /* SAP05Human */,
+				CA35AB681BD8D82800D558C6 /* SAPObjects */,
 			);
 			name = tests;
 			path = SAPMacCourse/tests;
@@ -259,13 +290,16 @@
 				EC5B71361BB3EE1700FB8D06 /* SAPStructuresTest.c in Sources */,
 				EC5B713C1BB837A600FB8D06 /* SAPBinaryTest.c in Sources */,
 				2E6B89181BC19C5F00B0C256 /* SAPHuman.c in Sources */,
+				CA35AB671BD8CFB600D558C6 /* SAPArray.c in Sources */,
 				ECCFECF21BAAB27C00E19EBF /* SAPLesson1Tests.c in Sources */,
 				EC5B71391BB420C600FB8D06 /* SAPBinaryData.c in Sources */,
 				ECCFECF81BAAB79100E19EBF /* main.c in Sources */,
+				CADDBAD51BD78BFD007924A9 /* SAPString.c in Sources */,
 				2E48CE5B1BD1429D00B58272 /* SAPObject.c in Sources */,
 				EC5B712E1BB19E9A00FB8D06 /* SAPRunFunctionCreateMacros.c in Sources */,
 				ECCFECFC1BAAC17400E19EBF /* SAPMamaOrPapa.c in Sources */,
 				2E5E1F071BC5BF77005A1550 /* SAPHumanTests.c in Sources */,
+				CA35AB6B1BD8D84400D558C6 /* SAPStringTest.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
