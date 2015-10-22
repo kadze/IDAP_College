@@ -9,10 +9,26 @@
 #ifndef SAPArray_h
 #define SAPArray_h
 
-//#include <stdio.h>
+#include "SAPObject.h"
+#include "SAPHuman.h"
+
+static const int kSAPArraySize = 20;
 
 typedef struct {
-    void *_array[20];
+    SAPObject *_super;
+    SAPHuman *_value[kSAPArraySize];
 } SAPArray;
+
+extern
+SAPArray *SAPArrayCreate(void);
+
+extern
+void __SAPArrayDeallocate(SAPArray *object);
+
+extern
+void *SAPArrayValue(SAPArray *object);
+
+extern
+void SAPArraySetValue(void *value);
 
 #endif /* SAPArray_h */
