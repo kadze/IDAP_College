@@ -15,5 +15,4 @@
 extern
 void SAPPrintTypeSize();
 
-
 #endif /* defined(__MacCourse__SAPPrintTypesSize__) */

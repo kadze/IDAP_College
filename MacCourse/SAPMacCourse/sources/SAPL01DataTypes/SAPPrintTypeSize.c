@@ -24,5 +24,4 @@ void SAPPrintTypeSize(void) {
     SAPSizeofOutput(float);
     SAPSizeofOutput(double);
     SAPSizeofOutput(long double);
-
 }

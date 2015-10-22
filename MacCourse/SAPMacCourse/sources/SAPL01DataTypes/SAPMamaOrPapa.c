@@ -18,12 +18,13 @@ static const int kSAPPapaDivider       = 5;
 SAPParents SAPDefineParent(int param) {
     SAPParents result = kSAPOutOfCondition;
     if (0 == param){
-
         return result;
     }
+    
     if (param % kSAPMamaDivider == 0) {
         result = kSAPMama;
     }
+    
     if (param % kSAPPapaDivider == 0) {
         result = (kSAPMama == result) ? kSAPMamapapa : kSAPPapa;
     }

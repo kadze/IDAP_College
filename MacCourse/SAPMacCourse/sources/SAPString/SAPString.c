@@ -9,9 +9,15 @@
 #include <stdio.h>
 #include <string.h>
 #include "SAPString.h"
+#include "SAPMacro.h"
 
 #pragma mark -
 #pragma mark Initializations & Deallocation
+
+void __SAPStringDeallocate(SAPString *object) {
+    SAPStringSetValue(object, NULL);
+    __SAPObjectDeallocate(object);
+}
 
 SAPString *SAPStringCreate(char *value) {
     SAPString *object = SAPObjectCreateOfType(SAPString);
@@ -20,21 +26,15 @@ SAPString *SAPStringCreate(char *value) {
     return object;
 }
 
-void __SAPStringDeallocate(SAPString *object) {
-    SAPStringSetValue(object, NULL);
-    __SAPObjectDeallocate(object);
-}
-
 #pragma mark -
 #pragma mark Accessors
 
 char *SAPStringValue(SAPString *object){
-    return object->_value;
+     SAPObjectIVarGetterSynthesize(object, _value);
 }
 
 void SAPStringSetValue(SAPString *object, const char *value) {
     if (NULL == object || value == object->_value) {
-        
         return;
     }
     
@@ -52,7 +52,7 @@ void SAPStringSetValue(SAPString *object, const char *value) {
 #pragma mark Public implementations
 
 void SAPStringPrint(SAPString *object) {
-    printf("%s", SAPStringValue(object));
+    puts(SAPStringValue(object));
 }
 
 

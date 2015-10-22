@@ -79,10 +79,8 @@ SAPEndian SAPGetEndianWithUnion(void) {
     } definingUnion;
     definingUnion.intOne = 1;
     if (definingUnion.charArray[0] == 1) {
-        
         return kSAPLittleEndian;
     } else {
-        
         return kSAPBigEndian;
     }
 }
