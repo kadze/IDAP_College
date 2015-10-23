@@ -13,6 +13,7 @@
 #include "SAPBinaryTest.h"
 #include "SAPHumanTests.h"
 #include "SAPStringTest.h"
+#include "SAPArrayTest.h"
 
 int main(int argc, const char * argv[]) {
 
@@ -43,7 +44,9 @@ int main(int argc, const char * argv[]) {
 //    SAPPerformAllHumanTests();
     
     //SAPString
-    SAPPerformAllSAPStringTests();
+//    SAPPerformAllSAPStringTests();
+    //SAPArray
+    SAPPerformAllSAPArrayTests();
     return 0;
 }
 

@@ -7,7 +7,7 @@
 //
 
 #include "SAPObject.h"
-#include "SAPArray.h"
+#include "SAPA"
 
 #pragma mark -
 #pragma mark Initializations & Deallocation
@@ -19,23 +19,29 @@ SAPArray *SAPArrayCreate(void) {
 }
 
 void __SAPArrayDeallocate(SAPArray *object) {
-    void *arrayElementPointer = object->_value;
-    for (int counter = 0; counter < kSAPArraySize; counter++) {
-        void *a = (arrayElementPointer +counter);
-        
-        SAPHuman *hum = (SAPHuman *)arrayElementPointer + counter;
-        hum = NULL;
+    for (int index = 0; index < kSAPArraySize; index++) {
+        object->_value[index] = NULL;
     }
-    __SAPObjectDeallocate(object);
     
+    __SAPObjectDeallocate(object);
 }
 
 #pragma mark -
 #pragma mark Accessors
 
-void *SAPArrayValue(SAPArray *object);
+//void SAPArraySetValue(SAPArray *object, void *internalArray);
 
-void SAPArraySetValue(void *value);
+void SAPArraySetValueAtIndex(SAPArray *object, void *value, uint index) {
+    if (object != NULL) {
+        object->_value[index] = value;
+    }
+}
+
+void *SAPArrayValueAtIndex(SAPArray *object, uint index) {
+    if (NULL != object) {
+        return = object->_value[index];
+    }
+}
 
 #pragma mark -
 #pragma mark Public implementations

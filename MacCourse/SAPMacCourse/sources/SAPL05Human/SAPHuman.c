@@ -177,7 +177,8 @@ void SAPHumanSetChildAtIndex(SAPHuman *object, SAPHuman *child, uint8_t childInd
     if (NULL != object
         && kSAPChildrenLimit > childIndex
         && child != SAPHumanChildAtIndex(object, childIndex)
-        && NULL == SAPHumanChildAtIndex(object, childIndex)) {
+        && NULL == SAPHumanChildAtIndex(object, childIndex))
+    {
         object->_children[childIndex] = child;
     }
     
@@ -245,8 +246,8 @@ bool SAPHumanMarry(SAPHuman *object, SAPHuman *partner) {
     if (NULL == object
        || NULL == partner
        || SAPHumanGender(object) == SAPHumanGender(partner)
-       || object == partner) {
-        
+       || object == partner)
+    {
         return married;
     }
     
@@ -268,8 +269,8 @@ bool SAPHumanDivorce(SAPHuman *object) {
     bool divorceComplete = false;
     SAPHuman *partner = SAPHumanPartner(object);
     if (NULL == object
-        || NULL == partner) {
-        
+        || NULL == partner)
+    {
         return divorceComplete;
     }
     
