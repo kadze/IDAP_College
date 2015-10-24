@@ -8,8 +8,10 @@
 
 #include <assert.h>
 #include "SAPArray.h"
+#include "stdio.h"
 
 void SAPPerformAllSAPArrayTests(void) {
+    printf("===Perform SAPArray tests ===\n");
     SAPArray *testSAPArray = SAPArrayCreate();
     assert(1 == SAPObjectRetainCount(testSAPArray));
     uint index = 10;
@@ -17,7 +19,10 @@ void SAPPerformAllSAPArrayTests(void) {
     SAPArraySetValueAtIndex(testSAPArray, &value, index);
     int result = *(int*)SAPArrayValueAtIndex(testSAPArray, index);
     assert(value == result);
+    SAPArraySetValueAtIndex(testSAPArray, &value, index + 1);
+    assert(2 == SAPArrayNotNullElementsCount(testSAPArray));
     SAPObjectRelease(testSAPArray);
     assert(0 == SAPObjectRetainCount(testSAPArray));
     assert(NULL == SAPArrayValueAtIndex(testSAPArray, index));
+    printf("OK\n");
 }

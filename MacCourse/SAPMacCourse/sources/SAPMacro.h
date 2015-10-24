@@ -10,11 +10,19 @@
 #define MacCourse_macro_h
 
 #define SAPObjectIVarGetterSynthesize(objectVariableName,ivar) \
-return NULL != objectVariableName ? objectVariableName->ivar : NULL
+    return NULL != objectVariableName ? objectVariableName->ivar : NULL
 
 #define SAPObjectIVarSetterSynthesize(objectVariableName, ivar) \
-if (NULL != objectVariableName) { \
-objectVariableName->_##ivar = ivar; \
-}
+    if (NULL != objectVariableName) { \
+        objectVariableName->_##ivar = ivar; \
+    }
+
+#define SAPObjectRetainingSetterSynthesize(objectVariableName, ivar) \
+    if (NULL == objectVariableName || ivar == objectVariableName->_##ivar) { \
+        return; \
+    } \
+    SAPObjectRetain(ivar); \
+    SAPObjectRelease(objectVariableName->_##ivar); \
+    objectVariableName->_##ivar = ivar; \
 
 #endif

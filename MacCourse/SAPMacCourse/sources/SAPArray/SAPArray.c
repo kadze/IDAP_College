@@ -35,7 +35,20 @@ void SAPArraySetValueAtIndex(SAPArray *object, void *value, uint index) {
 }
 
 void *SAPArrayValueAtIndex(SAPArray *object, uint index) {
-    return (NULL != object) ? object->_value[index] : NULL;
+    return (NULL != object && kSAPArraySize > index) ? object->_value[index] : NULL;
+}
+
+uint SAPArrayNotNullElementsCount(SAPArray *object) {
+    uint childrenCounter = 0;
+    if (NULL != object) {
+        for (uint index = 0; index < kSAPArraySize; index++) {
+            if (NULL != SAPArrayValueAtIndex(object, index)) {
+                childrenCounter++;
+            }
+        }
+    }
+    
+    return childrenCounter;
 }
 
 #pragma mark -

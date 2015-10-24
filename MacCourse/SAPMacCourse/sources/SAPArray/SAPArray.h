@@ -15,7 +15,7 @@
 static const uint kSAPArraySize = 20;
 
 typedef struct {
-    SAPObject *_super;
+    SAPObject _super;
     void *_value[kSAPArraySize];
 } SAPArray;
 
@@ -30,5 +30,8 @@ void SAPArraySetValueAtIndex(SAPArray *object, void *value, uint index);
 
 extern
 void *SAPArrayValueAtIndex(SAPArray *object, uint index);
+
+extern
+uint SAPArrayNotNullElementsCount(SAPArray *object);
 
 #endif /* SAPArray_h */

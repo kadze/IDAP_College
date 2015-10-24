@@ -11,6 +11,8 @@
 
 #include <stdbool.h>
 #include "SAPObject.h"
+#include "SAPString.h"
+#include "SAPArray.h"
 
 static const int kSAPChildrenLimit = 20;
 
@@ -23,11 +25,11 @@ typedef struct SAPHuman SAPHuman;
 
 struct SAPHuman {
     SAPObject _super;
-    char *_name;
+    SAPString *_name;
     SAPHuman *_partner;
     SAPHuman *_mother;
     SAPHuman *_father;
-    SAPHuman *_children[kSAPChildrenLimit];
+    SAPArray *_children;
     SAPGender _gender;
     uint8_t _age;
 };
@@ -42,10 +44,10 @@ extern
 void __SAPHumanDeallocate(SAPHuman *object);
 
 extern
-char *SAPHumanName(SAPHuman *object);
+SAPString *SAPHumanName(SAPHuman *object);
 
 extern
-void SAPHumanSetName(SAPHuman *object, char *name);
+void SAPHumanSetName(SAPHuman *object, SAPString *name);
 
 extern
 SAPGender SAPHumanGender(SAPHuman *object);

@@ -31,6 +31,9 @@ static
 void SAPHumanSetFather(SAPHuman *object, SAPHuman *father);
 
 static
+void SAPHumanSetChildren(SAPHuman *object, SAPArray *children);
+
+static
 void SAPHumanRemoveChild(SAPHuman *parent, SAPHuman *child);
 
 static
@@ -55,11 +58,15 @@ void __SAPHumanDeallocate(SAPHuman *object) {
     SAPHumanSetName(object, NULL);
     SAPHumanDivorce(object);
     SAPHumanRemoveAllChildren(object);
+    SAPHumanSetChildren(object, NULL);
     __SAPObjectDeallocate(object);
 }
 
 SAPHuman *SAPHumanCreate(void) {
-    return SAPObjectCreateOfType(SAPHuman);
+    SAPHuman *result = SAPObjectCreateOfType(SAPHuman);
+    SAPHumanSetChildren(result, SAPArrayCreate());
+    
+    return result;
 }
 
 SAPHuman *SAPHumanCreateWithParameters(SAPHuman *mother, SAPHuman *father, SAPGender gender) {
@@ -76,23 +83,16 @@ SAPHuman *SAPHumanCreateWithParameters(SAPHuman *mother, SAPHuman *father, SAPGe
 #pragma mark -
 #pragma mark Accessors
 
-char *SAPHumanName(SAPHuman *object) {
+SAPString *SAPHumanName(SAPHuman *object) {
     SAPObjectIVarGetterSynthesize(object, _name);
 }
 
-void SAPHumanSetName(SAPHuman *object, char *name) {
-    if (NULL == object || name == object->_name) {
-        return;
-    }
-    
-    if (NULL != object->_name) {
-        free(object->_name);
-        object->_name = NULL;
-    }
-    
-    if (name) {
-        object->_name = strdup(name);
-    }
+void SAPHumanSetName(SAPHuman *object, SAPString *name) {
+    SAPObjectRetainingSetterSynthesize(object, name)
+}
+
+void SAPHumanSetChildren(SAPHuman *object, SAPArray *children) {
+    SAPObjectRetainingSetterSynthesize(object, children)
 }
 
 SAPGender SAPHumanGender(SAPHuman *object) {
@@ -139,7 +139,7 @@ void SAPHumanRemoveChild(SAPHuman *parent, SAPHuman *child) {
     if (NULL == parent || NULL == child) {
         return;
     }
-    
+    //WHAT IF HASN'T CHILD?????????????????
     SAPHumanGender(parent) == kSAPHumanGenderMale ? SAPHumanSetFather(child, NULL) : SAPHumanSetMother(child, NULL);
     SAPObjectRelease(child);
     
@@ -179,14 +179,16 @@ void SAPHumanSetChildAtIndex(SAPHuman *object, SAPHuman *child, uint8_t childInd
         && child != SAPHumanChildAtIndex(object, childIndex)
         && NULL == SAPHumanChildAtIndex(object, childIndex))
     {
-        object->_children[childIndex] = child;
+        SAPArraySetValueAtIndex(object->_children, child, childIndex);
     }
     
     return;
 }
 
 SAPHuman *SAPHumanChildAtIndex(SAPHuman *object, uint8_t childIndex) {
-    return (NULL != object && kSAPChildrenLimit > childIndex )? object->_children[childIndex] : NULL;
+    return (NULL != object && kSAPChildrenLimit > childIndex)
+            ? SAPArrayValueAtIndex(object->_children, childIndex)
+            : NULL;
 }
 
 void SAPHumanAddChild(SAPHuman *object, SAPHuman *child) {
@@ -209,13 +211,7 @@ void SAPHumanAddChild(SAPHuman *object, SAPHuman *child) {
 
 uint8_t SAPHumanChildrenCount(SAPHuman *object) {
     uint8_t childrenCounter = 0;
-    if (NULL != object) {
-        for (int index = 0; index < kSAPChildrenLimit; index++) {
-            if (NULL != SAPHumanChildAtIndex(object, index)) {
-                childrenCounter++;
-            }
-        }
-    }
+    childrenCounter = SAPArrayNotNullElementsCount(object->_children);
     
     return childrenCounter;
 }

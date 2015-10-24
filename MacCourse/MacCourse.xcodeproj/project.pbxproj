@@ -129,6 +129,13 @@
 			name = SAPL05Human;
 			sourceTree = "<group>";
 		};
+		2E9CB66C1BDBF17B00AF689D /* SAPDynamicArray */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SAPDynamicArray;
+			sourceTree = "<group>";
+		};
 		CA35AB681BD8D82800D558C6 /* SAPString */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +220,7 @@
 				2E48CE581BD1425E00B58272 /* SAPObject */,
 				CADDBAD21BD78B9E007924A9 /* SAPString */,
 				2E48CE5C1BD989A000B58272 /* SAPArray */,
+				2E9CB66C1BDBF17B00AF689D /* SAPDynamicArray */,
 				2E48CE601BD98AB000B58272 /* SAPMacro.h */,
 			);
 			name = sources;

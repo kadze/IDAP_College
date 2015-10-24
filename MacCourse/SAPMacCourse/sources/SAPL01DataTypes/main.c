@@ -41,12 +41,13 @@ int main(int argc, const char * argv[]) {
 //    SAPPerformTestGetEndian();
     
     //Human
-//    SAPPerformAllHumanTests();
+    SAPPerformAllHumanTests();
     
     //SAPString
 //    SAPPerformAllSAPStringTests();
     //SAPArray
-    SAPPerformAllSAPArrayTests();
+//    SAPPerformAllSAPArrayTests();
+    
     return 0;
 }
 
