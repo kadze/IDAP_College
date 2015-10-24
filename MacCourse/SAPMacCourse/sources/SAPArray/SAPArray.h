@@ -11,7 +11,6 @@
 
 #include <stdlib.h>
 #include "SAPObject.h"
-//#include "SAPHuman.h"
 
 static const uint kSAPArraySize = 20;
 
@@ -25,12 +24,6 @@ SAPArray *SAPArrayCreate(void);
 
 extern
 void __SAPArrayDeallocate(SAPArray *object);
-
-//extern
-//void *SAPArrayValue(SAPArray *object);
-
-//extern
-//void SAPArraySetValue(SAPArray *object, void *internalArray);
 
 extern
 void SAPArraySetValueAtIndex(SAPArray *object, void *value, uint index);

@@ -15,7 +15,9 @@ void SAPPerformAllSAPArrayTests(void) {
     uint index = 10;
     int value = 5;
     SAPArraySetValueAtIndex(testSAPArray, &value, index);
-    int result = (int)SAPArrayValueAtIndex(testSAPArray, 10);
-    assert(5 == result);
-    
+    int result = *(int*)SAPArrayValueAtIndex(testSAPArray, index);
+    assert(value == result);
+    SAPObjectRelease(testSAPArray);
+    assert(0 == SAPObjectRetainCount(testSAPArray));
+    assert(NULL == SAPArrayValueAtIndex(testSAPArray, index));
 }

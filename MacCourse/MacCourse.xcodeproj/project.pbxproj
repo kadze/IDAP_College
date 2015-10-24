@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2E48CE5B1BD1429D00B58272 /* SAPObject.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E48CE591BD1429D00B58272 /* SAPObject.c */; };
+		2E48CE611BD98FA000B58272 /* SAPArray.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E48CE5D1BD989A000B58272 /* SAPArray.c */; };
 		2E5E1F071BC5BF77005A1550 /* SAPHumanTests.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E5E1F051BC5BF77005A1550 /* SAPHumanTests.c */; };
 		2E6B89181BC19C5F00B0C256 /* SAPHuman.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E6B89161BC19C5F00B0C256 /* SAPHuman.c */; };
 		9FE90DF31BDA95DB0062EF46 /* SAPArrayTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 9FE90DF11BDA95DB0062EF46 /* SAPArrayTest.c */; };
@@ -317,6 +318,7 @@
 				EC5B71391BB420C600FB8D06 /* SAPBinaryData.c in Sources */,
 				ECCFECF81BAAB79100E19EBF /* main.c in Sources */,
 				CADDBAD51BD78BFD007924A9 /* SAPString.c in Sources */,
+				2E48CE611BD98FA000B58272 /* SAPArray.c in Sources */,
 				2E48CE5B1BD1429D00B58272 /* SAPObject.c in Sources */,
 				EC5B712E1BB19E9A00FB8D06 /* SAPRunFunctionCreateMacros.c in Sources */,
 				ECCFECFC1BAAC17400E19EBF /* SAPMamaOrPapa.c in Sources */,

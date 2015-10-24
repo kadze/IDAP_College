@@ -6,8 +6,7 @@
 //  Copyright © 2015 Yosemite Retail. All rights reserved.
 //
 
-#include "SAPObject.h"
-#include "SAPA"
+#include "SAPArray.h"
 
 #pragma mark -
 #pragma mark Initializations & Deallocation
@@ -19,7 +18,7 @@ SAPArray *SAPArrayCreate(void) {
 }
 
 void __SAPArrayDeallocate(SAPArray *object) {
-    for (int index = 0; index < kSAPArraySize; index++) {
+    for (uint index = 0; index < kSAPArraySize; index++) {
         object->_value[index] = NULL;
     }
     
@@ -29,8 +28,6 @@ void __SAPArrayDeallocate(SAPArray *object) {
 #pragma mark -
 #pragma mark Accessors
 
-//void SAPArraySetValue(SAPArray *object, void *internalArray);
-
 void SAPArraySetValueAtIndex(SAPArray *object, void *value, uint index) {
     if (object != NULL) {
         object->_value[index] = value;
@@ -38,9 +35,7 @@ void SAPArraySetValueAtIndex(SAPArray *object, void *value, uint index) {
 }
 
 void *SAPArrayValueAtIndex(SAPArray *object, uint index) {
-    if (NULL != object) {
-        return = object->_value[index];
-    }
+    return (NULL != object) ? object->_value[index] : NULL;
 }
 
 #pragma mark -
