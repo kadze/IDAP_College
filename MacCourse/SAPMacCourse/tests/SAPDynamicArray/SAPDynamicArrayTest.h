@@ -9,6 +9,7 @@
 #ifndef __MacCourse__SAPDynamicArrayTest__
 #define __MacCourse__SAPDynamicArrayTest__
 
-#include <stdio.h>
+extern
+void SAPPerformDynamicArrayTest(void);
 
 #endif /* defined(__MacCourse__SAPDynamicArrayTest__) */

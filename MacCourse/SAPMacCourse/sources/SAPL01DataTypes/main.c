@@ -14,6 +14,7 @@
 #include "SAPHumanTests.h"
 #include "SAPStringTest.h"
 #include "SAPArrayTest.h"
+#include "SAPDynamicArrayTest.h"
 
 int main(int argc, const char * argv[]) {
 
@@ -41,12 +42,16 @@ int main(int argc, const char * argv[]) {
 //    SAPPerformTestGetEndian();
     
     //Human
-    SAPPerformAllHumanTests();
+//    SAPPerformAllHumanTests();
     
     //SAPString
 //    SAPPerformAllSAPStringTests();
+    
     //SAPArray
 //    SAPPerformAllSAPArrayTests();
+    
+    //SAPDynamicArray
+    SAPPerformDynamicArrayTest();
     
     return 0;
 }

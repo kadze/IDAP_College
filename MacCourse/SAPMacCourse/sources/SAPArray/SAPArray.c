@@ -11,18 +11,18 @@
 #pragma mark -
 #pragma mark Initializations & Deallocation
 
-SAPArray *SAPArrayCreate(void) {
-    SAPArray *object = SAPObjectCreateOfType(SAPArray);
-    
-    return object;
-}
-
 void __SAPArrayDeallocate(SAPArray *object) {
     for (uint index = 0; index < kSAPArraySize; index++) {
         object->_value[index] = NULL;
     }
     
     __SAPObjectDeallocate(object);
+}
+
+SAPArray *SAPArrayCreate(void) {
+    SAPArray *object = SAPObjectCreateOfType(SAPArray);
+    
+    return object;
 }
 
 #pragma mark -
@@ -38,6 +38,8 @@ void *SAPArrayValueAtIndex(SAPArray *object, uint index) {
     return (NULL != object && kSAPArraySize > index) ? object->_value[index] : NULL;
 }
 
+#pragma mark-
+#pragma mark Public implementations
 uint SAPArrayNotNullElementsCount(SAPArray *object) {
     uint childrenCounter = 0;
     if (NULL != object) {
@@ -51,6 +53,4 @@ uint SAPArrayNotNullElementsCount(SAPArray *object) {
     return childrenCounter;
 }
 
-#pragma mark -
-#pragma mark Public implementations
 

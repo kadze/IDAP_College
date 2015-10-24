@@ -9,6 +9,37 @@
 #ifndef __MacCourse__SAPDynamicArray__
 #define __MacCourse__SAPDynamicArray__
 
-#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include "SAPObject.h"
+
+typedef struct {
+    SAPObject _super;
+    void **_value;
+    size_t _elements;
+    size_t _allocated;
+} SAPDynamicArray;
+
+extern
+SAPDynamicArray *SAPDynamicArrayCreate(void);
+
+extern
+void __SAPDynamicArrayDeallocate(SAPDynamicArray *object);
+
+extern
+void SAPDynamicArrayAddElement(SAPDynamicArray *object, void *value);
+
+extern
+void SAPDynamicArrayRemoveValue(SAPDynamicArray *object);
+
+extern
+void SAPDynamicArraySetValueAtIndex(SAPDynamicArray *object, void *value, uint index);
+
+extern
+void *SAPArrayValueAtIndex(SAPDynamicArray *object, size_t index);
+
+extern
+size_t SAPDynamicArrayElementsCount(SAPDynamicArray *object);
+
 
 #endif /* defined(__MacCourse__SAPDynamicArray__) */
