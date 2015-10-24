@@ -146,8 +146,8 @@ void SAPDynamicArrayRemoveObject(SAPDynamicArray *object, void *value) {
 
 void SAPDynamicArrayRemoveObjectAtIndex(SAPDynamicArray *object, unsigned long index) {
     SAPDynamicArraySetObjectAtIndex(object, NULL, index);
-    SAPDynamicArraySetCount(object, SAPDynamicArrayCount(object) - 1);
     SAPDynamicArrayShiftObjects(object, index);
+    SAPDynamicArraySetCount(object, SAPDynamicArrayCount(object) - 1);
 }
 
 void SAPDynamicArrayRemoveAllObjects(SAPDynamicArray *object) {
@@ -186,15 +186,17 @@ bool SAPDynamicArrayContainsObject(SAPDynamicArray *object, void *value) {
 #pragma mark Private Implementations
 
 void SAPDynamicArrayShiftObjects(SAPDynamicArray *object, unsigned long index) {
-    if (NULL == object) {
+    if (NULL == object
+        || 0 == index) //in this case array allocated memory was freed)
+    {
         return;
     }
     
     void **data = object->_objects;
     unsigned long count = SAPDynamicArrayCount(object);
-    size_t bytesForShift = (SAPDynamicArrayCount(object) - index) * sizeof(&data);
+    size_t bytesForShift = (count - index) * sizeof(&data);
     memmove(&data[index], &data[index + 1], bytesForShift);
-    data[count] = NULL;
+    SAPDynamicArraySetObjectAtIndex(object, NULL, count - 1);
 }
 
 bool SAPDynamicArrayShouldResize(SAPDynamicArray *object, unsigned long newCount) {

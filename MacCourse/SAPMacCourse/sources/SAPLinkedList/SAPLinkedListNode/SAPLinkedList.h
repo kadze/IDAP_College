@@ -40,7 +40,7 @@ extern
 void SAPLinkedListRemoveContentObject(SAPLinkedList *object, void *contentObject);
 
 extern
-void SAPLinkedListRemoveAllObjects(SAPLinkedList *object);
+void SAPLinkedListRemoveAllContentObjects(SAPLinkedList *object);
 
 extern
 bool SAPLinkedListContainsObject(SAPLinkedList *object, void *contentObject);

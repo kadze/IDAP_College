@@ -23,7 +23,7 @@ extern
 void __SAPLinkedListNodeDeallocate(SAPLinkedListNode *object);
 
 extern
-SAPLinkedListNode *SAPDynamicArrayCreateWithObject(void	 *contentObject);
+SAPLinkedListNode *SAPLinkedListNodeCreateWithContentObject(void *contentObject);
 
 extern
 SAPLinkedListNode *SAPLinkedListNodeNextNode(SAPLinkedListNode *object);

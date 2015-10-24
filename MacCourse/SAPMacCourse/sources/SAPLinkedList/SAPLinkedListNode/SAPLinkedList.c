@@ -14,7 +14,7 @@
 #pragma mark Private Declarations
 
 static
-void *SAPLinkedListHead(SAPLinkedList *object);
+SAPLinkedListNode *SAPLinkedListHead(SAPLinkedList *object);
 
 static
 void SAPLinkedListSetHead(SAPLinkedList *object, SAPLinkedListNode *head);
@@ -32,30 +32,56 @@ void __SAPLinkedListDeallocate(SAPLinkedList *object) {
 #pragma mark Public Implementations
 
 void *SAPLinkedListFirstContentObject(SAPLinkedList *object){
-    return SAPLinkedListHead(object); //shirt either in the name or in this body or in SAPLinkedListHead!!!!!!!!!!!!!!!!
+    SAPLinkedListNode *node = SAPLinkedListHead(object);
+    
+    return  SAPLinkedListNodeContentObject(node);
 }
 
-void SAPLinkedListRemoveFirstContentObject(SAPLinkedList *object);
+void SAPLinkedListRemoveFirstContentObject(SAPLinkedList *object) {
+    SAPLinkedListNode *node = SAPLinkedListHead(object);
+    SAPLinkedListSetHead(object, SAPLinkedListNodeNextNode(node));
+}
 
-bool SAPLinkedListIsEmpty(SAPLinkedList *object);
+bool SAPLinkedListIsEmpty(SAPLinkedList *object) {
+    return (NULL != object && 0 != SAPLinkedListCount(object));
+}
 
-void SAPLinkedListAddContentObject(SAPLinkedList *object, void *contentObject);
+void SAPLinkedListAddContentObject(SAPLinkedList *object, void *contentObject) {
+    if (NULL == object) {
+        return;
+    }
+    
+    SAPLinkedListNode *node = SAPLinkedListNodeCreateWithContentObject(contentObject);
+    SAPLinkedListNodeSetNextNode(node, SAPLinkedListHead(object));
+    SAPLinkedListSetHead(object, node);
+    object->_count++;
+    SAPObjectRelease(node);
+}
 
 void SAPLinkedListRemoveContentObject(SAPLinkedList *object, void *contentObject);
 
-void SAPLinkedListRemoveAllObjects(SAPLinkedList *object);
+void SAPLinkedListRemoveAllContentObjects(SAPLinkedList *object) {
+    if (NULL == object) {
+        return;
+    }
+    
+    SAPLinkedListSetHead(object, NULL);
+    object->_count = 0;
+}
 
 bool SAPLinkedListContainsObject(SAPLinkedList *object, void *contentObject);
 
-uint64_t SAPLinkedListCount(SAPLinkedList *object);
+uint64_t SAPLinkedListCount(SAPLinkedList *object) {
+    return SAPObjectIVarGetterSynthesize(object, _count, 0);
+}
 
 #pragma mark-
 #pragma mark Private Implementations
 
-void *SAPLinkedListHead(SAPLinkedList *object){
+SAPLinkedListNode *SAPLinkedListHead(SAPLinkedList *object){
     return SAPObjectIVarGetterSynthesize(object, _head, NULL);
 }
 
 void SAPLinkedListSetHead(SAPLinkedList *object, SAPLinkedListNode *head){
-    
+    SAPObjectRetainSetterSynthesize(object, head);
 }

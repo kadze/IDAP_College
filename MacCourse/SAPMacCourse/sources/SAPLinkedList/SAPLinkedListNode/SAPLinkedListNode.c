@@ -19,7 +19,7 @@ void __SAPLinkedListNodeDeallocate(SAPLinkedListNode *object) {
     __SAPObjectDeallocate(object);
 }
 
-SAPLinkedListNode *SAPDynamicArrayCreateWithContentObject(SAPObject *contentObject) {
+SAPLinkedListNode *SAPLinkedListNodeCreateWithContentObject(void *contentObject) {
     SAPLinkedListNode *result =  SAPObjectCreateOfType(SAPLinkedListNode);
     SAPLinkedListNodeSetContentObject(result, contentObject);
     
