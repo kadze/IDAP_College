@@ -13,15 +13,15 @@
 #pragma mark Initializations & Deallocation
 
 void __SAPLinkedListNodeDeallocate(SAPLinkedListNode *object) {
-    SAPLinkedListNodeSetContentObject(object, NULL);
+    SAPLinkedListNodeSetObject(object, NULL);
     SAPLinkedListNodeSetNextNode(object, NULL);
     
     __SAPObjectDeallocate(object);
 }
 
-SAPLinkedListNode *SAPLinkedListNodeCreateWithContentObject(void *contentObject) {
+SAPLinkedListNode *SAPLinkedListNodeCreateWithObject(void *contentObject) {
     SAPLinkedListNode *result =  SAPObjectCreateOfType(SAPLinkedListNode);
-    SAPLinkedListNodeSetContentObject(result, contentObject);
+    SAPLinkedListNodeSetObject(result, contentObject);
     
     return result;
 }
@@ -37,11 +37,11 @@ void SAPLinkedListNodeSetNextNode(SAPLinkedListNode *object, SAPLinkedListNode *
     SAPObjectRetainSetterSynthesize(object, nextNode);
 }
 
-void *SAPLinkedListNodeContentObject(SAPLinkedListNode *object) {
-    return SAPObjectIVarGetterSynthesize(object, _contentObject, NULL);
+void *SAPLinkedListNodeObject(SAPLinkedListNode *object) {
+    return SAPObjectIVarGetterSynthesize(object, _object, NULL);
 }
 
-void SAPLinkedListNodeSetContentObject(SAPLinkedListNode *object, void *contentObject) {
+void SAPLinkedListNodeSetObject(SAPLinkedListNode *object, void *contentObject) {
     if (object == contentObject) {
         return;
     }

@@ -22,30 +22,33 @@ struct SAPLinkedList{
 };
 
 extern
-void __SAPLinkedListDeallocate(SAPLinkedList *object);
+void __SAPLinkedListDeallocate(SAPLinkedList *list);
 
 extern
-void *SAPLinkedListFirstContentObject(SAPLinkedList *object);
+void *SAPLinkedListFirstObject(SAPLinkedList *list);
 
 extern
-void SAPLinkedListRemoveFirstContentObject(SAPLinkedList *object);
+void SAPLinkedListRemoveFirstObject(SAPLinkedList *list);
 
 extern
-bool SAPLinkedListIsEmpty(SAPLinkedList *object);
+void *SAPLinkedListObjectBeforeObject(SAPLinkedList *list, void *object);
 
 extern
-void SAPLinkedListAddContentObject(SAPLinkedList *object, void *contentObject);
+bool SAPLinkedListIsEmpty(SAPLinkedList *list);
 
 extern
-void SAPLinkedListRemoveContentObject(SAPLinkedList *object, void *contentObject);
+void SAPLinkedListAddObject(SAPLinkedList *list, void *object);
 
 extern
-void SAPLinkedListRemoveAllContentObjects(SAPLinkedList *object);
+void SAPLinkedListRemoveObject(SAPLinkedList *list, void *object);
 
 extern
-bool SAPLinkedListContainsObject(SAPLinkedList *object, void *contentObject);
+void SAPLinkedListRemoveAllObjects(SAPLinkedList *list);
 
 extern
-uint64_t SAPLinkedListCount(SAPLinkedList *object);
+bool SAPLinkedListContainsObject(SAPLinkedList *list, void *object);
+
+extern
+uint64_t SAPLinkedListCount(SAPLinkedList *list);
 
 #endif /* SAPLinkedList_h */
