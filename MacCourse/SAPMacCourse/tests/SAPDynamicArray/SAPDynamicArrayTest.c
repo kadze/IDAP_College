@@ -19,6 +19,6 @@ void SAPPerformDynamicArrayTest(void) {
     SAPDynamicArray *testDynamicArray = SAPDynamicArrayCreate();
     assert(NULL != testDynamicArray);
     SAPString *testStringObject = SAPStringCreate("ssttrriinngg");
-    SAPDynamicArrayAddElement(testDynamicArray, testStringObject);
+    SAPDynamicArrayAdd(testDynamicArray, testStringObject);
     printf("OK\n");
 }

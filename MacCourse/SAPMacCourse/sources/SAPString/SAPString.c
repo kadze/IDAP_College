@@ -30,7 +30,7 @@ SAPString *SAPStringCreate(char *value) {
 #pragma mark Accessors
 
 char *SAPStringValue(SAPString *object){
-     SAPObjectIVarGetterSynthesize(object, _value);
+     SAPObjectIVarGetterSynthesize(object, _value, NULL);
 }
 
 void SAPStringSetValue(SAPString *object, const char *value) {

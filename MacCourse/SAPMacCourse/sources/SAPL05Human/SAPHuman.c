@@ -84,7 +84,7 @@ SAPHuman *SAPHumanCreateWithParameters(SAPHuman *mother, SAPHuman *father, SAPGe
 #pragma mark Accessors
 
 SAPString *SAPHumanName(SAPHuman *object) {
-    SAPObjectIVarGetterSynthesize(object, _name);
+    SAPObjectIVarGetterSynthesize(object, _name, NULL);
 }
 
 void SAPHumanSetName(SAPHuman *object, SAPString *name) {
@@ -109,15 +109,15 @@ void SAPHumanSetAge(SAPHuman *object, uint8_t age) {
 }
 
 SAPHuman *SAPHumanPartner(SAPHuman *object) {
-    SAPObjectIVarGetterSynthesize(object, _partner);
+    SAPObjectIVarGetterSynthesize(object, _partner, NULL);
 }
 
 SAPHuman *SAPHumanMother(SAPHuman *object) {
-    SAPObjectIVarGetterSynthesize(object, _mother);
+    SAPObjectIVarGetterSynthesize(object, _mother, NULL);
 }
 
 SAPHuman *SAPHumanFather(SAPHuman *object) {
-    SAPObjectIVarGetterSynthesize(object, _father);
+    SAPObjectIVarGetterSynthesize(object, _father, NULL);
 }
 
 void SAPHumanSetGender(SAPHuman *object, SAPGender gender) {

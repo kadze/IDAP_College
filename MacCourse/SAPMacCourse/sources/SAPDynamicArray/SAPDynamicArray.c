@@ -8,6 +8,7 @@
 
 #include <assert.h>
 #include "SAPDynamicArray.h"
+#include "SAPMacro.h"
 
 static const uint kSAPSizeIncrement = 10;
 
@@ -40,7 +41,7 @@ SAPDynamicArray *SAPDynamicArrayCreate(void) {
 //    return (NULL != object && object->_allocatedElementsCount > index) ? (object->_value + index) : NULL;
 //}
 
-void SAPDynamicArrayAddElement(SAPDynamicArray *object, void *value) {
+void SAPDynamicArrayAdd(SAPDynamicArray *object, void *value) {
     if (NULL == object) {
         return;
         
@@ -56,7 +57,9 @@ void SAPDynamicArrayAddElement(SAPDynamicArray *object, void *value) {
     object->_elements++;
 }
 
+size_t SAPDynamicArrayElementsCount(SAPDynamicArray *object) {
+    SAPObjectIVarGetterSynthesize(object, _elements, 0);
+}
 #pragma mark-
 #pragma mark Public implementations
-//size_t SAPDynamicArrayElementsCount(SAPDynamicArray *object) {
-//}
+

@@ -21,13 +21,13 @@ typedef struct {
 } SAPDynamicArray;
 
 extern
-SAPDynamicArray *SAPDynamicArrayCreate(void);
-
-extern
 void __SAPDynamicArrayDeallocate(SAPDynamicArray *object);
 
 extern
-void SAPDynamicArrayAddElement(SAPDynamicArray *object, void *value);
+SAPDynamicArray *SAPDynamicArrayCreate(void);
+
+extern
+void SAPDynamicArrayAdd(SAPDynamicArray *object, void *value);
 
 extern
 void SAPDynamicArrayRemoveValue(SAPDynamicArray *object);

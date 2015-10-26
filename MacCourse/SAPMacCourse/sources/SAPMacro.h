@@ -9,8 +9,8 @@
 #ifndef MacCourse_macro_h
 #define MacCourse_macro_h
 
-#define SAPObjectIVarGetterSynthesize(objectVariableName,ivar) \
-    return NULL != objectVariableName ? objectVariableName->ivar : NULL
+#define SAPObjectIVarGetterSynthesize(objectVariableName, ivar, defaultValue) \
+    return NULL != objectVariableName ? objectVariableName->ivar : defaultValue
 
 #define SAPObjectIVarSetterSynthesize(objectVariableName, ivar) \
     if (NULL != objectVariableName) { \
