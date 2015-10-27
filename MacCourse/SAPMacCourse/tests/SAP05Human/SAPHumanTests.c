@@ -105,7 +105,7 @@ void SAPPerformTestSAPHumanSetName(void) {
 void SAPPerformTestSAPHumanSetAge(void) {
     printf("===Perform SAPHumanSetAge() test===\n");
     SAPHuman *testHuman = SAPHumanCreate();
-    //printf("Human's age before setting age is %d\n", SAPHumanAge(testHuman));
+    assert(0 == SAPHumanAge(testHuman));
     SAPHumanSetAge(testHuman, 22);
     assert(22 == SAPHumanAge(testHuman));
     // printf("Human's age after setting age is %d\n", SAPHumanAge(testHuman));

@@ -10,14 +10,14 @@
 #define MacCourse_macro_h
 
 #define SAPObjectIVarGetterSynthesize(objectVariableName, ivar, defaultValue) \
-    return NULL != objectVariableName ? objectVariableName->ivar : defaultValue
+    NULL != objectVariableName ? objectVariableName->ivar : defaultValue
 
 #define SAPObjectIVarSetterSynthesize(objectVariableName, ivar) \
     if (NULL != objectVariableName) { \
         objectVariableName->_##ivar = ivar; \
     }
 
-#define SAPObjectRetainingSetterSynthesize(objectVariableName, ivar) \
+#define SAPObjectRetainSetterSynthesize(objectVariableName, ivar) \
     if (NULL == objectVariableName || ivar == objectVariableName->_##ivar) { \
         return; \
     } \

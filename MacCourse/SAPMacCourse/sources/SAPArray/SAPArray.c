@@ -7,13 +7,14 @@
 //
 
 #include "SAPArray.h"
+#include "SAPObject.h"
 
 #pragma mark -
 #pragma mark Initializations & Deallocation
 
 void __SAPArrayDeallocate(SAPArray *object) {
     for (uint index = 0; index < kSAPArraySize; index++) {
-        object->_value[index] = NULL;
+        SAPArraySetValueAtIndex(object, NULL, index);
     }
     
     __SAPObjectDeallocate(object);
@@ -30,12 +31,14 @@ SAPArray *SAPArrayCreate(void) {
 
 void SAPArraySetValueAtIndex(SAPArray *object, void *value, uint index) {
     if (object != NULL) {
-        object->_value[index] = value;
+        SAPObjectRelease(object->_values[index]);
+        SAPObjectRetain(value);
+        object->_values[index] = value;
     }
 }
 
 void *SAPArrayValueAtIndex(SAPArray *object, uint index) {
-    return (NULL != object && kSAPArraySize > index) ? object->_value[index] : NULL;
+    return (NULL != object && kSAPArraySize > index) ? object->_values[index] : NULL;
 }
 
 #pragma mark-

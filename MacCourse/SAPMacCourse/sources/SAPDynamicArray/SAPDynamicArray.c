@@ -10,17 +10,39 @@
 #include "SAPDynamicArray.h"
 #include "SAPMacro.h"
 
-static const uint kSAPSizeIncrement = 10;
+static const uint kSAPSizeMultiplicator = 2;
+static const uint kSAPSizeIncrement = 100000;
+static const uint kSAPSizeMultiplyUntil = 200000;
+
+#pragma mark -
+#pragma mark Private Declarations
+
+static
+void SAPDynamicArraySetAllocatedElementsCount(SAPDynamicArray *object, uint allocatedElementsCount);
+
+static
+uint SAPDynamicArrayAllocatedElementsCount(SAPDynamicArray *object);
+
+static
+void SAPDynamicArraySetElementsCount(SAPDynamicArray *object, uint elementsCount);
+
+static
+void SAPDynamicArrayExtend(SAPDynamicArray *object);
+
+static
+bool SAPDynamicArrayShouldExtend(SAPDynamicArray *object);
+
+static
+void SAPDynamicArrayShiftElements(SAPDynamicArray *object);
 
 #pragma mark -
 #pragma mark Initializations & Deallocation
 
 void __SAPDynamicArrayDeallocate(SAPDynamicArray *object) {
-//    for (uint index = 0; index < kSAPArraySize; index++) {
-//        object->_value[index] = NULL;
-//    }
-//    
-//    __SAPObjectDeallocate(object);
+    for (uint index = 0; index < SAPDynamicArrayElementsCount(object); index++) {
+        SAPDynamicArraySetValueAtIndex(object, NULL, index);
+    }
+    __SAPObjectDeallocate(object);
 }
 
 SAPDynamicArray *SAPDynamicArrayCreate(void) {
@@ -29,37 +51,93 @@ SAPDynamicArray *SAPDynamicArrayCreate(void) {
     return object;
 }
 
-
-
 #pragma mark -
 #pragma mark Accessors
 
-//void SAPDynamicArraySetValueAtIndex(SAPDynamicArray *object, void *value, uint index) {
-//}
+uint SAPDynamicArrayAllocatedElementsCount(SAPDynamicArray *object) {
+    return SAPObjectIVarGetterSynthesize(object, _allocatedElementsCount, 0);
+}
 
-//void *SAPDynamicArrayValueAtIndex(SAPDynamicArray *object, size_t index) {
-//    return (NULL != object && object->_allocatedElementsCount > index) ? (object->_value + index) : NULL;
-//}
+void SAPDynamicArraySetAllocatedElementsCount(SAPDynamicArray *object, uint allocatedElementsCount) {
+    SAPObjectIVarSetterSynthesize(object, allocatedElementsCount);
+}
+
+uint SAPDynamicArrayElementsCount(SAPDynamicArray *object) {
+    return SAPObjectIVarGetterSynthesize(object, _elementsCount, 0);
+}
+void SAPDynamicArraySetElementsCount(SAPDynamicArray *object, uint elementsCount) {
+    SAPObjectIVarSetterSynthesize(object, elementsCount);
+}
+void SAPDynamicArraySetValueAtIndex(SAPDynamicArray *object, void *value, uint index) {
+    if (index < SAPDynamicArrayAllocatedElementsCount(object)) {
+        if (NULL == value) {
+            object->_elementsCount--;
+            SAPDynamicArrayShiftElements(object);
+        }
+        SAPObjectRelease(object->_values[index]);
+        SAPObjectRetain(value);
+        object->_values[index] = value;
+    }
+}
+
+void *SAPDynamicArrayValueAtIndex(SAPDynamicArray *object, uint index) {
+    if (NULL != object && index < SAPDynamicArrayAllocatedElementsCount(object)) {
+        return object->_values[index];
+    }
+    
+    return NULL;
+}
 
 void SAPDynamicArrayAdd(SAPDynamicArray *object, void *value) {
     if (NULL == object) {
         return;
-        
     }
     
-    if (object->_allocated == object->_elements) {
-        object->_allocated = object->_allocated  + 1;
-        void** dynamicArray = realloc(object->_value, sizeof(void*) * object->_allocated);
-        assert(NULL != dynamicArray);
-        object->_value = dynamicArray;
+    if (SAPDynamicArrayShouldExtend(object)) {
+        SAPDynamicArrayExtend(object);
     }
-    object->_value[object->_elements] = value;
-    object->_elements++;
+    SAPDynamicArraySetValueAtIndex(object, value, SAPDynamicArrayElementsCount(object));
+    object->_elementsCount++;
 }
 
-size_t SAPDynamicArrayElementsCount(SAPDynamicArray *object) {
-    SAPObjectIVarGetterSynthesize(object, _elements, 0);
-}
+
+
+
 #pragma mark-
-#pragma mark Public implementations
+#pragma mark Public Implementations
 
+
+
+#pragma mark-
+#pragma mark Private Implementations
+
+bool SAPDynamicArrayShouldExtend(SAPDynamicArray *object) {
+    return (SAPDynamicArrayAllocatedElementsCount(object) == SAPDynamicArrayElementsCount(object));
+}
+
+void SAPDynamicArrayExtend(SAPDynamicArray *object) {
+    uint allocatedElementsCount = SAPDynamicArrayAllocatedElementsCount(object);
+    if (kSAPSizeMultiplyUntil < allocatedElementsCount) {
+        allocatedElementsCount *= kSAPSizeMultiplicator;
+    } else {
+        allocatedElementsCount += kSAPSizeIncrement;
+    }
+    void** dynamicArray = realloc(object->_values, sizeof(object ->_values) * object->_allocatedElementsCount);
+    assert(NULL != dynamicArray);
+    object->_values = dynamicArray;
+    SAPDynamicArraySetAllocatedElementsCount(object, allocatedElementsCount);
+}
+
+void SAPDynamicArrayShiftElements(SAPDynamicArray *object) {
+    uint shiftsCount = 0;
+    for (uint index = 0; SAPDynamicArrayElementsCount(object); index++) {
+        if (NULL == SAPDynamicArrayValueAtIndex(object, index)) {
+            shiftsCount++;
+        } else {
+            SAPDynamicArraySetValueAtIndex(object,
+                                           SAPDynamicArrayValueAtIndex(object, index),
+                                           index - shiftsCount);
+            shiftsCount = 0;
+        }
+    }
+}

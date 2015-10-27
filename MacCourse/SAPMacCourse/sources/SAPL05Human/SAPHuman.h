@@ -12,7 +12,7 @@
 #include <stdbool.h>
 #include "SAPObject.h"
 #include "SAPString.h"
-#include "SAPArray.h"
+#include "SAPDynamicArray.h"
 
 static const int kSAPChildrenLimit = 20;
 
@@ -29,7 +29,7 @@ struct SAPHuman {
     SAPHuman *_partner;
     SAPHuman *_mother;
     SAPHuman *_father;
-    SAPArray *_children;
+    SAPDynamicArray *_children;
     SAPGender _gender;
     uint8_t _age;
 };
@@ -62,7 +62,7 @@ extern
 SAPHuman *SAPHumanBornChild(SAPHuman *object, SAPGender gender);
 
 extern
-uint8_t SAPHumanChildrenCount(SAPHuman *object);
+uint SAPHumanChildrenCount(SAPHuman *object);
 
 extern
 SAPHuman *SAPHumanPartner(SAPHuman *object);

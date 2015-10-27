@@ -15,9 +15,9 @@
 
 typedef struct {
     SAPObject _super;
-    void **_value;
-    size_t _elements;
-    size_t _allocated;
+    void **_values;
+    uint _elementsCount;
+    uint _allocatedElementsCount;
 } SAPDynamicArray;
 
 extern
@@ -30,16 +30,22 @@ extern
 void SAPDynamicArrayAdd(SAPDynamicArray *object, void *value);
 
 extern
-void SAPDynamicArrayRemoveValue(SAPDynamicArray *object);
+void SAPDynamicArrayRemove(SAPDynamicArray *object, void *value);
+
+extern
+void *SAPDynamicArrayValueAtIndex(SAPDynamicArray *object, uint index);
 
 extern
 void SAPDynamicArraySetValueAtIndex(SAPDynamicArray *object, void *value, uint index);
 
 extern
-void *SAPArrayValueAtIndex(SAPDynamicArray *object, size_t index);
+void SAPDynamicArrayRemoveValueAtIndex(SAPDynamicArray *object, void *value, uint index);
 
 extern
-size_t SAPDynamicArrayElementsCount(SAPDynamicArray *object);
+uint SAPDynamicArrayElementsCount(SAPDynamicArray *object);
+
+extern
+bool SAPDynamicArrayContain(SAPDynamicArray *boject, void *value);
 
 
 #endif /* defined(__MacCourse__SAPDynamicArray__) */

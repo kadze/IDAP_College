@@ -16,7 +16,7 @@ static const uint kSAPArraySize = 20;
 
 typedef struct {
     SAPObject _super;
-    void *_value[kSAPArraySize];
+    void *_values[kSAPArraySize];
 } SAPArray;
 
 extern

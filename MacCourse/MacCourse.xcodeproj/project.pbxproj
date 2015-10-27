@@ -41,8 +41,8 @@
 /* Begin PBXFileReference section */
 		2E48CE591BD1429D00B58272 /* SAPObject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SAPObject.c; sourceTree = "<group>"; };
 		2E48CE5A1BD1429D00B58272 /* SAPObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPObject.h; sourceTree = "<group>"; };
-		2E48CE5D1BD989A000B58272 /* SAPArray.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = SAPArray.c; sourceTree = "<group>"; };
-		2E48CE5E1BD989A000B58272 /* SAPArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPArray.h; sourceTree = "<group>"; };
+		2E48CE5D1BD989A000B58272 /* SAPArray.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = SAPArray.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
+		2E48CE5E1BD989A000B58272 /* SAPArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SAPArray.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2E48CE601BD98AB000B58272 /* SAPMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPMacro.h; sourceTree = "<group>"; };
 		2E5E1F051BC5BF77005A1550 /* SAPHumanTests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = SAPHumanTests.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
 		2E5E1F061BC5BF77005A1550 /* SAPHumanTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPHumanTests.h; sourceTree = "<group>"; };
