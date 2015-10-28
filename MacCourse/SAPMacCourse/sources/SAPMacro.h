@@ -23,6 +23,17 @@
     } \
     SAPObjectRetain(ivar); \
     SAPObjectRelease(objectVariableName->_##ivar); \
-    objectVariableName->_##ivar = ivar; \
+    objectVariableName->_##ivar = ivar \
+
+#define SAPReturnIfObjectNULL \
+    if (NULL == object) {\
+        return;\
+    }
+
+#define SAPReturnValueIfObjectNULL(value) \
+    if (NULL == object) {\
+        return value;\
+    }
+
 
 #endif

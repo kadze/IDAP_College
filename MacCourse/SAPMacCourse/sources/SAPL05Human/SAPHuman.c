@@ -64,7 +64,9 @@ void __SAPHumanDeallocate(SAPHuman *object) {
 
 SAPHuman *SAPHumanCreate(void) {
     SAPHuman *result = SAPObjectCreateOfType(SAPHuman);
-    SAPHumanSetChildren(result, SAPArrayCreate());
+    SAPDynamicArray *array = SAPDynamicArrayCreate();
+    SAPHumanSetChildren(result, array);
+    SAPObjectRelease(array);
     
     return result;
 }
@@ -88,11 +90,11 @@ SAPString *SAPHumanName(SAPHuman *object) {
 }
 
 void SAPHumanSetName(SAPHuman *object, SAPString *name) {
-    SAPObjectRetainSetterSynthesize(object, name)
+    SAPObjectRetainSetterSynthesize(object, name);
 }
 
 void SAPHumanSetChildren(SAPHuman *object, SAPDynamicArray *children) {
-    SAPObjectRetainSetterSynthesize(object, children)
+    SAPObjectRetainSetterSynthesize(object, children);
 }
 
 SAPGender SAPHumanGender(SAPHuman *object) {
@@ -186,7 +188,7 @@ void SAPHumanSetChildAtIndex(SAPHuman *object, SAPHuman *child, uint8_t childInd
 
 SAPHuman *SAPHumanChildAtIndex(SAPHuman *object, uint8_t childIndex) {
     return (NULL != object && kSAPChildrenLimit > childIndex)
-            ? SAPArrayValueAtIndex(object->_children, childIndex)
+            ? SAPDynamicArrayValueAtIndex(object->_children, childIndex)
             : NULL;
 }
 
@@ -208,7 +210,7 @@ void SAPHumanAddChild(SAPHuman *object, SAPHuman *child) {
 #pragma mark Public implementations
 
 uint SAPHumanChildrenCount(SAPHuman *object) {
-    return SAPDynamicArrayElementsCount(object->_children);
+    return SAPDynamicArrayCount(object->_children);
 }
 
 bool SAPHumanIsMarried(SAPHuman *object) {

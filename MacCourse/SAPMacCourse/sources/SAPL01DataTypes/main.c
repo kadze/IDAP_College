@@ -51,7 +51,7 @@ int main(int argc, const char * argv[]) {
 //    SAPPerformAllSAPArrayTests();
     
     //SAPDynamicArray
-    SAPPerformDynamicArrayTest();
+    SAPPerformAllDynamicArrayTests();
     
     return 0;
 }

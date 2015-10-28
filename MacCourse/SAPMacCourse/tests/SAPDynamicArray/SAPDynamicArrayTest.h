@@ -10,6 +10,6 @@
 #define __MacCourse__SAPDynamicArrayTest__
 
 extern
-void SAPPerformDynamicArrayTest(void);
+void SAPPerformAllDynamicArrayTests(void);
 
 #endif /* defined(__MacCourse__SAPDynamicArrayTest__) */
