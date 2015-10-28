@@ -16,8 +16,8 @@
 typedef struct {
     SAPObject _super;
     void **_values;
-    uint _count;
-    uint _allocatedCount;
+    unsigned long _count;
+    unsigned long _allocatedCount;
 } SAPDynamicArray;
 
 extern
@@ -33,22 +33,22 @@ extern
 void SAPDynamicArrayRemove(SAPDynamicArray *object, void *value);
 
 extern
-void *SAPDynamicArrayValueAtIndex(SAPDynamicArray *object, uint index);
+void *SAPDynamicArrayValueAtIndex(SAPDynamicArray *object, unsigned long index);
 
 extern
-void SAPDynamicArraySetValueAtIndex(SAPDynamicArray *object, void *value, uint index);
+void SAPDynamicArraySetValueAtIndex(SAPDynamicArray *object, void *value, unsigned long index);
 
 extern
-void SAPDynamicArrayRemoveByIndex(SAPDynamicArray *object, uint index);
+void SAPDynamicArrayRemoveByIndex(SAPDynamicArray *object, unsigned long index);
 
 extern
-uint SAPDynamicArrayIndexOfValue(SAPDynamicArray *object, void  *value);
+unsigned long SAPDynamicArrayIndexOfValue(SAPDynamicArray *object, void  *value);
 
 extern
-uint SAPDynamicArrayCount(SAPDynamicArray *object);
+unsigned long SAPDynamicArrayCount(SAPDynamicArray *object);
 
 extern
-uint SAPDynamicArrayAllocatedCount(SAPDynamicArray *object);
+unsigned long SAPDynamicArrayAllocatedCount(SAPDynamicArray *object);
 
 extern
 bool SAPDynamicArrayContains(SAPDynamicArray *object, void *value);

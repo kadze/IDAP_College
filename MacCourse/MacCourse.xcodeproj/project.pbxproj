@@ -48,8 +48,8 @@
 		2E5E1F061BC5BF77005A1550 /* SAPHumanTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPHumanTests.h; sourceTree = "<group>"; };
 		2E6B89161BC19C5F00B0C256 /* SAPHuman.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SAPHuman.c; path = SAPL05Human/SAPHuman.c; sourceTree = "<group>"; };
 		2E6B89171BC19C5F00B0C256 /* SAPHuman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAPHuman.h; path = SAPL05Human/SAPHuman.h; sourceTree = "<group>"; };
-		2E9CB66D1BDBF4AB00AF689D /* SAPDynamicArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SAPDynamicArray.c; sourceTree = "<group>"; };
-		2E9CB66E1BDBF4AB00AF689D /* SAPDynamicArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPDynamicArray.h; sourceTree = "<group>"; };
+		2E9CB66D1BDBF4AB00AF689D /* SAPDynamicArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = SAPDynamicArray.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
+		2E9CB66E1BDBF4AB00AF689D /* SAPDynamicArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SAPDynamicArray.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2E9CB6711BDC068C00AF689D /* SAPDynamicArrayTest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SAPDynamicArrayTest.c; sourceTree = "<group>"; };
 		2E9CB6721BDC068C00AF689D /* SAPDynamicArrayTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPDynamicArrayTest.h; sourceTree = "<group>"; };
 		9FE90DF11BDA95DB0062EF46 /* SAPArrayTest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SAPArrayTest.c; sourceTree = "<group>"; };
