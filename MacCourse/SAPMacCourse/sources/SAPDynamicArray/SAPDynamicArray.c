@@ -12,20 +12,7 @@
 #include "SAPDynamicArray.h"
 #include "SAPMacro.h"
 
-#define SAPDynamicArrayReallocate \
-    SAPDynamicArraySetAllocatedCount(object, allocatedCount);\
-    unsigned long count = SAPDynamicArrayCount(object);\
-    void** dynamicArray = realloc(object->_values, sizeof(object ->_values) * object->_allocatedCount);\
-    assert(NULL != dynamicArray);\
-    for (unsigned long index = count; index < allocatedCount; index++) {\
-        dynamicArray[index] = NULL;\
-    }\
-    object->_values = dynamicArray
-
 static const unsigned long kSAPSizeMultiplicator = 2;
-//static const unsigned long kSAPSizeIncrement     = 100000;
-//static const unsigned long kSAPSizeMultiplyUntil = 200000;
-static const unsigned long kSAPResizeThreshold   = 3;
 
 #pragma mark -
 #pragma mark Private Declarations
@@ -76,19 +63,11 @@ void SAPDynamicArraySetAllocatedCount(SAPDynamicArray *object, unsigned long all
             return;
         }
     }
-//    SAPReturnIfValuesEqual(count, allocatedCount);
-    
+
     void **values = object->_values;
     
-    if (allocatedCount < count) {
-        unsigned long index = allocatedCount - 1;
-        for (; index < count; index++) {
-            SAPDynamicArraySetValueAtIndex(object, NULL, index);
-        }
-    }
-    
     if (0 == allocatedCount) {
-        free(values); //??? all values in loop
+        free(values);
         object->_values = NULL;
     } else {
         size_t valueSize = sizeof(*values);
@@ -100,10 +79,10 @@ void SAPDynamicArraySetAllocatedCount(SAPDynamicArray *object, unsigned long all
         object->_values = newValues;
         
         if (allocatedCount > count || (allocatedCount == 1 && count == 1) || (allocatedCount == 2 && count == 2)) {
-            //memset(object->_values + size, 0, allocatedSize - size);
             memset(object->_values + count, 0, allocatedSize - size);
         }
     }
+    
     object->_allocatedCount = allocatedCount;
     
 }
@@ -121,9 +100,9 @@ void SAPDynamicArraySetValueAtIndex(SAPDynamicArray *object, void *value, unsign
         object->_values[index] = value;
         
         if (NULL == value) {
-            object->_count--;
             SAPDynamicArrayShiftElements(object);
             SAPDynamicArrayResize(object);
+            object->_count--;
         }
     }
 }
@@ -147,7 +126,6 @@ void SAPDynamicArrayAddElement(SAPDynamicArray *object, void *value) {
     object->_count++;
     SAPDynamicArrayResize(object);
     SAPDynamicArraySetValueAtIndex(object, value, SAPDynamicArrayCount(object)-1);
-//    object->_count++;
 }
 
 void SAPDynamicArrayRemoveElement(SAPDynamicArray *object, void *value) {
@@ -178,7 +156,6 @@ bool SAPDynamicArrayContains(SAPDynamicArray *object, void *value) {
     return ULONG_MAX != SAPDynamicArrayIndexOfValue(object, value);
 }
 
-
 #pragma mark-
 #pragma mark Private Implementations
 
@@ -206,16 +183,15 @@ unsigned long SAPDynamicArrayAllocatedCountForResize(SAPDynamicArray *object) {
     
     unsigned long count = SAPDynamicArrayCount(object);
     unsigned long allocatedCount = SAPDynamicArrayAllocatedCount(object);
-    //return count if should not resize
     unsigned long result = ULLONG_MAX;
     
     if (count > allocatedCount) {
         result = 0lu == allocatedCount ? 1 : allocatedCount * kSAPSizeMultiplicator;
-    } else if (count * kSAPSizeMultiplicator == allocatedCount) {
+    } else if ((count - 1) * kSAPSizeMultiplicator == allocatedCount) {
         result = allocatedCount / kSAPSizeMultiplicator;
+    } else if (1 == allocatedCount && 1 == count) {
+        result = 0;
     }
-//    if (allocatedCount > count) {
-//        result = allocatedCount * kSAPSizeMultiplicator;
-//    } else if (allocatedCount)
+
     return result;
 }
