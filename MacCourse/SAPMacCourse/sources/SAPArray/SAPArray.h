@@ -32,6 +32,6 @@ extern
 void *SAPArrayValueAtIndex(SAPArray *object, uint index);
 
 extern
-uint SAPArrayNotNullElementsCount(SAPArray *object);
+uint SAPArrayNotNullObjectsCount(SAPArray *object);
 
 #endif /* SAPArray_h */

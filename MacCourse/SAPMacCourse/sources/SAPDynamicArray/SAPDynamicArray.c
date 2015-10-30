@@ -18,19 +18,19 @@ static const unsigned long kSAPSizeMultiplicator = 2;
 #pragma mark Private Declarations
 
 static
-void SAPDynamicArraySetAllocatedCount(SAPDynamicArray *object, unsigned long allocatedCount);
+void SAPDynamicArraySetCapacity(SAPDynamicArray *object, unsigned long capacity);
 
 static
 void SAPDynamicArraySetCount(SAPDynamicArray *object, unsigned long count);
 
 static
-unsigned long SAPDynamicArrayAllocatedCountForResize(SAPDynamicArray *object);
+unsigned long SAPDynamicArrayCapacityForResize(SAPDynamicArray *object);
 
 static
-void SAPDynamicArrayResize(SAPDynamicArray *object);
+void SAPDynamicArrayResizeIfNeeded(SAPDynamicArray *object);
 
 static
-void SAPDynamicArrayShiftElements(SAPDynamicArray *object);
+void SAPDynamicArrayShiftObjects(SAPDynamicArray *object);
 
 #pragma mark -
 #pragma mark Initializations & Deallocation
@@ -50,40 +50,40 @@ SAPDynamicArray *SAPDynamicArrayCreate(void) {
 #pragma mark -
 #pragma mark Accessors
 
-unsigned long SAPDynamicArrayAllocatedCount(SAPDynamicArray *object) {
-    return SAPObjectIVarGetterSynthesize(object, _allocatedCount, 0);
+unsigned long SAPDynamicArrayCapacity(SAPDynamicArray *object) {
+    return SAPObjectIVarGetterSynthesize(object, _capacity, 0);
 }
 
-void SAPDynamicArraySetAllocatedCount(SAPDynamicArray *object, unsigned long allocatedCount) {
+void SAPDynamicArraySetCapacity(SAPDynamicArray *object, unsigned long capacity) {
     SAPReturnIfObjectNULL;
-    SAPReturnIfValuesEqual(ULLONG_MAX, allocatedCount);
+    SAPReturnIfValuesEqual(ULLONG_MAX, capacity);
     unsigned long count = object->_count;
-    if (count == allocatedCount) {
-        if (allocatedCount != 1 && allocatedCount != 2) {
+    if (count == capacity) {
+        if (capacity != 1 && capacity != 2) {
             return;
         }
     }
 
     void **values = object->_values;
     
-    if (0 == allocatedCount) {
+    if (0 == capacity) {
         free(values);
         object->_values = NULL;
     } else {
         size_t valueSize = sizeof(*values);
-        size_t allocatedSize = allocatedCount * valueSize;
+        size_t allocatedSize = capacity * valueSize;
         size_t size = count * valueSize;
         
         void *newValues = realloc(values, allocatedSize);
         assert(newValues);
         object->_values = newValues;
         
-        if (allocatedCount > count || (allocatedCount == 1 && count == 1) || (allocatedCount == 2 && count == 2)) {
+        if (capacity > count || (capacity == 1 && count == 1) || (capacity == 2 && count == 2)) {
             memset(object->_values + count, 0, allocatedSize - size);
         }
     }
     
-    object->_allocatedCount = allocatedCount;
+    object->_capacity = capacity;
     
 }
 
@@ -94,21 +94,21 @@ void SAPDynamicArraySetCount(SAPDynamicArray *object, unsigned long count) {
     SAPObjectIVarSetterSynthesize(object, count);
 }
 void SAPDynamicArraySetValueAtIndex(SAPDynamicArray *object, void *value, unsigned long index) {
-    if (index < SAPDynamicArrayAllocatedCount(object)) { //could it be differently?
+    if (index < SAPDynamicArrayCapacity(object)) { //could it be differently?
         SAPObjectRelease(object->_values[index]);
         SAPObjectRetain(value);
         object->_values[index] = value;
         
         if (NULL == value) {
-            SAPDynamicArrayShiftElements(object);
-            SAPDynamicArrayResize(object);
+            SAPDynamicArrayShiftObjects(object);
+            SAPDynamicArrayResizeIfNeeded(object);
             object->_count--;
         }
     }
 }
 
 void *SAPDynamicArrayValueAtIndex(SAPDynamicArray *object, unsigned long index) {
-    if (NULL != object && index < SAPDynamicArrayAllocatedCount(object)) {
+    if (NULL != object && index < SAPDynamicArrayCapacity(object)) {
         return object->_values[index];
     }
     
@@ -119,16 +119,16 @@ void *SAPDynamicArrayValueAtIndex(SAPDynamicArray *object, unsigned long index) 
 #pragma mark-
 #pragma mark Public Implementations
 
-void SAPDynamicArrayAddElement(SAPDynamicArray *object, void *value) {
+void SAPDynamicArrayAddObject(SAPDynamicArray *object, void *value) {
     SAPReturnIfObjectNULL;
     SAPReturnIfNULL(value);
     
     object->_count++;
-    SAPDynamicArrayResize(object);
+    SAPDynamicArrayResizeIfNeeded(object);
     SAPDynamicArraySetValueAtIndex(object, value, SAPDynamicArrayCount(object)-1);
 }
 
-void SAPDynamicArrayRemoveElement(SAPDynamicArray *object, void *value) {
+void SAPDynamicArrayRemoveObject(SAPDynamicArray *object, void *value) {
     SAPReturnIfObjectNULL;
     SAPDynamicArrayRemoveByIndex(object, SAPDynamicArrayIndexOfValue(object, value));
 }
@@ -159,7 +159,7 @@ bool SAPDynamicArrayContains(SAPDynamicArray *object, void *value) {
 #pragma mark-
 #pragma mark Private Implementations
 
-void SAPDynamicArrayShiftElements(SAPDynamicArray *object) {
+void SAPDynamicArrayShiftObjects(SAPDynamicArray *object) {
     SAPReturnIfObjectNULL;
     unsigned long shiftsCount = 0;
     for (unsigned long index = 0; index < SAPDynamicArrayCount(object); index++) {
@@ -175,21 +175,21 @@ void SAPDynamicArrayShiftElements(SAPDynamicArray *object) {
     }
 }
 
-void SAPDynamicArrayResize(SAPDynamicArray *object) {
-    SAPDynamicArraySetAllocatedCount(object, SAPDynamicArrayAllocatedCountForResize(object));
+void SAPDynamicArrayResizeIfNeeded(SAPDynamicArray *object) {
+    SAPDynamicArraySetCapacity(object, SAPDynamicArrayCapacityForResize(object));
 }
 
-unsigned long SAPDynamicArrayAllocatedCountForResize(SAPDynamicArray *object) {
+unsigned long SAPDynamicArrayCapacityForResize(SAPDynamicArray *object) {
     
     unsigned long count = SAPDynamicArrayCount(object);
-    unsigned long allocatedCount = SAPDynamicArrayAllocatedCount(object);
+    unsigned long capacity = SAPDynamicArrayCapacity(object);
     unsigned long result = ULLONG_MAX;
     
-    if (count > allocatedCount) {
-        result = 0lu == allocatedCount ? 1 : allocatedCount * kSAPSizeMultiplicator;
-    } else if ((count - 1) * kSAPSizeMultiplicator == allocatedCount) {
-        result = allocatedCount / kSAPSizeMultiplicator;
-    } else if (1 == allocatedCount && 1 == count) {
+    if (count > capacity) {
+        result = 0lu == capacity ? 1 : capacity * kSAPSizeMultiplicator;
+    } else if ((count - 1) * kSAPSizeMultiplicator == capacity) {
+        result = capacity / kSAPSizeMultiplicator;
+    } else if (1 == capacity && 1 == count) {
         result = 0;
     }
 

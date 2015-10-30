@@ -43,7 +43,7 @@ void *SAPArrayValueAtIndex(SAPArray *object, uint index) {
 
 #pragma mark-
 #pragma mark Public implementations
-uint SAPArrayNotNullElementsCount(SAPArray *object) {
+uint SAPArrayNotNullObjectsCount(SAPArray *object) {
     uint childrenCounter = 0;
     if (NULL != object) {
         for (uint index = 0; index < kSAPArraySize; index++) {
