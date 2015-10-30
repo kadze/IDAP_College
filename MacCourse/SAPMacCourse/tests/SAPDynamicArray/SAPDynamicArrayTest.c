@@ -17,44 +17,34 @@ void SAPPerformDynamicArrayReallocatingTest(void) {
     printf("===Perform SAPArray tests ===\n");
     
     SAPDynamicArray *testDynamicArray = SAPDynamicArrayCreate();
-    assert(NULL != testDynamicArray);
+    assert(testDynamicArray);
     SAPString *testStringObject = SAPStringCreate("ssttrriinngg");
 
-    SAPDynamicArrayAdd(testDynamicArray, testStringObject);
+//    for (unsigned long counter = 0lu; counter < 100000; counter++) {
+//        SAPDynamicArrayAddElement(testDynamicArray, testStringObject);
+//    }
+    SAPDynamicArrayAddElement(testDynamicArray, testStringObject);
     //after first add allocatedCount should be 1
     assert(1 == SAPDynamicArrayAllocatedCount(testDynamicArray));
-    unsigned long counter = 1;
-    //static const uint kSAPSizeMultiplyUntil = 200000;
-    //until this value allocated count should double (multiplicator == 2)
-    unsigned long counter2 = 1;
-    while (counter < 100) {//200000) {
+    unsigned long allocatedCounter = 1;
+    unsigned long elementsCounter = 1;
+    while (elementsCounter < 20) {
         
-        if (counter2 * 2 == counter * 2) {
-            counter *=2;
+        if (elementsCounter * 2 == allocatedCounter * 2) {
+            allocatedCounter *=2;
         }
-        counter2++;
-        SAPDynamicArrayAdd(testDynamicArray, testStringObject);
-        assert(counter2 == SAPDynamicArrayCount(testDynamicArray));
-        assert(counter == SAPDynamicArrayAllocatedCount(testDynamicArray));
+        elementsCounter++;
+        SAPDynamicArrayAddElement(testDynamicArray, testStringObject);
+        assert(elementsCounter == SAPDynamicArrayCount(testDynamicArray));
+        assert(allocatedCounter == SAPDynamicArrayAllocatedCount(testDynamicArray));
     }
-//    //after this value alocatedCount should increment with step 100000
-//    //static const uint kSAPSizeIncrement     = 100000;
-//    //test until more then ten million after increment
-//    while (counter < 10000000) {
-//        if (counter2 + 100000 == counter + 100000) {
-//            counter += 100000;
-//        }
-//        counter2++;
-//        SAPDynamicArrayAdd(testDynamicArray, testStringObject);
-//        assert(counter2 == SAPDynamicArrayCount(testDynamicArray));
-//        assert(counter == SAPDynamicArrayAllocatedCount(testDynamicArray));
-//    }
     
-    for (unsigned long index = SAPDynamicArrayCount(testDynamicArray) - 1
-         ; 0 < index; index--) {
-        SAPDynamicArrayRemoveByIndex(testDynamicArray, index);
+    for (unsigned long counter = 20lu; counter > 0lu; counter--) {
+        SAPDynamicArrayRemoveByIndex(testDynamicArray, counter - 1);
     }
-    assert(0 == SAPDynamicArrayCount(testDynamicArray));
+
+    SAPObjectRelease(testDynamicArray);
+    SAPObjectRelease(testStringObject);
     printf("OK\n");
 }
 

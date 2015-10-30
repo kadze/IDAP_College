@@ -27,10 +27,10 @@ extern
 SAPDynamicArray *SAPDynamicArrayCreate(void);
 
 extern
-void SAPDynamicArrayAdd(SAPDynamicArray *object, void *value);
+void SAPDynamicArrayAddElement(SAPDynamicArray *object, void *value);
 
 extern
-void SAPDynamicArrayRemove(SAPDynamicArray *object, void *value);
+void SAPDynamicArrayRemoveElement(SAPDynamicArray *object, void *value);
 
 extern
 void *SAPDynamicArrayValueAtIndex(SAPDynamicArray *object, unsigned long index);
