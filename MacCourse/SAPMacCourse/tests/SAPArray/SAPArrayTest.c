@@ -20,7 +20,7 @@ void SAPPerformAllSAPArrayTests(void) {
     int result = *(int*)SAPArrayValueAtIndex(testSAPArray, index);
     assert(value == result);
     SAPArraySetValueAtIndex(testSAPArray, &value, index + 1);
-    assert(2 == SAPArrayNotNullElementsCount(testSAPArray));
+    assert(2 == SAPArrayNotNullObjectsCount(testSAPArray));
     SAPObjectRelease(testSAPArray);
     assert(0 == SAPObjectRetainCount(testSAPArray));
     assert(NULL == SAPArrayValueAtIndex(testSAPArray, index));

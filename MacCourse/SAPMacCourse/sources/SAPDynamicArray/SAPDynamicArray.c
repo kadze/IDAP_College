@@ -181,6 +181,20 @@ void SAPDynamicArrayShiftObjects(SAPDynamicArray *object) {
     }
 }
 
+//try
+void SAPDynamicArrayShiftObjects2(SAPDynamicArray *object) {
+    SAPReturnIfObjectNULL;
+    unsigned long index = 0;
+    for (; index < SAPDynamicArrayCount(object); index++) {
+        if (NULL == SAPDynamicArrayValueAtIndex(object, index)) {
+            break;
+        }
+    }
+    void **data = object->_values;
+    size_t memSize = (SAPDynamicArrayCount(object) - index) + sizeof(data);
+    memmove(data[index], data[index + 1], memSize);
+}
+
 void SAPDynamicArrayResizeIfNeeded(SAPDynamicArray *object) {
     SAPDynamicArraySetCapacity(object, SAPDynamicArrayCapacityForResize(object));
 }

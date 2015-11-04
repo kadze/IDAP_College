@@ -154,9 +154,9 @@ void SAPHumanSetFather(SAPHuman *object, SAPHuman *father) {
         return;
     }
     
-    SAPHuman *currentMother = SAPHumanMother(object);
-    if (currentMother) {
-        SAPHumanRemoveChild(currentMother, object);
+    SAPHuman *currentFather = SAPHumanFather(object);
+    if (currentFather) {
+        SAPHumanRemoveChild(currentFather, object);
     }
     
     SAPObjectIVarSetterSynthesize(object, father);

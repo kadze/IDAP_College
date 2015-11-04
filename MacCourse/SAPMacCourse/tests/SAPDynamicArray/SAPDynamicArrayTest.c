@@ -21,9 +21,9 @@ void SAPPerformDynamicArrayReallocatingTest(void) {
     assert(testDynamicArray);
     SAPString *testStringObject = SAPStringCreate("ssttrriinngg");
     assert(testStringObject);
-    SAPDynamicArrayAddElement(testDynamicArray, testStringObject);
+    SAPDynamicArrayAddObject(testDynamicArray, testStringObject);
     //after first add allocatedCount should be 1
-    assert(1 == SAPDynamicArrayAllocatedCount(testDynamicArray));
+    assert(1 == SAPDynamicArrayCapacity(testDynamicArray));
     unsigned long allocatedCounter = 1;
     unsigned long elementsCounter = 1;
     while (elementsCounter < numberOfElementsToAdd) {
@@ -32,9 +32,9 @@ void SAPPerformDynamicArrayReallocatingTest(void) {
             allocatedCounter *= multiplicatorFromStrategy;
         }
         elementsCounter++;
-        SAPDynamicArrayAddElement(testDynamicArray, testStringObject);
+        SAPDynamicArrayAddObject(testDynamicArray, testStringObject);
         assert(elementsCounter == SAPDynamicArrayCount(testDynamicArray));
-        assert(allocatedCounter == SAPDynamicArrayAllocatedCount(testDynamicArray));
+        assert(allocatedCounter == SAPDynamicArrayCapacity(testDynamicArray));
     }
     
     for (unsigned long counter = numberOfElementsToAdd; counter > 0; counter--) {
@@ -56,7 +56,7 @@ void SAPPerformDynamicArraySettingValueTest(void) {
     SAPString *testStringObject2 = SAPStringCreate("string2");
     assert(testStringObject2);
     for (unsigned long counter = 0; counter < numberOfElementsToAdd; counter++) {
-        SAPDynamicArrayAddElement(testDynamicArray, testStringObject);
+        SAPDynamicArrayAddObject(testDynamicArray, testStringObject);
     }
     SAPDynamicArraySetValueAtIndex(testDynamicArray, testStringObject2, testIndex);
     assert(testStringObject2 == SAPDynamicArrayValueAtIndex(testDynamicArray, testIndex));
