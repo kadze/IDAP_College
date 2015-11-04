@@ -14,10 +14,6 @@
 #include "SAPObject.h"
 #include "SAPMacro.h"
 
-#define DetermineRolesOfPartners(strongPartnerName, weakPartnerName) \
-    SAPHuman *strongPartnerName = (SAPHumanGender(object) == kSAPHumanGenderMale) ? object : partner;\
-    SAPHuman *weakPartnerName   = (strongPartnerName == object) ? partner : object;
-
 #pragma mark -
 #pragma mark Private declarations
 
@@ -37,19 +33,16 @@ static
 void SAPHumanRemoveChild(SAPHuman *parent, SAPHuman *child);
 
 static
-void SAPHumanRemoveChildAtIndex(SAPHuman *parent, uint8_t childIndex);
-
-static
 void SAPHumanRemoveAllChildren(SAPHuman *object);
-
-static
-void SAPHumanSetChildAtIndex(SAPHuman *object, SAPHuman *child, uint8_t childIndex);
 
 static
 SAPHuman *SAPHumanChildAtIndex(SAPHuman *object, uint8_t childIndex);
 
 static
 void SAPHumanAddChild(SAPHuman *object, SAPHuman *child);
+
+static
+SAPHuman *SAPHumanWhoIsStronger(SAPHuman *human1, SAPHuman *human2);
 
 #pragma mark -
 #pragma mark Initializations & Deallocation
@@ -62,8 +55,9 @@ void __SAPHumanDeallocate(SAPHuman *object) {
     __SAPObjectDeallocate(object);
 }
 
-SAPHuman *SAPHumanCreate(void) {
+SAPHuman *SAPHumanCreate(SAPGender gender) {
     SAPHuman *result = SAPObjectCreateOfType(SAPHuman);
+    SAPHumanSetGender(result, gender);
     SAPDynamicArray *array = SAPDynamicArrayCreate();
     SAPHumanSetChildren(result, array);
     SAPObjectRelease(array);
@@ -71,13 +65,18 @@ SAPHuman *SAPHumanCreate(void) {
     return result;
 }
 
-SAPHuman *SAPHumanCreateWithParameters(SAPHuman *mother, SAPHuman *father, SAPGender gender) {
-    SAPHuman *object = SAPHumanCreate();
+SAPHuman *SAPHumanCreateWithParameters(SAPHuman *parent, SAPGender gender) {
+    if (NULL == parent
+        || SAPHumanGender(parent) == SAPHumanGender(SAPHumanPartner(parent)))
+    {
+        return NULL;
+    }
+    
+    SAPHuman *object = SAPHumanCreate(gender);
+    SAPHuman *father = kSAPHumanGenderMale == SAPHumanGender(parent) ? parent : SAPHumanPartner(parent);
+    SAPHuman *mother = parent == father ? SAPHumanPartner(parent) : parent;
     SAPHumanSetMother(object, mother);
-    SAPHumanAddChild(mother, object);
     SAPHumanSetFather(object, father);
-    SAPHumanAddChild(father, object);
-    SAPHumanSetGender(object, gender);
     
     return object;
 }
@@ -91,6 +90,10 @@ SAPString *SAPHumanName(SAPHuman *object) {
 
 void SAPHumanSetName(SAPHuman *object, SAPString *name) {
     SAPObjectRetainSetterSynthesize(object, name);
+}
+
+SAPDynamicArray *SAPHumanChildren(SAPHuman *object) {
+    return SAPObjectIVarGetterSynthesize(object, _children, NULL);
 }
 
 void SAPHumanSetChildren(SAPHuman *object, SAPDynamicArray *children) {
@@ -127,104 +130,105 @@ void SAPHumanSetGender(SAPHuman *object, SAPGender gender) {
 }
 
 void SAPHumanSetMother(SAPHuman *object, SAPHuman *mother) {
+    if (NULL == object
+        || SAPHumanMother(object) == mother
+        || kSAPHumanGenderFemale != SAPHumanGender(mother))
+    {
+        return;
+    }
+    
+    SAPHuman *currentMother = SAPHumanMother(object);
+    if (currentMother) {
+        SAPHumanRemoveChild(currentMother, object);
+    }
+    
     SAPObjectIVarSetterSynthesize(object, mother);
+    SAPHumanAddChild(mother, object);
 }
 
 void SAPHumanSetFather(SAPHuman *object, SAPHuman *father) {
+    if (NULL == object
+        || SAPHumanFather(object) == father
+        || kSAPHumanGenderMale != SAPHumanGender(father))
+    {
+        return;
+    }
+    
+    SAPHuman *currentMother = SAPHumanMother(object);
+    if (currentMother) {
+        SAPHumanRemoveChild(currentMother, object);
+    }
+    
     SAPObjectIVarSetterSynthesize(object, father);
+    SAPHumanAddChild(father, object);
 }
 
 #pragma mark -
 #pragma mark Private implementations
 
 void SAPHumanRemoveChild(SAPHuman *parent, SAPHuman *child) {
-    if (NULL == parent || NULL == child) {
-        return;
-    }
-    //WHAT IF HASN'T CHILD?????????????????
-    SAPHumanGender(parent) == kSAPHumanGenderMale ? SAPHumanSetFather(child, NULL) : SAPHumanSetMother(child, NULL);
-    SAPObjectRelease(child);
-    
-    for (uint8_t childIndex = 0; childIndex < kSAPChildrenLimit; childIndex ++) {
-        if (child == SAPHumanChildAtIndex(parent, childIndex)) {
-            SAPHumanSetChildAtIndex(parent, NULL, childIndex);
-        }
-    }
-}
-
-void SAPHumanRemoveChildAtIndex(SAPHuman *parent, uint8_t childIndex) {
-    if (NULL == parent || kSAPChildrenLimit <= childIndex) {
+    if (NULL == parent || NULL == child || false == SAPHumanHasChild(parent, child)) {
         return;
     }
     
-    SAPHuman *child = SAPHumanChildAtIndex(parent, childIndex);
-    if (NULL != child) {
-        SAPHumanGender(parent) == kSAPHumanGenderMale ? SAPHumanSetFather(child, NULL) : SAPHumanSetMother(child, NULL);
-        SAPHumanSetChildAtIndex(parent, NULL, childIndex);
+    if (SAPHumanGender(parent) == kSAPHumanGenderMale) {
+        SAPHumanSetFather(child, NULL);
+    } else {
+        SAPHumanSetMother(child, NULL);
     }
+    
+    SAPDynamicArrayRemoveObject(SAPHumanChildren(parent), child);
 }
 
 void SAPHumanRemoveAllChildren(SAPHuman *parent) {
-    if (NULL == parent) {
-        return;
+    if (parent) {
+        SAPDynamicArrayRemoveAll(SAPHumanChildren(parent));
     }
-    
-    for (uint childIndex = 0; childIndex < kSAPChildrenLimit; childIndex++) {
-        SAPHumanRemoveChildAtIndex(parent, childIndex);
-    }
-}
-
-void SAPHumanSetChildAtIndex(SAPHuman *object, SAPHuman *child, uint8_t childIndex) {
-    if (NULL != object
-        && kSAPChildrenLimit > childIndex
-        && child != SAPHumanChildAtIndex(object, childIndex)
-        && NULL == SAPHumanChildAtIndex(object, childIndex))
-    {
-        SAPDynamicArraySetValueAtIndex(object->_children, child, childIndex);
-    }
-    
-    return;
 }
 
 SAPHuman *SAPHumanChildAtIndex(SAPHuman *object, uint8_t childIndex) {
     return (NULL != object && kSAPChildrenLimit > childIndex)
-            ? SAPDynamicArrayValueAtIndex(object->_children, childIndex)
+            ? SAPDynamicArrayValueAtIndex(SAPHumanChildren(object), childIndex)
             : NULL;
 }
 
 void SAPHumanAddChild(SAPHuman *object, SAPHuman *child) {
-    if (NULL == object || NULL == child) {
-        return;
+    if (false == SAPHumanHasChild(object, child)) {
+        SAPDynamicArrayAddObject(SAPHumanChildren(object), child);
+    }
+}
+
+SAPHuman *SAPHumanWhoIsStronger(SAPHuman *human1, SAPHuman *human2) {
+    if (human1 && human2 && human1 != human2 && SAPHumanGender(human1) != SAPHumanGender(human2)) {
+        return (SAPHumanGender(human1) == kSAPHumanGenderMale) ? human1 : human2;
     }
     
-    for (int childIndex = 0; childIndex < kSAPChildrenLimit; childIndex++) {
-        if (NULL == SAPHumanChildAtIndex(object, childIndex)) {
-            SAPHumanSetChildAtIndex(object, child, childIndex);
-            
-            return;
-        }
-    }
+    return NULL;
 }
 
 #pragma mark -
 #pragma mark Public implementations
 
 uint SAPHumanChildrenCount(SAPHuman *object) {
-    return SAPDynamicArrayCount(object->_children);
+    return SAPDynamicArrayCount(SAPHumanChildren(object));
 }
 
 bool SAPHumanIsMarried(SAPHuman *object) {
-    return (NULL != object) && (NULL != SAPHumanPartner(object));
+    return (NULL != SAPHumanPartner(object));
+}
+
+bool SAPHumanHasChild(SAPHuman *object, SAPHuman *child) {
+    SAPReturnValueIfObjectNULL(false);
+    
+    return SAPDynamicArrayContains(SAPHumanChildren(object), child);
 }
 
 //////BEHAVIOR IMPLEMENTING FUNCTIONS
 
-SAPHuman *SAPHumanBornChild(SAPHuman *object, SAPGender gender) {
+SAPHuman *SAPHumanCreateChild(SAPHuman *object, SAPGender gender) {
     if (NULL != object && NULL != SAPHumanPartner(object)) {
-        SAPHuman *partner = SAPHumanPartner(object);
-        DetermineRolesOfPartners(father, mother)
         
-        SAPHuman *bornChild = SAPHumanCreateWithParameters(mother, father, gender);
+        SAPHuman *bornChild = SAPHumanCreateWithParameters(object, gender);
         
         return bornChild;
     }
@@ -234,47 +238,38 @@ SAPHuman *SAPHumanBornChild(SAPHuman *object, SAPGender gender) {
 
 
 //weak member of connection is female. male-female - retain setter. female-male - assign setter.
-bool SAPHumanMarry(SAPHuman *object, SAPHuman *partner) {
-    bool married = false;
+void SAPHumanMarry(SAPHuman *object, SAPHuman *partner) {
     if (NULL == object
        || NULL == partner
        || SAPHumanGender(object) == SAPHumanGender(partner)
-       || object == partner)
+       || object == partner
+       || SAPHumanPartner(object) == partner)
     {
-        return married;
+        return;
     }
     
-    DetermineRolesOfPartners(strong, weak)
+    SAPHumanDivorce(object);
     
-    SAPHumanDivorce(strong);
-    SAPHumanDivorce(weak);
-
+    SAPHuman *strong = SAPHumanWhoIsStronger(object, partner);
+    SAPHuman *weak = object == strong ? partner : object;
+    
     strong->_partner = weak;
     SAPObjectRetain(weak);
     weak->_partner = strong;
-
-    married = true;
-    
-    return married;
 }
 
-bool SAPHumanDivorce(SAPHuman *object) {
-    bool divorceComplete = false;
+void SAPHumanDivorce(SAPHuman *object) {
     SAPHuman *partner = SAPHumanPartner(object);
-    if (NULL == object
-        || NULL == partner)
-    {
-        return divorceComplete;
+    if (NULL == object || NULL == partner) {
+        return;
     }
     
-    DetermineRolesOfPartners(strong, weak)
+    SAPHuman *strong = SAPHumanWhoIsStronger(object, partner);
+    SAPHuman *weak = object == strong ? partner : object;
     
     weak->_partner = NULL;
     strong->_partner = NULL;
     SAPObjectRelease(weak);
-   
-    divorceComplete = true;
     
-    return divorceComplete;
 }
 

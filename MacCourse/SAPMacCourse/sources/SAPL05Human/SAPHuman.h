@@ -35,10 +35,10 @@ struct SAPHuman {
 };
 
 extern
-SAPHuman *SAPHumanCreate(void);
+SAPHuman *SAPHumanCreate(SAPGender gender);
 
 extern
-SAPHuman *SAPHumanCreateWithParameters(SAPHuman *mother, SAPHuman *father, SAPGender gender);
+SAPHuman *SAPHumanCreateWithParameters(SAPHuman *parent, SAPGender gender);
 
 extern
 void __SAPHumanDeallocate(SAPHuman *object);
@@ -59,7 +59,10 @@ extern
 void SAPHumanSetAge(SAPHuman *object, uint8_t age);
 
 extern
-SAPHuman *SAPHumanBornChild(SAPHuman *object, SAPGender gender);
+SAPHuman *SAPHumanCreateChild(SAPHuman *object, SAPGender gender);
+
+extern
+SAPDynamicArray *SAPHumanChildren(SAPHuman * object);
 
 extern
 uint SAPHumanChildrenCount(SAPHuman *object);
@@ -74,12 +77,15 @@ extern
 SAPHuman *SAPHumanFather(SAPHuman *object);
 
 extern
+bool SAPHumanHasChild(SAPHuman *object, SAPHuman *child);
+
+extern
 bool SAPHumanIsMarried(SAPHuman *object);
 
 extern
-bool SAPHumanMarry(SAPHuman *object, SAPHuman *spouse);
+void SAPHumanMarry(SAPHuman *object, SAPHuman *spouse);
 
 extern
-bool SAPHumanDivorce(SAPHuman *object);
+void SAPHumanDivorce(SAPHuman *object);
 
 #endif /* defined(__MacCourse__SAPHuman__) */

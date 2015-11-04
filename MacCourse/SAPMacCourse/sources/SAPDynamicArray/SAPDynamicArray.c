@@ -13,6 +13,7 @@
 #include "SAPMacro.h"
 
 static const unsigned long kSAPSizeMultiplicator = 2;
+static const unsigned long kSAPImpossibleValue    = ULONG_MAX;
 
 #pragma mark -
 #pragma mark Private Declarations
@@ -36,9 +37,7 @@ void SAPDynamicArrayShiftObjects(SAPDynamicArray *object);
 #pragma mark Initializations & Deallocation
 
 void __SAPDynamicArrayDeallocate(SAPDynamicArray *object) {
-    for (unsigned long index = 0; index < SAPDynamicArrayCount(object); index++) {
-        SAPDynamicArraySetValueAtIndex(object, NULL, index);
-    }
+    SAPDynamicArrayRemoveAll(object);
     
     __SAPObjectDeallocate(object);
 }
@@ -56,7 +55,7 @@ unsigned long SAPDynamicArrayCapacity(SAPDynamicArray *object) {
 
 void SAPDynamicArraySetCapacity(SAPDynamicArray *object, unsigned long capacity) {
     SAPReturnIfObjectNULL;
-    SAPReturnIfValuesEqual(ULLONG_MAX, capacity);
+    SAPReturnIfValuesEqual(kSAPImpossibleValue, capacity);
     unsigned long count = object->_count;
     if (count == capacity) {
         if (capacity != 1 && capacity != 2) {
@@ -137,8 +136,15 @@ void SAPDynamicArrayRemoveByIndex(SAPDynamicArray *object, unsigned long index) 
     SAPDynamicArraySetValueAtIndex(object, NULL, index);
 }
 
+void SAPDynamicArrayRemoveAll(SAPDynamicArray *object) {
+    SAPReturnIfObjectNULL;
+    for (unsigned long index = 0; index < SAPDynamicArrayCount(object); index++) {
+        SAPDynamicArraySetValueAtIndex(object, NULL, index);
+    }
+}
+
 unsigned long SAPDynamicArrayIndexOfValue(SAPDynamicArray *object, void  *value) {
-    unsigned long result = ULONG_MAX;
+    unsigned long result = kSAPImpossibleValue;
     if (NULL == object || NULL == value) {
         return result;
     }
@@ -153,7 +159,7 @@ unsigned long SAPDynamicArrayIndexOfValue(SAPDynamicArray *object, void  *value)
 }
 
 bool SAPDynamicArrayContains(SAPDynamicArray *object, void *value) {
-    return ULONG_MAX != SAPDynamicArrayIndexOfValue(object, value);
+    return kSAPImpossibleValue != SAPDynamicArrayIndexOfValue(object, value);
 }
 
 #pragma mark-
@@ -183,7 +189,7 @@ unsigned long SAPDynamicArrayCapacityForResize(SAPDynamicArray *object) {
     
     unsigned long count = SAPDynamicArrayCount(object);
     unsigned long capacity = SAPDynamicArrayCapacity(object);
-    unsigned long result = ULLONG_MAX;
+    unsigned long result = kSAPImpossibleValue;
     
     if (count > capacity) {
         result = 0lu == capacity ? 1 : capacity * kSAPSizeMultiplicator;

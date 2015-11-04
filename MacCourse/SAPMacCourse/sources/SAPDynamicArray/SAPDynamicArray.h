@@ -42,6 +42,9 @@ extern
 void SAPDynamicArrayRemoveByIndex(SAPDynamicArray *object, unsigned long index);
 
 extern
+void SAPDynamicArrayRemoveAll(SAPDynamicArray *object);
+
+extern
 unsigned long SAPDynamicArrayIndexOfValue(SAPDynamicArray *object, void  *value);
 
 extern
