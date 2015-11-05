@@ -59,7 +59,7 @@ void SAPPerformHumanCreateTest(void) {
     assert(NULL == SAPHumanMother(testHuman));
     assert(NULL == SAPHumanFather(testHuman));
     for (int childIndex = 0; childIndex < kSAPChildrenLimit; childIndex ++) {
-        assert(NULL == SAPDynamicArrayValueAtIndex(testHuman->_children, childIndex));
+        assert(NULL == SAPDynamicArrayObjectAtIndex(testHuman->_children, childIndex));
     }
     
     SAPObjectRelease(testHuman);
@@ -122,13 +122,6 @@ void SAPPerformTestSAPHumanChildrenCount(void) {
     SAPHuman *child1 = SAPHumanCreateChild(testHuman, kSAPHumanGenderMale);
     SAPHuman *child2 =SAPHumanCreateChild(testHuman, kSAPHumanGenderFemale);
     SAPHuman *child3 =SAPHumanCreateChild(testHuman, kSAPHumanGenderFemale);
-//    SAPHuman *child1 = SAPCreateSpecialTestHumanWithParameters(kSAPHumanGenderMale);
-//    SAPHuman *child2 = SAPCreateSpecialTestHumanWithParameters(kSAPHumanGenderMale);
-//    SAPHuman *child3 = SAPCreateSpecialTestHumanWithParameters(kSAPHumanGenderMale);
-//    SAPHuman
-//    SAPDynamicArraySetValueAtIndex(testHuman->_children, child1, 0);
-//    SAPDynamicArraySetValueAtIndex(testHuman->_children, child2, 1);
-//    SAPDynamicArraySetValueAtIndex(testHuman->_children, child3, 2);
     assert(3 == SAPHumanChildrenCount(testHuman));
     SAPReleaseSpecialTestHumanWithParameters(testHuman);
     SAPReleaseSpecialTestHumanWithParameters(child1);

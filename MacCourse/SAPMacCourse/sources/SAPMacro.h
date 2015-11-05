@@ -25,23 +25,4 @@
     SAPObjectRelease(objectVariableName->_##ivar); \
     objectVariableName->_##ivar = ivar \
 
-#define SAPReturnIfObjectNULL \
-    if (NULL == object) {\
-        return;\
-    }
-
-#define SAPReturnValueIfObjectNULL(value) \
-    if (NULL == object) {\
-        return value;\
-    }
-#define SAPReturnIfNULL(var)\
-    if (NULL == var) {\
-        return;\
-    }
-
-#define SAPReturnIfValuesEqual(value1, value2) \
-    if(value1 == value2) {\
-        return;\
-    }
-
 #endif

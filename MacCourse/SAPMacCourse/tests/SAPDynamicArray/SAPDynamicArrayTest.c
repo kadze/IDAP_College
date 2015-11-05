@@ -27,10 +27,10 @@ void SAPPerformDynamicArrayReallocatingTest(void) {
     unsigned long allocatedCounter = 1;
     unsigned long elementsCounter = 1;
     while (elementsCounter < numberOfElementsToAdd) {
-        
         if (elementsCounter * multiplicatorFromStrategy == allocatedCounter * multiplicatorFromStrategy) {
             allocatedCounter *= multiplicatorFromStrategy;
         }
+        
         elementsCounter++;
         SAPDynamicArrayAddObject(testDynamicArray, testStringObject);
         assert(elementsCounter == SAPDynamicArrayCount(testDynamicArray));
@@ -38,8 +38,13 @@ void SAPPerformDynamicArrayReallocatingTest(void) {
     }
     
     for (unsigned long counter = numberOfElementsToAdd; counter > 0; counter--) {
-        SAPDynamicArrayRemoveByIndex(testDynamicArray, counter - 1);
+        SAPDynamicArrayRemoveObjectAtIndex(testDynamicArray, counter - 1);
+        elementsCounter--;
+        assert(SAPDynamicArrayCount(testDynamicArray) == elementsCounter);
     }
+    
+    assert(0 == SAPDynamicArrayCount(testDynamicArray));
+    assert(0 == SAPDynamicArrayCapacity(testDynamicArray));
     
     SAPObjectRelease(testDynamicArray);
     SAPObjectRelease(testStringObject);
@@ -47,7 +52,7 @@ void SAPPerformDynamicArrayReallocatingTest(void) {
 
 void SAPPerformDynamicArraySettingValueTest(void) {
     unsigned long numberOfElementsToAdd = 10000;
-    int testIndex = 50;
+    int testIndex = 10000;
     
     SAPDynamicArray *testDynamicArray = SAPDynamicArrayCreate();
     assert(testDynamicArray);
@@ -58,9 +63,11 @@ void SAPPerformDynamicArraySettingValueTest(void) {
     for (unsigned long counter = 0; counter < numberOfElementsToAdd; counter++) {
         SAPDynamicArrayAddObject(testDynamicArray, testStringObject);
     }
-    SAPDynamicArraySetValueAtIndex(testDynamicArray, testStringObject2, testIndex);
-    assert(testStringObject2 == SAPDynamicArrayValueAtIndex(testDynamicArray, testIndex));
-    assert(50 == SAPDynamicArrayIndexOfValue(testDynamicArray, testStringObject2));
+    //setting value at element number 10001 (index 10000)
+    SAPDynamicArrayAddObject(testDynamicArray, testStringObject2);
+    assert(testIndex == SAPDynamicArrayIndexOfObject(testDynamicArray, testStringObject2));
+    assert(testStringObject2 == SAPDynamicArrayObjectAtIndex(testDynamicArray, testIndex));
+    
     SAPObjectRelease(testDynamicArray);
     SAPObjectRelease(testStringObject);
     SAPObjectRelease(testStringObject2);
