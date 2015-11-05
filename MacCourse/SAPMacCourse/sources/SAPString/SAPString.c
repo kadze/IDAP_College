@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <assert.h>
 #include "SAPString.h"
 #include "SAPMacro.h"
 
@@ -44,7 +45,9 @@ void SAPStringSetValue(SAPString *object, const char *value) {
     }
     
     if (value) {
-        object->_value = strdup(value);
+        char *newValue = strdup(value);
+        assert(newValue);
+        object->_value = newValue;
     }
 }
 
