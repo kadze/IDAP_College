@@ -102,15 +102,21 @@ void SAPDynamicArraySetCount(SAPDynamicArray *object, unsigned long count) {
 }
 
 void SAPDynamicArraySetObjectAtIndex(SAPDynamicArray *object, void *value, unsigned long index) {
-    if (index < SAPDynamicArrayCapacity(object)) { //could it be differently?
+    if (NULL == object) {
+        return;
+    }
+    assert(index < SAPDynamicArrayCapacity(object));
+//    if (index < SAPDynamicArrayCapacity(object)) { //could it be differently?
         SAPObjectRelease(object->_objects[index]);
         SAPObjectRetain(value);
         SAPDynamicArrayObjects(object)[index] = value;
-    }
+//    }
 }
 
 void *SAPDynamicArrayObjectAtIndex(SAPDynamicArray *object, unsigned long index) {
-    if (NULL != object && index < SAPDynamicArrayCount(object)) {
+    if (NULL != object) {
+        assert(index < SAPDynamicArrayCount(object));
+        
         return SAPDynamicArrayObjects(object)[index];
     }
     
@@ -185,8 +191,10 @@ void SAPDynamicArrayShiftObjects(SAPDynamicArray *object, unsigned long index) {
     }
     
     void **data = object->_objects;
+    unsigned long count = SAPDynamicArrayCount(object);
     size_t bytesForShift = (SAPDynamicArrayCount(object) - index) * sizeof(&data);
     memmove(&data[index], &data[index + 1], bytesForShift);
+    data[count] = NULL;
 }
 
 bool SAPDynamicArrayShouldResize(SAPDynamicArray *object, unsigned long newCount) {
