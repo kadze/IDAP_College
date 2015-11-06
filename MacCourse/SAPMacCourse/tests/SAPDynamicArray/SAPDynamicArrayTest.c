@@ -73,9 +73,31 @@ void SAPPerformDynamicArraySettingValueTest(void) {
     SAPObjectRelease(testStringObject2);
 }
 
+void SAPPerformDynamicArrayRemoveObjectAtIndexTest() {
+    unsigned long numberOfElementsToAdd = 10;
+    int testIndex = 4;
+    SAPDynamicArray *testDynamicArray = SAPDynamicArrayCreate();
+    assert(testDynamicArray);
+    SAPString *testStringObject = SAPStringCreate("ssttrriinngg");
+    assert(testStringObject);
+    for (unsigned long counter = 0; counter < numberOfElementsToAdd; counter++) {
+        SAPDynamicArrayAddObject(testDynamicArray, testStringObject);
+    }
+    unsigned long countBefore = SAPDynamicArrayCount(testDynamicArray);
+    SAPDynamicArrayRemoveObjectAtIndex(testDynamicArray, testIndex);
+    unsigned long countAfter = SAPDynamicArrayCount(testDynamicArray);
+    //count of elements should decrement ( - 1)
+    assert(countBefore == countAfter + 1);
+    //all elements in allocated space after last element (index == count - 1) should be NULL
+    for (unsigned long index = countAfter; index < SAPDynamicArrayCapacity(testDynamicArray); index++) {
+        assert(NULL == SAPDynamicArrayObjectAtIndex(testDynamicArray, index));
+    }
+}
+
 void SAPPerformAllDynamicArrayTests(void) {
-    printf("===Perform SAPArray tests ===\n");
+    printf("===Perform SAPDynamicArray tests ===\n");
     SAPPerformDynamicArrayReallocatingTest();
     SAPPerformDynamicArraySettingValueTest();
+    SAPPerformDynamicArrayRemoveObjectAtIndexTest();
     printf("OK\n");
 }

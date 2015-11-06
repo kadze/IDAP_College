@@ -37,7 +37,7 @@ static
 void SAPDynamicArrayResizeIfNeeded(SAPDynamicArray *object, unsigned long count);
 
 static
-void SAPDynamicArrayShiftObjects(SAPDynamicArray *object);
+void SAPDynamicArrayShiftObjects(SAPDynamicArray *object, unsigned long index);
 
 #pragma mark -
 #pragma mark Initializations & Deallocation
@@ -71,7 +71,7 @@ void SAPDynamicArraySetCapacity(SAPDynamicArray *object, unsigned long capacity)
     
     void **objects = SAPDynamicArrayObjects(object);
     
-    if (0 == capacity) {
+    if (0 == capacity && NULL != objects) {
         free(objects);
         object->_objects = NULL;
     } else {
@@ -83,10 +83,7 @@ void SAPDynamicArraySetCapacity(SAPDynamicArray *object, unsigned long capacity)
         assert(newValues);
         object->_objects = newValues;
         
-        if (capacity > count
-            //|| (capacity == 1 && count == 1) || (capacity == 2 && count == 2)
-            )
-        {
+        if (capacity > count) {
             memset(object->_objects + count, 0, allocatedSize - size);
         }
     }
@@ -113,7 +110,7 @@ void SAPDynamicArraySetObjectAtIndex(SAPDynamicArray *object, void *value, unsig
 }
 
 void *SAPDynamicArrayObjectAtIndex(SAPDynamicArray *object, unsigned long index) {
-    if (NULL != object && index < SAPDynamicArrayCapacity(object)) {
+    if (NULL != object && index < SAPDynamicArrayCount(object)) {
         return SAPDynamicArrayObjects(object)[index];
     }
     
@@ -145,7 +142,7 @@ void SAPDynamicArrayRemoveObject(SAPDynamicArray *object, void *value) {
 void SAPDynamicArrayRemoveObjectAtIndex(SAPDynamicArray *object, unsigned long index) {
     SAPDynamicArraySetObjectAtIndex(object, NULL, index);
     SAPDynamicArraySetCount(object, SAPDynamicArrayCount(object) - 1);
-    SAPDynamicArrayShiftObjects(object);
+    SAPDynamicArrayShiftObjects(object, index);
 }
 
 void SAPDynamicArrayRemoveAllObjects(SAPDynamicArray *object) {
@@ -173,47 +170,24 @@ unsigned long SAPDynamicArrayIndexOfObject(SAPDynamicArray *object, void  *value
 }
 
 bool SAPDynamicArrayContainsObject(SAPDynamicArray *object, void *value) {
-    return kSAPUndefinedObject != SAPDynamicArrayIndexOfObject(object, value);
+    if (NULL != object && kSAPUndefinedObject != SAPDynamicArrayIndexOfObject(object, value)) {
+        return true;
+    }
+    
+    return false;
 }
 
 #pragma mark-
 #pragma mark Private Implementations
 
-void SAPDynamicArrayShiftObjects(SAPDynamicArray *object) {
+void SAPDynamicArrayShiftObjects(SAPDynamicArray *object, unsigned long index) {
     if (NULL == object) {
         return;
-    }
-    
-    unsigned long shiftsCount = 0;
-    for (unsigned long index = 0; index < SAPDynamicArrayCount(object); index++) {
-        if (NULL == SAPDynamicArrayObjectAtIndex(object, index)) {
-            shiftsCount++;
-        } else {
-            if (0 != shiftsCount) {
-                SAPDynamicArraySetObjectAtIndex(object,
-                                               SAPDynamicArrayObjectAtIndex(object, index),
-                                               index - shiftsCount);
-            }
-        }
-    }
-}
-
-//try
-void SAPDynamicArrayShiftObjects2(SAPDynamicArray *object) {
-    if (NULL == object) {
-        return;
-    }
-    
-    unsigned long index = 0;
-    for (; index < SAPDynamicArrayCount(object); index++) {
-        if (NULL == SAPDynamicArrayObjectAtIndex(object, index)) {
-            break;
-        }
     }
     
     void **data = object->_objects;
-    size_t memSize = (SAPDynamicArrayCount(object) - index) + sizeof(data);
-    memmove(&data[index], &data[index + 1], memSize);
+    size_t bytesForShift = (SAPDynamicArrayCount(object) - index) * sizeof(&data);
+    memmove(&data[index], &data[index + 1], bytesForShift);
 }
 
 bool SAPDynamicArrayShouldResize(SAPDynamicArray *object, unsigned long newCount) {
@@ -237,8 +211,6 @@ void SAPDynamicArrayResizeIfNeeded(SAPDynamicArray *object, unsigned long newCou
 }
 
 unsigned long SAPDynamicArrayCapacityForResize(SAPDynamicArray *object, unsigned long newCount) {
-    
-   // unsigned long count = SAPDynamicArrayCount(object);
     unsigned long capacity = SAPDynamicArrayCapacity(object);
     unsigned long result = capacity;
     
@@ -254,7 +226,6 @@ unsigned long SAPDynamicArrayCapacityForResize(SAPDynamicArray *object, unsigned
     } else if (capacity == newCount * kSAPCapacityMultiplicator) {
         result = capacity/kSAPCapacityMultiplicator;
     }
-//    else if (kSAPFirstCapacity == capacity && 0 == newCount)
-//        result = 0;
+    
     return result;
 }
