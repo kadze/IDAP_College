@@ -117,7 +117,6 @@ void *SAPDynamicArrayObjectAtIndex(SAPDynamicArray *object, unsigned long index)
     return NULL;
 }
 
-
 #pragma mark-
 #pragma mark Public Implementations
 
