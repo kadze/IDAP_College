@@ -41,10 +41,10 @@ void *SAPLinkedListNodeObject(SAPLinkedListNode *object) {
     return SAPObjectIVarGetterSynthesize(object, _object, NULL);
 }
 
-void SAPLinkedListNodeSetObject(SAPLinkedListNode *object, void *contentObject) {
-    if (object == contentObject) {
+void SAPLinkedListNodeSetObject(SAPLinkedListNode *node, void *object) {
+    if (node == object) {
         return;
     }
     
-    SAPObjectRetainSetterSynthesize(object, contentObject);
+    SAPObjectRetainSetterSynthesize(node, object);
 }

@@ -41,8 +41,13 @@ void *SAPLinkedListFirstObject(SAPLinkedList *list){
 }
 
 void SAPLinkedListRemoveFirstObject(SAPLinkedList *list) {
-    SAPLinkedListNode *node = SAPLinkedListHead(list);
-    SAPLinkedListSetHead(list, SAPLinkedListNodeNextNode(node));
+    uint64_t count = SAPLinkedListCount(list);
+    if (0 != count) {
+        SAPLinkedListNode *node = SAPLinkedListHead(list);
+        SAPLinkedListSetHead(list, SAPLinkedListNodeNextNode(node));
+        SAPLinkedListSetCount(list, count - 1);
+    }
+    
 }
 
 void *SAPLinkedListObjectBeforeObject(SAPLinkedList *list, void *object) {
@@ -65,7 +70,7 @@ void *SAPLinkedListObjectBeforeObject(SAPLinkedList *list, void *object) {
 }
 
 bool SAPLinkedListIsEmpty(SAPLinkedList *list) {
-    return (NULL != list && 0 != SAPLinkedListCount(list));
+    return (NULL != list && 0 == SAPLinkedListCount(list));
 }
 
 void SAPLinkedListAddObject(SAPLinkedList *list, void *object) {
@@ -76,7 +81,7 @@ void SAPLinkedListAddObject(SAPLinkedList *list, void *object) {
     SAPLinkedListNode *node = SAPLinkedListNodeCreateWithObject(object);
     SAPLinkedListNodeSetNextNode(node, SAPLinkedListHead(list));
     SAPLinkedListSetHead(list, node);
-    list->_count++;
+    SAPLinkedListSetCount(list, SAPLinkedListCount(list) + 1);
     SAPObjectRelease(node);
 }
 
@@ -84,21 +89,25 @@ void SAPLinkedListRemoveObject(SAPLinkedList *list, void *object) {
     if (NULL == list || SAPLinkedListIsEmpty(list)) {
         return;
     }
+    
     SAPLinkedListNode *node = SAPLinkedListHead(list);
     SAPLinkedListNode *previousNode = NULL;
     while (NULL != node) {
         void *currentObject = SAPLinkedListNodeObject(node);
+        SAPLinkedListNode *nextNode = SAPLinkedListNodeNextNode(node);
         if (object == currentObject) {
-            SAPLinkedListNode *nextNode = SAPLinkedListNodeNextNode(node);
-            SAPLinkedListNodeSetNextNode(previousNode, nextNode);
-            list->_count--;
-            node = nextNode;
+            if (node == SAPLinkedListHead(list)) {
+                SAPLinkedListSetHead(list, nextNode);
+            } else {
+                SAPLinkedListNodeSetNextNode(previousNode, nextNode);
+            }
+            
+            SAPLinkedListSetCount(list, SAPLinkedListCount(list) - 1);
         }
         
         previousNode = node;
-        node = SAPLinkedListNodeNextNode(node);
+        node = nextNode;
     }
-    
 }
 
 void SAPLinkedListRemoveAllObjects(SAPLinkedList *list) {
@@ -106,8 +115,7 @@ void SAPLinkedListRemoveAllObjects(SAPLinkedList *list) {
         return;
     }
     
-    SAPLinkedListSetHead(list, NULL);
-    list->_count = 0;
+    SAPLinkedListSetCount(list, 0);
 }
 
 bool SAPLinkedListContainsObject(SAPLinkedList *list, void *object) {
@@ -118,8 +126,9 @@ bool SAPLinkedListContainsObject(SAPLinkedList *list, void *object) {
     
     
     SAPLinkedListNode *node = SAPLinkedListHead(list);
+    void *currentObject = SAPLinkedListNodeObject(node);
     while (NULL != node) {
-        if (object == node) {
+        if (object == currentObject) {
             result = true;
             
             break;
@@ -147,5 +156,11 @@ void SAPLinkedListSetHead(SAPLinkedList *object, SAPLinkedListNode *head){
 }
 
 void SAPLinkedListSetCount(SAPLinkedList *list, uint64_t count) {
-    SAPObjectIVarSetterSynthesize(list, count);
+    if (NULL != list) {
+        if (0 == count) {
+            SAPLinkedListSetHead(list, NULL);
+        }
+        
+        list->_count = count;
+    }
 }

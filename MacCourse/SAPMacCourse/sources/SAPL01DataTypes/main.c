@@ -15,6 +15,7 @@
 #include "SAPStringTest.h"
 #include "SAPArrayTest.h"
 #include "SAPDynamicArrayTest.h"
+#include "SAPLinkedListTest.h"
 
 int main(int argc, const char * argv[]) {
 
@@ -51,7 +52,10 @@ int main(int argc, const char * argv[]) {
 //    SAPPerformAllSAPArrayTests();
     
     //SAPDynamicArray
-    SAPPerformAllDynamicArrayTests();
+//    SAPPerformAllDynamicArrayTests();
+    
+    //SAPLinkedList
+    SAPPerformAllLinkedListBehaviorTests();
     
     return 0;
 }
