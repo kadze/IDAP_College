@@ -18,6 +18,9 @@
 static
 void SAPLinkedListOneObjectTest(void);
 
+static
+void SAPLinkedListEnumeratorTest(void);
+
 #pragma mark -
 #pragma mark Public Implementations
 
@@ -85,4 +88,24 @@ void SAPLinkedListOneObjectTest(void) {
     
     SAPObjectRelease(object);
     SAPObjectRelease(list);
+}
+
+void SAPLinkedListEnumeratorTest(void) {
+    //after list was creted
+    SAPLinkedList *list = SAPObjectCreateOfType(SAPLinkedList);
+    //list retain count must be 1
+    assert(1 == SAPObjectRetainCount(list));
+    //after 5 objects were added to list
+    for (uint64_t counter = 0; counter < 5 ; counter++) {
+        SAPObject *object = SAPObjectCreateOfType(SAPObject);
+        SAPLinkedListAddObject(list, object);
+        SAPObjectRelease(object);
+    }
+    //after enumerator was created
+    
+    //list retain count should be 2
+    //enumerators retain count should be 1
+    //enumerators count should be 5
+    
+    
 }

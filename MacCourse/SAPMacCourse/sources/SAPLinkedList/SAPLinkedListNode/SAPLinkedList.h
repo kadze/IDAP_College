@@ -12,6 +12,7 @@
 #include <stdbool.h>
 #include "SAPObject.h"
 #include "SAPLinkedListNode.h"
+#include "SAPLinkedListEnumerator.h"
 
 typedef struct SAPLinkedList SAPLinkedList;
 
@@ -19,7 +20,11 @@ struct SAPLinkedList{
     SAPObject _super;
     SAPLinkedListNode *_head;
     uint64_t _count;
+    uint64_t _mutationsCount;
 };
+
+extern
+SAPLinkedListEnumerator *SAPLinkedListEnumeratorFromList(SAPLinkedList *list);
 
 extern
 void __SAPLinkedListDeallocate(SAPLinkedList *list);

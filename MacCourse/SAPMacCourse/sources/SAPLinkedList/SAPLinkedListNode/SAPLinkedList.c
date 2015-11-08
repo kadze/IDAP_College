@@ -34,6 +34,10 @@ void __SAPLinkedListDeallocate(SAPLinkedList *list) {
 #pragma mark-
 #pragma mark Public Implementations
 
+SAPLinkedListEnumerator *SAPLinkedListEnumeratorFromList(SAPLinkedList *list) {
+    return SAPLinkedListEnumeratorCreateWithList(list);
+}
+
 void *SAPLinkedListFirstObject(SAPLinkedList *list){
     SAPLinkedListNode *node = SAPLinkedListHead(list);
     
