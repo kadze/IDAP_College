@@ -31,9 +31,9 @@ extern
 void __SAPLinkedListEnumeratorDeallocate(void *object);
 
 extern
-SAPLinkedListNode *SAPLinkedListEnumeratorNextNode(SAPLinkedList *list);
+void *SAPLinkedListEnumeratorNextObject(SAPLinkedList *list);
 
 extern
-bool SAPLinkedListEnumeratorIsValid(SAPLinkedListEnumerator *list);
+bool SAPLinkedListEnumeratorIsValid(SAPLinkedListEnumerator *enumerator);
 
 #endif /* defined(__MacCourse__SAPLinkedListEnumerator__) */

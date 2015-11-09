@@ -168,3 +168,14 @@ void SAPLinkedListSetCount(SAPLinkedList *list, uint64_t count) {
         list->_count = count;
     }
 }
+
+#pragma mark -
+#pragma mark SAPLinkedListPrivate
+
+void SAPLinkedListSetMutationsCount(SAPLinkedList *list, uint64_t mutationsCount) {
+    SAPObjectIVarSetterSynthesize(list, mutationsCount);
+}
+
+uint64_t SAPLinkedListMutationsCount(SAPLinkedList *list) {
+    return SAPObjectIVarGetterSynthesize(list, _mutationsCount, 0);
+}

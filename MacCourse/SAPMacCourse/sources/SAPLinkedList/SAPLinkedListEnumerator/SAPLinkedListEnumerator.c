@@ -10,6 +10,7 @@
 #include "SAPLinkedList.h"
 #include "SAPLinkedListNode.h"
 #include "SAPMacro.h"
+#include "SAPLinkedListPrivate.h"
 
 #pragma mark -
 #pragma mark Private Declarations
@@ -24,13 +25,13 @@ static
 void SAPLinkedListEnumeratorSetNode(SAPLinkedListEnumerator *enumerator, SAPLinkedListNode *node);
 
 static
-SAPLinkedListEnumerator *SAPLinkedListEnumeratorNode(SAPLinkedListEnumerator *enumerator);
+SAPLinkedListNode *SAPLinkedListEnumeratorNode(SAPLinkedListEnumerator *enumerator);
 
 static
 void SAPLinkedListEnumeratorSetMutationsCount(SAPLinkedListEnumerator *enumerator, uint64_t mutationsCount);
 
 static
-uint64_t *SAPLinkedListEnumeratorMutationsCount(SAPLinkedListEnumerator *enumerator);
+uint64_t SAPLinkedListEnumeratorMutationsCount(SAPLinkedListEnumerator *enumerator);
 
 #pragma mark -
 #pragma mark Public Implementations
@@ -43,17 +44,25 @@ void __SAPLinkedListEnumeratorDeallocate(void *object) {
 }
 
 SAPLinkedListEnumerator *APLinkedListEnumeratorCreateWithList(SAPLinkedList *list) {
+    if (NULL == list) {
+        return NULL;
+    }
+    
    	SAPLinkedListEnumerator *enumerator = SAPObjectCreateOfType(SAPLinkedListEnumerator);
     SAPLinkedListEnumeratorSetList(enumerator, list);
-    SAPLinkedListEnumeratorSetMutationsCount(enumerator, list->_mutationsCount);
+    SAPLinkedListEnumeratorSetMutationsCount(enumerator, SAPLinkedListMutationsCount(list));
+    
     return enumerator;
 }
 
+///////!!!!!!!!!!!!!!!!!!!!
+void *SAPLinkedListEnumeratorNextObject(SAPLinkedList *list) {
+    return NULL;
+}
 
-
-SAPLinkedListNode *SAPLinkedListEnumeratorNextNode(SAPLinkedList *list);
-
-bool SAPLinkedListEnumeratorIsValid(SAPLinkedListEnumerator *list);
+bool SAPLinkedListEnumeratorIsValid(SAPLinkedListEnumerator *enumerator) {
+    return SAPObjectIVarGetterSynthesize(enumerator, _isValid, false);
+}
 
 #pragma mark -
 #pragma mark Private Implementations
@@ -63,23 +72,23 @@ void SAPLinkedListEnumeratorSetList(SAPLinkedListEnumerator *enumerator, SAPLink
 }
 
 SAPLinkedList *SAPLinkedListEnumeratorList(SAPLinkedListEnumerator *enumerator) {
-    SAPObjectIVarGetterSynthesize(enumerator, _list, NULL);
+    return SAPObjectIVarGetterSynthesize(enumerator, _list, NULL);
 }
 
 void SAPLinkedListEnumeratorSetNode(SAPLinkedListEnumerator *enumerator, SAPLinkedListNode *currentNode) {
     SAPObjectRetainSetterSynthesize(enumerator, currentNode);
 }
 
-SAPLinkedListEnumerator *SAPLinkedListEnumeratorNode(SAPLinkedListEnumerator *enumerator) {
-    SAPObjectIVarGetterSynthesize(enumerator, _currentNode, NULL);
+SAPLinkedListNode *SAPLinkedListEnumeratorNode(SAPLinkedListEnumerator *enumerator) {
+    return SAPObjectIVarGetterSynthesize(enumerator, _currentNode, NULL);
 }
 
 void SAPLinkedListEnumeratorSetMutationsCount(SAPLinkedListEnumerator *enumerator, uint64_t mutationsCount) {
     SAPObjectIVarSetterSynthesize(enumerator, mutationsCount);
 }
 
-uint64_t *SAPLinkedListEnumeratorMutationsCount(SAPLinkedListEnumerator *enumerator) {
-    SAPObjectIVarGetterSynthesize(enumerator, _mutationsCount, 0);
+uint64_t SAPLinkedListEnumeratorMutationsCount(SAPLinkedListEnumerator *enumerator) {
+    return SAPObjectIVarGetterSynthesize(enumerator, _mutationsCount, 0);
 }
 
 

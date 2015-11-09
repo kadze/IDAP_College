@@ -102,10 +102,18 @@ void SAPLinkedListEnumeratorTest(void) {
         SAPObjectRelease(object);
     }
     //after enumerator was created
-    
+    SAPLinkedListEnumerator *enumerator = SAPLinkedListEnumeratorFromList(list);
     //list retain count should be 2
+    assert(2 == SAPObjectRetainCount(list));
     //enumerators retain count should be 1
-    //enumerators count should be 5
-    
+    assert(1 == SAPObjectRetainCount(enumerator));
+    //iterations count should be 5
+    void *object = SAPLinkedListEnumeratorNextObject(list);
+    uint64_t iterationsCount = 0;
+    while (SAPLinkedListEnumeratorIsValid(enumerator)) {
+        iterationsCount++;
+        object = SAPLinkedListEnumeratorNextObject(list);
+    }
+    assert(5 == iterationsCount);
     
 }
