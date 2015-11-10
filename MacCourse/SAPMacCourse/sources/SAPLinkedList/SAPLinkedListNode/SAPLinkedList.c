@@ -159,8 +159,8 @@ void SAPLinkedListSetCount(SAPLinkedList *list, uint64_t count) {
         if (0 == count) {
             SAPLinkedListSetHead(list, NULL);
         }
-        
         list->_count = count;
+        SAPLinkedListMutate(list);
     }
 }
 
@@ -177,4 +177,16 @@ void SAPLinkedListSetMutationsCount(SAPLinkedList *list, uint64_t mutationsCount
 
 uint64_t SAPLinkedListMutationsCount(SAPLinkedList *list) {
     return SAPObjectIVarGetterSynthesize(list, _mutationsCount, 0);
+}
+
+SAPLinkedListNode *SAPLinkedListGetNodeWithContext(SAPLinkedList *list,
+                                                   SAPLinkedListComparisonFunction comparator,
+                                                   SAPLinkedListContext *context) {
+    SAPLinkedListNode *result = NULL;
+    
+    return result;
+}
+
+bool SAPLinkedListNodeContainsObject(SAPLinkedListNode *node, SAPLinkedListContext context) {
+    return (NULL != node) && context.object == SAPLinkedListNodeObject(node);;
 }

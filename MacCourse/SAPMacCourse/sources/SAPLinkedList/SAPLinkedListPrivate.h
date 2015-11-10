@@ -11,7 +11,13 @@
 
 #include "SAPLinkedList.h"
 
-typedef struct SAPLinkedList SAPLinkedList;
+typedef struct {
+    void *previousNode;
+    void *node;
+    void *object;
+} SAPLinkedListContext;
+
+typedef bool (*SAPLinkedListComparisonFunction)(SAPLinkedListNode *node, SAPLinkedListContext context);
 
 extern
 uint64_t SAPLinkedListMutationsCount(SAPLinkedList *list);
@@ -25,5 +31,12 @@ SAPLinkedListNode *SAPLinkedListHead(SAPLinkedList *list);
 extern
 void SAPLinkedListSetHead(SAPLinkedList *list, SAPLinkedListNode *head);
 
+extern
+SAPLinkedListNode *SAPLinkedListGetNodeWithContext(SAPLinkedList *list,
+                                                   SAPLinkedListComparisonFunction comparator,
+                                                   SAPLinkedListContext *context);
+
+extern
+bool SAPLinkedListNodeContainsObject(SAPLinkedListNode *node, SAPLinkedListContext context);
 
 #endif /* SAPLinkedListPrivate_h */

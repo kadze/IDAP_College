@@ -115,6 +115,7 @@ void SAPLinkedListEnumeratorTest(void) {
     uint64_t iterationsCount = 0;
     while (SAPLinkedListEnumeratorIsValid(enumerator)) {
         assert(sampleObjects[iterationsCount] == object);
+       // SAPLinkedListAddObject(list, object); //if add object - assert in validate()
         iterationsCount++;
         object = SAPLinkedListEnumeratorNextObject(enumerator);
     }
