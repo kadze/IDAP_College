@@ -6,21 +6,18 @@
 //  Copyright © 2015 Yosemite Retail. All rights reserved.
 //
 
-#include "SAPLinkedList.h"
 #include "SAPLinkedListNode.h"
 #include "SAPMacro.h"
+#include "SAPLinkedListPrivate.h"
 
 #pragma mark -
 #pragma mark Private Declarations
 
 static
-SAPLinkedListNode *SAPLinkedListHead(SAPLinkedList *list);
-
-static
-void SAPLinkedListSetHead(SAPLinkedList *list, SAPLinkedListNode *head);
-
-static
 void SAPLinkedListSetCount(SAPLinkedList *list, uint64_t count);
+
+static
+void SAPLinkedListMutate(SAPLinkedList *list);
 
 #pragma mark -
 #pragma mark Initializations & Deallocation
@@ -51,7 +48,6 @@ void SAPLinkedListRemoveFirstObject(SAPLinkedList *list) {
         SAPLinkedListSetHead(list, SAPLinkedListNodeNextNode(node));
         SAPLinkedListSetCount(list, count - 1);
     }
-    
 }
 
 void *SAPLinkedListObjectBeforeObject(SAPLinkedList *list, void *object) {
@@ -128,7 +124,6 @@ bool SAPLinkedListContainsObject(SAPLinkedList *list, void *object) {
         return result;
     }
     
-    
     SAPLinkedListNode *node = SAPLinkedListHead(list);
     void *currentObject = SAPLinkedListNodeObject(node);
     while (NULL != node) {
@@ -167,6 +162,10 @@ void SAPLinkedListSetCount(SAPLinkedList *list, uint64_t count) {
         
         list->_count = count;
     }
+}
+
+void SAPLinkedListMutate(SAPLinkedList *list) {
+    SAPLinkedListSetMutationsCount(list, SAPLinkedListMutationsCount(list) + 1);
 }
 
 #pragma mark -

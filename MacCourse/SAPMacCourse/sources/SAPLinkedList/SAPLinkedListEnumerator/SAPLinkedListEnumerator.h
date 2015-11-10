@@ -31,7 +31,7 @@ extern
 void __SAPLinkedListEnumeratorDeallocate(void *object);
 
 extern
-void *SAPLinkedListEnumeratorNextObject(SAPLinkedList *list);
+void *SAPLinkedListEnumeratorNextObject(SAPLinkedListEnumerator *enumerator);
 
 extern
 bool SAPLinkedListEnumeratorIsValid(SAPLinkedListEnumerator *enumerator);

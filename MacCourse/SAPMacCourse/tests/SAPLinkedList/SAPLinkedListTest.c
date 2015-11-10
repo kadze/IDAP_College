@@ -27,6 +27,7 @@ void SAPLinkedListEnumeratorTest(void);
 void SAPPerformAllLinkedListBehaviorTests(void) {
     printf("===Perform SAPLinkedList tests ===\n");
     SAPLinkedListOneObjectTest();
+    SAPLinkedListEnumeratorTest();
     printf("OK\n");
 }
 
@@ -91,6 +92,7 @@ void SAPLinkedListOneObjectTest(void) {
 }
 
 void SAPLinkedListEnumeratorTest(void) {
+    SAPObject *sampleObjects[5];
     //after list was creted
     SAPLinkedList *list = SAPObjectCreateOfType(SAPLinkedList);
     //list retain count must be 1
@@ -99,6 +101,7 @@ void SAPLinkedListEnumeratorTest(void) {
     for (uint64_t counter = 0; counter < 5 ; counter++) {
         SAPObject *object = SAPObjectCreateOfType(SAPObject);
         SAPLinkedListAddObject(list, object);
+        sampleObjects[4 - counter] = object;
         SAPObjectRelease(object);
     }
     //after enumerator was created
@@ -108,12 +111,14 @@ void SAPLinkedListEnumeratorTest(void) {
     //enumerators retain count should be 1
     assert(1 == SAPObjectRetainCount(enumerator));
     //iterations count should be 5
-    void *object = SAPLinkedListEnumeratorNextObject(list);
+    void *object = SAPLinkedListEnumeratorNextObject(enumerator);
     uint64_t iterationsCount = 0;
     while (SAPLinkedListEnumeratorIsValid(enumerator)) {
+        assert(sampleObjects[iterationsCount] == object);
         iterationsCount++;
-        object = SAPLinkedListEnumeratorNextObject(list);
+        object = SAPLinkedListEnumeratorNextObject(enumerator);
     }
     assert(5 == iterationsCount);
-    
+    SAPObjectRelease(enumerator);
+    SAPObjectRelease(list);
 }
