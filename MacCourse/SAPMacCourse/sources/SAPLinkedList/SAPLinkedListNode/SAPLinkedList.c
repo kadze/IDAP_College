@@ -89,12 +89,25 @@ void SAPLinkedListAddObject(SAPLinkedList *list, void *object) {
 }
 
 void SAPLinkedListRemoveObject(SAPLinkedList *list, void *object) {
+    if (NULL == list || NULL == object) {
+        return;
+    }
+    if (1 == SAPLinkedListCount(list)) {
+        SAPLinkedListRemoveFirstObject(list);
+        
+        return;
+    }
     SAPLinkedListContext context;
     memset(&context, 0, sizeof(context));
     context.object = object;
-    SAPLinkedListNode *node = NULL;
-    while (NULL != (node = SAPLinkedListFindNodeWithContext(list, SAPLinkedListNodeContainsObject, &context))) {
-        SAPLinkedListNodeSetNextNode(context.previousNode, SAPLinkedListNodeNextNode(node));
+    SAPLinkedListNode *node = SAPLinkedListFindNodeWithContext(list, SAPLinkedListNodeContainsObject, &context);
+    if (node == SAPLinkedListHead(list) ) {
+        SAPLinkedListRemoveFirstObject(list);
+        
+        return;
+    }
+    while (NULL != node) {
+        SAPLinkedListNodeSetNextNode(context.previousNode, SAPLinkedListNodeNextNode(context.node));
         SAPLinkedListSetCount(list, SAPLinkedListCount(list) - 1);
     }
 }
@@ -131,7 +144,13 @@ SAPLinkedListNode *SAPLinkedListHead(SAPLinkedList *object){
 }
 
 void SAPLinkedListSetHead(SAPLinkedList *object, SAPLinkedListNode *head){
-    SAPObjectRetainSetterSynthesize(object, head);
+//    SAPObjectRetainSetterSynthesize(object, head);
+    if (NULL == object || head == object->_head) {
+        return;
+    }
+    SAPObjectRetain(head);
+    SAPObjectRelease(object->_head); \
+    object->_head = head;
 }
 
 void SAPLinkedListSetCount(SAPLinkedList *list, uint64_t count) {

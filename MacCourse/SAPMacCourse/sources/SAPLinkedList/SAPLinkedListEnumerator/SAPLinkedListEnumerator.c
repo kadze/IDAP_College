@@ -109,7 +109,7 @@ SAPLinkedList *SAPLinkedListEnumeratorList(SAPLinkedListEnumerator *enumerator) 
 }
 
 void SAPLinkedListEnumeratorSetCurrentNode(SAPLinkedListEnumerator *enumerator, SAPLinkedListNode *currentNode) {
-    SAPObjectRetainSetterSynthesize(enumerator, currentNode);
+    SAPObjectIVarSetterSynthesize(enumerator, currentNode);
 }
 
 SAPLinkedListNode *SAPLinkedListEnumeratorCurrentNode(SAPLinkedListEnumerator *enumerator) {

@@ -12,8 +12,8 @@
 #include "SAPLinkedList.h"
 
 typedef struct {
-    void *previousNode;
-    void *node;
+    SAPLinkedListNode *previousNode;
+    SAPLinkedListNode *node;
     void *object;
 } SAPLinkedListContext;
 
