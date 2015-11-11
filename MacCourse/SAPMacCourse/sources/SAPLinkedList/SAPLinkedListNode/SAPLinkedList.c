@@ -6,9 +6,12 @@
 //  Copyright © 2015 Yosemite Retail. All rights reserved.
 //
 
+#include <assert.h>
+#include <string.h>
 #include "SAPLinkedListNode.h"
 #include "SAPMacro.h"
 #include "SAPLinkedListPrivate.h"
+#include "SAPLinkedListEnumeratorPrivate.h"
 
 #pragma mark -
 #pragma mark Private Declarations
@@ -86,27 +89,13 @@ void SAPLinkedListAddObject(SAPLinkedList *list, void *object) {
 }
 
 void SAPLinkedListRemoveObject(SAPLinkedList *list, void *object) {
-    if (NULL == list || SAPLinkedListIsEmpty(list)) {
-        return;
-    }
-    
-    SAPLinkedListNode *node = SAPLinkedListHead(list);
-    SAPLinkedListNode *previousNode = NULL;
-    while (NULL != node) {
-        void *currentObject = SAPLinkedListNodeObject(node);
-        SAPLinkedListNode *nextNode = SAPLinkedListNodeNextNode(node);
-        if (object == currentObject) {
-            if (node == SAPLinkedListHead(list)) {
-                SAPLinkedListSetHead(list, nextNode);
-            } else {
-                SAPLinkedListNodeSetNextNode(previousNode, nextNode);
-            }
-            
-            SAPLinkedListSetCount(list, SAPLinkedListCount(list) - 1);
-        }
-        
-        previousNode = node;
-        node = nextNode;
+    SAPLinkedListContext context;
+    memset(&context, 0, sizeof(context));
+    context.object = object;
+    SAPLinkedListNode *node = NULL;
+    while (NULL != (node = SAPLinkedListFindNodeWithContext(list, SAPLinkedListNodeContainsObject, &context))) {
+        SAPLinkedListNodeSetNextNode(context.previousNode, SAPLinkedListNodeNextNode(node));
+        SAPLinkedListSetCount(list, SAPLinkedListCount(list) - 1);
     }
 }
 
@@ -119,24 +108,15 @@ void SAPLinkedListRemoveAllObjects(SAPLinkedList *list) {
 }
 
 bool SAPLinkedListContainsObject(SAPLinkedList *list, void *object) {
-    bool result = false;
     if (NULL == list) {
-        return result;
+        return false;
     }
+    SAPLinkedListContext context;
+    memset(&context, 0, sizeof(context));
+    context.object = object;
+    SAPLinkedListNode *node = SAPLinkedListFindNodeWithContext(list, SAPLinkedListNodeContainsObject, &context);
     
-    SAPLinkedListNode *node = SAPLinkedListHead(list);
-    void *currentObject = SAPLinkedListNodeObject(node);
-    while (NULL != node) {
-        if (object == currentObject) {
-            result = true;
-            
-            break;
-        }
-        
-        node = SAPLinkedListNodeNextNode(node);
-    }
-    
-    return result;
+    return NULL != node;
 }
 
 uint64_t SAPLinkedListCount(SAPLinkedList *list) {
@@ -179,10 +159,27 @@ uint64_t SAPLinkedListMutationsCount(SAPLinkedList *list) {
     return SAPObjectIVarGetterSynthesize(list, _mutationsCount, 0);
 }
 
-SAPLinkedListNode *SAPLinkedListGetNodeWithContext(SAPLinkedList *list,
+SAPLinkedListNode *SAPLinkedListFindNodeWithContext(SAPLinkedList *list,
                                                    SAPLinkedListComparisonFunction comparator,
                                                    SAPLinkedListContext *context) {
     SAPLinkedListNode *result = NULL;
+    if (NULL == list) {
+        return result;
+    }
+    
+    SAPLinkedListEnumerator *enumerator = SAPLinkedListEnumeratorCreateWithList(list);
+    while (SAPLinkedListEnumeratorIsValid(enumerator)
+           && NULL != SAPLinkedListEnumeratorNextObject(enumerator)) {
+        SAPLinkedListNode *node = SAPLinkedListEnumeratorCurrentNode(enumerator);
+        context->node = node;
+        if (SAPLinkedListNodeContainsObject(node, *context)) {
+            result = node;
+            
+            break;
+        }
+        
+        context->previousNode = node;
+    }
     
     return result;
 }

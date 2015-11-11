@@ -8,10 +8,10 @@
 
 #include <assert.h>
 #include "SAPLinkedListEnumerator.h"
-//#include "SAPLinkedList.h"
 #include "SAPLinkedListNode.h"
 #include "SAPMacro.h"
 #include "SAPLinkedListPrivate.h"
+#include "SAPLinkedListEnumeratorPrivate.h"
 
 #pragma mark -
 #pragma mark Private Declarations
@@ -24,9 +24,6 @@ SAPLinkedList *SAPLinkedListEnumeratorList(SAPLinkedListEnumerator *enumerator);
 
 static
 void SAPLinkedListEnumeratorSetCurrentNode(SAPLinkedListEnumerator *enumerator, SAPLinkedListNode *node);
-
-static
-SAPLinkedListNode *SAPLinkedListEnumeratorCurrentNode(SAPLinkedListEnumerator *enumerator);
 
 static
 void SAPLinkedListEnumeratorSetMutationsCount(SAPLinkedListEnumerator *enumerator, uint64_t mutationsCount);

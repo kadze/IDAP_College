@@ -11,6 +11,7 @@
 
 #include <stdbool.h>
 #include "SAPObject.h"
+#include "SAPLinkedListNode.h"
 
 typedef struct SAPLinkedList SAPLinkedList;
 

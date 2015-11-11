@@ -32,7 +32,7 @@ extern
 void SAPLinkedListSetHead(SAPLinkedList *list, SAPLinkedListNode *head);
 
 extern
-SAPLinkedListNode *SAPLinkedListGetNodeWithContext(SAPLinkedList *list,
+SAPLinkedListNode *SAPLinkedListFindNodeWithContext(SAPLinkedList *list,
                                                    SAPLinkedListComparisonFunction comparator,
                                                    SAPLinkedListContext *context);
 

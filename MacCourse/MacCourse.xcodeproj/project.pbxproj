@@ -69,6 +69,7 @@
 		CAA77BE71BECE480009C004C /* SAPLinkedListNode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = SAPLinkedListNode.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
 		CAA77BE81BECE480009C004C /* SAPLinkedListNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SAPLinkedListNode.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		CAA77BEA1BED0C3B009C004C /* SAPLinkedListPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPLinkedListPrivate.h; sourceTree = "<group>"; };
+		CAA77BEB1BF24A40009C004C /* SAPLinkedListEnumeratorPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPLinkedListEnumeratorPrivate.h; sourceTree = "<group>"; };
 		CADDBAD31BD78BFD007924A9 /* SAPString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SAPString.c; sourceTree = "<group>"; };
 		CADDBAD41BD78BFD007924A9 /* SAPString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPString.h; sourceTree = "<group>"; };
 		EC5B71281BB1991600FB8D06 /* SAPFunctionCreationMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPFunctionCreationMacros.h; sourceTree = "<group>"; };
@@ -180,6 +181,7 @@
 			children = (
 				2E9CB6791BEFC8A200AF689D /* SAPLinkedListEnumerator.c */,
 				2E9CB67A1BEFC8A200AF689D /* SAPLinkedListEnumerator.h */,
+				CAA77BEB1BF24A40009C004C /* SAPLinkedListEnumeratorPrivate.h */,
 			);
 			path = SAPLinkedListEnumerator;
 			sourceTree = "<group>";
