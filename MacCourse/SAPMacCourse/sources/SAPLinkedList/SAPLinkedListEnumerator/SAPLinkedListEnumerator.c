@@ -60,7 +60,6 @@ SAPLinkedListEnumerator *SAPLinkedListEnumeratorCreateWithList(SAPLinkedList *li
     return enumerator;
 }
 
-///////!!!!!!!!!!!!!!!!!!!!
 void *SAPLinkedListEnumeratorNextObject(SAPLinkedListEnumerator *enumerator) {
     if (NULL == enumerator) {
         return NULL;

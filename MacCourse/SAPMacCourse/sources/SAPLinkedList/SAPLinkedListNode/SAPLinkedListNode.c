@@ -34,13 +34,7 @@ SAPLinkedListNode *SAPLinkedListNodeNextNode(SAPLinkedListNode *object) {
 }
 
 void SAPLinkedListNodeSetNextNode(SAPLinkedListNode *object, SAPLinkedListNode *nextNode) {
-//    SAPObjectRetainSetterSynthesize(object, nextNode);
-    if (NULL == object || nextNode == object->_nextNode) {
-        return;
-    }
-    SAPObjectRetain(object);
-    SAPObjectRelease(object->_nextNode);
-    object->_nextNode = nextNode;
+    SAPObjectRetainSetterSynthesize(object, nextNode);
 }
 
 void *SAPLinkedListNodeObject(SAPLinkedListNode *object) {

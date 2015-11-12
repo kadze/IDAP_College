@@ -19,6 +19,9 @@ static
 void SAPLinkedListOneObjectTest(void);
 
 static
+void SAPLinkedListPlentyOfObjectsTest(void);
+
+static
 void SAPLinkedListEnumeratorTest(void);
 
 #pragma mark -
@@ -27,6 +30,7 @@ void SAPLinkedListEnumeratorTest(void);
 void SAPPerformAllLinkedListBehaviorTests(void) {
     printf("===Perform SAPLinkedList tests ===\n");
     SAPLinkedListOneObjectTest();
+    SAPLinkedListPlentyOfObjectsTest();
     SAPLinkedListEnumeratorTest();
     printf("OK\n");
 }
@@ -62,12 +66,29 @@ void SAPLinkedListOneObjectTest(void) {
     //retain count must be one
     assert(1 == SAPObjectRetainCount(object));
     
+    SAPObjectRelease(object);
+    SAPObjectRelease(list);
+}
+
+void SAPLinkedListPlentyOfObjectsTest(void) {
+    //after list was creted
+    SAPLinkedList *list = SAPObjectCreateOfType(SAPLinkedList);
+    //list should be empty
+    assert(true == SAPLinkedListIsEmpty(list));
+    
+    //after object was created
+    void *object = SAPObjectCreateOfType(SAPObject);
+    //list must not contain object
+    assert(false == SAPLinkedListContainsObject(list, object));
+    //retain count must be one
+    assert(1 == SAPObjectRetainCount(object));
+    
     //after object was added 1000 times
-    for (uint64_t counter = 0; counter < 1000 ; counter++) {
+    for (uint64_t counter = 0; counter < 10 ; counter++) {
         SAPLinkedListAddObject(list, object);
     }
     //object reference count must be 1001
-    assert(1001 == SAPObjectRetainCount(object));
+    assert(11 == SAPObjectRetainCount(object));
     //list must not be empty
     assert(false == SAPLinkedListIsEmpty(list));
     //list must contain object
@@ -76,7 +97,7 @@ void SAPLinkedListOneObjectTest(void) {
     //after first object was removed from list
     SAPLinkedListRemoveFirstObject(list);
     //retain count must be 1000
-    assert(1000 == SAPObjectRetainCount(object));
+    assert(10 == SAPObjectRetainCount(object));
     
     //after object was removed from the list (all nodes with this object of object)
     SAPLinkedListRemoveObject(list, object);
@@ -86,7 +107,7 @@ void SAPLinkedListOneObjectTest(void) {
     assert(true == SAPLinkedListIsEmpty(list));
     //list must not contain object
     assert(false == SAPLinkedListContainsObject(list, object));
-    
+
     SAPObjectRelease(object);
     SAPObjectRelease(list);
 }
