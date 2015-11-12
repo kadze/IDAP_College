@@ -40,7 +40,7 @@ SAPAutoreleasingStack *SAPAutoreleasingStackCreateWithSize(size_t size) {
     assert(0 != size);
     SAPAutoreleasingStack *stack = SAPObjectCreateOfType(SAPAutoreleasingStack);
     SAPAutoreleasingStackSetSize(stack, size);
-    SAPAutoreleasingStackSetHead(stack, *SAPAutoreleasingStackData(stack));
+    SAPAutoreleasingStackSetHead(stack, SAPAutoreleasingStackData(stack));
     
     return stack;
 }
@@ -61,8 +61,8 @@ bool SAPAutoreleasingStackIsFull(SAPAutoreleasingStack *stack) {
     uint64_t count = SAPAutoreleasingStackSize(stack) / sizeof(*data);
     void *head = SAPAutoreleasingStackHead(stack);
     
-    return data[count - 1] <= head;
-//    return (*data - head) >= count);
+    return (void*)(&(data[count - 1])) <= head;
+//    return (data - (void **)head) >= count;
 }
 
 void SAPAutoreleasingStackPushObject(SAPAutoreleasingStack *stack, void *object) {
@@ -71,7 +71,8 @@ void SAPAutoreleasingStackPushObject(SAPAutoreleasingStack *stack, void *object)
     }
     
     assert(false == SAPAutoreleasingStackIsFull(stack));
-    void **head = SAPAutoreleasingStackHead(stack) + 1;
+    void **head = SAPAutoreleasingStackHead(stack);
+    head++;
     *head = object;
     SAPAutoreleasingStackSetHead(stack, head);
 }
@@ -87,7 +88,9 @@ SAPAutoreleasingStackPopType SAPAutoreleasingStackPopObject(SAPAutoreleasingStac
     head --;
     SAPAutoreleasingStackSetHead(stack, head);
     
-    return NULL != object ? kSAPAutoreleasingStackPopedObject : kSAPAutoreleasingStackPopedNULL;
+    SAPAutoreleasingStackPopType type = NULL != object ? kSAPAutoreleasingStackPopedObject : kSAPAutoreleasingStackPopedNULL;
+    SAPObjectRelease(object);
+    return type;
 }
 
 SAPAutoreleasingStackPopType SAPAutoreleasingStackPopObjectsUntilNULL(SAPAutoreleasingStack *stack) {
@@ -122,4 +125,25 @@ size_t SAPAutoreleasingStackSize(SAPAutoreleasingStack *stack) {
     return SAPObjectIVarGetterSynthesize(stack, _size, 0);
 }
 
-void SAPAutoreleasingStackSetSize(SAPAutoreleasingStack *stack, size_t size);
+void SAPAutoreleasingStackSetSize(SAPAutoreleasingStack *stack, size_t size) {
+    if (NULL == stack) {
+        return;
+    }
+    
+    size_t previousSize = stack->_size;
+    if (previousSize == size) {
+        return;
+    }
+    
+    if (0 != previousSize) {
+        free(stack->_data);
+        stack->_data = NULL;
+    }
+    
+    if (0 != size) {
+        stack->_data = calloc(size, sizeof(*stack->_data));
+        assert(NULL != stack->_data);
+    }
+    
+    SAPObjectIVarSetterSynthesize(stack, size);
+}
