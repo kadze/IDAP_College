@@ -14,13 +14,13 @@
 #pragma mark Class Methods
 
 +(SAPCreature *)creature {
-    SAPCreature *object = [SAPCreature new];
+    SAPCreature *object = [self new];
     
     return object;
 }
 
 +(SAPCreature *)creatureWithGender:(SAPGender)gender {
-    SAPCreature *object = [[SAPCreature alloc] init];
+    SAPCreature *object = [self creature];
     [object setGender:gender];
 
     return object;
