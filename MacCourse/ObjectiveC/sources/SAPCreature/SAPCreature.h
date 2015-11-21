@@ -8,41 +8,30 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum SAPGender : NSUInteger{
+typedef NS_ENUM (NSUInteger, SAPGender) {
     kSAPGenderMale,
     kSAPGenderFemale,
     kSAPGenderHermaphrodite
-}SAPGender;
+};
 
 @interface SAPCreature : NSObject
 
-@property SAPGender gender;
+@property (nonatomic, copy)             NSString       *name;
+@property (nonatomic, retain, readonly) NSSet          *children;
+@property (nonatomic, assign)           NSUInteger     *mass;
+@property (nonatomic, assign)           NSUInteger     *age;
+@property (nonatomic, assign)           SAPGender      gender;
 
-@property NSString *name;
++ (SAPCreature *)creature;
++ (SAPCreature *)creatureWithGender:(SAPGender)gender;
 
-@property NSNumber *mass;
+- (instancetype)initWithGender:(SAPGender)gender;
 
-@property NSNumber *age;
-
-@property NSSet *children;
-
-
-+(SAPCreature *)creature;
-
-+(SAPCreature *)creatureWithGender:(SAPGender)gender;
-
-
--(void)fight;
-
--(SAPCreature *)bornChildWithGender:(SAPGender)gender;
-
--(void)addChild:(SAPCreature *)child;
-
--(void)removeChild:(SAPCreature *)child;
-
--(void)sayHello;
-
--(void)sayHello:(SAPCreature *)creature;
+- (void)fight;
+- (SAPCreature *)bornChildWithGender:(SAPGender)gender;
+- (void)addChild:(SAPCreature *)child;
+- (void)removeChild:(SAPCreature *)child;
+- (void)sayHello;
 
 @end
 

@@ -10,12 +10,9 @@
 #import "SAPCreatureTests.h"
 
 int main(int argc, const char * argv[]) {
-//    @autoreleasepool {
-//        // insert code here...
-//        NSLog(@"Hello, World!");
-//    }
-    
-    [SAPCreatureTests performSAPCreatureTests];
+    @autoreleasepool {
+        [SAPCreatureTests performSAPCreatureTests];
+    }    
     
     return 0;
 }
