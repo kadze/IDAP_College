@@ -10,6 +10,7 @@
 #import "SAPCreature.h"
 #import "SAPMan.h"
 #import "SAPWoman.h"
+#import "SAPStringAdditions.h"
 
 @implementation SAPCreatureTests
 
@@ -77,5 +78,9 @@
     }
     
     NSLog(@"OK\n");
+    
+    NSString *start = @"lalalalalala";
+    NSMutableString *finish = [start sap_separateWithSpaces];
+    NSLog(@"%@",finish);
 }
 @end
