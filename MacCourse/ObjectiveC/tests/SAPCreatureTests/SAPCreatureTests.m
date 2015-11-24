@@ -8,6 +8,8 @@
 
 #import "SAPCreatureTests.h"
 #import "SAPCreature.h"
+#import "SAPMan.h"
+#import "SAPWoman.h"
 
 @implementation SAPCreatureTests
 
@@ -44,8 +46,8 @@
     
     SAPCreature *creature = [SAPCreature creatureWithGender:kSAPGenderMale];
     [creature setName:@"Bob"];
-    SAPCreature *child1 = [creature bornChildWithGender:kSAPGenderFemale];
-    SAPCreature *child2 = [creature bornChildWithGender:kSAPGenderFemale];
+    SAPCreature *child1 = [SAPCreature creatureWithGender:kSAPGenderFemale];
+    SAPCreature *child2 = [SAPCreature creatureWithGender:kSAPGenderFemale];
     [creature addChild:child1];
     [creature addChild:child2];
     assert(2 ==[[creature children] count]);
@@ -58,32 +60,19 @@
     
     SAPCreature *creature1 = [SAPCreature creatureWithGender:kSAPGenderMale];
     [creature1 setName:@"Bob"];
-    SAPCreature *child1 = [creature1 bornChildWithGender:kSAPGenderFemale];
-    SAPCreature *child2 = [creature1 bornChildWithGender:kSAPGenderFemale];
-    [creature1 addChild:child1];
-    [creature1 addChild:child2];
 
     SAPCreature *creature2 = [SAPCreature creatureWithGender:kSAPGenderMale];
     [creature2 setName:@"Frank"];
-    SAPCreature *child3 = [creature2 bornChildWithGender:kSAPGenderFemale];
-    SAPCreature *child4 = [creature2 bornChildWithGender:kSAPGenderFemale];
-    [creature2 addChild:child3];
-    [creature2 addChild:child4];
-
+    
     SAPCreature *creature3 = [SAPCreature creatureWithGender:kSAPGenderFemale];
     [creature3 setName:@"Lucy"];
-    SAPCreature *child5 = [creature3 bornChildWithGender:kSAPGenderFemale];
-    SAPCreature *child6 = [creature3 bornChildWithGender:kSAPGenderFemale];
-    [creature3 addChild:child5];
-    [creature3 addChild:child6];
     
     NSArray *creatures = @[creature1, creature2, creature3];
     for (SAPCreature *creature in creatures) {
-        if (kSAPGenderMale == [creature gender]) {
-            [creature fight];
-        } else if (kSAPGenderFemale == [creature gender]) {
-            SAPCreature *boy = [creature bornChildWithGender:kSAPGenderMale];
-            assert(NULL != boy);
+        NSUInteger initialChildrenCount = [[creature children] count];
+        [creature performGengerSpecificOperation];
+        if ([creature isMemberOfClass:[SAPWoman class]]) {
+            assert((initialChildrenCount + 1) ==[[creature children] count]);
         }
     }
     

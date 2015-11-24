@@ -15,7 +15,8 @@
 @end
 
 @implementation SAPCreature
-
+@class SAPMan;
+@class SAPWoman;
 @dynamic children;
 
 #pragma mark-
@@ -25,8 +26,20 @@
     return [[[self alloc] init] autorelease] ;
 }
 
-+ (SAPCreature *)creatureWithGender:(SAPGender)gender {
-    return [[[self alloc] initWithGender:gender] autorelease];
++ (id)creatureWithGender:(SAPGender)gender {
+    Class classForCreation = [SAPCreature classForGender:gender];
+    return [[[classForCreation alloc] initWithGender:gender] autorelease];
+}
+
++ (Class)classForGender:(SAPGender)gender {
+    Class result = Nil;
+    if (kSAPGenderMale == gender) {
+        result = [SAPMan class];
+    } else if (kSAPGenderFemale == gender) {
+        result = [SAPWoman class];
+    }
+    
+    return result;
 }
 
 #pragma mark -
@@ -50,9 +63,9 @@
 
 - (instancetype)initWithGender:(SAPGender)gender {
     self = [self init];
-    if (self) {
-        self.gender = gender;
-    }
+//    if (self) {
+//        self.gender = gender;
+//    }
     
     return self;
 }
@@ -71,9 +84,9 @@
     NSLog(@"Must die!!!!!");
 }
 
-- (SAPCreature *)bornChildWithGender:(SAPGender)gender {
-    return [SAPCreature creatureWithGender:gender];
-}
+//- (SAPCreature *)bornChildWithGender:(SAPGender)gender {
+//    return [SAPCreature creatureWithGender:gender];
+//}
 
 - (void)sayHello {
     NSLog(@"Hello, I'm %@", self.name);
@@ -90,6 +103,10 @@
          
 - (void)removeChild:(SAPCreature *)child {
     [self.mutableChildren removeObject:child];
+}
+
+- (void)performGengerSpecificOperation {
+    //overload in descendants
 }
          
 #pragma mark-

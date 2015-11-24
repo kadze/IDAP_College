@@ -20,15 +20,18 @@ typedef NS_ENUM (NSUInteger, SAPGender) {
 @property (nonatomic, retain, readonly) NSSet          *children;
 @property (nonatomic, assign)           NSUInteger     *mass;
 @property (nonatomic, assign)           NSUInteger     *age;
-@property (nonatomic, assign)           SAPGender      gender;
+//@property (nonatomic, assign)           SAPGender      gender;
 
 + (SAPCreature *)creature;
 + (SAPCreature *)creatureWithGender:(SAPGender)gender;
++ (Class)classForGender:(SAPGender)gender;
+
 
 - (instancetype)initWithGender:(SAPGender)gender;
 
-- (void)fight;
-- (SAPCreature *)bornChildWithGender:(SAPGender)gender;
+//- (void)fight;
+//- (SAPCreature *)bornChildWithGender:(SAPGender)gender;
+- (void)performGengerSpecificOperation;
 - (void)addChild:(SAPCreature *)child;
 - (void)removeChild:(SAPCreature *)child;
 - (void)sayHello;
