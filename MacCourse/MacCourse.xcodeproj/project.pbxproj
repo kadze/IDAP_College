@@ -17,17 +17,17 @@
 		2E9CB67B1BEFC8A200AF689D /* SAPLinkedListEnumerator.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E9CB6791BEFC8A200AF689D /* SAPLinkedListEnumerator.c */; };
 		9FE90DF31BDA95DB0062EF46 /* SAPArrayTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 9FE90DF11BDA95DB0062EF46 /* SAPArrayTest.c */; };
 		CA35AB6B1BD8D84400D558C6 /* SAPStringTest.c in Sources */ = {isa = PBXBuildFile; fileRef = CA35AB691BD8D84400D558C6 /* SAPStringTest.c */; };
-		CAA266991BF48E1000F4FF84 /* SAPAutoReleasingStack in Sources */ = {isa = PBXBuildFile; fileRef = CAA266971BF48E1000F4FF84 /* SAPAutoReleasingStack */; settings = {ASSET_TAGS = (); }; };
-		CAA2669E1BF49B0F00F4FF84 /* SAPAutoreleasingStack.c in Sources */ = {isa = PBXBuildFile; fileRef = CAA2669C1BF49B0F00F4FF84 /* SAPAutoreleasingStack.c */; settings = {ASSET_TAGS = (); }; };
-		CAA266A21BF4FD0600F4FF84 /* SAPAutoReleasingStackTests.c in Sources */ = {isa = PBXBuildFile; fileRef = CAA266A01BF4FD0600F4FF84 /* SAPAutoReleasingStackTests.c */; settings = {ASSET_TAGS = (); }; };
+		CAA266991BF48E1000F4FF84 /* SAPAutoReleasingStack in Sources */ = {isa = PBXBuildFile; fileRef = CAA266971BF48E1000F4FF84 /* SAPAutoReleasingStack */; };
+		CAA2669E1BF49B0F00F4FF84 /* SAPAutoreleasingStack.c in Sources */ = {isa = PBXBuildFile; fileRef = CAA2669C1BF49B0F00F4FF84 /* SAPAutoreleasingStack.c */; };
+		CAA266A21BF4FD0600F4FF84 /* SAPAutoReleasingStackTests.c in Sources */ = {isa = PBXBuildFile; fileRef = CAA266A01BF4FD0600F4FF84 /* SAPAutoReleasingStackTests.c */; };
 		CAA77BE61BECE468009C004C /* SAPLinkedList.c in Sources */ = {isa = PBXBuildFile; fileRef = CAA77BE41BECE468009C004C /* SAPLinkedList.c */; };
 		CAA77BE91BECE480009C004C /* SAPLinkedListNode.c in Sources */ = {isa = PBXBuildFile; fileRef = CAA77BE71BECE480009C004C /* SAPLinkedListNode.c */; };
 		CAD0E77D1BFCB72900B5DCA9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD0E77C1BFCB72900B5DCA9 /* main.m */; };
-		CAD0E7871BFCC4CB00B5DCA9 /* SAPCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD0E7861BFCC4CB00B5DCA9 /* SAPCreature.m */; settings = {ASSET_TAGS = (); }; };
-		CAD0E78A1BFDC77400B5DCA9 /* SAPCreatureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD0E7891BFDC77400B5DCA9 /* SAPCreatureTests.m */; settings = {ASSET_TAGS = (); }; };
-		CAD9F3D71BFE27B900F80248 /* SAPMan.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F3D61BFE27B900F80248 /* SAPMan.m */; settings = {ASSET_TAGS = (); }; };
-		CAD9F3DA1BFE27CB00F80248 /* SAPWoman.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F3D91BFE27CB00F80248 /* SAPWoman.m */; settings = {ASSET_TAGS = (); }; };
-		CAD9F3E41C04B4F400F80248 /* SAPStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F3E31C04B4F400F80248 /* SAPStringAdditions.m */; settings = {ASSET_TAGS = (); }; };
+		CAD0E7871BFCC4CB00B5DCA9 /* SAPCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD0E7861BFCC4CB00B5DCA9 /* SAPCreature.m */; };
+		CAD0E78A1BFDC77400B5DCA9 /* SAPCreatureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD0E7891BFDC77400B5DCA9 /* SAPCreatureTests.m */; };
+		CAD9F3D71BFE27B900F80248 /* SAPMan.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F3D61BFE27B900F80248 /* SAPMan.m */; };
+		CAD9F3DA1BFE27CB00F80248 /* SAPWoman.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F3D91BFE27CB00F80248 /* SAPWoman.m */; };
+		CAD9F3E41C04B4F400F80248 /* SAPStringExtentions.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F3E31C04B4F400F80248 /* SAPStringExtentions.m */; };
 		CADDBAD51BD78BFD007924A9 /* SAPString.c in Sources */ = {isa = PBXBuildFile; fileRef = CADDBAD31BD78BFD007924A9 /* SAPString.c */; };
 		EC5B712E1BB19E9A00FB8D06 /* SAPRunFunctionCreateMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = EC5B712C1BB19E7D00FB8D06 /* SAPRunFunctionCreateMacros.c */; };
 		EC5B71361BB3EE1700FB8D06 /* SAPStructuresTest.c in Sources */ = {isa = PBXBuildFile; fileRef = EC5B71341BB3EE1700FB8D06 /* SAPStructuresTest.c */; };
@@ -103,8 +103,8 @@
 		CAD9F3D61BFE27B900F80248 /* SAPMan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPMan.m; sourceTree = "<group>"; };
 		CAD9F3D81BFE27CB00F80248 /* SAPWoman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPWoman.h; sourceTree = "<group>"; };
 		CAD9F3D91BFE27CB00F80248 /* SAPWoman.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPWoman.m; sourceTree = "<group>"; };
-		CAD9F3E21C04B4F400F80248 /* SAPStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPStringAdditions.h; sourceTree = "<group>"; };
-		CAD9F3E31C04B4F400F80248 /* SAPStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPStringAdditions.m; sourceTree = "<group>"; };
+		CAD9F3E21C04B4F400F80248 /* SAPStringExtentions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPStringExtentions.h; sourceTree = "<group>"; };
+		CAD9F3E31C04B4F400F80248 /* SAPStringExtentions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPStringExtentions.m; sourceTree = "<group>"; };
 		CADDBAD31BD78BFD007924A9 /* SAPString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SAPString.c; sourceTree = "<group>"; };
 		CADDBAD41BD78BFD007924A9 /* SAPString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPString.h; sourceTree = "<group>"; };
 		EC5B71281BB1991600FB8D06 /* SAPFunctionCreationMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPFunctionCreationMacros.h; sourceTree = "<group>"; };
@@ -300,7 +300,7 @@
 				CAD0E7821BFCC3E400B5DCA9 /* SAPCreature */,
 				CAD9F3D31BFE277100F80248 /* SAPMan */,
 				CAD9F3D41BFE278500F80248 /* SAPWoman */,
-				CAD9F3DE1C04B43800F80248 /* SAPStringAdditions */,
+				CAD9F3DE1C04B43800F80248 /* SAPStringExtentions */,
 			);
 			path = sources;
 			sourceTree = "<group>";
@@ -349,13 +349,13 @@
 			path = SAPWoman;
 			sourceTree = "<group>";
 		};
-		CAD9F3DE1C04B43800F80248 /* SAPStringAdditions */ = {
+		CAD9F3DE1C04B43800F80248 /* SAPStringExtentions */ = {
 			isa = PBXGroup;
 			children = (
-				CAD9F3E21C04B4F400F80248 /* SAPStringAdditions.h */,
-				CAD9F3E31C04B4F400F80248 /* SAPStringAdditions.m */,
+				CAD9F3E21C04B4F400F80248 /* SAPStringExtentions.h */,
+				CAD9F3E31C04B4F400F80248 /* SAPStringExtentions.m */,
 			);
-			path = SAPStringAdditions;
+			path = SAPStringExtentions;
 			sourceTree = "<group>";
 		};
 		CADDBAD21BD78B9E007924A9 /* SAPString */ = {
@@ -561,7 +561,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAD0E77D1BFCB72900B5DCA9 /* main.m in Sources */,
-				CAD9F3E41C04B4F400F80248 /* SAPStringAdditions.m in Sources */,
+				CAD9F3E41C04B4F400F80248 /* SAPStringExtentions.m in Sources */,
 				CAD0E78A1BFDC77400B5DCA9 /* SAPCreatureTests.m in Sources */,
 				CAD0E7871BFCC4CB00B5DCA9 /* SAPCreature.m in Sources */,
 				CAD9F3DA1BFE27CB00F80248 /* SAPWoman.m in Sources */,

@@ -22,11 +22,7 @@
 #pragma mark-
 #pragma mark Class Methods
 
-+ (SAPCreature *)creature {
-    return [[[self alloc] init] autorelease] ;
-}
-
-+ (id)creatureWithGender:(SAPGender)gender {
++ (instancetype)creatureWithGender:(SAPGender)gender {
     Class classForCreation = [SAPCreature classForGender:gender];
     return [[[classForCreation alloc] initWithGender:gender] autorelease];
 }
@@ -63,9 +59,6 @@
 
 - (instancetype)initWithGender:(SAPGender)gender {
     self = [self init];
-//    if (self) {
-//        self.gender = gender;
-//    }
     
     return self;
 }
@@ -84,10 +77,6 @@
     NSLog(@"Must die!!!!!");
 }
 
-//- (SAPCreature *)bornChildWithGender:(SAPGender)gender {
-//    return [SAPCreature creatureWithGender:gender];
-//}
-
 - (void)sayHello {
     NSLog(@"Hello, I'm %@", self.name);
     for (SAPCreature *child in self.mutableChildren) {
@@ -105,8 +94,9 @@
     [self.mutableChildren removeObject:child];
 }
 
-- (void)performGengerSpecificOperation {
+- (id)performGengerSpecificOperation {
     //overload in descendants
+    return nil;
 }
          
 #pragma mark-

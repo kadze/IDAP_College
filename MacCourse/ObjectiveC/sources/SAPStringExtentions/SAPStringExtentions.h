@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSString (SAPStringAdditions)
+@interface NSString (SAPStringExtentions)
 
-- (NSMutableString *)sap_separateWithSpaces;
+- (NSString *)sap_separateWithSpaces;
 
 @end

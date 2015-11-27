@@ -10,10 +10,13 @@
 
 @implementation SAPWoman
 
-- (void)performGengerSpecificOperation {
+- (SAPCreature *)performGengerSpecificOperation {
+    //every even child is a boy, every odd is a girl
     SAPGender genderForChild = ([self.children count] % 2 == 0) ? kSAPGenderMale : kSAPGenderFemale;
     SAPCreature *child = [[SAPCreature creatureWithGender:genderForChild] autorelease];
     [self addChild:child];
+    
+    return child;
 }
 
 @end

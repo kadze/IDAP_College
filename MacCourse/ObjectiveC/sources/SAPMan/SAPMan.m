@@ -13,8 +13,10 @@
 #pragma mark-
 #pragma mark Public Methods
 
-- (void)performGengerSpecificOperation {
+- (id)performGengerSpecificOperation {
     NSLog(@"Must die!!!!!");
+    
+    return nil;
 }
 
 @end
