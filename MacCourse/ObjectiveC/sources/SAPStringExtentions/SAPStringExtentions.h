@@ -12,4 +12,6 @@
 
 - (NSString *)sap_separateWithSpaces;
 
+- (NSString *)sap_generateRandomStringWithAlphabet:(NSString *)alphabet size:(int) size;
+
 @end

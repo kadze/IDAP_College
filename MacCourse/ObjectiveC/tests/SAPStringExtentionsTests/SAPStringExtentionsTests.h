@@ -10,4 +10,6 @@
 
 @interface SAPStringExtentionsTests : NSObject
 
++ (void)performSAPStringExtentionsTests;
+
 @end

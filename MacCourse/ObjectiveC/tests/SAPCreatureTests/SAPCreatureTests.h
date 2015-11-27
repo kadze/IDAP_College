@@ -12,6 +12,4 @@
 
 +(void)performSAPCreatureTests;
 
-+(void)performSAPCreatureHalloTest;
-
 @end

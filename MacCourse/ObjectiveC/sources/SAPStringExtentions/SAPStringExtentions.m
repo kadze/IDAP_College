@@ -30,7 +30,7 @@
         [mutableResult appendString:tempString];
     }
     
-    NSString *result = [[mutableResult copy] autorelease];
+    NSString *result = [mutableResult copy];
     
     return result;
 }

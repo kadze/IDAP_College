@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "SAPCreatureTests.h"
+#import "SAPStringExtentionsTests.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         [SAPCreatureTests performSAPCreatureTests];
+        [SAPStringExtentionsTests performSAPStringExtentionsTests];
     }    
     
     return 0;

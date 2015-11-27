@@ -7,7 +7,18 @@
 //
 
 #import "SAPStringExtentionsTests.h"
+#import "SAPStringExtentions.h"
 
 @implementation SAPStringExtentionsTests
+
++ (void)performSAPStringExtentionsTests {
+    [SAPStringExtentionsTests performSap_separateWithSpaces];
+}
+
++ (void)performSap_separateWithSpaces {
+    NSString *start = @"lalalalalala";
+    NSString *finish = [start sap_separateWithSpaces];
+    NSAssert([finish isEqualToString:@"l a l a l a l a l a l a"], @"result of separation with spaces isn't right");
+}
 
 @end

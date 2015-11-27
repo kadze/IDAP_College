@@ -10,17 +10,16 @@
 #import "SAPCreature.h"
 #import "SAPMan.h"
 #import "SAPWoman.h"
-#import "SAPStringAdditions.h"
 
 @implementation SAPCreatureTests
 
-+(void)performSAPCreatureTests {
++ (void)performSAPCreatureTests {
     [SAPCreatureTests performSAPCreatureHalloTest];
     [SAPCreatureTests performSAPAddChildTest];
     [SAPCreatureTests performTestByTechAssignment];
 }
 
-+(void)performSAPCreatureHalloTest {
++ (void)performSAPCreatureHalloTest {
     NSLog(@"Performing %@ test", NSStringFromSelector(_cmd));
     
     SAPCreature *creature = [SAPCreature creatureWithGender:kSAPGenderMale];
@@ -42,7 +41,7 @@
     NSLog(@"OK");
 }
 
-+(void)performSAPAddChildTest {
++ (void)performSAPAddChildTest {
     NSLog(@"Performing %@ test\n", NSStringFromSelector(_cmd));
     
     SAPCreature *creature = [SAPCreature creatureWithGender:kSAPGenderMale];
@@ -56,7 +55,7 @@
     NSLog(@"OK\n");
 }
 
-+(void)performTestByTechAssignment {
++ (void)performTestByTechAssignment {
     NSLog(@"Performing %@ test\n", NSStringFromSelector(_cmd));
     
     SAPCreature *creature1 = [SAPCreature creatureWithGender:kSAPGenderMale];
@@ -78,9 +77,5 @@
     }
     
     NSLog(@"OK\n");
-    
-    NSString *start = @"lalalalalala";
-    NSMutableString *finish = [start sap_separateWithSpaces];
-    NSLog(@"%@",finish);
 }
 @end
