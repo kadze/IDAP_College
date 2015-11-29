@@ -35,4 +35,8 @@
     return result;
 }
 
+- (NSString *)sap_generateRandomStringWithAlphabet:(NSString *)alphabet size:(int) size {
+    return nil;
+}
+
 @end

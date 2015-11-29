@@ -15,6 +15,12 @@
 		2E9CB6731BDC068C00AF689D /* SAPDynamicArrayTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E9CB6711BDC068C00AF689D /* SAPDynamicArrayTest.c */; };
 		2E9CB6771BDC586E00AF689D /* SAPLinkedListTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E9CB6751BDC586E00AF689D /* SAPLinkedListTest.c */; };
 		2E9CB67B1BEFC8A200AF689D /* SAPLinkedListEnumerator.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E9CB6791BEFC8A200AF689D /* SAPLinkedListEnumerator.c */; };
+		2E9F65131C010554008A6F62 /* ObjectiveCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F65121C010554008A6F62 /* ObjectiveCTests.m */; };
+		2EC1A62B1C0A522900AAD97C /* SAPKiwiTestExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC1A62A1C0A522900AAD97C /* SAPKiwiTestExample.m */; };
+		2EC1A62D1C0A582400AAD97C /* SAPKiwiStringExtentionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC1A62C1C0A582400AAD97C /* SAPKiwiStringExtentionsTests.m */; };
+		2EC1A62F1C0B36DF00AAD97C /* SAPStringExtentionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC1A62E1C0B36DF00AAD97C /* SAPStringExtentionsTests.m */; };
+		2EC1A6311C0B474600AAD97C /* SAPStringExtentions.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F3E31C04B4F400F80248 /* SAPStringExtentions.m */; };
+		460E7CE60CFAA1FB4C5A8E55 /* libPods-ObjectiveCTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB17265DBEFB75E41B0B824D /* libPods-ObjectiveCTests.a */; };
 		9F3F6D4F1C08CA670051F3C6 /* SAPStringExtentionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F6D4E1C08CA670051F3C6 /* SAPStringExtentionsTests.m */; };
 		9FE90DF31BDA95DB0062EF46 /* SAPArrayTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 9FE90DF11BDA95DB0062EF46 /* SAPArrayTest.c */; };
 		CA35AB6B1BD8D84400D558C6 /* SAPStringTest.c in Sources */ = {isa = PBXBuildFile; fileRef = CA35AB691BD8D84400D558C6 /* SAPStringTest.c */; };
@@ -79,10 +85,19 @@
 		2E9CB6761BDC586E00AF689D /* SAPLinkedListTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPLinkedListTest.h; sourceTree = "<group>"; };
 		2E9CB6791BEFC8A200AF689D /* SAPLinkedListEnumerator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SAPLinkedListEnumerator.c; sourceTree = "<group>"; };
 		2E9CB67A1BEFC8A200AF689D /* SAPLinkedListEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPLinkedListEnumerator.h; sourceTree = "<group>"; };
+		2E9F650E1C010553008A6F62 /* ObjectiveCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjectiveCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E9F65111C010554008A6F62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E9F65121C010554008A6F62 /* ObjectiveCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCTests.m; sourceTree = "<group>"; };
+		2EC1A62A1C0A522900AAD97C /* SAPKiwiTestExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPKiwiTestExample.m; sourceTree = "<group>"; };
+		2EC1A62C1C0A582400AAD97C /* SAPKiwiStringExtentionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPKiwiStringExtentionsTests.m; sourceTree = "<group>"; };
+		2EC1A62E1C0B36DF00AAD97C /* SAPStringExtentionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPStringExtentionsTests.m; sourceTree = "<group>"; };
+		4BAE36DFC0D1E388370CD0C8 /* Pods-ObjectiveCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObjectiveCTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ObjectiveCTests/Pods-ObjectiveCTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9F3F6D4D1C08CA670051F3C6 /* SAPStringExtentionsTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPStringExtentionsTests.h; sourceTree = "<group>"; };
 		9F3F6D4E1C08CA670051F3C6 /* SAPStringExtentionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPStringExtentionsTests.m; sourceTree = "<group>"; };
 		9FE90DF11BDA95DB0062EF46 /* SAPArrayTest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SAPArrayTest.c; sourceTree = "<group>"; };
 		9FE90DF21BDA95DB0062EF46 /* SAPArrayTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPArrayTest.h; sourceTree = "<group>"; };
+		BA34D1535D964D52C8439061 /* Pods-ObjectiveCTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObjectiveCTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ObjectiveCTests/Pods-ObjectiveCTests.release.xcconfig"; sourceTree = "<group>"; };
+		BB17265DBEFB75E41B0B824D /* libPods-ObjectiveCTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ObjectiveCTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA35AB691BD8D84400D558C6 /* SAPStringTest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SAPStringTest.c; sourceTree = "<group>"; };
 		CA35AB6A1BD8D84400D558C6 /* SAPStringTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPStringTest.h; sourceTree = "<group>"; };
 		CAA266971BF48E1000F4FF84 /* SAPAutoReleasingStack */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = SAPAutoReleasingStack; path = /Users/yosemiteretail/IDAP_CollegeRepo/MacCourse/SAPMacCourse/tests/SAPAutoReleasingStack; sourceTree = "<absolute>"; };
@@ -131,6 +146,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2E9F650B1C010553008A6F62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				460E7CE60CFAA1FB4C5A8E55 /* libPods-ObjectiveCTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CAD0E7771BFCB72900B5DCA9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -229,6 +252,34 @@
 				CAA77BEB1BF24A40009C004C /* SAPLinkedListEnumeratorPrivate.h */,
 			);
 			path = SAPLinkedListEnumerator;
+			sourceTree = "<group>";
+		};
+		2E9F650F1C010554008A6F62 /* ObjectiveCTests */ = {
+			isa = PBXGroup;
+			children = (
+				2E9F65121C010554008A6F62 /* ObjectiveCTests.m */,
+				2E9F65101C010554008A6F62 /* Supporting Files */,
+				2EC1A62A1C0A522900AAD97C /* SAPKiwiTestExample.m */,
+				2EC1A62C1C0A582400AAD97C /* SAPKiwiStringExtentionsTests.m */,
+				2EC1A62E1C0B36DF00AAD97C /* SAPStringExtentionsTests.m */,
+			);
+			path = ObjectiveCTests;
+			sourceTree = "<group>";
+		};
+		2E9F65101C010554008A6F62 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2E9F65111C010554008A6F62 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		81AB617D3C6AE3C16697C917 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BB17265DBEFB75E41B0B824D /* libPods-ObjectiveCTests.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		9F3F6D4C1C08CA340051F3C6 /* SAPStringExtentionsTests */ = {
@@ -380,6 +431,15 @@
 			path = SAPString;
 			sourceTree = "<group>";
 		};
+		E7DDE7C0782CDF9836CFB5C2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4BAE36DFC0D1E388370CD0C8 /* Pods-ObjectiveCTests.debug.xcconfig */,
+				BA34D1535D964D52C8439061 /* Pods-ObjectiveCTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		EC5B71261BB198DC00FB8D06 /* SAPL02FunctionCreationMacros */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,6 +484,9 @@
 				ECCFECEB1BAAAC5A00E19EBF /* sources */,
 				ECCFECEC1BAAACAE00E19EBF /* tests */,
 				CAD0E77B1BFCB72900B5DCA9 /* ObjectiveC */,
+				2E9F650F1C010554008A6F62 /* ObjectiveCTests */,
+				E7DDE7C0782CDF9836CFB5C2 /* Pods */,
+				81AB617D3C6AE3C16697C917 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -432,6 +495,7 @@
 			children = (
 				EC96D86C1BA83CD1008C8F6F /* MacCourse */,
 				CAD0E77A1BFCB72900B5DCA9 /* ObjectiveC */,
+				2E9F650E1C010553008A6F62 /* ObjectiveCTests.xctest */,
 			);
 			name = Products;
 			path = ../..;
@@ -499,6 +563,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2E9F650D1C010553008A6F62 /* ObjectiveCTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E9F65161C010554008A6F62 /* Build configuration list for PBXNativeTarget "ObjectiveCTests" */;
+			buildPhases = (
+				AFABF7E6B2E055A2626A0A15 /* Check Pods Manifest.lock */,
+				2E9F650A1C010553008A6F62 /* Sources */,
+				2E9F650B1C010553008A6F62 /* Frameworks */,
+				2E9F650C1C010553008A6F62 /* Resources */,
+				8D685B23950F0098FB31E161 /* Embed Pods Frameworks */,
+				325F3F2C9E2D1948A468FF1C /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ObjectiveCTests;
+			productName = ObjectiveCTests;
+			productReference = 2E9F650E1C010553008A6F62 /* ObjectiveCTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		CAD0E7791BFCB72900B5DCA9 /* ObjectiveC */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CAD0E7801BFCB72900B5DCA9 /* Build configuration list for PBXNativeTarget "ObjectiveC" */;
@@ -542,6 +626,9 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Yosemite Retail";
 				TargetAttributes = {
+					2E9F650D1C010553008A6F62 = {
+						CreatedOnToolsVersion = 6.4;
+					};
 					CAD0E7791BFCB72900B5DCA9 = {
 						CreatedOnToolsVersion = 7.0;
 					};
@@ -564,11 +651,82 @@
 			targets = (
 				EC96D86B1BA83CD1008C8F6F /* MacCourse */,
 				CAD0E7791BFCB72900B5DCA9 /* ObjectiveC */,
+				2E9F650D1C010553008A6F62 /* ObjectiveCTests */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		2E9F650C1C010553008A6F62 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		325F3F2C9E2D1948A468FF1C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ObjectiveCTests/Pods-ObjectiveCTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D685B23950F0098FB31E161 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ObjectiveCTests/Pods-ObjectiveCTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AFABF7E6B2E055A2626A0A15 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		2E9F650A1C010553008A6F62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2EC1A6311C0B474600AAD97C /* SAPStringExtentions.m in Sources */,
+				2EC1A62F1C0B36DF00AAD97C /* SAPStringExtentionsTests.m in Sources */,
+				2E9F65131C010554008A6F62 /* ObjectiveCTests.m in Sources */,
+				2EC1A62B1C0A522900AAD97C /* SAPKiwiTestExample.m in Sources */,
+				2EC1A62D1C0A582400AAD97C /* SAPKiwiStringExtentionsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CAD0E7761BFCB72900B5DCA9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -617,6 +775,40 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		2E9F65141C010554008A6F62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4BAE36DFC0D1E388370CD0C8 /* Pods-ObjectiveCTests.debug.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ObjectiveCTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2E9F65151C010554008A6F62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA34D1535D964D52C8439061 /* Pods-ObjectiveCTests.release.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ObjectiveCTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		CAD0E77E1BFCB72900B5DCA9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -728,6 +920,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2E9F65161C010554008A6F62 /* Build configuration list for PBXNativeTarget "ObjectiveCTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E9F65141C010554008A6F62 /* Debug */,
+				2E9F65151C010554008A6F62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CAD0E7801BFCB72900B5DCA9 /* Build configuration list for PBXNativeTarget "ObjectiveC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
