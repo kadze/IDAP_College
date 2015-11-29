@@ -10,6 +10,16 @@
 
 @implementation NSString (SAPStringExtentions)
 
++ (NSString *)sap_generateRandomStringWithAlphabet:(NSString *)alphabet size:(NSUInteger) size {
+    int alphabetLength = (int)alphabet.length;
+    unichar unichars[size];
+    for (uint index = 0; index < size; index++) {
+        unichars[index] = [alphabet characterAtIndex:arc4random_uniform(alphabetLength)];
+    }
+    
+    return [NSString stringWithCharacters:unichars length:size];
+}
+
 - (NSString *)sap_separateWithSpaces {
     //the final capacity must be twice larger than initial capacity because of adding the same amount of spaces
     int capacityMultiplicator = 2;
@@ -35,8 +45,8 @@
     return result;
 }
 
-- (NSString *)sap_generateRandomStringWithAlphabet:(NSString *)alphabet size:(int) size {
-    return nil;
+- (NSString *)sap_generateRandomStringOfSize:(NSUInteger) size {
+    return [NSString sap_generateRandomStringWithAlphabet:self size:size];
 }
 
 @end
