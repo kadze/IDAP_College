@@ -15,11 +15,8 @@
 		2E9CB6731BDC068C00AF689D /* SAPDynamicArrayTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E9CB6711BDC068C00AF689D /* SAPDynamicArrayTest.c */; };
 		2E9CB6771BDC586E00AF689D /* SAPLinkedListTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E9CB6751BDC586E00AF689D /* SAPLinkedListTest.c */; };
 		2E9CB67B1BEFC8A200AF689D /* SAPLinkedListEnumerator.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E9CB6791BEFC8A200AF689D /* SAPLinkedListEnumerator.c */; };
-		2E9F65131C010554008A6F62 /* ObjectiveCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F65121C010554008A6F62 /* ObjectiveCTests.m */; };
-		2EC1A62B1C0A522900AAD97C /* SAPKiwiTestExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC1A62A1C0A522900AAD97C /* SAPKiwiTestExample.m */; };
-		2EC1A62D1C0A582400AAD97C /* SAPKiwiStringExtentionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC1A62C1C0A582400AAD97C /* SAPKiwiStringExtentionsTests.m */; };
-		2EC1A62F1C0B36DF00AAD97C /* SAPStringExtentionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC1A62E1C0B36DF00AAD97C /* SAPStringExtentionsTests.m */; };
-		2EC1A6311C0B474600AAD97C /* SAPStringExtentions.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F3E31C04B4F400F80248 /* SAPStringExtentions.m */; };
+		2EC1A62F1C0B36DF00AAD97C /* SAPStringExtentionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC1A62E1C0B36DF00AAD97C /* SAPStringExtentionsTests.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2EC1A6311C0B474600AAD97C /* SAPStringExtentions.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F3E31C04B4F400F80248 /* SAPStringExtentions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		460E7CE60CFAA1FB4C5A8E55 /* libPods-ObjectiveCTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB17265DBEFB75E41B0B824D /* libPods-ObjectiveCTests.a */; };
 		9F3F6D4F1C08CA670051F3C6 /* SAPStringExtentionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F6D4E1C08CA670051F3C6 /* SAPStringExtentionsTests.m */; };
 		9FE90DF31BDA95DB0062EF46 /* SAPArrayTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 9FE90DF11BDA95DB0062EF46 /* SAPArrayTest.c */; };
@@ -32,6 +29,11 @@
 		CAD0E77D1BFCB72900B5DCA9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD0E77C1BFCB72900B5DCA9 /* main.m */; };
 		CAD0E7871BFCC4CB00B5DCA9 /* SAPCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD0E7861BFCC4CB00B5DCA9 /* SAPCreature.m */; };
 		CAD0E78A1BFDC77400B5DCA9 /* SAPCreatureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD0E7891BFDC77400B5DCA9 /* SAPCreatureTests.m */; };
+		CAD184231C08B53F00A97F55 /* SAPEnumeratedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD184221C08B53F00A97F55 /* SAPEnumeratedString.m */; settings = {ASSET_TAGS = (); }; };
+		CAD184241C08B53F00A97F55 /* SAPEnumeratedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD184221C08B53F00A97F55 /* SAPEnumeratedString.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CAD184281C0C43EE00A97F55 /* SAPKiwiStringExtentionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD184261C0C43EE00A97F55 /* SAPKiwiStringExtentionsTests.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CAD184291C0C43EE00A97F55 /* SAPKiwiTestExample.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD184271C0C43EE00A97F55 /* SAPKiwiTestExample.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CAD1842B1C0C442800A97F55 /* SAPEnumeratedStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD1842A1C0C442800A97F55 /* SAPEnumeratedStringTests.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CAD9F3D71BFE27B900F80248 /* SAPMan.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F3D61BFE27B900F80248 /* SAPMan.m */; };
 		CAD9F3DA1BFE27CB00F80248 /* SAPWoman.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F3D91BFE27CB00F80248 /* SAPWoman.m */; };
 		CAD9F3E41C04B4F400F80248 /* SAPStringExtentions.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F3E31C04B4F400F80248 /* SAPStringExtentions.m */; };
@@ -87,9 +89,6 @@
 		2E9CB67A1BEFC8A200AF689D /* SAPLinkedListEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPLinkedListEnumerator.h; sourceTree = "<group>"; };
 		2E9F650E1C010553008A6F62 /* ObjectiveCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjectiveCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E9F65111C010554008A6F62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2E9F65121C010554008A6F62 /* ObjectiveCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCTests.m; sourceTree = "<group>"; };
-		2EC1A62A1C0A522900AAD97C /* SAPKiwiTestExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPKiwiTestExample.m; sourceTree = "<group>"; };
-		2EC1A62C1C0A582400AAD97C /* SAPKiwiStringExtentionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPKiwiStringExtentionsTests.m; sourceTree = "<group>"; };
 		2EC1A62E1C0B36DF00AAD97C /* SAPStringExtentionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPStringExtentionsTests.m; sourceTree = "<group>"; };
 		4BAE36DFC0D1E388370CD0C8 /* Pods-ObjectiveCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObjectiveCTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ObjectiveCTests/Pods-ObjectiveCTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9F3F6D4D1C08CA670051F3C6 /* SAPStringExtentionsTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPStringExtentionsTests.h; sourceTree = "<group>"; };
@@ -117,6 +116,11 @@
 		CAD0E7861BFCC4CB00B5DCA9 /* SAPCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPCreature.m; sourceTree = "<group>"; };
 		CAD0E7881BFDC77400B5DCA9 /* SAPCreatureTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPCreatureTests.h; sourceTree = "<group>"; };
 		CAD0E7891BFDC77400B5DCA9 /* SAPCreatureTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPCreatureTests.m; sourceTree = "<group>"; };
+		CAD184211C08B53F00A97F55 /* SAPEnumeratedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPEnumeratedString.h; sourceTree = "<group>"; };
+		CAD184221C08B53F00A97F55 /* SAPEnumeratedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPEnumeratedString.m; sourceTree = "<group>"; };
+		CAD184261C0C43EE00A97F55 /* SAPKiwiStringExtentionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPKiwiStringExtentionsTests.m; sourceTree = "<group>"; };
+		CAD184271C0C43EE00A97F55 /* SAPKiwiTestExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPKiwiTestExample.m; sourceTree = "<group>"; };
+		CAD1842A1C0C442800A97F55 /* SAPEnumeratedStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPEnumeratedStringTests.m; sourceTree = "<group>"; };
 		CAD9F3D51BFE27B900F80248 /* SAPMan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPMan.h; sourceTree = "<group>"; };
 		CAD9F3D61BFE27B900F80248 /* SAPMan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPMan.m; sourceTree = "<group>"; };
 		CAD9F3D81BFE27CB00F80248 /* SAPWoman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPWoman.h; sourceTree = "<group>"; };
@@ -257,10 +261,8 @@
 		2E9F650F1C010554008A6F62 /* ObjectiveCTests */ = {
 			isa = PBXGroup;
 			children = (
-				2E9F65121C010554008A6F62 /* ObjectiveCTests.m */,
+				CAD184251C0C43EE00A97F55 /* KiwiTests */,
 				2E9F65101C010554008A6F62 /* Supporting Files */,
-				2EC1A62A1C0A522900AAD97C /* SAPKiwiTestExample.m */,
-				2EC1A62C1C0A582400AAD97C /* SAPKiwiStringExtentionsTests.m */,
 				2EC1A62E1C0B36DF00AAD97C /* SAPStringExtentionsTests.m */,
 			);
 			path = ObjectiveCTests;
@@ -364,6 +366,7 @@
 				CAD9F3D31BFE277100F80248 /* SAPMan */,
 				CAD9F3D41BFE278500F80248 /* SAPWoman */,
 				CAD9F3DE1C04B43800F80248 /* SAPStringExtentions */,
+				CAD184201C08B51200A97F55 /* SAPEnumeratedString */,
 			);
 			path = sources;
 			sourceTree = "<group>";
@@ -393,6 +396,25 @@
 				CAD0E7891BFDC77400B5DCA9 /* SAPCreatureTests.m */,
 			);
 			path = SAPCreatureTests;
+			sourceTree = "<group>";
+		};
+		CAD184201C08B51200A97F55 /* SAPEnumeratedString */ = {
+			isa = PBXGroup;
+			children = (
+				CAD184211C08B53F00A97F55 /* SAPEnumeratedString.h */,
+				CAD184221C08B53F00A97F55 /* SAPEnumeratedString.m */,
+			);
+			path = SAPEnumeratedString;
+			sourceTree = "<group>";
+		};
+		CAD184251C0C43EE00A97F55 /* KiwiTests */ = {
+			isa = PBXGroup;
+			children = (
+				CAD184271C0C43EE00A97F55 /* SAPKiwiTestExample.m */,
+				CAD184261C0C43EE00A97F55 /* SAPKiwiStringExtentionsTests.m */,
+				CAD1842A1C0C442800A97F55 /* SAPEnumeratedStringTests.m */,
+			);
+			path = KiwiTests;
 			sourceTree = "<group>";
 		};
 		CAD9F3D31BFE277100F80248 /* SAPMan */ = {
@@ -719,11 +741,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAD184281C0C43EE00A97F55 /* SAPKiwiStringExtentionsTests.m in Sources */,
+				CAD184241C08B53F00A97F55 /* SAPEnumeratedString.m in Sources */,
 				2EC1A6311C0B474600AAD97C /* SAPStringExtentions.m in Sources */,
+				CAD1842B1C0C442800A97F55 /* SAPEnumeratedStringTests.m in Sources */,
 				2EC1A62F1C0B36DF00AAD97C /* SAPStringExtentionsTests.m in Sources */,
-				2E9F65131C010554008A6F62 /* ObjectiveCTests.m in Sources */,
-				2EC1A62B1C0A522900AAD97C /* SAPKiwiTestExample.m in Sources */,
-				2EC1A62D1C0A582400AAD97C /* SAPKiwiStringExtentionsTests.m in Sources */,
+				CAD184291C0C43EE00A97F55 /* SAPKiwiTestExample.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -736,6 +759,7 @@
 				CAD0E78A1BFDC77400B5DCA9 /* SAPCreatureTests.m in Sources */,
 				CAD0E7871BFCC4CB00B5DCA9 /* SAPCreature.m in Sources */,
 				9F3F6D4F1C08CA670051F3C6 /* SAPStringExtentionsTests.m in Sources */,
+				CAD184231C08B53F00A97F55 /* SAPEnumeratedString.m in Sources */,
 				CAD9F3DA1BFE27CB00F80248 /* SAPWoman.m in Sources */,
 				CAD9F3D71BFE27B900F80248 /* SAPMan.m in Sources */,
 			);
