@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SAPRoom.h"
 
 @interface SAPBuilding : NSObject
+
+@property (nonatomic, assign) NSUInteger seatingCapacity;
+@property (nonatomic, retain) SAPRoom *room;
+
 
 @end

@@ -10,7 +10,7 @@
 
 @implementation NSString (SAPStringExtentions)
 
-+ (NSString *)sap_generateRandomStringWithAlphabet:(NSString *)alphabet size:(NSUInteger) size {
++ (NSString *)sap_generateRandomStringWithString:(NSString *)alphabet ofSize:(NSUInteger) size {
     int alphabetLength = (int)alphabet.length;
     unichar unichars[size];
     for (uint index = 0; index < size; index++) {
@@ -18,6 +18,16 @@
     }
     
     return [NSString stringWithCharacters:unichars length:size];
+}
+
++ (NSString *)sap_generateRandomStringWithAlphabet:(SAPAlphabet *)alphabet ofSize:(NSUInteger) size {
+    int alphabetLength = (int)alphabet.length;
+    NSMutableString *mutableResult = [NSMutableString string];
+    for (NSUInteger index = 0; index < size; index++) {
+        [mutableResult appendString:[alphabet letterAtIndex:arc4random_uniform(alphabetLength)]];
+    }
+    
+    return [mutableResult copy];
 }
 
 - (NSString *)sap_separateWithSpaces {
@@ -40,13 +50,11 @@
         [mutableResult appendString:tempString];
     }
     
-    NSString *result = [mutableResult copy];
-    
-    return result;
+    return [mutableResult copy];
 }
 
 - (NSString *)sap_generateRandomStringOfSize:(NSUInteger) size {
-    return [NSString sap_generateRandomStringWithAlphabet:self size:size];
+    return [NSString sap_generateRandomStringWithString:self ofSize:size];
 }
 
 @end

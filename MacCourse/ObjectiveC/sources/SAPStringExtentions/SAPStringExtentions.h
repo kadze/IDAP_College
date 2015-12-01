@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SAPAlphabet.h"
 
 @interface NSString (SAPStringExtentions)
 
-+ (NSString *)sap_generateRandomStringWithAlphabet:(NSString *)alphabet size:(NSUInteger) size;
++ (NSString *)sap_generateRandomStringWithString:(NSString *)alphabet ofSize:(NSUInteger) size;
+
++ (NSString *)sap_generateRandomStringWithAlphabet:(SAPAlphabet *)alphabet ofSize:(NSUInteger) size;
 
 - (NSString *)sap_separateWithSpaces;
 
