@@ -10,4 +10,7 @@
 
 @interface SAPRoom : NSObject
 
+@property (nonatomic, assign, readonly) NSUInteger maxSeatingCapacity;
+@property (nonatomic, retain) NSSet *people;
+
 @end

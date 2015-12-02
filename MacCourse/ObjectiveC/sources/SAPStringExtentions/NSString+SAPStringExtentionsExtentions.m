@@ -6,7 +6,7 @@
 //  Copyright © 2015 Yosemite Retail. All rights reserved.
 //
 
-#import "SAPStringExtentions.h"
+#import "NSString+SAPStringExtentions.h"
 
 @implementation NSString (SAPStringExtentions)
 

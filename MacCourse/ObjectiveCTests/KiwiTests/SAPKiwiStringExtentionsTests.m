@@ -7,7 +7,7 @@
 //
 //
 #import <Kiwi/Kiwi.h>
-#import "SAPStringExtentions.h"
+#import "NSString+SAPStringExtentions.h"
 
 NSString *createUnicharAlphabet(unichar firstLetter, unichar lastLetter) {
     unichar alphabetSize = lastLetter - firstLetter + 1;

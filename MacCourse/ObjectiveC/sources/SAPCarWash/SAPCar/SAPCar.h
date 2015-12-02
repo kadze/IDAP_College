@@ -10,4 +10,6 @@
 
 @interface SAPCar : NSObject
 
+@property (nonatomic, assign, getter=isClean) BOOL clean;
+
 @end

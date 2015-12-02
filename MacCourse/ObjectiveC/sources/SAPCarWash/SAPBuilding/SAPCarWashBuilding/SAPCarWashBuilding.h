@@ -10,4 +10,7 @@
 
 @interface SAPCarWashBuilding : SAPBuilding
 
+@property (nonatomic, assign, readonly) NSUInteger  maxCarsCapacity;
+@property (nonatomic, retain)           NSSet       *cars;
+
 @end

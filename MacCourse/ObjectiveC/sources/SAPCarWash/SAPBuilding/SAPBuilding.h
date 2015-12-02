@@ -11,8 +11,6 @@
 
 @interface SAPBuilding : NSObject
 
-@property (nonatomic, assign) NSUInteger seatingCapacity;
-@property (nonatomic, retain) SAPRoom *room;
-
+@property (nonatomic, retain) NSSet *rooms;
 
 @end

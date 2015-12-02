@@ -10,4 +10,8 @@
 
 @interface SAPWorker : NSObject
 
+@property (nonatomic, assign)   NSUInteger salary;
+@property (nonatomic, assign)   NSUInteger yearsOfExperience;
+@property (nonatomic, copy)     NSString  *duties;
+
 @end
