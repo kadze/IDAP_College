@@ -6,9 +6,9 @@
 //  Copyright © 2015 Yosemite Retail. All rights reserved.
 //
 
-#import "SAPAlphabetWithArray.h"
+#import "SAPArrayAlphabet.h"
 
-@interface SAPAlphabetWithArray ()
+@interface SAPArrayAlphabet ()
 
 @property (nonatomic, retain) NSArray *lettersArray;
 
@@ -16,7 +16,7 @@
 
 
 
-@implementation SAPAlphabetWithArray
+@implementation SAPArrayAlphabet
 @dynamic letters;
 
 #pragma mark-

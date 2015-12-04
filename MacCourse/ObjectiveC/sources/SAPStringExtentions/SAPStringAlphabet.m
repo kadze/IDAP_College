@@ -6,17 +6,17 @@
 //  Copyright © 2015 Yosemite Retail. All rights reserved.
 //
 
-#import "SAPAlphabetWithString.h"
+#import "SAPStringAlphabet.h"
 #import "SAPEnumeratedString.h"
 
-@interface SAPAlphabetWithString ()
+@interface SAPStringAlphabet ()
 
 @property (nonatomic, retain) NSString *lettersString;
 
 @end
 
 
-@implementation SAPAlphabetWithString
+@implementation SAPStringAlphabet
 @dynamic letters;
 
 #pragma mark-

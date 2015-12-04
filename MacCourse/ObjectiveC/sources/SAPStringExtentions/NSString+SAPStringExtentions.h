@@ -11,12 +11,18 @@
 
 @interface NSString (SAPStringExtentions)
 
-+ (NSString *)sap_generateRandomStringWithString:(NSString *)alphabet ofSize:(NSUInteger) size;
++ (NSString *)alphanumericAlphabet;
++ (NSString *)numericAlphabet;
++ (NSString *)letterAlphabet;
++ (NSString *)lowerCaseLetterAlphabet;
++ (NSString *)capitalizedCaseLetterAlphabet;
++ (NSString *)alphabetWithUnicodeRange:(NSRange)range;
 
++ (NSString *)sap_generateRandomStringWithString:(NSString *)alphabet ofSize:(NSUInteger) size;
 + (NSString *)sap_generateRandomStringWithAlphabet:(SAPAlphabet *)alphabet ofSize:(NSUInteger) size;
 
-- (NSString *)sap_separateWithSpaces;
+- (NSString *)sap_generateRandomStringFromSelfOfSize:(NSUInteger) size;
 
-- (NSString *)sap_generateRandomStringOfSize:(NSUInteger) size;
+- (NSString *)sap_separateWithSpaces;
 
 @end

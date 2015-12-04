@@ -8,7 +8,7 @@
 
 #import "SAPAlphabet.h"
 
-@interface SAPAlphabetWithString : SAPAlphabet
+@interface SAPStringAlphabet : SAPAlphabet
 
 @property (nonatomic, retain, readonly)     NSString*  letters;
 

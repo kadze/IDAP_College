@@ -7,10 +7,23 @@
 //
 
 #import "SAPAlphabet.h"
+#import "SAPStringAlphabet.h"
+#import "SAPUnicodeRangeAlphabet.h"
+#import "SAPArrayAlphabet.h"
 
 @implementation SAPAlphabet
 
 
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (SAPArrayAlphabet *)initAlphabetWithArray:(NSArray *) array {
+    
+}
+
+- (SAPStringAlphabet *)initAlphabetWithString:(NSString *) string {
+    
+}
 
 #pragma mark -
 #pragma mark Public Implementations

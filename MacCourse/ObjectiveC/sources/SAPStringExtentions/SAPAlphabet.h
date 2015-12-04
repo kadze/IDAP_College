@@ -8,7 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
+@class SAPStringAlphabet;
+@class SAPArrayAlphabet;
+@class SAPUnicodeRangeAlphabet;
+
 @interface SAPAlphabet : NSObject
+
++ (SAPArrayAlphabet *)alphabetWithArray:(NSArray *) array;
+
++ (SAPStringAlphabet *)alphabetWithString:(NSString *) string;
+
++ (SAPUnicodeRangeAlphabet *)alphabetWithUnicodeRange:(NSRange) range;
+
+- (SAPArrayAlphabet *)initAlphabetWithArray:(NSArray *) array;
+
+- (SAPStringAlphabet *)initAlphabetWithString:(NSString *) string;
+
 
 - (NSArray *)arrayOfLetters;
 - (id)letterAtIndex:(NSUInteger) index;

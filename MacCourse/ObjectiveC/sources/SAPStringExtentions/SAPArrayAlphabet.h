@@ -9,7 +9,7 @@
 #import "SAPAlphabet.h"
 
 
-@interface SAPAlphabetWithArray : SAPAlphabet
+@interface SAPArrayAlphabet : SAPAlphabet
 
 @property (nonatomic, retain, readonly)     NSArray*  letters;
 

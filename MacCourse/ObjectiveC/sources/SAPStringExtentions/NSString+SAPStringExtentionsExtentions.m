@@ -8,8 +8,59 @@
 
 #import "NSString+SAPStringExtentions.h"
 
+static const unichar kSAPFirstLowerCaseLetter = 'a';
+static const unichar kSAPLastLowerCaseLetter = 'z';
+static const unichar kSAPFirstCapitalLetter = 'A';
+static const unichar kSAPLastCapitalLetter = 'Z';
+static const unichar kSAPFirstNumberSign = '0';
+static const unichar kSAPLastNumberSign = '9';
+
 @implementation NSString (SAPStringExtentions)
 
+#pragma mark-
+#pragma mark Class Methods
+
+//alphabets
++ (NSString *)alphanumericAlphabet {
+    NSMutableString *result = [NSMutableString stringWithString:[self numericAlphabet]];
+    [result appendString:[self letterAlphabet]];
+    
+    return [self stringWithString:result];
+}
+
++ (NSString *)numericAlphabet {
+    return [self alphabetWithUnicodeRange:NSMakeRange(kSAPFirstNumberSign,
+                                                      kSAPLastNumberSign - kSAPFirstNumberSign)];
+}
+
++ (NSString *)letterAlphabet {
+    NSMutableString *result = [NSMutableString stringWithString:[self lowerCaseLetterAlphabet]];
+    [result appendString:[self capitalizedCaseLetterAlphabet]];
+    
+    return [self stringWithString:result];
+}
+
++ (NSString *)lowerCaseLetterAlphabet {
+    return [self alphabetWithUnicodeRange:NSMakeRange(kSAPFirstLowerCaseLetter,
+                                                      kSAPLastLowerCaseLetter - kSAPLastLowerCaseLetter)];
+}
+
++ (NSString *)capitalizedCaseLetterAlphabet {
+    return [self alphabetWithUnicodeRange:NSMakeRange(kSAPFirstCapitalLetter,
+                                                      kSAPLastCapitalLetter - kSAPFirstCapitalLetter)];
+}
+
++ (NSString *)alphabetWithUnicodeRange:(NSRange)range {
+    NSMutableString *result = [NSMutableString string];
+    for (unichar symbol = range.location; symbol < range.length; symbol++) {
+        [result appendFormat:@"%c", symbol];
+    }
+    
+    return [self stringWithString:result];
+}
+
+
+//random strings
 + (NSString *)sap_generateRandomStringWithString:(NSString *)alphabet ofSize:(NSUInteger) size {
     int alphabetLength = (int)alphabet.length;
     unichar unichars[size];
@@ -17,7 +68,7 @@
         unichars[index] = [alphabet characterAtIndex:arc4random_uniform(alphabetLength)];
     }
     
-    return [NSString stringWithCharacters:unichars length:size];
+    return [self stringWithCharacters:unichars length:size];
 }
 
 + (NSString *)sap_generateRandomStringWithAlphabet:(SAPAlphabet *)alphabet ofSize:(NSUInteger) size {
@@ -27,8 +78,11 @@
         [mutableResult appendString:[alphabet letterAtIndex:arc4random_uniform(alphabetLength)]];
     }
     
-    return [mutableResult copy];
+    return [self stringWithString:mutableResult];
 }
+
+#pragma mark-
+#pragma mark Public Methods
 
 - (NSString *)sap_separateWithSpaces {
     //the final capacity must be twice larger than initial capacity because of adding the same amount of spaces
@@ -50,11 +104,11 @@
         [mutableResult appendString:tempString];
     }
     
-    return [mutableResult copy];
+    return [[self class] stringWithString:mutableResult];
 }
 
-- (NSString *)sap_generateRandomStringOfSize:(NSUInteger) size {
-    return [NSString sap_generateRandomStringWithString:self ofSize:size];
+- (NSString *)sap_generateRandomStringFromSelfOfSize:(NSUInteger) size {
+    return [[self class] sap_generateRandomStringWithString:self ofSize:size];
 }
 
 @end
