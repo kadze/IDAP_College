@@ -23,6 +23,6 @@
 
 - (NSString *)sap_generateRandomStringFromSelfOfSize:(NSUInteger) size;
 
-- (NSString *)sap_separateWithSpaces;
+- (instancetype)sap_separateWithSpaces;
 
 @end

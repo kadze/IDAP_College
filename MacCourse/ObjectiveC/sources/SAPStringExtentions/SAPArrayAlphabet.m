@@ -17,7 +17,7 @@
 
 
 @implementation SAPArrayAlphabet
-@dynamic letters;
+//@dynamic letters;
 
 #pragma mark-
 #pragma mark Initializations and Deallocations
@@ -36,25 +36,25 @@
     return self;
 }
 
-#pragma mark-
-#pragma mark Accessors
-
-- (NSArray *) letters {
-    return self.lettersArray;
-}
+//#pragma mark-
+//#pragma mark Accessors
+//
+//- (NSArray *) letters {
+//    return self.lettersArray;
+//}
 
 #pragma mark-
 #pragma mark Public Methods
 
 - (NSArray *)arrayOfLetters {
-    return self.letters;
+    return self.lettersArray;
 }
 
 - (id)letterAtIndex:(NSUInteger) index {
-    return [self.letters objectAtIndex:index];
+    return [self.lettersArray objectAtIndex:index];
 }
 
 - (NSUInteger)length {
-    return [self letters].count;
+    return [self lettersArray].count;
 }
 @end

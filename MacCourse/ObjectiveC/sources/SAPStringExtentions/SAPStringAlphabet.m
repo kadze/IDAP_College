@@ -17,7 +17,7 @@
 
 
 @implementation SAPStringAlphabet
-@dynamic letters;
+//@dynamic letters;
 
 #pragma mark-
 #pragma mark Initializations and Deallocations
@@ -36,18 +36,18 @@
     return self;
 }
 
-#pragma mark-
-#pragma mark Accessors
-
-- (NSString *) letters {
-    return self.lettersString;
-}
+//#pragma mark-
+//#pragma mark Accessors
+//
+//- (NSString *) letters {
+//    return self.lettersString;
+//}
 
 #pragma mark-
 #pragma mark Public Methods
 
 - (NSArray *)arrayOfLetters {
-    SAPEnumeratedString *enumeratedLetters = [[SAPEnumeratedString alloc] init] ;
+    SAPEnumeratedString *enumeratedLetters = [[[SAPEnumeratedString alloc] init] autorelease] ;
     enumeratedLetters.string = self.lettersString;
     NSMutableArray *mutableResult = [[NSMutableArray new] autorelease];
     for (NSString *letter in enumeratedLetters) {
@@ -62,6 +62,6 @@
 };
 
 - (NSUInteger)length {
-    return [self letters].length;
+    return [self lettersString].length;
 }
 @end

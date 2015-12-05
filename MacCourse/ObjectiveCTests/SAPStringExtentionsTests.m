@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 
-#import "SAPStringExtentions.h"
+#import "NSString+SAPStringExtentions.h"
 
 @interface SAPStringExtentionsTests : XCTestCase
 

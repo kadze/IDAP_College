@@ -8,16 +8,17 @@
 //
 #import <Kiwi/Kiwi.h>
 #import "NSString+SAPStringExtentions.h"
+#import "SAPAlphabet.h"
 
-NSString *createUnicharAlphabet(unichar firstLetter, unichar lastLetter) {
-    unichar alphabetSize = lastLetter - firstLetter + 1;
-    unichar alphabetArray[alphabetSize];
-    for (unichar index = 0; index < alphabetSize; index++) {
-        alphabetArray[index] = firstLetter + index;
-    }
-    
-    return [NSString stringWithCharacters:alphabetArray length:alphabetSize];
-}
+//NSString *createUnicharAlphabet(unichar firstLetter, unichar lastLetter) {
+//    unichar alphabetSize = lastLetter - firstLetter + 1;
+//    unichar alphabetArray[alphabetSize];
+//    for (unichar index = 0; index < alphabetSize; index++) {
+//        alphabetArray[index] = firstLetter + index;
+//    }
+//    
+//    return [NSString stringWithCharacters:alphabetArray length:alphabetSize];
+//}
 
 SPEC_BEGIN(SAPStringExtentionsSpec)
 
@@ -34,9 +35,10 @@ describe(@"SAPStringExtentions testing", ^{
     });
     
     context(@"sap_generateRandomStringWithAlphabet:size: tests", ^{
-        NSString *alphabet = createUnicharAlphabet('a', 'z');
+        NSString *alphabetString = [NSString alphanumericAlphabet];
+        SAPAlphabet *alphabet = (SAPAlphabet*)[SAPAlphabet alphabetWithString:alphabetString];
         int testArraySize = 20;
-        NSString *resultString = [NSString sap_generateRandomStringWithAlphabet:alphabet size:testArraySize];
+        NSString *resultString = [NSString sap_generateRandomStringWithAlphabet:alphabet ofSize:testArraySize];
         NSLog(@"%@", resultString);
         it(@"result string's length should be 20", ^{
             [[theValue(resultString.length) should] equal:theValue(testArraySize)];
@@ -45,7 +47,7 @@ describe(@"SAPStringExtentions testing", ^{
         NSMutableArray *arr = [NSMutableArray arrayWithObject:resultString];
         uint16_t testMutableArraySize = 10000;
         for (uint16_t counter = 0; counter < testMutableArraySize; counter++) {
-            [arr addObject:[NSString sap_generateRandomStringWithAlphabet:alphabet size:testArraySize]];
+            [arr addObject:[NSString sap_generateRandomStringWithAlphabet:alphabet ofSize:testArraySize]];
         };
         
         NSSet *set = [NSSet setWithArray:arr];
@@ -53,27 +55,27 @@ describe(@"SAPStringExtentions testing", ^{
             [[theValue(arr.count) should] equal:theValue(set.count)];
         });
     });
-    
-    context(@"sap_generateRandomStringOfSize: tests", ^{
-        NSString *sourceString = @"HelloWorld";
-        NSUInteger resultLength = 20;
-        NSString *resultString = [sourceString sap_generateRandomStringOfSize:resultLength];
-        NSLog(@"%@", resultString);
-        it(@"result string's length should be 20", ^{
-            [[theValue(resultString.length) should] equal:theValue(resultLength)];
-        });
-        
-        NSMutableArray *arr = [NSMutableArray arrayWithObject:resultString];
-        uint16_t testMutableArraySize = 10000;
-        for (uint16_t counter = 0; counter < testMutableArraySize; counter++) {
-            [arr addObject:[sourceString sap_generateRandomStringOfSize:resultLength]];
-        };
-        
-        NSSet *set = [NSSet setWithArray:arr];
-        it(@"method should generate not equal values in small ranges", ^{
-            [[theValue(arr.count) should] equal:theValue(set.count)];
-        });
-    });
+//
+//    context(@"sap_generateRandomStringOfSize: tests", ^{
+//        NSString *sourceString = @"HelloWorld";
+//        NSUInteger resultLength = 20;
+//        NSString *resultString = [sourceString sap_generateRandomStringOfSize:resultLength];
+//        NSLog(@"%@", resultString);
+//        it(@"result string's length should be 20", ^{
+//            [[theValue(resultString.length) should] equal:theValue(resultLength)];
+//        });
+//        
+//        NSMutableArray *arr = [NSMutableArray arrayWithObject:resultString];
+//        uint16_t testMutableArraySize = 10000;
+//        for (uint16_t counter = 0; counter < testMutableArraySize; counter++) {
+//            [arr addObject:[sourceString sap_generateRandomStringOfSize:resultLength]];
+//        };
+//        
+//        NSSet *set = [NSSet setWithArray:arr];
+//        it(@"method should generate not equal values in small ranges", ^{
+//            [[theValue(arr.count) should] equal:theValue(set.count)];
+//        });
+//    });
 });
 
 SPEC_END

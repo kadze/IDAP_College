@@ -13,15 +13,34 @@
 
 @implementation SAPAlphabet
 
+#pragma mark-
+#pragma mark Class Methods
+
++ (SAPArrayAlphabet *)alphabetWithArray:(NSArray *) array {
+    return [[[SAPArrayAlphabet alloc] initWithArray:array] autorelease];
+}
+
++ (SAPStringAlphabet *)alphabetWithString:(NSString *) string {
+    return [[[SAPStringAlphabet alloc] initWithString:string] autorelease];
+}
+
++ (SAPUnicodeRangeAlphabet *)alphabetWithUnicodeRange:(NSRange) range {
+    return [[[SAPUnicodeRangeAlphabet alloc] initWithRange:range] autorelease];
+}
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (SAPArrayAlphabet *)initAlphabetWithArray:(NSArray *) array {
+    [self release];
     
+    return [[SAPArrayAlphabet alloc] initWithArray:array];
 }
 
 - (SAPStringAlphabet *)initAlphabetWithString:(NSString *) string {
+    [self release];
+    
+    return [[SAPStringAlphabet alloc] initWithString:string];
     
 }
 
@@ -34,7 +53,7 @@
 }
 
 //for overload
-- (id *)letterAtIndex {
+- (id)letterAtIndex:(NSUInteger) index{
     return nil;
 }
 

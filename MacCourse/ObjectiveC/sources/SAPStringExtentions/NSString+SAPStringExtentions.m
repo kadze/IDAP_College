@@ -42,7 +42,7 @@ static const unichar kSAPLastNumberSign = '9';
 
 + (NSString *)lowerCaseLetterAlphabet {
     return [self alphabetWithUnicodeRange:NSMakeRange(kSAPFirstLowerCaseLetter,
-                                                      kSAPLastLowerCaseLetter - kSAPLastLowerCaseLetter)];
+                                                      kSAPLastLowerCaseLetter - kSAPFirstLowerCaseLetter)];
 }
 
 + (NSString *)capitalizedCaseLetterAlphabet {
@@ -52,7 +52,7 @@ static const unichar kSAPLastNumberSign = '9';
 
 + (NSString *)alphabetWithUnicodeRange:(NSRange)range {
     NSMutableString *result = [NSMutableString string];
-    for (unichar symbol = range.location; symbol < range.length; symbol++) {
+    for (unichar symbol = range.location; symbol <= NSMaxRange(range); symbol++) {
         [result appendFormat:@"%c", symbol];
     }
     
@@ -84,7 +84,7 @@ static const unichar kSAPLastNumberSign = '9';
 #pragma mark-
 #pragma mark Public Methods
 
-- (NSString *)sap_separateWithSpaces {
+- (instancetype)sap_separateWithSpaces {
     //the final capacity must be twice larger than initial capacity because of adding the same amount of spaces
     int capacityMultiplicator = 2;
     //final capacity is double initial capacity - 1 because of absense of the space at the end of string
@@ -104,7 +104,12 @@ static const unichar kSAPLastNumberSign = '9';
         [mutableResult appendString:tempString];
     }
     
-    return [[self class] stringWithString:mutableResult];
+    return [mutableResult copy];
+    
+//    return [[self class] stringWithString:mutableResult];
+    /*
+    ???????? Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '*** initialization method -initWithCharactersNoCopy:length:freeWhenDone: cannot be sent to an abstract object of class __NSCFConstantString: Create a concrete instance!'
+     */
 }
 
 - (NSString *)sap_generateRandomStringFromSelfOfSize:(NSUInteger) size {
