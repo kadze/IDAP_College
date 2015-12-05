@@ -73,7 +73,7 @@
     return 0;
 }
 
-- (NSString *)objectAtIndexSubscript:(NSUInteger) index{
+- (NSString *)objectAtIndexedSubscript:(NSUInteger) index{
     return [self letterAtIndex:index];
 }
 

@@ -53,9 +53,9 @@ describe(@"SAPAplhabet", ^{
             [[[alphabet letterAtIndex:0] should] equal:@"a"];
         });
 
-//        it(@"should contain z at index 25", ^{
-//            [[alphabet[25] should] equal:@"z"];
-//        });
+        it(@"should contain z at index 25", ^{
+            [[alphabet[25] should] equal:@"z"];
+        });
         
     });
 });

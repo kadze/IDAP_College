@@ -25,6 +25,6 @@
 - (NSArray *)arrayOfLetters;
 - (NSString *)letterAtIndex:(NSUInteger) index;
 - (NSUInteger)count;
-- (NSString *)objectAtIndexSubscript:(NSUInteger)idx;
+- (NSString *)objectAtIndexedSubscript:(NSUInteger)index;
 
 @end
