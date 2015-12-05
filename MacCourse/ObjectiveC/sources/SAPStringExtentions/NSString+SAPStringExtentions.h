@@ -24,5 +24,6 @@
 - (NSString *)sap_generateRandomStringFromSelfOfSize:(NSUInteger) size;
 
 - (instancetype)sap_separateWithSpaces;
+- (NSArray *)symbols;
 
 @end

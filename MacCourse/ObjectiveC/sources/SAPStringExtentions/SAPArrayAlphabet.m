@@ -50,11 +50,11 @@
     return self.lettersArray;
 }
 
-- (id)letterAtIndex:(NSUInteger) index {
+- (NSString *)letterAtIndex:(NSUInteger) index {
     return [self.lettersArray objectAtIndex:index];
 }
 
-- (NSUInteger)length {
+- (NSUInteger)count {
     return [self lettersArray].count;
 }
 @end

@@ -12,21 +12,19 @@
 @class SAPArrayAlphabet;
 @class SAPUnicodeRangeAlphabet;
 
-@interface SAPAlphabet : NSObject
+@interface SAPAlphabet : NSObject <NSFastEnumeration>
 
-+ (SAPArrayAlphabet *)alphabetWithArray:(NSArray *) array;
++ (instancetype)alphabetWithArray:(NSArray *) array;
++ (instancetype)alphabetWithString:(NSString *) string;
++ (instancetype)alphabetWithUnicodeRange:(NSRange) range;
 
-+ (SAPStringAlphabet *)alphabetWithString:(NSString *) string;
-
-+ (SAPUnicodeRangeAlphabet *)alphabetWithUnicodeRange:(NSRange) range;
-
-- (SAPArrayAlphabet *)initAlphabetWithArray:(NSArray *) array;
-
-- (SAPStringAlphabet *)initAlphabetWithString:(NSString *) string;
-
+- (instancetype)initAlphabetWithArray:(NSArray *) array;
+- (instancetype)initAlphabetWithString:(NSString *) string;
+- (instancetype)initAlphabetWithUnicodeRange:(NSRange) range;
 
 - (NSArray *)arrayOfLetters;
-- (id)letterAtIndex:(NSUInteger) index;
-- (NSUInteger)length;
+- (NSString *)letterAtIndex:(NSUInteger) index;
+- (NSUInteger)count;
+- (NSString *)objectAtIndexSubscript:(NSUInteger)idx;
 
 @end

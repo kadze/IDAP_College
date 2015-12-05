@@ -28,7 +28,7 @@
 }
 
 - (instancetype) initWithString:(NSString *)string {
-    self = [super init];
+    //self = [super init];
     if (self) {
         self.lettersString = string;
     }
@@ -49,19 +49,19 @@
 - (NSArray *)arrayOfLetters {
     SAPEnumeratedString *enumeratedLetters = [[[SAPEnumeratedString alloc] init] autorelease] ;
     enumeratedLetters.string = self.lettersString;
-    NSMutableArray *mutableResult = [[NSMutableArray new] autorelease];
+    NSMutableArray *mutableResult = [NSMutableArray arrayWithCapacity:self.lettersString.length];
     for (NSString *letter in enumeratedLetters) {
         [mutableResult addObject:letter];
     }
     
-    return [mutableResult copy];
+    return [[mutableResult copy] autorelease];
 };
 
 - (NSString *)letterAtIndex:(NSUInteger) index {
     return [[self arrayOfLetters] objectAtIndex:index];
 };
 
-- (NSUInteger)length {
+- (NSUInteger)count {
     return [self lettersString].length;
 }
 @end

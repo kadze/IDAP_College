@@ -16,32 +16,43 @@
 #pragma mark-
 #pragma mark Class Methods
 
-+ (SAPArrayAlphabet *)alphabetWithArray:(NSArray *) array {
++ (instancetype)alphabetWithArray:(NSArray *) array {
     return [[[SAPArrayAlphabet alloc] initWithArray:array] autorelease];
 }
 
-+ (SAPStringAlphabet *)alphabetWithString:(NSString *) string {
++ (instancetype)alphabetWithString:(NSString *) string {
     return [[[SAPStringAlphabet alloc] initWithString:string] autorelease];
 }
 
-+ (SAPUnicodeRangeAlphabet *)alphabetWithUnicodeRange:(NSRange) range {
++ (instancetype)alphabetWithUnicodeRange:(NSRange) range {
     return [[[SAPUnicodeRangeAlphabet alloc] initWithRange:range] autorelease];
 }
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (SAPArrayAlphabet *)initAlphabetWithArray:(NSArray *) array {
+- (instancetype)init {
+    [self doesNotRecognizeSelector:_cmd];
+    
+    return nil;
+}
+
+- (instancetype)initAlphabetWithArray:(NSArray *) array {
     [self release];
     
     return [[SAPArrayAlphabet alloc] initWithArray:array];
 }
 
-- (SAPStringAlphabet *)initAlphabetWithString:(NSString *) string {
+- (instancetype)initAlphabetWithString:(NSString *) string {
     [self release];
     
     return [[SAPStringAlphabet alloc] initWithString:string];
+}
+
+- (instancetype)initAlphabetWithUnicodeRange:(NSRange) range {
+    [self release];
     
+    return [[SAPUnicodeRangeAlphabet alloc] initWithRange:range];
 }
 
 #pragma mark -
@@ -53,13 +64,27 @@
 }
 
 //for overload
-- (id)letterAtIndex:(NSUInteger) index{
+- (NSString *)letterAtIndex:(NSUInteger) index{
     return nil;
 }
 
 //for overload
-- (NSUInteger)length {
+- (NSUInteger)count {
     return 0;
 }
+
+- (NSString *)objectAtIndexSubscript:(NSUInteger) index{
+    return [self letterAtIndex:index];
+}
+
+#pragma mark-
+#pragma mark NSFastEnumeration
+
+//- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
+//                                objects:(id [])buffer
+//                                    count:(NSUInteger)len {
+//    
+//}
+
 
 @end

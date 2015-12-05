@@ -38,17 +38,17 @@
         [result addObject:[NSString stringWithFormat:@"%C", symbol]];
     }
     
-    return [result copy];
+    return [[result copy] autorelease];
 }
 
-- (id)letterAtIndex:(NSUInteger) index {
+- (NSString *)letterAtIndex:(NSUInteger) index {
     unichar unicharIndex = (unichar)index;
     unichar letterLocation = self.unicodeRange.location + unicharIndex;
     
     return [NSString stringWithFormat:@"%C", letterLocation];
 }
 
-- (NSUInteger)length {
+- (NSUInteger)count {
     return self.unicodeRange.length;
 }
 

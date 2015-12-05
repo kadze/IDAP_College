@@ -72,7 +72,7 @@ static const unichar kSAPLastNumberSign = '9';
 }
 
 + (NSString *)sap_generateRandomStringWithAlphabet:(SAPAlphabet *)alphabet ofSize:(NSUInteger) size {
-    int alphabetLength = (int)alphabet.length;
+    int alphabetLength = (int)alphabet.count;
     NSMutableString *mutableResult = [NSMutableString string];
     for (NSUInteger index = 0; index < size; index++) {
         [mutableResult appendString:[alphabet letterAtIndex:arc4random_uniform(alphabetLength)]];
@@ -104,7 +104,7 @@ static const unichar kSAPLastNumberSign = '9';
         [mutableResult appendString:tempString];
     }
     
-    return [mutableResult copy];
+    return [[mutableResult copy] autorelease];
     
 //    return [[self class] stringWithString:mutableResult];
     /*
@@ -114,6 +114,17 @@ static const unichar kSAPLastNumberSign = '9';
 
 - (NSString *)sap_generateRandomStringFromSelfOfSize:(NSUInteger) size {
     return [[self class] sap_generateRandomStringWithString:self ofSize:size];
+}
+
+- (NSArray *)symbols {
+    NSUInteger length = self.length;
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:length];
+    for (NSUInteger index = 0; index < length; index++) {
+        unichar symbol = [self characterAtIndex:(index)];
+        [result addObject:[NSString stringWithFormat:@"%C", symbol]];
+    }
+    
+    return [[result copy] autorelease];
 }
 
 @end
