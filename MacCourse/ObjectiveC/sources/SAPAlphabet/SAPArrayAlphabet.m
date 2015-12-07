@@ -28,7 +28,7 @@
 }
 
 - (instancetype) initWithArray:(NSArray *) array {
-    self = [super init];
+//    self = [super init];
     if (self) {
         self.lettersArray = array;
     }

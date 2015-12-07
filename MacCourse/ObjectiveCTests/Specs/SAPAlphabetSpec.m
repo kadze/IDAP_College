@@ -66,15 +66,15 @@ describe(@"SAPAplhabet", ^{
         });
     });
     
-//    context(@"when initialized with - initAlphabetWithUnicodeRange: with range a - z", ^{
-//        beforeAll(^{
-//            alphabet = [[SAPAlphabet alloc ] initAlphabetWithUnicodeRange:NSMakeRange('a', 'z' - 'a')];
-//        });
-//        
-//        it(@"should be of class SAPAlphabet", ^{
-//            [[alphabet should] beKindOfClass:[SAPAlphabet class]];
-//        });
-//    });
+    context(@"when initialized with - initAlphabetWithUnicodeRange: with range a - z", ^{
+        beforeAll(^{
+            alphabet = [[SAPAlphabet alloc ] initAlphabetWithUnicodeRange:NSMakeRange('a', 'z' - 'a')];
+        });
+        
+        it(@"should be of class SAPAlphabet", ^{
+            [[alphabet should] beKindOfClass:[SAPAlphabet class]];
+        });
+    });
 });
 
 SPEC_END

@@ -107,10 +107,14 @@ NSRange SAPMakeAlphabetRange(unichar sign1, unichar sign2) {
     state->mutationsPtr = (unsigned long *)self;
     NSUInteger length = MIN(state->state + len, [self count]);
     len = length - state->state;
-    for (NSUInteger index = state->state; index < length; index++) {
-        buffer[index] = self[index];
+    
+    if (0 != len) {
+        for (NSUInteger index = state->state; index < length; index++) {
+            buffer[index] = self[index];
+        }
     }
     
+    state->itemsPtr = buffer;
     state->state += len;
     
     return len;
