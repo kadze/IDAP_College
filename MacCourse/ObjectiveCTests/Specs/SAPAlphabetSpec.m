@@ -28,10 +28,6 @@ describe(@"SAPAplhabet", ^{
 //    - (NSUInteger)count;
 //    - (NSString *)objectAtIndexSubscript:(NSUInteger)idx;
     
-    afterAll(^{
-        alphabet = nil;
-    });
-    
     context(@"when initialized with + alphabetWithUnicodeRange: with range a - c", ^{
         beforeAll(^{
             alphabet = [SAPAlphabet alphabetWithUnicodeRange:SAPMakeAlphabetRange('a', 'c')];
@@ -73,6 +69,39 @@ describe(@"SAPAplhabet", ^{
         
         it(@"should be of class SAPAlphabet", ^{
             [[alphabet should] beKindOfClass:[SAPAlphabet class]];
+        });
+    });
+    
+    context(@"when initialized with + alphabetWithUnicodeRange: with range A - z , when enumerated" , ^{
+        NSRange range = SAPMakeAlphabetRange('A', 'z');
+        beforeAll(^{
+            alphabet = [SAPAlphabet alphabetWithUnicodeRange:range];
+        });
+        
+        it(@"shouldn't raise", ^{
+            [[theBlock(^{
+                for (id symbol in alphabet) {
+                    [symbol description];
+                }
+            }) shouldNot ] raise];
+        });
+        
+        it(@"should return symbols in range 'A' - 'z'", ^{
+            unichar character = 'A';
+            for (NSString *symbol in alphabet) {
+                [[symbol should] equal:[NSString stringWithFormat:@"%C", character]];
+                character++;
+            }
+        });
+        
+        it(@"should return count of symbols equal to 'A' - 'z' range length", ^{
+            NSUInteger count = 0;
+            for (NSString *symbol in alphabet) {
+                [symbol description];
+                count++;
+            }
+            
+            [[theValue(count) should] equal:@(range.length)];
         });
     });
 });
