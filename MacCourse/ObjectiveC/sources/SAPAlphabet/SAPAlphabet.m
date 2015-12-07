@@ -109,8 +109,8 @@ NSRange SAPMakeAlphabetRange(unichar sign1, unichar sign2) {
     len = length - state->state;
     
     if (0 != len) {
-        for (NSUInteger index = state->state; index < length; index++) {
-            buffer[index] = self[index];
+        for (NSUInteger index = 0; index < len; index++) {
+            buffer[index] = self[index + state->state];
         }
     }
     

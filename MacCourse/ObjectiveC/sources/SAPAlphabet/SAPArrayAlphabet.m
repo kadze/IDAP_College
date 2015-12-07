@@ -57,4 +57,14 @@
 - (NSUInteger)count {
     return [self lettersArray].count;
 }
+
+#pragma mark-
+#pragma mark NSFastEnumeration
+
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
+                                  objects:(id  _Nonnull *)buffer
+                                    count:(NSUInteger)len {
+    return [[self lettersArray ]countByEnumeratingWithState:state objects:buffer count:len];
+}
+
 @end

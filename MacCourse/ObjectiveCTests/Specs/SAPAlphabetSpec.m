@@ -15,7 +15,7 @@
 SPEC_BEGIN(SAPAlphabetSpec)
 
 describe(@"SAPAplhabet", ^{
-    __block SAPAlphabet *alphabet = nil;
+   __strong __block SAPAlphabet *alphabet = nil;
 //    + (SAPArrayAlphabet *)alphabetWithArray:(NSArray *) array;
 //    + (SAPStringAlphabet *)alphabetWithString:(NSString *) string;
 //    + (SAPUnicodeRangeAlphabet *)alphabetWithUnicodeRange:(NSRange) range;
@@ -87,7 +87,88 @@ describe(@"SAPAplhabet", ^{
         });
         
         it(@"should return symbols in range 'A' - 'z'", ^{
-            unichar character = 'A';
+            unichar character = range.location;
+            for (NSString *symbol in alphabet) {
+                [[symbol should] equal:[NSString stringWithFormat:@"%C", character]];
+                character++;
+            }
+        });
+        
+        it(@"should return count of symbols equal to 'A' - 'z' range length", ^{
+            NSUInteger count = 0;
+            for (NSString *symbol in alphabet) {
+                [symbol description];
+                count++;
+            }
+            
+            [[theValue(count) should] equal:@(range.length)];
+        });
+    });
+    
+    context(@"when initialized with + alphabetWithArray: with @[@\"a\", @\"b\", @\"c\"]" , ^{
+        
+        beforeAll(^{
+            alphabet = [SAPAlphabet alphabetWithArray:@[@"a", @"b", @"c"]];
+        });
+        
+        it(@"should be of class SAPArrayAlphabet", ^{
+            [[alphabet should] beKindOfClass:[SAPArrayAlphabet class]];
+        });
+        
+        it(@"should be of count 3", ^{
+            [[theValue([alphabet count]) should] equal:@(3)];
+        });
+        
+        it(@"should contain a at index = 0", ^{
+            [[[alphabet letterAtIndex:0] should] equal:@"a"];
+        });
+        
+        it(@"should contain c at index = 2", ^{
+            [[alphabet[2] should] equal:@"c"];
+        });
+        
+        it(@"should throw exception, when requesting object at index 3", ^{
+            [[theBlock(^{
+                [alphabet letterAtIndex:3];
+                id obj = alphabet[3];
+            }) should] raise ];
+        });
+        
+        it(@"should retunrn @\"abc\" from -string", ^{
+            [[[alphabet string] should] equal:@"abc"];
+        });
+    });
+
+    context(@"when initialized with - initAlphabetWithArray: with @[@\"a\", @\"b\", @\"c\"]", ^{
+        beforeAll(^{
+            alphabet = [[SAPAlphabet alloc ] initAlphabetWithArray:@[@"a", @"b", @"c"]];
+        });
+        
+        it(@"should be of class SAPAlphabet", ^{
+            [[alphabet should] beKindOfClass:[SAPArrayAlphabet class]];
+        });
+    });
+    
+    context(@"when initialized with + alphabetWithArray: containing A - z , when enumerated" , ^{
+        NSRange range = SAPMakeAlphabetRange('A', 'z');
+        NSMutableArray *array = [NSMutableArray new];
+        beforeAll(^{
+            for (unichar symbol = range.location; symbol < NSMaxRange(range); symbol++) {
+                [array addObject:[NSString stringWithFormat:@"%c", symbol]];
+            }
+            alphabet = [SAPAlphabet alphabetWithArray:array];
+        });
+        
+        it(@"shouldn't raise", ^{
+            [[theBlock(^{
+                for (id symbol in alphabet) {
+                    [symbol description];
+                }
+            }) shouldNot ] raise];
+        });
+        
+        it(@"should return symbols in range 'A' - 'z'", ^{
+            unichar character = range.location;
             for (NSString *symbol in alphabet) {
                 [[symbol should] equal:[NSString stringWithFormat:@"%C", character]];
                 character++;
