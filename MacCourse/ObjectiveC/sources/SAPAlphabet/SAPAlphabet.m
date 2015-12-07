@@ -11,6 +11,14 @@
 #import "SAPUnicodeRangeAlphabet.h"
 #import "SAPArrayAlphabet.h"
 
+
+NSRange SAPMakeAlphabetRange(unichar sign1, unichar sign2) {
+    unichar maxSign = MAX(sign1, sign2);
+    unichar minSign = MIN(sign1, sign2);
+    
+    return NSMakeRange(minSign, maxSign - minSign + 1);
+}
+
 @implementation SAPAlphabet
 
 #pragma mark-
@@ -58,18 +66,30 @@
 #pragma mark -
 #pragma mark Public Implementations
 
-//for overload
+- (NSString *)string {
+    NSMutableString *mutableResult = [NSMutableString stringWithCapacity:[self count]];
+    for (NSString *letter in self) {
+        [mutableResult appendString:letter];
+    }
+    
+    return [[mutableResult copy] autorelease];
+}
+
 - (NSArray *)arrayOfLetters {
+    [self doesNotRecognizeSelector:_cmd];
+    
     return nil;
 }
 
-//for overload
 - (NSString *)letterAtIndex:(NSUInteger) index{
+    [self doesNotRecognizeSelector:_cmd];
+    
     return nil;
 }
 
-//for overload
 - (NSUInteger)count {
+    [self doesNotRecognizeSelector:_cmd];
+    
     return 0;
 }
 
@@ -77,14 +97,25 @@
     return [self letterAtIndex:index];
 }
 
+
 #pragma mark-
 #pragma mark NSFastEnumeration
 
-//- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
-//                                objects:(id [])buffer
-//                                    count:(NSUInteger)len {
-//    
-//}
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
+                                objects:(id [])buffer
+                                    count:(NSUInteger)len {
+    state->mutationsPtr = (unsigned long *)self;
+    NSUInteger length = MIN(state->state + len, [self count]);
+    len = length - state->state;
+    for (NSUInteger index = state->state; index < length; index++) {
+        buffer[index] = self[index];
+    }
+    
+    state->state += len;
+    
+    return len;
+    
+}
 
 
 @end

@@ -8,9 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@class SAPStringAlphabet;
-@class SAPArrayAlphabet;
-@class SAPUnicodeRangeAlphabet;
+extern
+NSRange SAPMakeAlphabetRange(unichar firstSign, unichar length);
 
 @interface SAPAlphabet : NSObject <NSFastEnumeration>
 
@@ -22,6 +21,9 @@
 - (instancetype)initAlphabetWithString:(NSString *) string;
 - (instancetype)initAlphabetWithUnicodeRange:(NSRange) range;
 
+- (NSString *)string;
+
+//the method should be overriden
 - (NSArray *)arrayOfLetters;
 - (NSString *)letterAtIndex:(NSUInteger) index;
 - (NSUInteger)count;

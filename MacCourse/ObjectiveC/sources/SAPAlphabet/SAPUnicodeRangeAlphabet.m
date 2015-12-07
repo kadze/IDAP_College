@@ -10,7 +10,7 @@
 
 @interface SAPUnicodeRangeAlphabet ()
 
-@property (nonatomic, assign) NSRange unicodeRange;
+@property (nonatomic, assign) NSRange range;
 
 @end
 
@@ -22,7 +22,7 @@
 - (instancetype) initWithRange:(NSRange) range {
     self = [super init];
     if (self) {
-        self.unicodeRange = range;
+        self.range = range;
     }
     
     return self;
@@ -34,7 +34,8 @@
 
 - (NSArray *)arrayOfLetters {
     NSMutableArray *result = [NSMutableArray array];
-    for (unichar symbol = self.unicodeRange.location; symbol < self.unicodeRange.length; symbol++) {
+    NSRange range = self.range;
+    for (unichar symbol = range.location; symbol < NSMaxRange(range); symbol++) {
         [result addObject:[NSString stringWithFormat:@"%C", symbol]];
     }
     
@@ -42,14 +43,13 @@
 }
 
 - (NSString *)letterAtIndex:(NSUInteger) index {
-    unichar unicharIndex = (unichar)index;
-    unichar letterLocation = self.unicodeRange.location + unicharIndex;
-    
-    return [NSString stringWithFormat:@"%C", letterLocation];
+    NSRange range = self.range;
+    NSAssert(index < range.length, NSRangeException);
+    return [NSString stringWithFormat:@"%C", (unichar)(range.location + index)];
 }
 
 - (NSUInteger)count {
-    return self.unicodeRange.length;
+    return self.range.length;
 }
 
 @end

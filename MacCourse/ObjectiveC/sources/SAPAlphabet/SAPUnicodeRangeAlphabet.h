@@ -10,7 +10,7 @@
 
 @interface SAPUnicodeRangeAlphabet : SAPAlphabet
 
-//@property (nonatomic, retain, readonly)     NSArray*  letters;
+@property (nonatomic, assign, readonly)     NSRange range;
 
 - (instancetype) initWithRange:(NSRange)  range;
 
