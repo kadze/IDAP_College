@@ -11,6 +11,8 @@
 
 @interface SAPBuilding : NSObject
 
-@property (nonatomic, retain) NSSet *rooms;
+@property (nonatomic, retain, readonly) NSArray *rooms;
+
++ (BOOL)canContainItemsOfClass:(Class)itemClass;
 
 @end
