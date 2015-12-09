@@ -8,9 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class SAPWorker;
+
 @interface SAPRoom : NSObject
 
-@property (nonatomic, assign, readonly) NSUInteger maxSeatingCapacity;
-@property (nonatomic, retain, readonly) NSArray *people;
+@property (nonatomic, retain, readonly) NSArray *workers;
+
+- (void)addWorker:(SAPWorker *)worker;
+- (void)removeWorkers:(SAPWorker *)worker;
 
 @end

@@ -10,4 +10,18 @@
 
 @implementation SAPCar
 
+- (void)giveMoney:(NSUInteger)sum toRecipient:(id<SAPMoneyTransfer>)recipient {
+    if (self.money >= sum && (recipient)) {
+        self.money      -= sum;
+        recipient.money += sum;
+    }
+}
+
+- (void)takeMoney:(NSUInteger)sum fromSender:(id<SAPMoneyTransfer>)sender {
+    if (sender) {
+        [sender giveMoney:sum toRecipient:self];
+    }
+
+}
+
 @end

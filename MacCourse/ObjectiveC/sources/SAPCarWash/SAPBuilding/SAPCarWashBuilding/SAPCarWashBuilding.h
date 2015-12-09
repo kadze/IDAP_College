@@ -8,9 +8,15 @@
 
 #import "SAPBuilding.h"
 
+@class SAPCarWashRoom;
+
 @interface SAPCarWashBuilding : SAPBuilding
 
-@property (nonatomic, assign, readonly) NSUInteger  maxCarsCapacity;
-@property (nonatomic, retain)           NSSet       *cars;
+@property (nonatomic, readonly) NSArray *carWashRooms;
+
+-(instancetype)initWithRoomsCount:(NSUInteger)roomsCount carWashRoomsCount:(NSUInteger)carWashRoomsCount;
+
+-(void)addCarWashRoom:(SAPCarWashRoom *)carWashRoom;
+-(void)removeCarWashRoom:(SAPCarWashRoom *)carWashRoom;
 
 @end

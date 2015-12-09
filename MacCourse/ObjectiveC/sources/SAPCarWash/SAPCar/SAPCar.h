@@ -7,9 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SAPMoneyTransfer.h"
 
-@interface SAPCar : NSObject
+@interface SAPCar : NSObject <SAPMoneyTransfer>
 
+@property (nonatomic, assign) NSUInteger money;
 @property (nonatomic, assign, getter=isClean) BOOL clean;
+
+
 
 @end

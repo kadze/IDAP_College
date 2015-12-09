@@ -7,12 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SAPRoom.h"
+
+@class SAPRoom;
 
 @interface SAPBuilding : NSObject
 
-@property (nonatomic, retain, readonly) NSArray *rooms;
+@property (nonatomic, readonly) NSArray *rooms;
 
-+ (BOOL)canContainItemsOfClass:(Class)itemClass;
+//+ (BOOL)canContainItemsOfClass:(Class)itemClass;
+
+- (instancetype)initWithRoomsCount:(NSUInteger)roomsCount;
+
+- (void)addRoom:(SAPRoom *)room;
+- (void)removeRoom:(SAPRoom *)room;
 
 @end

@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SAPMoneyTransfer.h"
 
-@interface SAPWorker : NSObject
+@interface SAPWorker : NSObject <SAPMoneyTransfer>
 
+@property (nonatomic, assign)   NSUInteger money;
 @property (nonatomic, assign)   NSUInteger salary;
 @property (nonatomic, assign)   NSUInteger yearsOfExperience;
 @property (nonatomic, copy)     NSString  *duties;
+
+- (void)makeJob;
 
 @end
