@@ -62,8 +62,10 @@ static NSUInteger const kDefaultInitialRoomsCount = 1;
 #pragma mark Public Methods
 
 - (void)addCarWashRoom:(SAPRoom *)room {
-    [self.carWashRoomsContainer setCapacity:(self.carWashRoomsContainer.items.count + 1)]; //unlimited carWashRooms capacity
-    [self.carWashRoomsContainer addItem:room];
+    if([room isMemberOfClass:[SAPCarWashRoom class]]) {
+        [self.carWashRoomsContainer setCapacity:(self.carWashRoomsContainer.items.count + 1)]; //unlimited carWashRooms capacity
+        [self.carWashRoomsContainer addItem:room];
+    }
 }
 
 - (void)removeRoom:(SAPRoom *)room {

@@ -12,9 +12,11 @@
 
 @interface SAPRoom : NSObject
 
-@property (nonatomic, retain, readonly) NSArray *workers;
+@property (nonatomic, readonly) NSArray *workers;
+
+- (instancetype)initWithWorkers:(NSArray*)workers workersCapacity:(NSUInteger)workersCapacity;
 
 - (void)addWorker:(SAPWorker *)worker;
-- (void)removeWorkers:(SAPWorker *)worker;
+- (void)removeWorker:(SAPWorker *)worker;
 
 @end

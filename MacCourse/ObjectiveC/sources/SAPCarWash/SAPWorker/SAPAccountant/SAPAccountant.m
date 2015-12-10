@@ -10,4 +10,8 @@
 
 @implementation SAPAccountant
 
+- (void)makeJob {
+    [self giveAllMoneyToRecipient];
+}
+
 @end

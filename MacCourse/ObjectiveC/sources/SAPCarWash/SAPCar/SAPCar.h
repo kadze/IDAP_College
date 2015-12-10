@@ -14,6 +14,4 @@
 @property (nonatomic, assign) NSUInteger money;
 @property (nonatomic, assign, getter=isClean) BOOL clean;
 
-
-
 @end

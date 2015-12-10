@@ -59,8 +59,11 @@ static NSUInteger const kDefaultInitialRoomsCount = 1;
 #pragma mark Public Methods
 
 - (void)addRoom:(SAPRoom *)room {
-    [self.roomsContainer setCapacity:(self.roomsContainer.items.count + 1)]; //unlimited rooms capacity
-    [self.roomsContainer addItem:room];
+    if ([room isMemberOfClass:[SAPRoom class]]) {
+        [self.roomsContainer setCapacity:(self.roomsContainer.items.count + 1)]; //unlimited rooms capacity
+        [self.roomsContainer addItem:room];
+    }
+    
 }
 
 - (void)removeRoom:(SAPRoom *)room {

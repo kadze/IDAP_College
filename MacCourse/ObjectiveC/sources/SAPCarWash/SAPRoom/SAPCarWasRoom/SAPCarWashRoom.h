@@ -12,9 +12,11 @@
 
 @interface SAPCarWashRoom : SAPRoom
 
-@property (nonatomic, retain, readonly) NSArray *cars;
+@property (nonatomic, readonly) NSArray *cars;
 
-- (void)addCar:(SAPWorker *)car;
-- (void)removeCar:(SAPWorker *)car;
+- (instancetype)initWithCars:(NSArray*)cars carsCapacity:(NSUInteger)carsCapacity;
+
+- (void)addCar:(SAPCar *)car;
+- (void)removeCar:(SAPCar *)car;
 
 @end

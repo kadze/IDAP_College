@@ -10,11 +10,12 @@
 
 @class SAPWorker;
 @class SAPBuilding;
+@class SAPItemsContainer;
 
 @interface SAPEnterprise : NSObject
 
-@property (nonatomic, retain) NSSet *staff;
-@property (nonatomic, retain) NSSet *realEstate;
+@property (nonatomic, retain) SAPItemsContainer *staff;
+@property (nonatomic, retain) SAPItemsContainer *realEstate;
 
 + (SAPEnterprise *)carWashEnterpriseSetup;
 

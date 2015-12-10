@@ -10,22 +10,46 @@
 
 @implementation SAPWorker
 
-- (void)giveMoney:(NSUInteger)sum toRecipient:(id<SAPMoneyTransfer>)recipient {
-    if (self.money >= sum && (recipient)) {
-        self.money      -= sum;
-        recipient.money += sum;
-    }
+#pragma mark-
+#pragma mark Initializatinos and Deallocations
+
+- (void)dealloc {
+    self.moneyRecipient = nil;
+    
+    [super dealloc];
 }
 
-- (void)takeMoney:(NSUInteger)sum fromSender:(id<SAPMoneyTransfer>)sender {
-    if (sender) {
-        [sender giveMoney:sum toRecipient:self];
-    }
-    
-}
+#pragma mark-
+#pragma mark Public Methods
 
 - (void)makeJob {
     //to override
+}
+
+- (void)giveAllMoneyToRecipient {
+    [self giveMoney:self.money toRecipient:self.moneyRecipient];
+}
+
+#pragma mark-
+#pragma mark <SAPMoneyTransfer>
+
+- (BOOL)giveMoney:(NSUInteger)sum toRecipient:(id<SAPMoneyTransfer>)recipient {
+    if (self.money >= sum && (recipient)) {
+        self.money      -= sum;
+        recipient.money += sum;
+        
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL)takeMoney:(NSUInteger)sum fromSender:(id<SAPMoneyTransfer>)sender {
+    if (sender) {
+        return [sender giveMoney:sum toRecipient:self];
+    }
+    
+    return NO;
 }
 
 @end

@@ -7,7 +7,37 @@
 //
 
 #import "SAPWasher.h"
+#import "SAPCar.h"
+#import "SAPCarWashRoom.h"
+
+static NSUInteger const kWashPrise = 50;
 
 @implementation SAPWasher
+
+#pragma mark-
+#pragma mark Public Methods
+
+- (void)makeJob {
+    SAPRoom *currentWorkingPlace = self.currentWorkingPlace;
+    if ([currentWorkingPlace isKindOfClass:[SAPCarWashRoom class]]) {
+        [self washAllCarsInCarWashRoom:(SAPCarWashRoom *)currentWorkingPlace];
+    }
+    [self giveAllMoneyToRecipient];
+}
+
+#pragma mark-
+#pragma mark Private Methods
+
+- (void)washAllCarsInCarWashRoom:(SAPCarWashRoom *)carWashRoom {
+    if (!carWashRoom) {
+        return;
+    }
+    
+    for (SAPCar *car in carWashRoom.cars) {
+        if ([self takeMoney:kWashPrise fromSender:car]) {
+            [car setClean:YES];
+        }
+    }
+}
 
 @end
