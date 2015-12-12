@@ -15,6 +15,8 @@
 @property (nonatomic, retain, readonly) NSArray *cars;
 
 - (instancetype)initWithCars:(NSArray*)cars carsCapacity:(NSUInteger)carsCapacity;
+- (instancetype)initWithWorkers:(NSArray *)workers cars:(NSArray *)cars;
+- (void)setCarsCapacity:(NSUInteger)carsCapacity;
 
 - (void)addCar:(SAPCar *)car;
 - (void)removeCar:(SAPCar *)car;

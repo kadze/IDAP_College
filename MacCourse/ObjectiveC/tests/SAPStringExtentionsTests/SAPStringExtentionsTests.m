@@ -7,7 +7,7 @@
 //
 
 #import "SAPStringExtentionsTests.h"
-#import "SAPStringExtentions.h"
+#import "NSString+SAPStringExtentions.h"
 
 @implementation SAPStringExtentionsTests
 

@@ -33,17 +33,16 @@ static NSUInteger const kDefaultInitialRoomsCount = 1;
 }
 
 - (instancetype)init {
-    self = [self initWithRoomsCount:(NSUInteger)kDefaultInitialRoomsCount carWashRoomsCount:(NSUInteger)kDefaultInitialCarWashRoomsCount];
+    self = [self initWithRooms:[NSArray array] carWashRooms:[NSArray array]];
     
     return self;
 }
 
--(instancetype)initWithRoomsCount:(NSUInteger)roomsCount carWashRoomsCount:(NSUInteger)carWashRoomsCount {
-    self = [super initWithRoomsCount:roomsCount];
-    self.carWashRoomsContainer = [[[SAPItemsContainer alloc] initWithCapacity:carWashRoomsCount] autorelease];
-    for (NSUInteger counter = 0; counter < carWashRoomsCount; counter++) {
-        SAPCarWashRoom *newCarWashRoom = [[[SAPCarWashRoom alloc] init] autorelease];
-        [self addRoom:newCarWashRoom];
+-(instancetype)initWithRooms:(NSArray *)rooms carWashRooms:(NSArray *)carWashRooms {
+    self = [super initWithRooms:rooms];
+    self.carWashRoomsContainer = [[[SAPItemsContainer alloc] initWithCapacity:carWashRooms.count] autorelease];
+    for (SAPCarWashRoom *room in carWashRooms) {
+        [self addCarWashRoom:room];
     }
     
     return self;
@@ -68,7 +67,7 @@ static NSUInteger const kDefaultInitialRoomsCount = 1;
     }
 }
 
-- (void)removeRoom:(SAPRoom *)room {
+- (void)removeCarWashRoom:(SAPRoom *)room {
     [self.carWashRoomsContainer removeItem:room];
     [self.carWashRoomsContainer setCapacity: self.carWashRoomsContainer.items.count];
 }

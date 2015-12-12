@@ -14,9 +14,14 @@
 
 @property (nonatomic, retain, readonly) NSArray *workers;
 
+- (instancetype)initWithWorkers:(NSArray *)workers;
+- (instancetype)initWithWorkersCapacity:(NSUInteger)workersCapacity;
 - (instancetype)initWithWorkers:(NSArray*)workers workersCapacity:(NSUInteger)workersCapacity;
+- (void)setWorkersCapacity:(NSUInteger)workersCapacity;
 
 - (void)addWorker:(SAPWorker *)worker;
 - (void)removeWorker:(SAPWorker *)worker;
+
+- (NSArray *)workersOfClass:(Class)workerClass;
 
 @end

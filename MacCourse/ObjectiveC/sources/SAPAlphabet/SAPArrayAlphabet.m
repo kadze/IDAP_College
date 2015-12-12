@@ -62,7 +62,7 @@
 #pragma mark NSFastEnumeration
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
-                                  objects:(id  _Nonnull *)buffer
+                                  objects:(id [])buffer
                                     count:(NSUInteger)len {
     return [[self lettersArray ]countByEnumeratingWithState:state objects:buffer count:len];
 }

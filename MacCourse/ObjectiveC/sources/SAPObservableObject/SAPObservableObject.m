@@ -42,7 +42,12 @@
 #pragma mark Accessors
 
 - (NSArray *) observers {
-    return [self.mutableObservers allObjects];
+    __block NSMutableArray *mutableResult = [NSMutableArray arrayWithCapacity:self.mutableObservers.count];
+    [self.mutableObservers enumerateObjectsUsingBlock:^(SAPWeakReference *obj, BOOL *stop) {
+        [mutableResult addObject:obj.target];
+    }];
+    
+    return [[mutableResult copy] autorelease];
 }
 
 #pragma mark-
@@ -60,8 +65,6 @@
             break;
         }
     }
-    
-    
 }
 
 - (void)notifyObserversWithSelector:(SEL)selector {

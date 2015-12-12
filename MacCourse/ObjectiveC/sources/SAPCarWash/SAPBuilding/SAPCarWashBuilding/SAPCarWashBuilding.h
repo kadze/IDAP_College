@@ -14,7 +14,7 @@
 
 @property (nonatomic, retain, readonly) NSArray *carWashRooms;
 
--(instancetype)initWithRoomsCount:(NSUInteger)roomsCount carWashRoomsCount:(NSUInteger)carWashRoomsCount;
+-(instancetype)initWithRooms:(NSArray *)rooms carWashRooms:(NSArray *)carWashRooms;
 
 -(void)addCarWashRoom:(SAPCarWashRoom *)carWashRoom;
 -(void)removeCarWashRoom:(SAPCarWashRoom *)carWashRoom;

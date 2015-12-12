@@ -56,10 +56,8 @@
 #pragma mark Public Methods
 
 - (void)addRoom:(SAPRoom *)room {
-    if ([room isMemberOfClass:[SAPRoom class]]) {
-        [self.roomsContainer setCapacity:(self.roomsContainer.items.count + 1)]; //unlimited rooms capacity
-        [self.roomsContainer addItem:room];
-    }
+    [self.roomsContainer setCapacity:(self.roomsContainer.items.count + 1)]; //unlimited rooms capacity
+    [self.roomsContainer addItem:room];
     
 }
 

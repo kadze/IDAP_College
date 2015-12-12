@@ -30,12 +30,20 @@
 }
 
 - (instancetype)init {
-    self = [self initWithCars:[NSArray array] carsCapacity:0];
+    self = [self initWithWorkers:[NSArray array] cars:[NSArray array]];
     
     return self;
 }
 
-- (instancetype)initWithCars:(NSArray*)cars carsCapacity:(NSUInteger)carsCapacity {
+- (instancetype)initWithWorkers:(NSArray *)workers cars:(NSArray *)cars {
+
+    [self initWithWorkers:workers];
+    [self initWithCars:cars carsCapacity:cars.count];
+    
+    return self;
+}
+
+- (instancetype)initWithCars:(NSArray *)cars carsCapacity:(NSUInteger)carsCapacity {
     if (cars.count > carsCapacity) {
         return nil;
     }
@@ -49,6 +57,7 @@
     return self;
 }
 
+
 #pragma mark-
 #pragma mark Accessors
 
@@ -60,16 +69,15 @@
 #pragma mark Public Methods
 
 - (void)addCar:(SAPCar *)car {
-    if ([car isKindOfClass:[SAPCar class]]) {
-        [self.carsContainer addItem:car];
-    }
-    
+    [self.carsContainer addItem:car];
 }
 
 - (void)removeCar:(SAPCar *)car {
     [self.carsContainer removeItem:car];
 }
 
-
+- (void)setCarsCapacity:(NSUInteger)carsCapacity {
+    [self.carsContainer setCapacity:carsCapacity];
+}
 
 @end

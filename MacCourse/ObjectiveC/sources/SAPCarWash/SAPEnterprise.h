@@ -14,14 +14,19 @@
 
 @interface SAPEnterprise : NSObject
 
-@property (nonatomic, retain) SAPItemsContainer *staff;
-@property (nonatomic, retain) SAPItemsContainer *realEstate;
+@property (nonatomic, retain) NSArray *staff;
+@property (nonatomic, retain) NSArray *buildings;
 
-+ (SAPEnterprise *)carWashEnterpriseSetup;
-
-- (SAPWorker *)hireWorker:(SAPWorker*)worker;
+- (void)initialSetup;
+- (void)hireWorker:(SAPWorker *)worker;
 - (void)dismissWorker:(SAPWorker *)worker;
 
-- (SAPBuilding *)buildWithClass:(Class)buildingClass withRooms:(NSArray *)rooms;
+- (void)addBuilding:(SAPBuilding *)building;
+- (void)removeBuilding:(SAPBuilding *)building;
+
+-(NSArray *)buildingsOfClass:(Class)buildingClass;
+-(NSArray *)workersOfClass:(Class)workerClass;
+
+-(void)washCars:(NSArray *)cars;
 
 @end

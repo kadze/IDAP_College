@@ -19,10 +19,13 @@ static NSUInteger const kWashPrise = 50;
 
 - (void)makeJob {
     SAPRoom *currentWorkingPlace = self.currentWorkingPlace;
+    NSUInteger moneyBefore = self.money;
     if ([currentWorkingPlace isKindOfClass:[SAPCarWashRoom class]]) {
         [self washAllCarsInCarWashRoom:(SAPCarWashRoom *)currentWorkingPlace];
     }
-    [self giveAllMoneyToRecipient];
+    if (self.money > moneyBefore) {
+        [self notifyObserversWithSelector:@selector(carWashedByWasher:) withObject:self];
+    }
 }
 
 #pragma mark-

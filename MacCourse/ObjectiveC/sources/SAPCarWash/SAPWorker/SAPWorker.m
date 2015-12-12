@@ -32,6 +32,10 @@
     [self giveMoney:self.money toRecipient:self.moneyRecipient];
 }
 
+- (void)takeAllMoneyFromSender:(SAPWorker *)sender {
+    [sender giveMoney:sender.money toRecipient:self];
+}
+
 #pragma mark-
 #pragma mark SAPMoneyTransfer
 

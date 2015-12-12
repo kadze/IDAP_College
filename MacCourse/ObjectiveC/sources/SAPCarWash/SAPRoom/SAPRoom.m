@@ -31,7 +31,19 @@
 }
 
 - (instancetype)init {
-    self = [self initWithWorkers:[NSArray array] workersCapacity:0];
+    self = [self initWithWorkersCapacity:0];
+    
+    return self;
+}
+
+- (instancetype)initWithWorkers:(NSArray *)workers {
+    self = [self initWithWorkers:workers workersCapacity:workers.count];
+    
+    return self;
+}
+
+- (instancetype)initWithWorkersCapacity:(NSUInteger)workersCapacity {
+    self = [self initWithWorkers:[NSArray array] workersCapacity:workersCapacity];
     
     return self;
 }
@@ -50,6 +62,8 @@
     return self;
 }
 
+
+
 #pragma mark-
 #pragma mark Accessors
 
@@ -59,6 +73,10 @@
 
 #pragma mark-
 #pragma mark Public Methods
+
+- (void)setWorkersCapacity:(NSUInteger)workersCapacity {
+    [self.workersContainer setCapacity:workersCapacity];
+}
 
 - (void)addWorker:(SAPWorker *)worker {
     if ([worker isKindOfClass:[SAPWorker class]]) {
@@ -72,5 +90,10 @@
     [self.workersContainer removeItem:worker];
     [worker setCurrentWorkingPlace:nil];
 }
+
+- (NSArray *)workersOfClass:(Class)workerClass {
+    return [self.workersContainer itemsOfClass:workerClass];
+}
+
 
 @end

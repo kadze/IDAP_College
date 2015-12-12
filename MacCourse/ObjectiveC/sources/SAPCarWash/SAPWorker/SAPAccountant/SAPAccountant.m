@@ -14,4 +14,9 @@
     [self giveAllMoneyToRecipient];
 }
 
+- (void)carWashedByWasher:(SAPWorker *)washer {
+    [self takeAllMoneyFromSender:washer];
+    [self makeJob];
+}
+
 @end
