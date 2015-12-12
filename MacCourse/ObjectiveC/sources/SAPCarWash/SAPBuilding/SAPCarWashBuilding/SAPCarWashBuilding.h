@@ -12,7 +12,7 @@
 
 @interface SAPCarWashBuilding : SAPBuilding
 
-@property (nonatomic, readonly) NSArray *carWashRooms;
+@property (nonatomic, retain, readonly) NSArray *carWashRooms;
 
 -(instancetype)initWithRoomsCount:(NSUInteger)roomsCount carWashRoomsCount:(NSUInteger)carWashRoomsCount;
 

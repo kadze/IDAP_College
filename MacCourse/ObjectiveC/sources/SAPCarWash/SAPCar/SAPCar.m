@@ -10,6 +10,8 @@
 
 @implementation SAPCar
 
+@synthesize money = _money;
+
 #pragma mark-
 #pragma mark SAPMoneyTransfer
 

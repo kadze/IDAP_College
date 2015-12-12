@@ -10,6 +10,8 @@
 
 @implementation SAPWorker
 
+@synthesize money = _money;
+
 #pragma mark-
 #pragma mark Initializatinos and Deallocations
 
@@ -31,7 +33,7 @@
 }
 
 #pragma mark-
-#pragma mark <SAPMoneyTransfer>
+#pragma mark SAPMoneyTransfer
 
 - (BOOL)giveMoney:(NSUInteger)sum toRecipient:(id<SAPMoneyTransfer>)recipient {
     if (self.money >= sum && (recipient)) {
@@ -45,9 +47,7 @@
 }
 
 - (BOOL)takeMoney:(NSUInteger)sum fromSender:(id<SAPMoneyTransfer>)sender {
-    if (sender) {
-        return [sender giveMoney:sum toRecipient:self];
-    }
+    return [sender giveMoney:sum toRecipient:self]; //if sender nil anyway return nil, hence NO
     
     return NO;
 }

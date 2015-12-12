@@ -12,11 +12,9 @@
 
 @interface SAPBuilding : NSObject
 
-@property (nonatomic, readonly) NSArray *rooms;
+@property (nonatomic, retain, readonly) NSArray *rooms;
 
-//+ (BOOL)canContainItemsOfClass:(Class)itemClass;
-
-- (instancetype)initWithRoomsCount:(NSUInteger)roomsCount;
+- (instancetype)initWithRooms:(NSArray *)rooms;
 
 - (void)addRoom:(SAPRoom *)room;
 - (void)removeRoom:(SAPRoom *)room;

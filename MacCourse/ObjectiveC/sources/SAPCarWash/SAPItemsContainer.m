@@ -10,8 +10,7 @@
 
 @interface SAPItemsContainer()
 
-@property (nonatomic) NSMutableArray    *mutableItems;
-//@property (nonatomic) NSUInteger        capacity;
+@property (nonatomic, retain) NSMutableArray    *mutableItems;
 
 @end
 
@@ -50,6 +49,17 @@
     return [[self.mutableItems copy] autorelease];
 }
 
+- (NSArray *)itemsOfClass:(Class)itemClass {
+    __block NSMutableArray *mutableResult = [NSMutableArray array];
+    [self.mutableItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if ([obj isMemberOfClass:itemClass]) {
+            [mutableResult addObject:obj];
+        }
+    }];
+    
+    return [[mutableResult copy] autorelease];
+}
+
 - (BOOL)isFull  {
     return (self.mutableItems.count == self.capacity);
 }
@@ -59,7 +69,7 @@
 
 - (BOOL)addItem:(id)item {
     BOOL result = NO;
-    if (![self isFull]) {
+    if (!self.isFull) {
         [self.mutableItems addObject:item];
         result = YES;
     }

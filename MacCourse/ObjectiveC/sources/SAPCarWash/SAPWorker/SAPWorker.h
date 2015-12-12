@@ -13,12 +13,10 @@
 
 @interface SAPWorker : NSObject <SAPMoneyTransfer>
 
-@property (nonatomic, assign)   NSUInteger  money;
+@property (nonatomic, retain)   SAPWorker   *moneyRecipient;
 @property (nonatomic, assign)   NSUInteger  salary;
 @property (nonatomic, assign)   NSUInteger  yearsOfExperience;
-//@property (nonatomic, copy)     NSString    *duties;
 @property (nonatomic, assign)   SAPRoom     *currentWorkingPlace;
-@property (nonatomic, retain)   SAPWorker<SAPMoneyTransfer>   *moneyRecipient;
 
 - (void)makeJob;
 - (void)giveAllMoneyToRecipient;

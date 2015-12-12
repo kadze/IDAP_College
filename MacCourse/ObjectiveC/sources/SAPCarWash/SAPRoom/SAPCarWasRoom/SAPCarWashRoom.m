@@ -12,7 +12,7 @@
 
 @interface SAPCarWashRoom()
 
-@property(nonatomic) SAPItemsContainer *carsContainer;
+@property(nonatomic, retain) SAPItemsContainer *carsContainer;
 
 @end
 

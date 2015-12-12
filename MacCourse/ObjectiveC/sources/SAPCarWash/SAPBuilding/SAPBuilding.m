@@ -10,8 +10,6 @@
 #import "SAPItemsContainer.h"
 #import "SAPRoom.h"
 
-static NSUInteger const kDefaultInitialRoomsCount = 1;
-
 @interface SAPBuilding()
 
 @property (nonatomic, retain) SAPItemsContainer *roomsContainer;
@@ -32,17 +30,16 @@ static NSUInteger const kDefaultInitialRoomsCount = 1;
 }
 
 - (instancetype)init {
-    self = [self initWithRoomsCount:kDefaultInitialRoomsCount];
+    self = [self initWithRooms:[NSArray array]];
     
     return self;
 }
 
-- (instancetype)initWithRoomsCount:(NSUInteger)roomsCount {
+- (instancetype)initWithRooms:(NSArray *)rooms {
     self = [super init];
-    self.roomsContainer = [[[SAPItemsContainer alloc] initWithCapacity:roomsCount] autorelease];
-    for (NSUInteger counter = 0; counter < roomsCount; counter++) {
-        SAPRoom *newRoom = [[[SAPRoom alloc] init] autorelease];
-        [self addRoom:newRoom];
+    self.roomsContainer = [[[SAPItemsContainer alloc] initWithCapacity:rooms.count] autorelease];
+    for (SAPRoom *room in rooms) {
+        [self addRoom:room];
     }
     
     return self;

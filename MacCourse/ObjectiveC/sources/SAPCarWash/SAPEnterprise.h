@@ -19,8 +19,9 @@
 
 + (SAPEnterprise *)carWashEnterpriseSetup;
 
-- (SAPWorker*)hireWorker:(Class) speciality;
-- (void)dismiss:(SAPWorker*) worker;
-- (SAPBuilding*)buildWithClass:(Class) buildingClass withRooms:(NSUInteger) roomsCount;
+- (SAPWorker *)hireWorker:(SAPWorker*)worker;
+- (void)dismissWorker:(SAPWorker *)worker;
+
+- (SAPBuilding *)buildWithClass:(Class)buildingClass withRooms:(NSArray *)rooms;
 
 @end
