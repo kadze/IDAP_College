@@ -77,7 +77,9 @@
 
 - (void)notifyObserversWithSelector:(SEL)selector withObject:(id)object withObject:(id)object2 {
     for (id observer in self.observers) {
-        [observer performSelector:selector withObject:object withObject:object2];
+        if ([observer respondsToSelector:selector]) {
+            [observer performSelector:selector withObject:object withObject:object2];
+        }
     }
 }
 
