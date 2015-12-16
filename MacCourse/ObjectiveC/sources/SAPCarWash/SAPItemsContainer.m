@@ -50,12 +50,12 @@
 }
 
 - (NSArray *)itemsOfClass:(Class)itemClass {
-    __block NSMutableArray *mutableResult = [NSMutableArray array];
-    [self.mutableItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        if ([obj isMemberOfClass:itemClass]) {
-            [mutableResult addObject:obj];
+    NSMutableArray *mutableResult = [NSMutableArray array];
+    for (id item in self.mutableItems) {
+        if ([item isMemberOfClass:itemClass]) {
+            [mutableResult addObject:item];
         }
-    }];
+    }
     
     return [[mutableResult copy] autorelease];
 }
@@ -77,8 +77,22 @@
     return result;
 }
 
+- (void)extendWithItem:(id)item {
+    if (!self.isFull) {
+        self.capacity++;
+    }
+    
+    [self.mutableItems addObject:item];
+}
+
 - (void)removeItem:(id)item {
     [self.mutableItems removeObject:item];
 }
+
+- (void)removeItemShrinkCapacity:(id)item {
+    [self removeItem:item];
+    self.capacity = self.mutableItems.count;
+}
+
 
 @end

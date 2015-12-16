@@ -14,10 +14,10 @@
 
 @interface SAPWorker : SAPObservableObject <SAPMoneyTransfer>
 
-@property (nonatomic, retain)   SAPWorker   *moneyRecipient;
-@property (nonatomic, assign)   NSUInteger  salary;
-@property (nonatomic, assign)   NSUInteger  yearsOfExperience;
-@property (nonatomic, assign)   SAPRoom     *currentWorkingPlace;
+@property (nonatomic, retain)   id<SAPMoneyTransfer>    moneyRecipient;
+@property (nonatomic, assign)   NSUInteger              salary;
+@property (nonatomic, assign)   NSUInteger              yearsOfExperience;
+@property (nonatomic, assign)   SAPRoom                 *workingPlace;
 
 - (void)makeJob;
 - (void)giveAllMoneyToRecipient;

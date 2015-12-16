@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SAPCreatureTests.h"
-#import "SAPStringExtentionsTests.h"
+//#import "SAPCreatureTests.h"
+//#import "SAPStringExtentionsTests.h"
 
+#import "NSObject+SAPObject.h"
 
 #import "SAPEnterprise.h"
 #import "SAPCar.h"
@@ -32,12 +33,13 @@ int main(int argc, const char * argv[]) {
         
         ///////////car wash life
         
-        SAPEnterprise *carWashEnterprise = [[[SAPEnterprise alloc] init] autorelease];
+//        SAPEnterprise *carWashEnterprise = [[[SAPEnterprise alloc] init] autorelease];
+        SAPEnterprise *carWashEnterprise = [SAPEnterprise object];
         [carWashEnterprise initialSetup];
         
         NSMutableArray *cars = [NSMutableArray array];
         for (NSUInteger carCounter = 0; carCounter < kAnnualAmountOfCars; carCounter++) {
-            SAPCar *car = [[[SAPCar alloc] init] autorelease];
+            SAPCar *car = [SAPCar object];
             car.money = kInitialCarMoney;
             [cars addObject:car];            
         }
@@ -47,6 +49,9 @@ int main(int argc, const char * argv[]) {
         SAPBoss *boss = [carWashEnterprise workersOfClass:[SAPBoss class]].firstObject;
         
         NSLog(@"%lu", (unsigned long)boss.money);
+        
+        cars = nil;
+        carWashEnterprise = nil;
         
     }
     

@@ -30,7 +30,7 @@
 }
 
 - (instancetype)init {
-    self = [self initWithWorkers:[NSArray array] cars:[NSArray array]];
+    self = [self initWithWorkers:@[] cars:@[]];
     
     return self;
 }

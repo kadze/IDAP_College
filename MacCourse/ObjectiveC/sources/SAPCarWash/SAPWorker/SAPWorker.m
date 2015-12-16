@@ -25,7 +25,7 @@
 #pragma mark Public Methods
 
 - (void)makeJob {
-    //to override
+    [self doesNotRecognizeSelector:_cmd];
 }
 
 - (void)giveAllMoneyToRecipient {

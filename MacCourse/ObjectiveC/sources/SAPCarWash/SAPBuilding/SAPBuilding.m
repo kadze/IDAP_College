@@ -30,7 +30,7 @@
 }
 
 - (instancetype)init {
-    self = [self initWithRooms:[NSArray array]];
+    self = [self initWithRooms:nil];
     
     return self;
 }
@@ -56,14 +56,15 @@
 #pragma mark Public Methods
 
 - (void)addRoom:(SAPRoom *)room {
-    [self.roomsContainer setCapacity:(self.roomsContainer.items.count + 1)]; //unlimited rooms capacity
-    [self.roomsContainer addItem:room];
-    
+    [self.roomsContainer extendWithItem:room]; //unlimited rooms capacity
 }
 
 - (void)removeRoom:(SAPRoom *)room {
-    [self.roomsContainer removeItem:room];
-    [self.roomsContainer setCapacity:self.roomsContainer.items.count];
+    [self.roomsContainer removeItemShrinkCapacity:room];
+}
+
+- (NSArray *)roomsOfClass:(Class)roomClass {
+    return [self.roomsContainer itemsOfClass:roomClass];
 }
 
 @end

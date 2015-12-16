@@ -19,4 +19,6 @@
 - (void)addRoom:(SAPRoom *)room;
 - (void)removeRoom:(SAPRoom *)room;
 
+- (NSArray *)roomsOfClass:(Class)roomClass;
+
 @end

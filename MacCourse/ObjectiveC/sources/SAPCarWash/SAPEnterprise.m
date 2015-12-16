@@ -6,6 +6,7 @@
 //  Copyright © 2015 Yosemite Retail. All rights reserved.
 //
 
+#import "NSObject+SAPObject.h"
 #import "SAPEnterprise.h"
 #import "SAPItemsContainer.h"
 #import "SAPBuilding.h"
@@ -44,8 +45,8 @@
 
 - (instancetype)init {
     self = [super init];
-    self.staffContainter = [[[SAPItemsContainer alloc] init] autorelease];
-    self.buildingsContainter = [[[SAPItemsContainer alloc] init] autorelease];
+    self.staffContainter = [SAPItemsContainer object];
+    self.buildingsContainter = [SAPItemsContainer object];
     
     return self;
 }
@@ -64,23 +65,19 @@
 #pragma mark Public Methods
 
 - (void)hireWorker:(SAPWorker *)worker {
-    self.staffContainter.capacity = self.staffContainter.items.count + 1;
-    [self.staffContainter addItem:worker];
+    [self.staffContainter extendWithItem:worker];
 }
 
 - (void)dismissWorker:(SAPWorker *)worker {
-    [self.staffContainter removeItem:worker];
-    self.staffContainter.capacity = self.staffContainter.items.count - 1;
+    [self.staffContainter removeItemShrinkCapacity:worker];
 }
 
 - (void)addBuilding:(SAPBuilding *)building {
-    self.buildingsContainter.capacity = self.buildingsContainter.items.count + 1;
-    [self.buildingsContainter addItem:building];
+    [self.buildingsContainter extendWithItem:building];
 }
 
 - (void)removeBuilding:(SAPBuilding *)building {
-    [self.buildingsContainter removeItem:building];
-    self.buildingsContainter.capacity = self.buildingsContainter.items.count - 1;
+    [self.buildingsContainter removeItemShrinkCapacity:building];
 }
 
 -(NSArray *)buildingsOfClass:(Class)buildingClass {
@@ -93,13 +90,13 @@
 
 - (void)initialSetup {
     // 1 room for car wash building wich can contain 1 washer and 1 car
-    SAPCarWashRoom *carWashRoom = [[[SAPCarWashRoom alloc] init] autorelease];
+    SAPCarWashRoom *carWashRoom = [SAPCarWashRoom object];
     [carWashRoom setWorkersCapacity:1];
     [carWashRoom setCarsCapacity:1];
     
     
     //1 car wash building
-    SAPCarWashBuilding *carWashBuilding = [[SAPCarWashBuilding alloc] initWithRooms:[NSArray array] carWashRooms:@[carWashRoom]];
+    SAPCarWashBuilding *carWashBuilding = [[SAPCarWashBuilding alloc] initWithRooms:@[carWashRoom]];
     
     //1 room for office building which can contain 2 workers
     SAPRoom *officeRoom = [[[SAPRoom alloc] initWithWorkersCapacity:2] autorelease];
@@ -112,15 +109,16 @@
     [self addBuilding:carWashBuilding];
     
     //hire workers
-    SAPWasher *washer =[[[SAPWasher alloc] init] autorelease];
-    SAPAccountant *accountant = [[[SAPAccountant alloc] init] autorelease];
-    SAPBoss *boss = [[[SAPBoss alloc] init] autorelease];
+    SAPWasher *washer =[SAPWasher object];
+    SAPAccountant *accountant = [SAPAccountant object];
+    SAPBoss *boss = [SAPBoss object];
     
-    [self hireWorker:washer];
-    [self hireWorker:accountant];
-    [self hireWorker:boss];
+    NSArray *workers = @[washer, accountant, boss];
+    for (SAPWorker* worker in workers) {
+        [self hireWorker:worker];
+    }
     
-    //accomodate workers on workerking places
+    //accomodate workers on working places
     [carWashRoom addWorker:washer];
     [officeRoom addWorker:accountant];
     [officeRoom addWorker:boss];

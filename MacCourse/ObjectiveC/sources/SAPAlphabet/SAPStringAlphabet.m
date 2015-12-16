@@ -6,6 +6,7 @@
 //  Copyright © 2015 Yosemite Retail. All rights reserved.
 //
 
+#import "NSObject+SAPObject.h"
 #import "SAPStringAlphabet.h"
 #import "SAPEnumeratedString.h"
 
@@ -47,7 +48,7 @@
 #pragma mark Public Methods
 
 - (NSArray *)arrayOfLetters {
-    SAPEnumeratedString *enumeratedLetters = [[[SAPEnumeratedString alloc] init] autorelease] ;
+    SAPEnumeratedString *enumeratedLetters = [SAPEnumeratedString object];
     enumeratedLetters.string = self.lettersString;
     NSMutableArray *mutableResult = [NSMutableArray arrayWithCapacity:self.lettersString.length];
     for (NSString *letter in enumeratedLetters) {

@@ -5,8 +5,7 @@
 //  Created by S A P on 12/11/15.
 //  Copyright © 2015 Yosemite Retail. All rights reserved.
 //
-
-#import "SAPWeakReference.h"
+#import "SAPAssignReference.h"
 
 @interface SAPWeakReference()
 

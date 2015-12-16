@@ -18,7 +18,7 @@ static NSUInteger const kWashPrise = 50;
 #pragma mark Public Methods
 
 - (void)makeJob {
-    SAPRoom *currentWorkingPlace = self.currentWorkingPlace;
+    SAPRoom *currentWorkingPlace = self.workingPlace;
     NSUInteger moneyBefore = self.money;
     if ([currentWorkingPlace isKindOfClass:[SAPCarWashRoom class]]) {
         [self washAllCarsInCarWashRoom:(SAPCarWashRoom *)currentWorkingPlace];

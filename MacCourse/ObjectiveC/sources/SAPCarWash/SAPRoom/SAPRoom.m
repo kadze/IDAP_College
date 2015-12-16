@@ -43,7 +43,7 @@
 }
 
 - (instancetype)initWithWorkersCapacity:(NSUInteger)workersCapacity {
-    self = [self initWithWorkers:[NSArray array] workersCapacity:workersCapacity];
+    self = [self initWithWorkers:@[] workersCapacity:workersCapacity];
     
     return self;
 }
@@ -81,14 +81,14 @@
 - (void)addWorker:(SAPWorker *)worker {
     if ([worker isKindOfClass:[SAPWorker class]]) {
         [self.workersContainer addItem:worker];
-        [worker setCurrentWorkingPlace:self];
+        worker.workingPlace = self;
     }
     
 }
 
 - (void)removeWorker:(SAPWorker *)worker {
     [self.workersContainer removeItem:worker];
-    [worker setCurrentWorkingPlace:nil];
+    [worker setWorkingPlace:nil];
 }
 
 - (NSArray *)workersOfClass:(Class)workerClass {

@@ -17,7 +17,9 @@
 - (instancetype)initWithCapacity:(NSUInteger)capacity;
 
 - (BOOL)addItem:(id)item;
+- (void)extendWithItem:(id)item;
 - (void)removeItem:(id)item;
+- (void)removeItemShrinkCapacity:(id)item;
 
 - (NSArray *)itemsOfClass:(Class)itemClass;
 
