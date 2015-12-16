@@ -10,6 +10,9 @@
 
 @implementation SAPBoss
 
-//-(void)makeJob  //NO Job!!!
+-(void)makeJobWithObject:(id)accountant {
+    [self takeAllMoneyFromSender:accountant];
+}
+
 
 @end

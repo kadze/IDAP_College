@@ -79,16 +79,12 @@
 }
 
 - (void)addWorker:(SAPWorker *)worker {
-    if ([worker isKindOfClass:[SAPWorker class]]) {
-        [self.workersContainer addItem:worker];
-        worker.workingPlace = self;
-    }
+    [self.workersContainer addItem:worker];
     
 }
 
 - (void)removeWorker:(SAPWorker *)worker {
     [self.workersContainer removeItem:worker];
-    [worker setWorkingPlace:nil];
 }
 
 - (NSArray *)workersOfClass:(Class)workerClass {

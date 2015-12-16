@@ -16,7 +16,6 @@
 #pragma mark Initializatinos and Deallocations
 
 - (void)dealloc {
-    self.moneyRecipient = nil;
     
     [super dealloc];
 }
@@ -24,12 +23,12 @@
 #pragma mark-
 #pragma mark Public Methods
 
-- (void)makeJob {
+- (void)makeJobWithObject:(id)object {
     [self doesNotRecognizeSelector:_cmd];
 }
 
-- (void)giveAllMoneyToRecipient {
-    [self giveMoney:self.money toRecipient:self.moneyRecipient];
+- (void)giveAllMoneyToRecipient:(id<SAPMoneyTransfer>)recipient {
+    [self giveMoney:self.money toRecipient:recipient];
 }
 
 - (void)takeAllMoneyFromSender:(SAPWorker *)sender {

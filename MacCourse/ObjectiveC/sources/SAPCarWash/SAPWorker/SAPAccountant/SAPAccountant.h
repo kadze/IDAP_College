@@ -11,6 +11,6 @@
 @class SAPWasher;
 @interface SAPAccountant : SAPWorker
 
-- (void)carWashedByWasher:(SAPWasher *)washer;
+- (void)didFinishWork:(SAPWasher *)washer;
 
 @end

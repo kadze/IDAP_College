@@ -12,15 +12,19 @@
 
 @class SAPRoom;
 
+typedef NS_ENUM (NSUInteger, SAPWorkerState) {
+    kSAPIsReadyToWork,
+    kSAPIsBusy
+};
+
 @interface SAPWorker : SAPObservableObject <SAPMoneyTransfer>
 
-@property (nonatomic, retain)   id<SAPMoneyTransfer>    moneyRecipient;
 @property (nonatomic, assign)   NSUInteger              salary;
-@property (nonatomic, assign)   NSUInteger              yearsOfExperience;
-@property (nonatomic, assign)   SAPRoom                 *workingPlace;
+@property (nonatomic, assign)   NSUInteger              experienceLevel;
+@property (nonatomic, assign)   SAPWorkerState          state;
 
-- (void)makeJob;
-- (void)giveAllMoneyToRecipient;
-- (void)takeAllMoneyFromSender:(SAPWorker *)sender;
+- (void)makeJobWithObject:(id)object;
+- (void)giveAllMoneyToRecipient:(id<SAPMoneyTransfer>)recipient;
+- (void)takeAllMoneyFromSender:(id<SAPMoneyTransfer>)sender;
 
 @end

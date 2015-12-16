@@ -11,6 +11,8 @@
 @class SAPWorker;
 @class SAPBuilding;
 @class SAPItemsContainer;
+@class SAPWasher;
+@class SAPRoom;
 
 @interface SAPEnterprise : NSObject
 
@@ -28,5 +30,7 @@
 -(NSArray *)workersOfClass:(Class)workerClass;
 
 -(void)washCars:(NSArray *)cars;
+-(SAPRoom *)findFreeRoomOfClass:(Class)roomClass;
+-(SAPWasher *)findFreeWasher;
 
 @end

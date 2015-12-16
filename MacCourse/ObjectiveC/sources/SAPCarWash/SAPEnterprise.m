@@ -126,19 +126,60 @@
     //accountant observes for washer
     [washer addObserver:accountant];
     //boss is a moneyRecipient of the accountant
-    accountant.moneyRecipient = boss;
+    [accountant addObserver:boss];
     
 }
 
 -(void)washCars:(NSArray *)cars {
-    SAPCarWashBuilding *carWashBuilding = [self buildingsOfClass:[SAPCarWashBuilding class]].firstObject;
-    SAPCarWashRoom *carWashRoom = carWashBuilding.carWashRooms.firstObject;
-    SAPWasher *washer = carWashRoom.workers.firstObject;
-    for (SAPCar *car in cars) {
-        [carWashRoom addCar:car];
-        [washer makeJob];
-        [carWashRoom removeCar:car];
+//    SAPCarWashBuilding *carWashBuilding = [self buildingsOfClass:[SAPCarWashBuilding class]].firstObject;
+//    SAPCarWashRoom *carWashRoom = carWashBuilding.carWashRooms.firstObject;
+//    SAPWasher *washer = carWashRoom.workers.firstObject;
+    while (true) {
+        for (SAPCar *car in cars) {
+            SAPCarWashRoom *carWashRoom = (SAPCarWashRoom *)[self findFreeRoomOfClass:[SAPCarWashRoom class]];
+            if (carWashRoom) {
+                [carWashRoom addCar:car];
+            } else {
+                break;
+            }
+            SAPWasher *washer = [self findFreeWasher];
+            if (washer) {
+                [washer makeJobWithObject:car];
+                [carWashRoom removeCar:car];
+            }
+        }
     }
 }
+
+-(SAPRoom *)findFreeRoomOfClass:(Class)roomClass {
+    SAPRoom *result = nil;
+    for (SAPBuilding *building in self.buildingsContainter.items) {
+        for (SAPCarWashRoom *room in [building roomsOfClass:roomClass]) {
+            if (0 == [room cars].count) {
+                result = room;
+                
+                break;
+            }
+        }
+        
+        if (result) {
+            break;
+        }
+    }
+    
+    return result;
+}
+
+-(SAPWasher *)findFreeWasher {
+    SAPWasher *washer= nil;
+    for (washer in [self workersOfClass:[SAPWasher class]]) {
+        if (kSAPIsReadyToWork == washer.state) {
+            break;
+        }
+    }
+    
+    return washer;
+}
+
 
 @end
