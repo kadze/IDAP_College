@@ -9,8 +9,7 @@
 #import "SAPWorker.h"
 
 @class SAPWasher;
-@interface SAPAccountant : SAPWorker
 
-- (void)didFinishWork:(SAPWasher *)washer;
+@interface SAPAccountant : SAPWorker
 
 @end

@@ -131,10 +131,11 @@
 }
 
 -(void)washCars:(NSArray *)cars {
-//    SAPCarWashBuilding *carWashBuilding = [self buildingsOfClass:[SAPCarWashBuilding class]].firstObject;
-//    SAPCarWashRoom *carWashRoom = carWashBuilding.carWashRooms.firstObject;
-//    SAPWasher *washer = carWashRoom.workers.firstObject;
-    while (true) {
+//    while (true) {
+//        if (0 == cars.count) {
+//            break;
+//        }
+    
         for (SAPCar *car in cars) {
             SAPCarWashRoom *carWashRoom = (SAPCarWashRoom *)[self findFreeRoomOfClass:[SAPCarWashRoom class]];
             if (carWashRoom) {
@@ -148,7 +149,7 @@
                 [carWashRoom removeCar:car];
             }
         }
-    }
+//    }
 }
 
 -(SAPRoom *)findFreeRoomOfClass:(Class)roomClass {
@@ -174,6 +175,7 @@
     SAPWasher *washer= nil;
     for (washer in [self workersOfClass:[SAPWasher class]]) {
         if (kSAPIsReadyToWork == washer.state) {
+            
             break;
         }
     }

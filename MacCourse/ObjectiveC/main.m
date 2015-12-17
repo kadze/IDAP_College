@@ -28,12 +28,8 @@ int main(int argc, const char * argv[]) {
 //        [SAPCreatureTests performSAPCreatureTests];
 //        [SAPStringExtentionsTests performSAPStringExtentionsTests];
         
-       
+        //=====CAR WASH=====
         
-        
-        ///////////car wash life
-        
-//        SAPEnterprise *carWashEnterprise = [[[SAPEnterprise alloc] init] autorelease];
         SAPEnterprise *carWashEnterprise = [SAPEnterprise object];
         [carWashEnterprise initialSetup];
         
@@ -46,9 +42,12 @@ int main(int argc, const char * argv[]) {
         
         [carWashEnterprise washCars:cars];
         
-        SAPBoss *boss = [carWashEnterprise workersOfClass:[SAPBoss class]].firstObject;
-        
-        NSLog(@"%lu", (unsigned long)boss.money);
+        SAPBoss *boss = nil;
+        NSUInteger bossCounter = 1;
+        for (boss in [carWashEnterprise workersOfClass:[SAPBoss class]]) {
+            NSLog(@"Boss %lu : %lu", bossCounter, (unsigned long)boss.money);
+            bossCounter++;
+        }
         
         cars = nil;
         carWashEnterprise = nil;

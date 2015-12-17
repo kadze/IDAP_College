@@ -22,7 +22,7 @@ static NSUInteger const kWashPrise = 50;
     NSUInteger moneyBefore = self.money;
     [self washCar:car];
     if (self.money > moneyBefore) {
-        [self notifyObserversWithSelector:@selector(didFinishWork:) withObject:self];
+        [self notifyObserversWithSelector:@selector(makeJobWithObject:) withObject:self];
     }
     self.state = kSAPIsReadyToWork;
 }

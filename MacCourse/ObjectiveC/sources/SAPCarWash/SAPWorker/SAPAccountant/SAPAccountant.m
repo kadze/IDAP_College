@@ -16,22 +16,17 @@ static NSUInteger const kMaximumCashLimit = 1000;
 #pragma mark-
 #pragma mark Accessors
 
-- (void)setMoney:(NSUInteger)money {
-    if (money > self.money && kMaximumCashLimit <= self.money) {
-        [self notifyObserversWithSelector:@selector(makeJobWithObject:) withObject:self];
-    }
-    
-}
 
 #pragma mark-
 #pragma mark Public Methods
 
-//- (void)makeJobWithObject:(id)boss {
-//    [self giveAllMoneyToRecipient:boss];
-//}
-
-- (void)subjectGotMoney:(id<SAPMoneyTransfer>)subject {
-    [self takeAllMoneyFromSender:subject];
+- (void)makeJobWithObject:(id)boss {
+    [self takeAllMoneyFromSender:boss];
+    if (
+        //money > self.money &&
+        kMaximumCashLimit <= self.money) {
+        [self notifyObserversWithSelector:@selector(makeJobWithObject:) withObject:self];
+    }
 }
 
 @end
