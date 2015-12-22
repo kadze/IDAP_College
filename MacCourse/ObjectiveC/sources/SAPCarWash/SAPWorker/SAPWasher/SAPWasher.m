@@ -21,9 +21,20 @@ static NSUInteger const kWashPrise = 50;
     NSUInteger moneyBefore = self.money;
     [self washCar:car];
     if (self.money > moneyBefore) {
+        self.state = kSAPFinishedWork;
+    }
+    
+    self.state = kSAPIsReadyToWork;
+}
+
+#pragma mark-
+#pragma mark Accessors
+
+- (void)setState:(SAPWorkerState)state {
+    [super setState:state];
+    if (kSAPFinishedWork == state) {
         [self notifyObserversWithSelector:@selector(makeJobWithObject:) withObject:self];
     }
-    self.state = kSAPIsReadyToWork;
 }
 
 #pragma mark-

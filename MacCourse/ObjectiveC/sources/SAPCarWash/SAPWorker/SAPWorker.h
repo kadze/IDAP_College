@@ -14,7 +14,8 @@
 
 typedef NS_ENUM (NSUInteger, SAPWorkerState) {
     kSAPIsReadyToWork,
-    kSAPIsBusy
+    kSAPIsBusy,
+    kSAPFinishedWork
 };
 
 @interface SAPWorker : SAPObservableObject <SAPMoneyTransfer>
