@@ -22,9 +22,7 @@ static NSUInteger const kMaximumCashLimit = 1000;
 
 - (void)makeJobWithObject:(id)boss {
     [self takeAllMoneyFromSender:boss];
-    if (
-        //money > self.money &&
-        kMaximumCashLimit <= self.money) {
+    if (kMaximumCashLimit <= self.money) {
         [self notifyObserversWithSelector:@selector(makeJobWithObject:) withObject:self];
     }
 }

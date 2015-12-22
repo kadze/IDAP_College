@@ -20,7 +20,7 @@
 #import "SAPAccountant.h"
 
 NSUInteger const kInitialCarMoney = 50;
-NSUInteger const kAnnualAmountOfCars = 100000;
+NSUInteger const kAnnualAmountOfCars = 1000;
 NSUInteger const kWashPrice = 50;
 
 int main(int argc, const char * argv[]) {

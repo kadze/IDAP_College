@@ -8,7 +8,6 @@
 
 #import "SAPWasher.h"
 #import "SAPCar.h"
-#import "SAPCarWashRoom.h"
 
 static NSUInteger const kWashPrise = 50;
 
