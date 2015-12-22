@@ -65,10 +65,8 @@ static NSUInteger const maxWashersCount = 100;
     return [self.staffContainter itemsOfClass:workerClass];
 }
 
-- (void)initialSetup {
-    
-    //hire staff
-    
+- (void)hireStaff {
+        
     //carWash has 1 accountant and 1 boss
     
     SAPAccountant *accountant = [SAPAccountant object];
@@ -103,7 +101,7 @@ static NSUInteger const maxWashersCount = 100;
 //        }
     
         for (SAPCar *car in cars) {
-            SAPWasher *washer = [self findFreeWasher];
+            SAPWasher *washer = [self freeWasher];
             if (washer) {
                 [washer makeJobWithObject:car];
             }
@@ -111,17 +109,18 @@ static NSUInteger const maxWashersCount = 100;
 //    }
 }
 
--(SAPWasher *)findFreeWasher {
-    SAPWasher *washer= nil;
-    for (washer in [self workersOfClass:[SAPWasher class]]) {
-        if (kSAPIsReadyToWork == washer.state) {
-            
-            break;
+-(SAPWasher *)freeWasher {
+    return (SAPWasher*)[self freeWorkerOfClass:[SAPWasher class]];
+}
+
+-(SAPWorker *)freeWorkerOfClass:(Class)class {
+    for (SAPWorker *worker in [self workersOfClass:class]) {
+        if (kSAPIsReadyToWork == worker.state) {
+            return worker;
         }
     }
     
-    return washer;
+    return nil;
 }
-
 
 @end

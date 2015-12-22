@@ -16,13 +16,15 @@
 
 @property (nonatomic, retain) NSArray *staff;
 
-- (void)initialSetup;
+- (void)hireStaff;
 - (void)hireWorker:(SAPWorker *)worker;
 - (void)dismissWorker:(SAPWorker *)worker;
 
 -(NSArray *)workersOfClass:(Class)workerClass;
 
 -(void)washCars:(NSArray *)cars;
--(SAPWasher *)findFreeWasher;
+-(SAPWasher *)freeWasher;
+
+-(SAPWorker *)freeWorkerOfClass:(Class)class;
 
 @end

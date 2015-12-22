@@ -31,7 +31,7 @@ int main(int argc, const char * argv[]) {
         //=====CAR WASH=====
         
         SAPEnterprise *carWashEnterprise = [SAPEnterprise object];
-        [carWashEnterprise initialSetup];
+        [carWashEnterprise hireStaff];
         
         NSMutableArray *cars = [NSMutableArray array];
         for (NSUInteger carCounter = 0; carCounter < kAnnualAmountOfCars; carCounter++) {
