@@ -17,14 +17,9 @@ static NSUInteger const kWashPrise = 50;
 #pragma mark Public Methods
 
 - (void)makeJobWithObject:(id)car {
-    self.state = kSAPIsBusy;
-    NSUInteger moneyBefore = self.money;
-    [self washCar:car];
-    if (self.money > moneyBefore) {
-        self.state = kSAPFinishedWork;
+    if (car) {
+        [self makeJobWithObjectInBackground:car];
     }
-    
-    self.state = kSAPIsReadyToWork;
 }
 
 #pragma mark-
@@ -34,6 +29,8 @@ static NSUInteger const kWashPrise = 50;
     [super setState:state];
     if (kSAPFinishedWork == state) {
         [self notifyObserversWithSelector:@selector(makeJobWithObject:) withObject:self];
+    } else if (kSAPIsReadyToWork == state) {
+        [self notifyObserversWithSelector:@selector(washNextCarWithWasher:) withObject:self];
     }
 }
 
@@ -50,4 +47,14 @@ static NSUInteger const kWashPrise = 50;
     }
 }
 
+- (void)makeJobWithObjectInBackground:(id)car {
+    self.state = kSAPIsBusy;
+    NSUInteger moneyBefore = self.money;
+    [self washCar:car];
+    if (self.money > moneyBefore) {
+        self.state = kSAPFinishedWork;
+    }
+    
+    self.state = kSAPIsReadyToWork;
+}
 @end

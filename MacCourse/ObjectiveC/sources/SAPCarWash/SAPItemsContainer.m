@@ -37,7 +37,7 @@
 - (instancetype)initWithCapacity:(NSUInteger)capacity {
     self = [super init];
     self.mutableItems = [[[NSMutableArray alloc] initWithCapacity:capacity] autorelease];
-    self.capacity = capacity;
+//    self.capacity = capacity;
     
     return self;
 }
@@ -60,39 +60,50 @@
     return [[mutableResult copy] autorelease];
 }
 
-- (BOOL)isFull  {
-    return (self.mutableItems.count == self.capacity);
-}
+//- (BOOL)isFull  {
+//    return (self.mutableItems.count == self.capacity);
+//}
 
 #pragma mark-
 #pragma mark Public Methods
 
 - (BOOL)addItem:(id)item {
     BOOL result = NO;
-    if (!self.isFull) {
+//    if (!self.isFull) {
         [self.mutableItems addObject:item];
         result = YES;
-    }
+//    }
     
     return result;
 }
 
-- (void)extendWithItem:(id)item {
-    if (!self.isFull) {
-        self.capacity++;
-    }
-    
-    [self.mutableItems addObject:item];
-}
+//- (void)extendWithItem:(id)item {
+//    if (!self.isFull) {
+//        self.capacity++;
+//    }
+//    
+//    [self.mutableItems addObject:item];
+//}
 
 - (void)removeItem:(id)item {
     [self.mutableItems removeObject:item];
 }
 
-- (void)removeItemShrinkCapacity:(id)item {
-    [self removeItem:item];
-    self.capacity = self.mutableItems.count;
+- (id)dequeue {
+    id result = nil;
+    NSMutableArray *items = [self mutableItems];
+    if (0 != items.count) {
+        result = items[0];
+        [items removeObjectAtIndex:0];
+    }
+    
+    return result;
 }
+
+//- (void)removeItemShrinkCapacity:(id)item {
+//    [self removeItem:item];
+//    self.capacity = self.mutableItems.count;
+//}
 
 
 @end

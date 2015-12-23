@@ -15,11 +15,12 @@
 #import "SAPBoss.h"
 #import "SAPCar.h"
 
-static NSUInteger const maxWashersCount = 100;
+static NSUInteger const kSAPMaxWashersCount = 10;
 
 @interface SAPEnterprise()
 
 @property (nonatomic, retain) SAPItemsContainer *staffContainter;
+@property (nonatomic, retain) SAPItemsContainer *carsQueue;
 
 @end
 
@@ -28,11 +29,13 @@ static NSUInteger const maxWashersCount = 100;
 
 @dynamic staff;
 
+
 #pragma mark-
 #pragma mark Initializatinos and Deallocations
 
 - (void)dealloc {
     self.staffContainter = nil;
+    self.carsQueue = nil;
     
     [super dealloc];
 }
@@ -40,6 +43,7 @@ static NSUInteger const maxWashersCount = 100;
 - (instancetype)init {
     self = [super init];
     self.staffContainter = [SAPItemsContainer object];
+    self.carsQueue = [SAPItemsContainer object];
     
     return self;
 }
@@ -51,14 +55,28 @@ static NSUInteger const maxWashersCount = 100;
     return self.staffContainter.items;
 }
 
+#pragma mark-
+#pragma mark Private Methods
+
+//-(SAPCar *)carsDequeue {
+//    SAPCar *result = nil;
+//    SAPItemsContainer *carsQueue = [self carsQueue];
+//    if (0 != carsQueue.items.count) {
+//        result = carsQueue.dequeue;
+//        
+//    }
+//    
+//    return result;
+//}
+
 #pragma mark Public Methods
 
 - (void)hireWorker:(SAPWorker *)worker {
-    [self.staffContainter extendWithItem:worker];
+    [self.staffContainter addItem:worker];
 }
 
 - (void)dismissWorker:(SAPWorker *)worker {
-    [self.staffContainter removeItemShrinkCapacity:worker];
+    [self.staffContainter removeItem:worker];
 }
 
 -(NSArray *)workersOfClass:(Class)workerClass {
@@ -76,7 +94,7 @@ static NSUInteger const maxWashersCount = 100;
     [self hireWorker:boss];
     
     //car washing has random count of washers
-    NSUInteger washersCount = arc4random_uniform(maxWashersCount);
+    NSUInteger washersCount = arc4random_uniform(kSAPMaxWashersCount);
     while (washersCount > 0) {
         SAPWasher *washer =[SAPWasher object];
         
@@ -85,6 +103,9 @@ static NSUInteger const maxWashersCount = 100;
         
         //setting accountant as an observer for each washer
         [washer addObserver:accountant];
+        
+        //setting Enterprise as an observer for each washer to observe when isReadyToWork
+        [washer addObserver:self];
         
         washersCount--;
     }
@@ -101,12 +122,20 @@ static NSUInteger const maxWashersCount = 100;
 //        }
     
         for (SAPCar *car in cars) {
-            SAPWasher *washer = [self freeWasher];
-            if (washer) {
-                [washer makeJobWithObject:car];
-            }
+//            SAPWasher *washer = [self freeWasher];
+//            if (washer) {
+//                [washer makeJobWithObject:car];
+//            }
+            [self.carsQueue addItem:car];
         }
+    for (SAPWasher *washer in [self workersOfClass:[SAPWasher class]]) {
+        [washer setState:kSAPIsReadyToWork];
+    }
 //    }
+}
+
+-(void)washNextCarWithWasher:(SAPWasher *)washer {
+    [washer makeJobWithObject:[[self carsQueue] dequeue]];
 }
 
 -(SAPWasher *)freeWasher {

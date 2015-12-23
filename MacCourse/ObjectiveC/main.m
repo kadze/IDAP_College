@@ -49,6 +49,8 @@ int main(int argc, const char * argv[]) {
             bossCounter++;
         }
         
+        [[NSRunLoop currentRunLoop] run];
+        
         cars = nil;
         carWashEnterprise = nil;
         

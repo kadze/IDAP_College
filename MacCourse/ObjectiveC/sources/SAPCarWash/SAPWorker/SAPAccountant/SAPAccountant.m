@@ -27,13 +27,15 @@ static NSUInteger const kMaximumCashLimit = 1000;
 #pragma mark Public Methods
 
 - (void)makeJobWithObject:(id)washer {
-    self.state = kSAPIsBusy;
-    [self takeAllMoneyFromSender:washer];
-    if (kMaximumCashLimit <= self.money) {
-        self.state = kSAPFinishedWork;
+    @synchronized(self) {
+        self.state = kSAPIsBusy;
+        [self takeAllMoneyFromSender:washer];
+        if (kMaximumCashLimit <= self.money) {
+            self.state = kSAPFinishedWork;
+        }
+        
+        self.state = kSAPIsReadyToWork;
     }
-    
-    self.state = kSAPIsReadyToWork;
 }
 
 @end
