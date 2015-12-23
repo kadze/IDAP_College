@@ -12,6 +12,8 @@
 
 -(void)makeJobWithObject:(id)accountant {
     [self takeAllMoneyFromSender:accountant];
+    
+    NSLog(@"%@ got all money from %@", self, accountant);
 }
 
 

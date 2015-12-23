@@ -15,7 +15,7 @@
 #import "SAPBoss.h"
 #import "SAPCar.h"
 
-static NSUInteger const kSAPMaxWashersCount = 10;
+static NSUInteger const kSAPMaxWashersCount = 50;
 
 @interface SAPEnterprise()
 
@@ -55,20 +55,6 @@ static NSUInteger const kSAPMaxWashersCount = 10;
     return self.staffContainter.items;
 }
 
-#pragma mark-
-#pragma mark Private Methods
-
-//-(SAPCar *)carsDequeue {
-//    SAPCar *result = nil;
-//    SAPItemsContainer *carsQueue = [self carsQueue];
-//    if (0 != carsQueue.items.count) {
-//        result = carsQueue.dequeue;
-//        
-//    }
-//    
-//    return result;
-//}
-
 #pragma mark Public Methods
 
 - (void)hireWorker:(SAPWorker *)worker {
@@ -94,7 +80,11 @@ static NSUInteger const kSAPMaxWashersCount = 10;
     [self hireWorker:boss];
     
     //car washing has random count of washers
-    NSUInteger washersCount = arc4random_uniform(kSAPMaxWashersCount);
+    //NSUInteger washersCount = arc4random_uniform(kSAPMaxWashersCount);
+    NSUInteger washersCount = 3;
+    
+    NSLog(@"%lu washers", washersCount);
+    
     while (washersCount > 0) {
         SAPWasher *washer =[SAPWasher object];
         
@@ -112,26 +102,16 @@ static NSUInteger const kSAPMaxWashersCount = 10;
     
     //boss observes the accountant
     [accountant addObserver:boss];
-    
 }
 
 -(void)washCars:(NSArray *)cars {
-//    while (true) {
-//        if (0 == cars.count) {
-//            break;
-//        }
+    for (SAPCar *car in cars) {
+        [self.carsQueue addItem:car];
+    }
     
-        for (SAPCar *car in cars) {
-//            SAPWasher *washer = [self freeWasher];
-//            if (washer) {
-//                [washer makeJobWithObject:car];
-//            }
-            [self.carsQueue addItem:car];
-        }
     for (SAPWasher *washer in [self workersOfClass:[SAPWasher class]]) {
         [washer setState:kSAPIsReadyToWork];
     }
-//    }
 }
 
 -(void)washNextCarWithWasher:(SAPWasher *)washer {

@@ -28,9 +28,12 @@ static NSUInteger const kWashPrise = 50;
 - (void)setState:(SAPWorkerState)state {
     [super setState:state];
     if (kSAPFinishedWork == state) {
-        [self notifyObserversWithSelector:@selector(makeJobWithObject:) withObject:self];
+        //[self notifyObserversWithSelector:@selector(makeJobWithObject:) withObject:self];
+        [self performSelectorOnMainThread:@selector(notifyWorkFinished) withObject:nil waitUntilDone:YES];
     } else if (kSAPIsReadyToWork == state) {
-        [self notifyObserversWithSelector:@selector(washNextCarWithWasher:) withObject:self];
+//        [self notifyObserversWithSelector:@selector(washNextCarWithWasher:) withObject:self];
+        [self performSelectorOnMainThread:@selector(notifyIsReadyToWork) withObject:nil waitUntilDone:YES];
+        
     }
 }
 
@@ -48,7 +51,12 @@ static NSUInteger const kWashPrise = 50;
 }
 
 - (void)makeJobWithObjectInBackground:(id)car {
+    [self performSelectorInBackground:@selector(performAllJobWithCar:) withObject:car];
+}
+
+- (void)performAllJobWithCar:(SAPCar *)car {
     self.state = kSAPIsBusy;
+    NSLog(@"%@ is busy with %@", self, car);
     NSUInteger moneyBefore = self.money;
     [self washCar:car];
     if (self.money > moneyBefore) {
@@ -57,4 +65,13 @@ static NSUInteger const kWashPrise = 50;
     
     self.state = kSAPIsReadyToWork;
 }
+
+- (void)notifyWorkFinished {
+    [self notifyObserversWithSelector:@selector(makeJobWithObject:) withObject:self];
+}
+
+- (void)notifyIsReadyToWork {
+    [self notifyObserversWithSelector:@selector(washNextCarWithWasher:) withObject:self];
+}
+
 @end

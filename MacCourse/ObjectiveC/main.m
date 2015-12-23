@@ -20,7 +20,7 @@
 #import "SAPAccountant.h"
 
 NSUInteger const kInitialCarMoney = 50;
-NSUInteger const kAnnualAmountOfCars = 1000;
+NSUInteger const kAnnualAmountOfCars = 8;
 NSUInteger const kWashPrice = 50;
 
 int main(int argc, const char * argv[]) {
@@ -29,6 +29,8 @@ int main(int argc, const char * argv[]) {
 //        [SAPStringExtentionsTests performSAPStringExtentionsTests];
         
         //=====CAR WASH=====
+        
+        NSLog(@"%lu cars", kAnnualAmountOfCars);
         
         SAPEnterprise *carWashEnterprise = [SAPEnterprise object];
         [carWashEnterprise hireStaff];
