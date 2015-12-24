@@ -115,7 +115,8 @@ static NSUInteger const kSAPMaxWashersCount = 50;
 }
 
 -(void)washNextCarWithWasher:(SAPWasher *)washer {
-    [washer makeJobWithObject:[[self carsQueue] dequeue]];
+    usleep(arc4random_uniform(10) * 1000);
+    [washer performSelectorInBackground:@selector(makeJobWithObject:) withObject:[[self carsQueue] dequeue]];
 }
 
 -(SAPWasher *)freeWasher {

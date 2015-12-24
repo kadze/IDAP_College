@@ -18,19 +18,7 @@ static NSUInteger const kWashPrise = 50;
 
 - (void)makeJobWithObject:(id)car {
     if (car) {
-        [self makeJobWithObjectInBackground:car];
-    }
-}
-
-#pragma mark-
-#pragma mark Accessors
-
-- (void)setState:(SAPWorkerState)state {
-    [super setState:state];
-    if (kSAPFinishedWork == state) {
-        [self performSelectorOnMainThread:@selector(notifyWorkFinished) withObject:nil waitUntilDone:YES];
-    } else if (kSAPIsReadyToWork == state) {
-        [self performSelectorOnMainThread:@selector(notifyIsReadyToWork) withObject:nil waitUntilDone:YES];
+        [self performAllJobWithCar:car];
     }
 }
 
@@ -38,18 +26,9 @@ static NSUInteger const kWashPrise = 50;
 #pragma mark Private Methods
 
 - (void)washCar:(SAPCar *)car {
-    if (!car) {
-        return;
-    }
-    
     if ([self takeMoney:kWashPrise fromSender:car]) {
         [car setClean:YES];
     }
-}
-
-- (void)makeJobWithObjectInBackground:(id)car {
-    usleep(arc4random_uniform(10) * 1000);
-    [self performSelectorInBackground:@selector(performAllJobWithCar:) withObject:car];
 }
 
 - (void)performAllJobWithCar:(SAPCar *)car {
@@ -64,12 +43,12 @@ static NSUInteger const kWashPrise = 50;
     self.state = kSAPIsReadyToWork;
 }
 
-- (void)notifyWorkFinished {
-    [self notifyObserversWithSelector:@selector(makeJobWithObject:) withObject:self];
-}
-
 - (void)notifyIsReadyToWork {
     [self notifyObserversWithSelector:@selector(washNextCarWithWasher:) withObject:self];
+}
+
+- (void)notifyWorkFinished {
+    [self notifyObserversWithSelector:@selector(makeJobWithObject:) withObject:self];
 }
 
 @end

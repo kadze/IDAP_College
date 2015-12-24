@@ -13,15 +13,15 @@ static NSUInteger const kMaximumCashLimit = 200;
 
 @implementation SAPAccountant
 
-#pragma mark-
-#pragma mark Accessors
-
-- (void)setState:(SAPWorkerState)state {
-    [super setState:state];
-    if (kSAPFinishedWork == state) {
-        [self notifyObserversWithSelector:@selector(makeJobWithObject:) withObject:self];
-    }
-}
+//#pragma mark-
+//#pragma mark Accessors
+//
+//- (void)setState:(SAPWorkerState)state {
+//    [super setState:state];
+//    if (kSAPFinishedWork == state) {
+//        [self notifyObserversWithSelector:@selector(makeJobWithObject:) withObject:self];
+//    }
+//}
 
 #pragma mark-
 #pragma mark Public Methods
@@ -39,6 +39,10 @@ static NSUInteger const kMaximumCashLimit = 200;
         
         self.state = kSAPIsReadyToWork;
     }
+}
+
+- (void)notifyWorkFinished {
+    [self notifyObserversWithSelector:@selector(makeJobWithObject:) withObject:self];
 }
 
 @end

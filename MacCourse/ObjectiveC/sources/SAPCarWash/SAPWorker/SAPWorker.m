@@ -21,6 +21,19 @@
 }
 
 #pragma mark-
+#pragma mark Accessors
+
+- (void)setState:(SAPWorkerState)state {
+    if (kSAPFinishedWork == state) {
+        [self performSelectorOnMainThread:@selector(notifyWorkFinished) withObject:nil waitUntilDone:YES];
+        NSLog(@"%@ finised work", self);
+    } else if (kSAPIsReadyToWork == state) {
+        [self performSelectorOnMainThread:@selector(notifyIsReadyToWork) withObject:nil waitUntilDone:YES];
+        NSLog(@"%@ is ready to work", self);
+    }
+}
+
+#pragma mark-
 #pragma mark Public Methods
 
 - (void)makeJobWithObject:(id)object {
@@ -33,6 +46,14 @@
 
 - (void)takeAllMoneyFromSender:(SAPWorker *)sender {
     [sender giveMoney:sender.money toRecipient:self];
+}
+
+- (void)notifyWorkFinished {
+    
+}
+
+- (void)notifyIsReadyToWork {
+    
 }
 
 #pragma mark-
