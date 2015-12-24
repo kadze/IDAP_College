@@ -80,8 +80,8 @@ static NSUInteger const kSAPMaxWashersCount = 50;
     [self hireWorker:boss];
     
     //car washing has random count of washers
-    //NSUInteger washersCount = arc4random_uniform(kSAPMaxWashersCount);
-    NSUInteger washersCount = 3;
+    NSUInteger washersCount = arc4random_uniform(kSAPMaxWashersCount);
+//    NSUInteger washersCount = 3;
     
     NSLog(@"%lu washers", washersCount);
     

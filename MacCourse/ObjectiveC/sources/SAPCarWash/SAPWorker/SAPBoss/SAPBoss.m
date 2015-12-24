@@ -14,6 +14,7 @@
     [self takeAllMoneyFromSender:accountant];
     
     NSLog(@"%@ got all money from %@", self, accountant);
+    NSLog(@"now boss has %lu", self.money);
 }
 
 

@@ -20,13 +20,11 @@
 #import "SAPAccountant.h"
 
 NSUInteger const kInitialCarMoney = 50;
-NSUInteger const kAnnualAmountOfCars = 8;
+NSUInteger const kAnnualAmountOfCars = 100;
 NSUInteger const kWashPrice = 50;
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-//        [SAPCreatureTests performSAPCreatureTests];
-//        [SAPStringExtentionsTests performSAPStringExtentionsTests];
         
         //=====CAR WASH=====
         
@@ -43,13 +41,6 @@ int main(int argc, const char * argv[]) {
         }
         
         [carWashEnterprise washCars:cars];
-        
-        SAPBoss *boss = nil;
-        NSUInteger bossCounter = 1;
-        for (boss in [carWashEnterprise workersOfClass:[SAPBoss class]]) {
-            NSLog(@"Boss %lu : %lu", bossCounter, (unsigned long)boss.money);
-            bossCounter++;
-        }
         
         [[NSRunLoop currentRunLoop] run];
         

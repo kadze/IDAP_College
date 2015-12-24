@@ -28,12 +28,9 @@ static NSUInteger const kWashPrise = 50;
 - (void)setState:(SAPWorkerState)state {
     [super setState:state];
     if (kSAPFinishedWork == state) {
-        //[self notifyObserversWithSelector:@selector(makeJobWithObject:) withObject:self];
         [self performSelectorOnMainThread:@selector(notifyWorkFinished) withObject:nil waitUntilDone:YES];
     } else if (kSAPIsReadyToWork == state) {
-//        [self notifyObserversWithSelector:@selector(washNextCarWithWasher:) withObject:self];
         [self performSelectorOnMainThread:@selector(notifyIsReadyToWork) withObject:nil waitUntilDone:YES];
-        
     }
 }
 
@@ -51,6 +48,7 @@ static NSUInteger const kWashPrise = 50;
 }
 
 - (void)makeJobWithObjectInBackground:(id)car {
+    usleep(arc4random_uniform(10) * 1000);
     [self performSelectorInBackground:@selector(performAllJobWithCar:) withObject:car];
 }
 
