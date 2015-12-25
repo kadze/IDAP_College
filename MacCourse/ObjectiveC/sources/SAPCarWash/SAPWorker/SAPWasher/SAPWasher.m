@@ -17,23 +17,6 @@ static NSUInteger const kWashPrise = 50;
 #pragma mark Public Methods
 
 - (void)makeJobWithObject:(id)car {
-    if (car) {
-        [self performAllJobWithCar:car];
-    }
-}
-
-#pragma mark-
-#pragma mark Private Methods
-
-- (void)washCar:(SAPCar *)car {
-    if ([self takeMoney:kWashPrise fromSender:car]) {
-        [car setClean:YES];
-    }
-}
-
-- (void)performAllJobWithCar:(SAPCar *)car {
-    self.state = kSAPIsBusy;
-    NSLog(@"%@ is busy with %@", self, car);
     NSUInteger moneyBefore = self.money;
     [self washCar:car];
     if (self.money > moneyBefore) {
@@ -43,12 +26,13 @@ static NSUInteger const kWashPrise = 50;
     self.state = kSAPIsReadyToWork;
 }
 
-- (void)notifyIsReadyToWork {
-    [self notifyObserversWithSelector:@selector(washNextCarWithWasher:) withObject:self];
-}
+#pragma mark-
+#pragma mark Private Methods
 
-- (void)notifyWorkFinished {
-    [self notifyObserversWithSelector:@selector(makeJobWithObject:) withObject:self];
+- (void)washCar:(SAPCar *)car {
+    if ([self takeMoney:kWashPrise fromSender:car]) {
+        [car setClean:YES];
+    }
 }
 
 @end

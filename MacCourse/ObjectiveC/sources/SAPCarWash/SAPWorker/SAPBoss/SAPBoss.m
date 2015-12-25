@@ -10,12 +10,17 @@
 
 @implementation SAPBoss
 
--(void)makeJobWithObject:(id)accountant {
-    [self takeAllMoneyFromSender:accountant];
-    
-    NSLog(@"%@ got all money from %@", self, accountant);
-    NSLog(@"now boss has %lu", self.money);
-}
+#pragma mark-
+#pragma mark Public Methods
 
+-(void)makeJobWithObject:(id)accountant {
+    @synchronized(self) {
+        [self takeAllMoneyFromSender:accountant];
+        self.state = kSAPIsReadyToWork;
+        
+        NSLog(@"%@ got all money from %@", self, accountant);
+        NSLog(@"now boss has %lu", self.money);
+    }
+}
 
 @end

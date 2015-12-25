@@ -9,7 +9,7 @@
 #import "SAPAccountant.h"
 #import "SAPWasher.h"
 
-static NSUInteger const kMaximumCashLimit = 200;
+static NSUInteger const kMaximumCashLimit = 0;
 
 @implementation SAPAccountant
 
@@ -18,10 +18,6 @@ static NSUInteger const kMaximumCashLimit = 200;
 
 - (void)makeJobWithObject:(id)washer {
     @synchronized(self) {
-        self.state = kSAPIsBusy;
-        
-        NSLog(@"%@ is busy with %@", self, washer);
-        
         [self takeAllMoneyFromSender:washer];
         if (kMaximumCashLimit <= self.money) {
             self.state = kSAPFinishedWork;
@@ -29,10 +25,6 @@ static NSUInteger const kMaximumCashLimit = 200;
         
         self.state = kSAPIsReadyToWork;
     }
-}
-
-- (void)notifyWorkFinished {
-    [self notifyObserversWithSelector:@selector(makeJobWithObject:) withObject:self];
 }
 
 @end

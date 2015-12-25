@@ -13,6 +13,29 @@
 @synthesize money = _money;
 
 #pragma mark-
+#pragma mark Class Methods
+
+- (SEL) selectorForState:(SAPWorkerState)state {
+    SEL result = nil;
+    switch (state) {
+        case kSAPIsBusy:
+            result = nil;
+            break;
+        case kSAPFinishedWork:
+            result = @selector(notifyWorkFinished);
+            break;
+        case kSAPIsReadyToWork:
+            result = @selector(notifyIsReadyToWork);
+            break;
+        default:
+            nil;
+            break;
+    }
+    
+    return result;
+}
+
+#pragma mark-
 #pragma mark Initializatinos and Deallocations
 
 - (void)dealloc {
@@ -24,36 +47,9 @@
 #pragma mark Accessors
 
 - (void)setState:(SAPWorkerState)state {
-    if (kSAPFinishedWork == state) {
-        [self performSelectorOnMainThread:@selector(notifyWorkFinished) withObject:nil waitUntilDone:YES];
-        NSLog(@"%@ finised work", self);
-    } else if (kSAPIsReadyToWork == state) {
-        [self performSelectorOnMainThread:@selector(notifyIsReadyToWork) withObject:nil waitUntilDone:YES];
-        NSLog(@"%@ is ready to work", self);
+    if ([self selectorForState:state]) {
+        [self performSelectorOnMainThread:[self selectorForState:state] withObject:nil waitUntilDone:YES];
     }
-}
-
-#pragma mark-
-#pragma mark Public Methods
-
-- (void)makeJobWithObject:(id)object {
-    [self doesNotRecognizeSelector:_cmd];
-}
-
-- (void)giveAllMoneyToRecipient:(id<SAPMoneyTransfer>)recipient {
-    [self giveMoney:self.money toRecipient:recipient];
-}
-
-- (void)takeAllMoneyFromSender:(SAPWorker *)sender {
-    [sender giveMoney:sender.money toRecipient:self];
-}
-
-- (void)notifyWorkFinished {
-    
-}
-
-- (void)notifyIsReadyToWork {
-    
 }
 
 #pragma mark-
@@ -76,4 +72,48 @@
     return NO;
 }
 
+#pragma mark-
+#pragma mark SAPWorkerObservingProtocol
+
+- (void)finisedWorkObservableWorker:(SAPWorker *)worker {
+    [self makeJobWithObjectInBackground:worker];
+}
+
+#pragma mark-
+#pragma mark Public Methods
+
+- (void)makeJobWithObject:(id)object {
+    [self doesNotRecognizeSelector:_cmd];
+}
+
+- (void)makeJobWithObjectInBackground:(id)object {
+    if (object) {
+        NSLog(@"%@ is busy with %@", self, object);
+        self.state = kSAPIsBusy;
+        [self performSelectorInBackground:@selector(makeJobWithObject:) withObject:object];
+    }
+}
+
+- (void)giveAllMoneyToRecipient:(id<SAPMoneyTransfer>)recipient {
+    [self giveMoney:self.money toRecipient:recipient];
+}
+
+- (void)takeAllMoneyFromSender:(SAPWorker *)sender {
+    [sender giveMoney:sender.money toRecipient:self];
+}
+
+- (void)notifyWorkFinished {
+    NSLog(@"%@ finised work", self);
+    
+    [self notifyObserversWithSelector:@selector(finisedWorkObservableWorker:) withObject:self];
+}
+
+- (void)notifyIsReadyToWork {
+    NSLog(@"%@ is ready to work", self);
+    
+    [self notifyObserversWithSelector:@selector(isReadyToWorkObservableWorker:) withObject:self];
+}
+
+
 @end
+
