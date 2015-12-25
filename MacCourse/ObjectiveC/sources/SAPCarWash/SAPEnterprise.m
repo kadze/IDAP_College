@@ -66,7 +66,10 @@ static NSUInteger const kSAPMaxWashersCount = 50;
 }
 
 -(NSArray *)workersOfClass:(Class)workerClass {
-    return [self.staffContainter itemsOfClass:workerClass];
+    SAPItemsContainer *container = self.staffContainter;
+    @synchronized(container) {
+        return [container itemsOfClass:workerClass];
+    }
 }
 
 - (void)hireStaff {

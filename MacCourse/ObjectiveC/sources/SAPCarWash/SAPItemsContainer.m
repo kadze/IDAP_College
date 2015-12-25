@@ -45,12 +45,16 @@
 #pragma mark Accessors
 
 - (NSArray *)items {
-    return [[self.mutableItems copy] autorelease];
+    NSMutableArray *mutableItems = self.mutableItems;
+    @synchronized(mutableItems) {
+        return [[self.mutableItems copy] autorelease];
+    }
+    
 }
 
 - (NSArray *)itemsOfClass:(Class)itemClass {
     NSMutableArray *mutableResult = [NSMutableArray array];
-    for (id item in self.mutableItems) {
+    for (id item in self.items) {
         if ([item isMemberOfClass:itemClass]) {
             [mutableResult addObject:item];
         }
@@ -63,26 +67,35 @@
 #pragma mark Public Methods
 
 - (BOOL)addItem:(id)item {
-    BOOL result = NO;
-    [self.mutableItems addObject:item];
-    result = YES;
+    NSMutableArray *mutableItems = self.mutableItems;
+    @synchronized(mutableItems) {
+        BOOL result = NO;
+        [self.mutableItems addObject:item];
+        result = YES;
+        
+        return result;
+    }
     
-    return result;
 }
 
 - (void)removeItem:(id)item {
-    [self.mutableItems removeObject:item];
+    NSMutableArray *mutableItems = self.mutableItems;
+    @synchronized(mutableItems) {
+        [self.mutableItems removeObject:item];
+    }
 }
 
 - (id)dequeue {
-    id result = nil;
-    NSMutableArray *items = [self mutableItems];
-    if (0 != items.count) {
-        result = items[0];
-        [items removeObjectAtIndex:0];
+    NSMutableArray *items = self.mutableItems;
+    @synchronized(items) {
+        id result = nil;
+        if (0 != items.count) {
+            result = items[0];
+            [items removeObjectAtIndex:0];
+        }
+        
+        return result;
     }
-    
-    return result;
 }
 
 @end

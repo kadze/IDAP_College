@@ -14,7 +14,7 @@
 
 @interface SAPEnterprise : NSObject
 
-@property (nonatomic, retain) NSArray *staff;
+@property (nonatomic, retain, readonly) NSArray *staff;
 
 - (void)hireStaff;
 - (void)hireWorker:(SAPWorker *)worker;
