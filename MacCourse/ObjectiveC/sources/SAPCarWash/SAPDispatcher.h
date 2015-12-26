@@ -12,7 +12,7 @@
 @class SAPQueue;
 
 @interface SAPDispatcher : NSObject <SAPWorkerObservingProtocol>
-@property(nonatomic, readonly) NSArray *handlers;
+@property (nonatomic, readonly) NSArray *handlers;
 
 - (void)addHandler:(id)handler;
 - (void)removeHandler:(id)handler;

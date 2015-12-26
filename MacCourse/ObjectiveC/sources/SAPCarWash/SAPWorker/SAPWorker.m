@@ -11,7 +11,7 @@
 #import "SAPQueue.h"
 
 @interface SAPWorker()
-//@property(nonatomic, retain) SAPQueue *objectsQueue;
+//@property (nonatomic, retain) SAPQueue *objectsQueue;
 
 - (void)performBackgroundWorkWithObject:(id)object;
 - (void)finishProcessingOnMainThreadWithObject:(SAPObservableObject *)object;
