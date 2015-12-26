@@ -20,7 +20,7 @@ NSRange SAPMakeAlphabetRange(unichar sign1, unichar sign2) {
 
 @implementation SAPAlphabet
 
-#pragma mark-
+#pragma mark -
 #pragma mark Class Methods
 
 + (instancetype)alphabetWithArray:(NSArray *)array {
@@ -96,7 +96,7 @@ NSRange SAPMakeAlphabetRange(unichar sign1, unichar sign2) {
     return [self letterAtIndex:index];
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark NSFastEnumeration
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state

@@ -15,7 +15,7 @@
 
 @implementation SAPUnicodeRangeAlphabet
 
-#pragma mark-
+#pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (instancetype)initWithRange:(NSRange)range {
@@ -27,7 +27,7 @@
     return self;
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Public Methods
 
 - (NSArray *)letters {

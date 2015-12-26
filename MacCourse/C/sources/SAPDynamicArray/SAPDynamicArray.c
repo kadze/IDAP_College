@@ -123,7 +123,7 @@ void *SAPDynamicArrayObjectAtIndex(SAPDynamicArray *object, unsigned long index)
     return NULL;
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Public Implementations
 
 void SAPDynamicArrayAddObject(SAPDynamicArray *object, void *value) {
@@ -182,7 +182,7 @@ bool SAPDynamicArrayContainsObject(SAPDynamicArray *object, void *value) {
     return false;
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Private Implementations
 
 void SAPDynamicArrayShiftObjects(SAPDynamicArray *object, unsigned long index) {

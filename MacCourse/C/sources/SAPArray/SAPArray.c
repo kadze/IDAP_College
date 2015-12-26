@@ -41,7 +41,7 @@ void *SAPArrayValueAtIndex(SAPArray *object, uint index) {
     return (NULL != object && kSAPArraySize > index) ? object->_values[index] : NULL;
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Public implementations
 uint SAPArrayNotNullObjectsCount(SAPArray *object) {
     uint childrenCounter = 0;

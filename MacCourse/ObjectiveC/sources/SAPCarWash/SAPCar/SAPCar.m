@@ -14,7 +14,7 @@ NSUInteger const kSAPInitialCarMoney = 50;
 
 @synthesize money = _money;
 
-#pragma mark-
+#pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (instancetype)init {
@@ -26,7 +26,7 @@ NSUInteger const kSAPInitialCarMoney = 50;
     return self;
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark SAPMoneyTransfer
 
 - (void)giveMoney:(NSUInteger)sum toRecipient:(id<SAPMoneyTransfer>)recipient {

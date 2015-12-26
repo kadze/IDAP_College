@@ -12,7 +12,7 @@
 static const int kSAPBitCount = 8;
 static const int kSAPLowerBitMask = 1;
 
-#pragma mark-
+#pragma mark -
 #pragma mark Private declarations
 void SAPOutputByte(uint8_t byte);
 
@@ -28,7 +28,7 @@ void SAPOutputByte(uint8_t byte) {
     printf(" ");
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Public implementations
 
 //create universal method to output bits of the number of any type into consol

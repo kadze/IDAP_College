@@ -31,7 +31,7 @@ void __SAPLinkedListDeallocate(SAPLinkedList *list) {
     __SAPObjectDeallocate(list);
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Public Implementations
 
 SAPLinkedListEnumerator *SAPLinkedListEnumeratorFromList(SAPLinkedList *list) {
@@ -139,7 +139,7 @@ uint64_t SAPLinkedListCount(SAPLinkedList *list) {
     return SAPObjectIVarGetterSynthesize(list, _count, 0);
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Private Implementations
 
 SAPLinkedListNode *SAPLinkedListHead(SAPLinkedList *object){

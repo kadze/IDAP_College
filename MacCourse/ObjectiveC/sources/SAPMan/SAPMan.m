@@ -10,7 +10,7 @@
 
 @implementation SAPMan
 
-#pragma mark-
+#pragma mark -
 #pragma mark Public Methods
 
 - (id)performGengerSpecificOperation {

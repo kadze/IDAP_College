@@ -18,7 +18,7 @@
 
 @dynamic observers;
 
-#pragma mark-
+#pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
@@ -36,7 +36,7 @@
     return self;
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Accessors
 
 - (NSArray *)observers {
@@ -61,7 +61,7 @@
     }
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Public Methods
 
 - (void)addObserver:(id)observer {

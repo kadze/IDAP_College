@@ -12,7 +12,7 @@
 
 @dynamic target;
 
-#pragma mark-
+#pragma mark -
 #pragma mark Initializations & Deallications
 
 - (void)dealloc {
@@ -35,14 +35,14 @@
     return self;
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark NSCopying
 
 - (id)copyWithZone:(NSZone *)zone {
     return [[[self class] alloc] initWithTarget:self.target];
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark NSObject equality
 
 - (NSUInteger)hash {

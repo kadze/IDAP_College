@@ -6,13 +6,13 @@
 //  Copyright © 2016 Yosemite Retail. All rights reserved.
 //
 
+#import "SAPCar.h"
 #import "SAPController.h"
 #import "SAPEnterprise.h"
 #import "NSObject+SAPObject.h"
-#import "SAPCar.h"
 
-NSUInteger const kSAPAnnualAmountOfCars = 1000;
-NSTimeInterval const kSAPTimeInterval = 6.0;
+NSUInteger      const kSAPAnnualAmountOfCars = 1000;
+NSTimeInterval  const kSAPTimeInterval       = 6.0;
 
 @interface SAPController ()
 @property (nonatomic, retain) SAPEnterprise *enterprise;
@@ -26,7 +26,7 @@ NSTimeInterval const kSAPTimeInterval = 6.0;
 
 @implementation SAPController
 
-#pragma mark-
+#pragma mark -
 #pragma mark Initializatinos and Deallocations
 
 - (void)dealloc {
@@ -45,7 +45,7 @@ NSTimeInterval const kSAPTimeInterval = 6.0;
     return self;
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Accessors
 
 - (void)setWorking:(BOOL)working {
@@ -72,7 +72,7 @@ NSTimeInterval const kSAPTimeInterval = 6.0;
     }
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Private Methods
 
 - (void)startBackgroundWork {

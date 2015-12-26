@@ -15,7 +15,7 @@ static BOOL         const kSAPRandomDelayEnabled = YES;
 
 @implementation SAPWasher
 
-#pragma mark-
+#pragma mark -
 #pragma mark Public Methods
 
 - (void)processObject:(SAPCar *)car {

@@ -17,7 +17,7 @@ static const unichar kSAPLastNumberSign = '9';
 
 @implementation NSString (SAPStringExtentions)
 
-#pragma mark-
+#pragma mark -
 #pragma mark Class Methods
 
 //alphabets
@@ -80,7 +80,7 @@ static const unichar kSAPLastNumberSign = '9';
     return [self stringWithString:mutableResult];
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Public Methods
 
 - (instancetype)separateWithSpaces {

@@ -10,7 +10,7 @@
 
 @implementation SAPEnumeratedString
 
-#pragma mark-
+#pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
@@ -19,7 +19,7 @@
     [super dealloc];
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark NSFastEnumeration
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state

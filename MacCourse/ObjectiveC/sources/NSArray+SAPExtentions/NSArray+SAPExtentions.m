@@ -10,7 +10,7 @@
 
 @implementation NSArray (SAPExtentions)
 
-#pragma mark-
+#pragma mark -
 #pragma mark Public Methods
 
 - (NSArray *)objectsOfClass:(Class)class {

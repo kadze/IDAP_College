@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include "SAPBinaryData.h"
 
-#pragma mark--
+#pragma mark --
 #pragma mark Public implementations
 
 void SAPPerformTestPrintBitsOfAnyTypeNumber(void) {

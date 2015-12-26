@@ -16,7 +16,7 @@
 
 @implementation SAPNumberGeneratorArray
 
-#pragma mark-
+#pragma mark -
 #pragma mark Class Methods
 
 + (instancetype)arrayWithRange:(NSRange)range {
@@ -26,7 +26,7 @@
     return result;
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark NSArray Methods
 
 - (id)objectAtIndex:(NSUInteger)index {

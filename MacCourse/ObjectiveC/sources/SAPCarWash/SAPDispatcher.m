@@ -6,13 +6,13 @@
 //  Copyright © 2016 Yosemite Retail. All rights reserved.
 //
 
-#import "SAPDispatcher.h"
-#import "NSObject+SAPObject.h"
-#import "SAPQueue.h"
 #import "SAPWorker.h"
+#import "SAPDispatcher.h"
+#import "SAPQueue.h"
+#import "NSObject+SAPObject.h"
 
 @interface SAPDispatcher ()
-@property (nonatomic, retain)    SAPQueue        *objectsQueue;
+@property (nonatomic, retain)   SAPQueue        *objectsQueue;
 @property (nonatomic, retain)   NSMutableArray  *mutableHandlers;
 
 - (SAPWorker *)freeHandler;
@@ -21,7 +21,7 @@
 
 @implementation SAPDispatcher
 
-#pragma mark-
+#pragma mark -
 #pragma mark Initializatinos and Deallocations
 
 - (void)dealloc {
@@ -41,7 +41,7 @@
     return self;
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Accessors
 
 - (NSArray *)handlers {
@@ -51,7 +51,7 @@
     }
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Public Methods
 
 - (void)addHandler:(id)handler {
@@ -82,7 +82,7 @@
     }
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Private Methods
 
 - (SAPWorker *)freeHandler {
@@ -95,7 +95,7 @@
     return nil;
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark SAPWorkerObservingProtocol
 
 - (void)workerDidBecomeReadyToWork:(SAPWorker *)worker {

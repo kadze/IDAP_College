@@ -11,7 +11,7 @@
 #include "SAPPrintTypeSize.h"
 
 
-# pragma mark-
+# pragma mark -
 # pragma mark Private implementations
 
 int SAPPerformTestPrintTypeSize(void) {

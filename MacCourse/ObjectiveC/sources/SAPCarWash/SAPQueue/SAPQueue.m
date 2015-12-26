@@ -18,7 +18,7 @@
 
 @dynamic count;
 
-#pragma mark-
+#pragma mark -
 #pragma mark Initializatinos and Deallocations
 
 - (void)dealloc {
@@ -34,7 +34,7 @@
     return self;
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Accessors
 
 - (NSUInteger)count {
@@ -43,7 +43,7 @@
     }
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Public Methods
 
 - (void)enqueue:(id)item {

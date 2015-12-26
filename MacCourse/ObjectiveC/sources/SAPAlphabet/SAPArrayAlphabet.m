@@ -15,7 +15,7 @@
 
 @implementation SAPArrayAlphabet
 
-#pragma mark-
+#pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
@@ -32,7 +32,7 @@
     return self;
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Public Methods
 
 - (NSArray *)letters {
@@ -47,7 +47,7 @@
     return [self lettersArray].count;
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark NSFastEnumeration
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state

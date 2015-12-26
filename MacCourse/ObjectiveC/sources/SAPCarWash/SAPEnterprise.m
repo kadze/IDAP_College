@@ -6,16 +6,21 @@
 //  Copyright © 2015 Yosemite Retail. All rights reserved.
 //
 
-#import "NSObject+SAPObject.h"
-#import "NSArray+SAPExtentions.h"
-#import "SAPEnterprise.h"
-#import "SAPQueue.h"
+
+
 #import "SAPWorker.h"
 #import "SAPWasher.h"
 #import "SAPAccountant.h"
 #import "SAPBoss.h"
 #import "SAPCar.h"
+
 #import "SAPDispatcher.h"
+#import "SAPEnterprise.h"
+
+#import "SAPQueue.h"
+
+#import "NSArray+SAPExtentions.h"
+#import "NSObject+SAPObject.h"
 
 static NSUInteger const kSAPWashersCount = 5;
 static NSUInteger const kSAPAccountantsCount = 3;
@@ -26,7 +31,7 @@ static NSUInteger const kSAPBossCount = 1;
 @property (nonatomic, retain) SAPDispatcher *accountantsDispatcher;
 @property (nonatomic, retain) SAPDispatcher *bossDispatcher;
 @property (nonatomic, retain) NSMutableArray *mutableStaff;
-@property (nonatomic, retain) SAPQueue *carsQueue;
+@property (nonatomic, retain) SAPQueue      *carsQueue;
 
 - (void)hireStaff;
 - (void)hireWorkers:(NSArray *)workers withDispatcher:(SAPDispatcher *)dispatcher;
@@ -39,7 +44,7 @@ static NSUInteger const kSAPBossCount = 1;
 
 @dynamic staff;
 
-#pragma mark-
+#pragma mark -
 #pragma mark Initializatinos and Deallocations
 
 - (void)dealloc {
@@ -65,21 +70,21 @@ static NSUInteger const kSAPBossCount = 1;
     return self;
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Accessors
 
 - (NSArray *)staff {
     return [[self.mutableStaff copy] autorelease];
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Public Methods
 
 - (void)washCar:(SAPCar *)car {
     [self.washersDispatcher performWorkWithObject:car];
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Private Methods
 
 - (void)hireStaff {
@@ -123,7 +128,7 @@ static NSUInteger const kSAPBossCount = 1;
     }
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark SAPWorkerObservingProtocol
 
 - (void)workerDidFinishWork:(SAPWorker *)worker {

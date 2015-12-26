@@ -11,7 +11,7 @@
 
 @implementation NSObject (SAPObject)
 
-#pragma mark-
+#pragma mark -
 #pragma mark Class Methods
 
 + (instancetype)object {

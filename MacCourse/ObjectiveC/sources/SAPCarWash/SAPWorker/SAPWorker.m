@@ -6,9 +6,9 @@
 //  Copyright © 2015 Yosemite Retail. All rights reserved.
 //
 
-#import "NSObject+SAPObject.h"
 #import "SAPWorker.h"
 #import "SAPQueue.h"
+#import "NSObject+SAPObject.h"
 
 @interface SAPWorker()
 //@property (nonatomic, retain) SAPQueue *objectsQueue;
@@ -23,7 +23,7 @@
 
 @synthesize money = _money;
 
-#pragma mark-
+#pragma mark -
 #pragma mark Initializatinos and Deallocations
 
 - (void)dealloc {
@@ -41,7 +41,7 @@
     return self;
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Public Methods
 
 - (void)performWorkWithObject:(id)object {
@@ -85,7 +85,7 @@
     }
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark Private Methods
 
 - (void)performBackgroundWorkWithObject:(id)object {
@@ -116,7 +116,7 @@
 //    }
 //}
 
-#pragma mark-
+#pragma mark -
 #pragma mark SAPMoneyTransfer
 
 - (void)giveMoney:(NSUInteger)sum toRecipient:(id<SAPMoneyTransfer>)recipient {
@@ -140,7 +140,7 @@
     }
 }
 
-#pragma mark-
+#pragma mark -
 #pragma mark SAPWorkerObservingProtocol
 
 - (void)workerDidFinishWork:(SAPWorker *)worker {
