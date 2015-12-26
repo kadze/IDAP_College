@@ -10,7 +10,7 @@
 #import "SAPAssignReference.h"
 
 @interface SAPObservableObject ()
-@property(nonatomic, retain)    NSMutableSet    *mutableObservers;
+@property (nonatomic, retain)    NSMutableSet    *mutableObservers;
 
 @end
 
@@ -52,7 +52,7 @@
 }
 
 - (void)setState:(NSUInteger)state {
-    if (self.state != state) {
+    if (_state != state) {
         _state = state;
         SEL selector = [self selectorForState:state];
         if (selector) {
