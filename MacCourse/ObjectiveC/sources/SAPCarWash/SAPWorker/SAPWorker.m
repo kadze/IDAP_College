@@ -76,7 +76,10 @@
 #pragma mark SAPWorkerObservingProtocol
 
 - (void)finisedWorkObservableWorker:(SAPWorker *)worker {
-    [self makeJobWithObjectInBackground:worker];
+    //[self makeJobWithObjectInBackground:worker];
+    NSLog(@"%@ is busy with %@", self, worker);
+    self.state = kSAPIsBusy;
+    [self makeJobWithObject:worker];
 }
 
 #pragma mark-

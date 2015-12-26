@@ -9,7 +9,7 @@
 #import "SAPAccountant.h"
 #import "SAPWasher.h"
 
-static NSUInteger const kMaximumCashLimit = 0;
+static NSUInteger const kMaximumCashLimit = 200;
 
 @implementation SAPAccountant
 
