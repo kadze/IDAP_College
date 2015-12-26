@@ -16,7 +16,7 @@ NSTimeInterval const kSAPTimeInterval = 6.0;
 
 @interface SAPController ()
 @property (nonatomic, retain) SAPEnterprise *enterprise;
-@property (nonatomic, retain) NSTimer *timer;
+@property (nonatomic, retain) NSTimer       *timer;
 
 - (void)startBackgroundWork;
 - (void)performWork;
@@ -25,8 +25,6 @@ NSTimeInterval const kSAPTimeInterval = 6.0;
 @end
 
 @implementation SAPController
-
-@synthesize working = _working;
 
 #pragma mark-
 #pragma mark Initializatinos and Deallocations
@@ -50,31 +48,27 @@ NSTimeInterval const kSAPTimeInterval = 6.0;
 #pragma mark-
 #pragma mark Accessors
 
-- (BOOL)isWorking {
-    return self.timer;
-}
-
 - (void)setWorking:(BOOL)working {
-    _working = working;
-    if (working) {
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:kSAPTimeInterval
-                                                      target:self
-                                                    selector:@selector(startBackgroundWork)
-                                                    userInfo:nil
-                                                     repeats:YES];
-    } else {
-        self.timer = nil;
+    if (_working != working) {
+        _working = working;
+        if (working) {
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:kSAPTimeInterval
+                                                          target:self
+                                                        selector:@selector(startBackgroundWork)
+                                                        userInfo:nil
+                                                         repeats:YES];
+        } else {
+            self.timer = nil;
+        }
     }
 }
 
 - (void)setTimer:(NSTimer *)timer {
     if (timer != _timer) {
-        if (timer) {
-            _timer = timer;
-        } else {
-            [_timer invalidate];
-            
-        }
+        [timer retain];
+        [_timer invalidate];
+        [_timer release];
+        _timer = timer;
     }
 }
 
