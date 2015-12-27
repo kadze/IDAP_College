@@ -9,11 +9,12 @@
 #import "SAPWorker.h"
 #import "SAPDispatcher.h"
 #import "SAPQueue.h"
+#import "SAPThreadSafeMutableArray.h"
 #import "NSObject+SAPObject.h"
 
 @interface SAPDispatcher ()
-@property (nonatomic, retain)   SAPQueue        *objectsQueue;
-@property (nonatomic, retain)   NSMutableArray  *mutableHandlers;
+@property (nonatomic, retain) SAPQueue                    *objectsQueue;
+@property (nonatomic, retain) SAPThreadSafeMutableArray   *mutableHandlers;
 
 - (SAPWorker *)freeHandler;
 - (void)processNextObjectWithWorker:(SAPWorker *)worker;
@@ -36,7 +37,7 @@
     self = [super init];
     if (self) {
         self.objectsQueue = [SAPQueue object];
-        self.mutableHandlers = [NSMutableArray object];
+        self.mutableHandlers = [SAPThreadSafeMutableArray object];
     }
     
     return self;
@@ -46,7 +47,7 @@
 #pragma mark Accessors
 
 - (NSArray *)handlers {
-    NSMutableArray *mutableHandlers = self.mutableHandlers;
+    SAPThreadSafeMutableArray *mutableHandlers = self.mutableHandlers;
     @synchronized(mutableHandlers) {
         return [[mutableHandlers copy] autorelease];
     }
@@ -56,21 +57,18 @@
 #pragma mark Public Methods
 
 - (void)addHandler:(id)handler {
-    NSMutableArray *mutableHandlers = self.mutableHandlers;
-    @synchronized(mutableHandlers) {
-        [mutableHandlers addObject:handler];
-    }
+    [self.mutableHandlers addObject:handler];
 }
 
 - (void)removeHandler:(id)handler {
-    NSMutableArray *mutableHandlers = self.mutableHandlers;
-    @synchronized(mutableHandlers) {
-        [mutableHandlers removeObject:handler];
-    }
+    [self.mutableHandlers removeObject:handler];
 }
 
 - (BOOL)containsHandler:(id)handler {
-    return [self.mutableHandlers containsObject:handler];
+    NSMutableArray *mutableHandlers = self.mutableHandlers;
+    @synchronized(mutableHandlers) {
+        return [self.mutableHandlers containsObject:handler];
+    }
 }
 
 - (void)performWorkWithObject:(id)object {
