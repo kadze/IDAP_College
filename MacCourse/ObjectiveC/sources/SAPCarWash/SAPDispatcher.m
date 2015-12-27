@@ -73,8 +73,8 @@
 
 - (void)performWorkWithObject:(id)object {
     [self.objectsQueue enqueue:object];
-    SAPWorker *handler = [self freeHandler];
-    @synchronized(handler) {
+    @synchronized(self){
+        SAPWorker *handler = [self reserveHandler];
         if (handler) {
             [self processNextObjectWithWorker:handler];
         }
@@ -84,9 +84,10 @@
 #pragma mark -
 #pragma mark Private Methods
 
-- (SAPWorker *)freeHandler {
+- (SAPWorker *)reserveHandler {
     for (SAPWorker *handler in self.handlers) {
         if (kSAPWorkerIsReadyToWork == handler.state) {
+            handler.state = kSAPWorkerIsBusy;
             return handler;
         }
     }
