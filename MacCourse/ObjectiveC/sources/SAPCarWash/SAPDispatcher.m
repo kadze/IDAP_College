@@ -16,6 +16,7 @@
 @property (nonatomic, retain)   NSMutableArray  *mutableHandlers;
 
 - (SAPWorker *)freeHandler;
+- (void)processNextObjectWithWorker:(SAPWorker *)worker;
 
 @end
 
@@ -77,7 +78,7 @@
     SAPWorker *handler = [self freeHandler];
     @synchronized(handler) {
         if (handler) {
-            [self workerDidBecomeReadyToWork:handler];
+            [self processNextObjectWithWorker:handler];
         }
     }
 }
@@ -95,14 +96,18 @@
     return nil;
 }
 
-#pragma mark -
-#pragma mark SAPWorkerObservingProtocol
-
-- (void)workerDidBecomeReadyToWork:(SAPWorker *)worker {
+- (void)processNextObjectWithWorker:(SAPWorker *)worker {
     id object = [self.objectsQueue dequeue];
     if (object) {
         [worker performWorkWithObject:object];
     }
+}
+
+#pragma mark -
+#pragma mark SAPWorkerObservingProtocol
+
+- (void)workerDidBecomeReadyToWork:(SAPWorker *)worker {
+    [self processNextObjectWithWorker:worker];
 }
 
 @end
