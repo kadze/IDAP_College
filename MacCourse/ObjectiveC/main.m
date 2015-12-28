@@ -18,6 +18,7 @@
 #import "SAPWorker.h"
 #import "SAPBoss.h"
 #import "SAPAccountant.h"
+#import "SAPCarsGenerator.h"
 
 NSUInteger const kInitialCarMoney = 50;
 NSUInteger const kAnnualAmountOfCars = 100;
@@ -28,23 +29,39 @@ int main(int argc, const char * argv[]) {
         
         //=====CAR WASH=====
         
-        NSLog(@"%lu cars", kAnnualAmountOfCars);
-        
         SAPEnterprise *carWashEnterprise = [SAPEnterprise object];
         [carWashEnterprise hireStaff];
         
-        NSMutableArray *cars = [NSMutableArray array];
-        for (NSUInteger carCounter = 0; carCounter < kAnnualAmountOfCars; carCounter++) {
-            SAPCar *car = [SAPCar object];
-            car.money = kInitialCarMoney;
-            [cars addObject:car];            
-        }
         
-        [carWashEnterprise washCars:cars];
+        //try. doesn't work
+//        [NSThread detachNewThreadSelector:@selector(sendCarsToCarWash:)
+//                                 toTarget:[SAPCarsGenerator class]
+//                               withObject:carWashEnterprise];
+        
+        
+        
+        //new try. doesn't work
+//        
+//        SAPCarsGenerator *carsGenerator = [SAPCarsGenerator object];
+//        [carsGenerator performSelectorInBackground:@selector(sendCarsAndWashByCarWash:) withObject:carWashEnterprise];
+
+        
+        // works with instance method of generator
+        
+//        [[SAPCarsGenerator object] sendCarsToCarWash:carWashEnterprise];
+//        [carWashEnterprise washCars];
+        
+        
+        //works with class method of generator
+        
+        [SAPCarsGenerator sendCarsToCarWash:carWashEnterprise];
+        [carWashEnterprise washCars];
+        
+        
         
         [[NSRunLoop currentRunLoop] run];
         
-        cars = nil;
+//        cars = nil;
         carWashEnterprise = nil;
         
     }

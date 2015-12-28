@@ -15,7 +15,7 @@
 #import "SAPBoss.h"
 #import "SAPCar.h"
 
-static NSUInteger const kSAPMaxWashersCount = 10;
+static NSUInteger const kSAPMaxWashersCount = 4;
 
 @interface SAPEnterprise()
 
@@ -116,9 +116,7 @@ static NSUInteger const kSAPMaxWashersCount = 10;
 }
 
 -(void)washCars:(NSArray *)cars {
-    
     SAPItemsContainer *carsQueue = self.carsQueue;
-    
     @synchronized(carsQueue) {
         for (SAPCar *car in cars) {
             [carsQueue addItem:car];
@@ -128,6 +126,32 @@ static NSUInteger const kSAPMaxWashersCount = 10;
             [self washNextCarWithWasher:washer];
         }
     }
+}
+
+
+-(void)washCars {//:(NSArray *)cars {
+    SAPItemsContainer *carsQueue = self.carsQueue;
+    @synchronized(carsQueue) {
+//        for (SAPCar *car in cars) {
+//            [carsQueue addItem:car];
+//        }
+        
+        for (SAPWasher *washer in [self workersOfClass:[SAPWasher class]]) {
+            [self washNextCarWithWasher:washer];
+        }
+    }
+}
+
+-(void)addCarsToQueue:(NSArray *)cars {
+    SAPItemsContainer *carsQueue = self.carsQueue;
+    //@synchronized(carsQueue) {
+        for (SAPCar *car in cars) {
+            [carsQueue addItem:car];
+        }
+    //}
+    
+    //[self performSelectorOnMainThread:@selector(washCars) withObject:nil waitUntilDone:YES];
+  //  [self washCars];
 }
 
 -(void)washNextCarWithWasher:(SAPWasher *)washer {
