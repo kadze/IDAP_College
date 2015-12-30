@@ -94,7 +94,7 @@
         
         id result = nil;
         if (0 != items.count) {
-            result = items[0];
+            result = [[items[0] retain] autorelease];
             [items removeObjectAtIndex:0];
         }
         

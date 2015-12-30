@@ -8,6 +8,12 @@
 
 #import "SAPWorker.h"
 
+//@interface SAPWorker()
+//
+//@property (nonatomic, assign, readwrite)     SAPWorkerState          state;
+//
+//@end
+
 @implementation SAPWorker
 
 @synthesize money = _money;
@@ -53,6 +59,37 @@
 }
 
 #pragma mark-
+#pragma mark Public Methods
+
+- (void)makeJobWithObject:(id)object {
+    [self doesNotRecognizeSelector:_cmd];
+}
+
+- (void)makeJobWithObjectInBackground:(id)object {
+    if (object) {
+        NSLog(@"%@ is busy with %@", self, object);
+        self.state = kSAPIsBusy;
+        [self performSelectorInBackground:@selector(makeJobWithObject:) withObject:object];
+    }
+}
+
+- (void)takeAllMoneyFromSender:(SAPWorker *)sender {
+    [sender giveMoney:sender.money toRecipient:self];
+}
+
+- (void)notifyWorkFinished {
+    NSLog(@"%@ finised work", self);
+    
+    [self notifyObserversWithSelector:@selector(finisedWorkObservableWorker:) withObject:self];
+}
+
+- (void)notifyIsReadyToWork {
+    NSLog(@"%@ is ready to work", self);
+    
+    [self notifyObserversWithSelector:@selector(isReadyToWorkObservableWorker:) withObject:self];
+}
+
+#pragma mark-
 #pragma mark SAPMoneyTransfer
 
 - (BOOL)giveMoney:(NSUInteger)sum toRecipient:(id<SAPMoneyTransfer>)recipient {
@@ -81,42 +118,6 @@
     self.state = kSAPIsBusy;
     [self makeJobWithObject:worker];
 }
-
-#pragma mark-
-#pragma mark Public Methods
-
-- (void)makeJobWithObject:(id)object {
-    [self doesNotRecognizeSelector:_cmd];
-}
-
-- (void)makeJobWithObjectInBackground:(id)object {
-    if (object) {
-        NSLog(@"%@ is busy with %@", self, object);
-        self.state = kSAPIsBusy;
-        [self performSelectorInBackground:@selector(makeJobWithObject:) withObject:object];
-    }
-}
-
-- (void)giveAllMoneyToRecipient:(id<SAPMoneyTransfer>)recipient {
-    [self giveMoney:self.money toRecipient:recipient];
-}
-
-- (void)takeAllMoneyFromSender:(SAPWorker *)sender {
-    [sender giveMoney:sender.money toRecipient:self];
-}
-
-- (void)notifyWorkFinished {
-    NSLog(@"%@ finised work", self);
-    
-    [self notifyObserversWithSelector:@selector(finisedWorkObservableWorker:) withObject:self];
-}
-
-- (void)notifyIsReadyToWork {
-    NSLog(@"%@ is ready to work", self);
-    
-    [self notifyObserversWithSelector:@selector(isReadyToWorkObservableWorker:) withObject:self];
-}
-
 
 @end
 

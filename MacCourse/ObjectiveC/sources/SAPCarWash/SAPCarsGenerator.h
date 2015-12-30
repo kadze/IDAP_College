@@ -12,7 +12,6 @@
 
 @interface SAPCarsGenerator : NSObject
 
-+ (void)sendCarsToCarWash:(SAPEnterprise *)enterprise;
 - (void)sendCarsToCarWash:(SAPEnterprise *)enterprise;
 - (void)sendCarsAndWashByCarWash:(SAPEnterprise *)enterprise;
 

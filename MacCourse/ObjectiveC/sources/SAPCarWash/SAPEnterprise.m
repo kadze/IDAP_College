@@ -15,7 +15,7 @@
 #import "SAPBoss.h"
 #import "SAPCar.h"
 
-static NSUInteger const kSAPMaxWashersCount = 4;
+static NSUInteger const kSAPMaxWashersCount = 3; //will be incremented so as to avoid zero value
 
 @interface SAPEnterprise()
 
@@ -74,10 +74,7 @@ static NSUInteger const kSAPMaxWashersCount = 4;
 }
 
 -(NSArray *)workersOfClass:(Class)workerClass {
-    SAPItemsContainer *container = self.staffContainter;
-    @synchronized(container) {
-        return [container itemsOfClass:workerClass];
-    }
+    return [self.staffContainter itemsOfClass:workerClass];
 }
 
 - (void)hireStaff {
@@ -91,7 +88,7 @@ static NSUInteger const kSAPMaxWashersCount = 4;
     [self hireWorker:boss];
     
     //car washing has random count of washers
-    NSUInteger washersCount = arc4random_uniform(kSAPMaxWashersCount);
+    NSUInteger washersCount = 1 + arc4random_uniform(kSAPMaxWashersCount) ;
 //    NSUInteger washersCount = 3;
     
     NSLog(@"%lu washers", washersCount);
@@ -130,16 +127,12 @@ static NSUInteger const kSAPMaxWashersCount = 4;
 
 
 -(void)washCars {//:(NSArray *)cars {
-    SAPItemsContainer *carsQueue = self.carsQueue;
-    @synchronized(carsQueue) {
-//        for (SAPCar *car in cars) {
-//            [carsQueue addItem:car];
-//        }
-        
+//    SAPItemsContainer *carsQueue = self.carsQueue;
+//    @synchronized(carsQueue) {
         for (SAPWasher *washer in [self workersOfClass:[SAPWasher class]]) {
             [self washNextCarWithWasher:washer];
         }
-    }
+//    }
 }
 
 -(void)addCarsToQueue:(NSArray *)cars {
@@ -155,7 +148,7 @@ static NSUInteger const kSAPMaxWashersCount = 4;
 }
 
 -(void)washNextCarWithWasher:(SAPWasher *)washer {
-    usleep(arc4random_uniform(10) * 1000);
+    //usleep(arc4random_uniform(10) * 1000);
     [washer makeJobWithObjectInBackground:[[self carsQueue] dequeue]];
 }
 

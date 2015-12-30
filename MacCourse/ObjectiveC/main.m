@@ -32,36 +32,15 @@ int main(int argc, const char * argv[]) {
         SAPEnterprise *carWashEnterprise = [SAPEnterprise object];
         [carWashEnterprise hireStaff];
         
+        //car wash gets cars from different threads
+        SAPCarsGenerator *carsGenerator = [SAPCarsGenerator object];
+        [carsGenerator performSelectorInBackground:@selector(sendCarsAndWashByCarWash:) withObject:carWashEnterprise];
         
-        //try. doesn't work
-//        [NSThread detachNewThreadSelector:@selector(sendCarsToCarWash:)
-//                                 toTarget:[SAPCarsGenerator class]
-//                               withObject:carWashEnterprise];
-        
-        
-        
-        //new try. doesn't work
-//        
-//        SAPCarsGenerator *carsGenerator = [SAPCarsGenerator object];
-//        [carsGenerator performSelectorInBackground:@selector(sendCarsAndWashByCarWash:) withObject:carWashEnterprise];
-
-        
-        // works with instance method of generator
-        
-//        [[SAPCarsGenerator object] sendCarsToCarWash:carWashEnterprise];
-//        [carWashEnterprise washCars];
-        
-        
-        //works with class method of generator
-        
-        [SAPCarsGenerator sendCarsToCarWash:carWashEnterprise];
-        [carWashEnterprise washCars];
-        
+        [carsGenerator performSelectorInBackground:@selector(sendCarsAndWashByCarWash:) withObject:carWashEnterprise];
         
         
         [[NSRunLoop currentRunLoop] run];
         
-//        cars = nil;
         carWashEnterprise = nil;
         
     }
