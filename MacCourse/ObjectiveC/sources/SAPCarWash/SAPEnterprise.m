@@ -126,30 +126,22 @@ static NSUInteger const kSAPMaxWashersCount = 3; //will be incremented so as to 
 }
 
 
--(void)washCars {//:(NSArray *)cars {
-//    SAPItemsContainer *carsQueue = self.carsQueue;
-//    @synchronized(carsQueue) {
-        for (SAPWasher *washer in [self workersOfClass:[SAPWasher class]]) {
-            [self washNextCarWithWasher:washer];
-        }
-//    }
+-(void)washCars {
+    for (SAPWasher *washer in [self workersOfClass:[SAPWasher class]]) {
+        [self washNextCarWithWasher:washer];
+    }
 }
 
 -(void)addCarsToQueue:(NSArray *)cars {
     SAPItemsContainer *carsQueue = self.carsQueue;
-    //@synchronized(carsQueue) {
-        for (SAPCar *car in cars) {
-            [carsQueue addItem:car];
-        }
-    //}
-    
-    //[self performSelectorOnMainThread:@selector(washCars) withObject:nil waitUntilDone:YES];
-  //  [self washCars];
+    for (SAPCar *car in cars) {
+        [carsQueue addItem:car];
+    }
 }
 
 -(void)washNextCarWithWasher:(SAPWasher *)washer {
-    //usleep(arc4random_uniform(10) * 1000);
-    [washer makeJobWithObjectInBackground:[[self carsQueue] dequeue]];
+    washer.object = [[self carsQueue] dequeue];
+    [washer start];
 }
 
 -(SAPWasher *)freeWasher {

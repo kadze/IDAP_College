@@ -20,10 +20,10 @@ static NSUInteger const kMaximumCashLimit = 200;
     @synchronized(self) {
         [self takeAllMoneyFromSender:washer];
         if (kMaximumCashLimit <= self.money) {
-            self.state = kSAPFinishedWork;
+            [self finish];
         }
         
-        self.state = kSAPIsReadyToWork;
+        [self becomeFree];
     }
 }
 

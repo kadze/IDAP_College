@@ -24,7 +24,8 @@ typedef NS_ENUM (NSUInteger, SAPWorkerState) {
 @property (nonatomic, assign)               NSUInteger              salary;
 @property (nonatomic, assign)               NSUInteger              experienceLevel;
 //@property (nonatomic, assign, readonly)     SAPWorkerState          state;
-@property (nonatomic, assign)     SAPWorkerState          state;
+@property (nonatomic, assign)               SAPWorkerState          state;
+@property (nonatomic, retain)               id                      object;
 
 - (void)makeJobWithObject:(id)object;
 - (void)makeJobWithObjectInBackground:(id)object;

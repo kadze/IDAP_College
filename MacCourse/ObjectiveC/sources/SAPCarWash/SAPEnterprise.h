@@ -23,7 +23,7 @@
 
 -(NSArray *)workersOfClass:(Class)workerClass;
 
--(void)washCars;//:(NSArray *)cars;
+-(void)washCars;
 -(void)addCarsToQueue:(NSArray *)cars;
 -(void)washNextCarWithWasher:(SAPWasher *)washer;
 -(SAPWasher *)freeWasher;

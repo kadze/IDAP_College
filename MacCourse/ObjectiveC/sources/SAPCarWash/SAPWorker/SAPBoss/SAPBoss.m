@@ -16,7 +16,8 @@
 -(void)makeJobWithObject:(id)accountant {
     @synchronized(self) {
         [self takeAllMoneyFromSender:accountant];
-        self.state = kSAPIsReadyToWork;
+        [self finish];
+        [self becomeFree];
         
         NSLog(@"%@ got all money from %@", self, accountant);
         NSLog(@"now boss has %lu", self.money);

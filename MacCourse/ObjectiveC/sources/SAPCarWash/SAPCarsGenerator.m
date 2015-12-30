@@ -16,8 +16,7 @@ NSUInteger const kInitialCarMoney1 = 50;
 @implementation SAPCarsGenerator
 
 - (void)sendCarsToCarWash:(SAPEnterprise *)enterprise {
-        
-//        NSUInteger carsCount = arc4random_uniform(100);
+    
         NSUInteger carsCount = 100; //temporary testing decision
         NSLog(@"%lu cars", carsCount);
         
@@ -32,12 +31,12 @@ NSUInteger const kInitialCarMoney1 = 50;
         [enterprise addCarsToQueue:resultCars];
 }
 
-- (void)sendCarsAndWashByCarWash:(SAPEnterprise *)enterprise { //the copy of previous method exept last row
+- (void)sendCarsAndWashByCarWash:(SAPEnterprise *)enterprise {
     
-    [self sendCarsToCarWash:enterprise];
-    [enterprise performSelectorOnMainThread:@selector(washCars) withObject:nil waitUntilDone:YES];
-
+    @autoreleasepool {
+        [self sendCarsToCarWash:enterprise];
+        [enterprise washCars];
+    }
 }
-
 
 @end

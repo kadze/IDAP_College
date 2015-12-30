@@ -17,14 +17,17 @@ static NSUInteger const kWashPrise = 50;
 #pragma mark Public Methods
 
 - (void)makeJobWithObject:(id)car {
-    usleep(arc4random_uniform(10) * 1000); //random delay by tech task
-    NSUInteger moneyBefore = self.money;
-    [self washCar:car];
-    if (self.money > moneyBefore) {
-        self.state = kSAPFinishedWork;
+    @autoreleasepool {
+        usleep(arc4random_uniform(10) * 1000); //random delay by tech task
+        @synchronized(self) {
+            NSUInteger moneyBefore = self.money;
+            [self washCar:car];
+            if (self.money > moneyBefore) {
+                [self finish];
+            }
+        }
+        [self becomeFree];
     }
-    
-    self.state = kSAPIsReadyToWork;
 }
 
 #pragma mark-

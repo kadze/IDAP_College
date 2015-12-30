@@ -16,4 +16,8 @@
 - (void)finisedWorkObservableWorker:(SAPWorker *)worker;
 - (void)isReadyToWorkObservableWorker:(SAPWorker *)worker;
 
+- (void)start;
+- (void)finish;
+- (void)becomeFree;
+
 @end
