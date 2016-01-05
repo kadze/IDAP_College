@@ -9,8 +9,6 @@
 #import "SAPAccountant.h"
 #import "SAPWasher.h"
 
-static NSUInteger const kMaximumCashLimit = 200;
-
 @implementation SAPAccountant
 
 #pragma mark-
@@ -19,10 +17,7 @@ static NSUInteger const kMaximumCashLimit = 200;
 - (void)makeJobWithObject:(id)washer {
     @synchronized(self) {
         [self takeAllMoneyFromSender:washer];
-        if (kMaximumCashLimit <= self.money) {
-            [self finish];
-        }
-        
+        [self finish];
         [self becomeFree];
     }
 }

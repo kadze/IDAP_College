@@ -13,8 +13,9 @@
 @protocol SAPWorkerObservingProtocol <NSObject>
 
 @optional
-- (void)finisedWorkObservableWorker:(SAPWorker *)worker;
-- (void)isReadyToWorkObservableWorker:(SAPWorker *)worker;
+
+- (void)workerFinishedWork:(SAPWorker *)worker;
+- (void)workerIsReadyToWork:(SAPWorker *)worker;
 
 - (void)start;
 - (void)finish;

@@ -16,9 +16,9 @@
 #pragma mark SAPMoneyTransfer
 
 - (BOOL)giveMoney:(NSUInteger)sum toRecipient:(id<SAPMoneyTransfer>)recipient {
-    if (self.money >= sum && (recipient)) {
-        self.money      -= sum;
-        recipient.money += sum;
+    if (recipient && self.money >= sum) {
+        [self substractMoney:sum];
+        [recipient addMoney:sum];
         
         return YES;
     }
@@ -32,6 +32,14 @@
     }
     
     return NO;
+}
+
+- (void)addMoney:(NSUInteger)sum {
+    _money +=sum;
+}
+
+- (void)substractMoney:(NSUInteger)sum {
+    _money -=sum;
 }
 
 @end

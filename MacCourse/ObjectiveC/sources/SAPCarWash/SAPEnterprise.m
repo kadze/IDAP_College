@@ -34,6 +34,7 @@ static NSUInteger const kSAPWashersCount = 3;
 #pragma mark Initializatinos and Deallocations
 
 - (void)dealloc {
+    [self dismissStaff];
     self.staffContainter = nil;
     self.carsQueue = nil;
     
@@ -65,7 +66,7 @@ static NSUInteger const kSAPWashersCount = 3;
 #pragma mark-
 #pragma mark SAPWorkerObservingProtocol
 
-- (void)isReadyToWorkObservableWorker:(SAPWorker *)worker {
+- (void)workerIsReadyToWork:(SAPWorker *)worker {
     [self washNextCarWithWasher:(SAPWasher*)worker];
 }
 
@@ -77,6 +78,12 @@ static NSUInteger const kSAPWashersCount = 3;
     for (SAPWasher *washer in [self workersOfClass:[SAPWasher class]]) {
         [self washNextCarWithWasher:washer];
     }
+    
+    //does not work
+//    NSArray *freeWorkers = [self workersOfClass:[SAPWasher class] withState:kSAPIsReadyToWork];
+//    for (SAPWasher *washer in freeWorkers) {
+//        [self washNextCarWithWasher:washer];
+//    }
 }
 
 - (void)addCarsToQueue:(NSArray *)cars {
@@ -126,6 +133,14 @@ static NSUInteger const kSAPWashersCount = 3;
     [accountant addObserver:boss];
 }
 
+- (void)dismissStaff {
+    for (SAPWorker *worker in self.staff) {
+        [worker removeAllObservers];
+    }
+    
+    [self.staffContainter removeAllItems];
+}
+
 - (void)dismissWorker:(SAPWorker *)worker {
     [self.staffContainter removeItem:worker];
 }
@@ -134,8 +149,12 @@ static NSUInteger const kSAPWashersCount = 3;
     return [self.staffContainter itemsOfClass:workerClass];
 }
 
-- (SAPWasher *)freeWasher {
-    return (SAPWasher*)[self freeWorkerOfClass:[SAPWasher class]];
+- (NSArray *)workersOfClass:(Class)workerClass withState:(NSUInteger)state {
+    @synchronized(self.staffContainter) {
+        NSPredicate *predicate = [[NSPredicate predicateWithFormat:@"state == %lu",state] autorelease];
+        
+        return [[self workersOfClass:workerClass] filteredArrayUsingPredicate:predicate];
+    }
 }
 
 - (SAPWorker *)freeWorkerOfClass:(Class)class {

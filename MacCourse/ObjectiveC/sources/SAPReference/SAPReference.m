@@ -23,6 +23,7 @@
 
 - (instancetype)initWithTarget:(id)object {
     if (nil == object) {
+        [self release];
         return nil;
     }
     

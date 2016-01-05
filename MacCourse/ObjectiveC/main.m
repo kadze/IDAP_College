@@ -38,7 +38,6 @@ int main(int argc, const char * argv[]) {
         [[NSRunLoop currentRunLoop] run];
         
         carWashEnterprise = nil;
-        
     }
     
     return 0;

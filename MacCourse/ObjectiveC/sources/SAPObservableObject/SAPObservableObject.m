@@ -43,12 +43,14 @@
 
 - (NSArray *) observers {
     NSMutableSet *mutableObservers = self.mutableObservers;
-    NSMutableArray *mutableResult = [NSMutableArray arrayWithCapacity:mutableObservers.count];
-    for (SAPAssignReference *observer in mutableObservers) {
-        [mutableResult addObject:observer.target];
+    @synchronized(mutableObservers) {
+        NSMutableArray *mutableResult = [NSMutableArray arrayWithCapacity:mutableObservers.count];
+        for (SAPAssignReference *observer in mutableObservers) {
+            [mutableResult addObject:observer.target];
+        }
+        
+        return [[mutableResult copy] autorelease];
     }
-    
-    return [[mutableResult copy] autorelease];
 }
 
 #pragma mark-
@@ -66,6 +68,10 @@
             break;
         }
     }
+}
+
+- (void)removeAllObservers {
+    [_mutableObservers removeAllObjects];
 }
 
 - (void)notifyObserversWithSelector:(SEL)selector {

@@ -34,7 +34,6 @@
             result = @selector(notifyIsReadyToWork);
             break;
         default:
-            nil;
             break;
     }
     
@@ -99,22 +98,22 @@
 - (void)notifyWorkFinished {
     NSLog(@"%@ finised work", self);
     
-    [self notifyObserversWithSelector:@selector(finisedWorkObservableWorker:) withObject:self];
+    [self notifyObserversWithSelector:@selector(workerFinishedWork:) withObject:self];
 }
 
 - (void)notifyIsReadyToWork {
     NSLog(@"%@ is ready to work", self);
     
-    [self notifyObserversWithSelector:@selector(isReadyToWorkObservableWorker:) withObject:self];
+    [self notifyObserversWithSelector:@selector(workerIsReadyToWork:) withObject:self];
 }
 
 #pragma mark-
 #pragma mark SAPMoneyTransfer
 
 - (BOOL)giveMoney:(NSUInteger)sum toRecipient:(id<SAPMoneyTransfer>)recipient {
-    if (self.money >= sum && (recipient)) {
-        self.money      -= sum;
-        recipient.money += sum;
+    if (recipient && self.money >= sum) {
+        [self substractMoney:sum];
+        [recipient addMoney:sum];
         
         return YES;
     }
@@ -128,10 +127,24 @@
     return NO;
 }
 
+- (void)addMoney:(NSUInteger)sum {
+    NSLock *locker = [[[NSLock alloc] init] autorelease];
+    [locker lock];
+    _money +=sum;
+    [locker unlock];
+}
+
+- (void)substractMoney:(NSUInteger)sum {
+    NSLock *locker = [[[NSLock alloc] init] autorelease];
+    [locker lock];
+    _money -=sum;
+    [locker unlock];
+}
+
 #pragma mark-
 #pragma mark SAPWorkerObservingProtocol
 
-- (void)finisedWorkObservableWorker:(SAPWorker *)worker {
+- (void)workerFinishedWork:(SAPWorker *)worker {
     NSLog(@"%@ is busy with %@", self, worker);
     self.object = worker;
     [self start];

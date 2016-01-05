@@ -75,13 +75,19 @@
         
         return result;
     }
-    
 }
 
 - (void)removeItem:(id)item {
     NSMutableArray *mutableItems = self.mutableItems;
     @synchronized(mutableItems) {
         [self.mutableItems removeObject:item];
+    }
+}
+
+- (void)removeAllItems {
+    NSMutableArray *mutableItems = self.mutableItems;
+    @synchronized(mutableItems) {
+        [self.mutableItems removeAllObjects];
     }
 }
 

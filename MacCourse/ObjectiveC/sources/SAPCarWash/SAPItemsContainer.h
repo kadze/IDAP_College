@@ -17,6 +17,7 @@
 
 - (BOOL)addItem:(id)item;
 - (void)removeItem:(id)item;
+- (void)removeAllItems;
 - (id)dequeue;
 - (NSArray *)itemsOfClass:(Class)itemClass;
 
