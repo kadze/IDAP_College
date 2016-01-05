@@ -10,8 +10,8 @@
 
 @interface SAPItemsContainer : NSObject
 
-@property (nonatomic, retain, readonly)         NSArray     *items;
-@property (nonatomic, assign, readonly)         BOOL        isFull;
+@property (nonatomic, readonly) NSArray     *items;
+@property (nonatomic, readonly) BOOL        isFull;
 
 - (instancetype)initWithCapacity:(NSUInteger)capacity;
 
@@ -19,7 +19,5 @@
 - (void)removeItem:(id)item;
 - (id)dequeue;
 - (NSArray *)itemsOfClass:(Class)itemClass;
-
-
 
 @end

@@ -10,7 +10,7 @@
 //
 //@interface SAPWorker()
 //
-//@property (nonatomic, assign, readwrite)     SAPWorkerState          state;
+//@property (nonatomic, assign)     SAPWorkerState          state;
 //
 //@end
 

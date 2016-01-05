@@ -75,7 +75,7 @@ NSRange SAPMakeAlphabetRange(unichar sign1, unichar sign2) {
     return [[mutableResult copy] autorelease];
 }
 
-- (NSArray *)arrayOfLetters {
+- (NSArray *)letters {
     [self doesNotRecognizeSelector:_cmd];
     
     return nil;

@@ -46,7 +46,7 @@
 #pragma mark-
 #pragma mark Public Methods
 
-- (NSArray *)arrayOfLetters {
+- (NSArray *)letters {
     return self.lettersArray;
 }
 

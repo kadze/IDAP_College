@@ -17,16 +17,7 @@
 
 @property (nonatomic, retain, readonly) NSArray *staff;
 
-- (void)hireStaff;
-- (void)hireWorker:(SAPWorker *)worker;
-- (void)dismissWorker:(SAPWorker *)worker;
-
--(NSArray *)workersOfClass:(Class)workerClass;
-
--(void)washCars;
--(void)addCarsToQueue:(NSArray *)cars;
--(void)washNextCarWithWasher:(SAPWasher *)washer;
--(SAPWasher *)freeWasher;
--(SAPWorker *)freeWorkerOfClass:(Class)class;
+- (void)washCars;
+- (void)addCarsToQueue:(NSArray *)cars;
 
 @end

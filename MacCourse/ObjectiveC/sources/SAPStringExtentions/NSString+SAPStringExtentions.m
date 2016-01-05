@@ -61,7 +61,7 @@ static const unichar kSAPLastNumberSign = '9';
 
 
 //random strings
-+ (NSString *)sap_generateRandomStringWithString:(NSString *)alphabet ofSize:(NSUInteger) size {
++ (NSString *)generateRandomStringWithAlphabetString:(NSString *)alphabet ofSize:(NSUInteger) size {
     int alphabetLength = (int)alphabet.length;
     unichar unichars[size];
     for (uint index = 0; index < size; index++) {
@@ -71,7 +71,7 @@ static const unichar kSAPLastNumberSign = '9';
     return [self stringWithCharacters:unichars length:size];
 }
 
-+ (NSString *)sap_generateRandomStringWithAlphabet:(SAPAlphabet *)alphabet ofSize:(NSUInteger) size {
++ (NSString *)generateRandomStringWithAlphabet:(SAPAlphabet *)alphabet ofSize:(NSUInteger) size {
     int alphabetLength = (int)alphabet.count;
     NSMutableString *mutableResult = [NSMutableString string];
     for (NSUInteger index = 0; index < size; index++) {
@@ -84,7 +84,7 @@ static const unichar kSAPLastNumberSign = '9';
 #pragma mark-
 #pragma mark Public Methods
 
-- (instancetype)sap_separateWithSpaces {
+- (instancetype)separateWithSpaces {
     //the final capacity must be twice larger than initial capacity because of adding the same amount of spaces
     int capacityMultiplicator = 2;
     //final capacity is double initial capacity - 1 because of absense of the space at the end of string
@@ -105,15 +105,10 @@ static const unichar kSAPLastNumberSign = '9';
     }
     
     return [[mutableResult copy] autorelease];
-    
-//    return [[self class] stringWithString:mutableResult];
-    /*
-    ???????? Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '*** initialization method -initWithCharactersNoCopy:length:freeWhenDone: cannot be sent to an abstract object of class __NSCFConstantString: Create a concrete instance!'
-     */
 }
 
-- (NSString *)sap_generateRandomStringFromSelfOfSize:(NSUInteger) size {
-    return [[self class] sap_generateRandomStringWithString:self ofSize:size];
+- (NSString *)generateRandomStringFromSelfOfSize:(NSUInteger) size {
+    return [[self class] generateRandomStringWithAlphabetString:self ofSize:size];
 }
 
 - (NSArray *)symbols {

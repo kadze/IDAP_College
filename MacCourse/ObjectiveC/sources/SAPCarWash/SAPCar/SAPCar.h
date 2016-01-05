@@ -11,6 +11,6 @@
 
 @interface SAPCar : NSObject <SAPMoneyTransfer>
 
-@property (nonatomic, assign, getter=isClean) BOOL clean;
+@property (nonatomic, getter=isClean) BOOL clean;
 
 @end

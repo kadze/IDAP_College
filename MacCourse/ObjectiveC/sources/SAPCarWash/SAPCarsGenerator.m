@@ -11,19 +11,20 @@
 #import "SAPCar.h"
 #import "NSObject+SAPObject.h"
 
-NSUInteger const kInitialCarMoney1 = 50;
+static NSUInteger const kSAPInitialCarMoney1 = 50;
+static NSUInteger const kSAPcarsCount = 100;
 
 @implementation SAPCarsGenerator
 
 - (void)sendCarsToCarWash:(SAPEnterprise *)enterprise {
     
-        NSUInteger carsCount = 100; //temporary testing decision
+        NSUInteger carsCount = kSAPcarsCount; //temporary testing decision
         NSLog(@"%lu cars", carsCount);
         
         NSMutableArray *cars = [NSMutableArray array];
         for (NSUInteger carCounter = 0; carCounter < carsCount; carCounter++) {
             SAPCar *car = [SAPCar object];
-            car.money = kInitialCarMoney1;
+            car.money = kSAPInitialCarMoney1;
             [cars addObject:car];
         }
         

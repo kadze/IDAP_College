@@ -7,9 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import "SAPCreatureTests.h"
-//#import "SAPStringExtentionsTests.h"
-
 #import "NSObject+SAPObject.h"
 
 #import "SAPEnterprise.h"
@@ -30,7 +27,6 @@ int main(int argc, const char * argv[]) {
         //=====CAR WASH=====
         
         SAPEnterprise *carWashEnterprise = [SAPEnterprise object];
-        [carWashEnterprise hireStaff];
         
         //car wash gets cars from different threads
         SAPCarsGenerator *carsGenerator = [SAPCarsGenerator object];

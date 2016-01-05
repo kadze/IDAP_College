@@ -10,8 +10,8 @@
 
 @implementation NSObject (SAPObject)
 
-+(instancetype)object {
-   return [[[self alloc ] init] autorelease];
++ (instancetype)object {
+   return [[[self alloc] init] autorelease];
 }
 
 @end

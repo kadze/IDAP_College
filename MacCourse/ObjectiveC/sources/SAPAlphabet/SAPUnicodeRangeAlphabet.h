@@ -10,7 +10,7 @@
 
 @interface SAPUnicodeRangeAlphabet : SAPAlphabet
 
-@property (nonatomic, assign, readonly)     NSRange range;
+@property (nonatomic, readonly)     NSRange range;
 
 - (instancetype) initWithRange:(NSRange)  range;
 

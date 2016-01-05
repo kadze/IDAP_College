@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface NSObject (SAPObject)
-    +(instancetype)object;
+
++ (instancetype)object;
+
 @end

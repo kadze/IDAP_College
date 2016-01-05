@@ -9,7 +9,7 @@
 #import "SAPObservableObject.h"
 #import "SAPAssignReference.h"
 
-@interface SAPObservableObject()
+@interface SAPObservableObject ()
 
 @property(nonatomic, retain) NSMutableSet *mutableObservers;
 
@@ -44,7 +44,7 @@
 - (NSArray *) observers {
     NSMutableSet *mutableObservers = self.mutableObservers;
     NSMutableArray *mutableResult = [NSMutableArray arrayWithCapacity:mutableObservers.count];
-    for (SAPWeakReference *observer in mutableObservers) {
+    for (SAPAssignReference *observer in mutableObservers) {
         [mutableResult addObject:observer.target];
     }
     
@@ -55,11 +55,11 @@
 #pragma mark Public Methods
 
 - (void)addObserver:(id)observer {
-    [_mutableObservers addObject:[[[SAPWeakReference alloc] initWithTarget:observer] autorelease]];
+    [_mutableObservers addObject:[[[SAPAssignReference alloc] initWithTarget:observer] autorelease]];
 }
 
 - (void)removeObserver:(id)observer {
-    for (SAPWeakReference *reference in self.observers) {
+    for (SAPAssignReference *reference in self.observers) {
         if (reference.target == observer) {
             [_mutableObservers removeObject:reference];
             

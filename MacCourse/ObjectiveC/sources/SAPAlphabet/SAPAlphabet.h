@@ -24,7 +24,7 @@ NSRange SAPMakeAlphabetRange(unichar firstSign, unichar length);
 - (NSString *)string;
 
 //the method should be overriden
-- (NSArray *)arrayOfLetters;
+- (NSArray *)letters;
 - (NSString *)letterAtIndex:(NSUInteger) index;
 - (NSUInteger)count;
 - (NSString *)objectAtIndexedSubscript:(NSUInteger)index;

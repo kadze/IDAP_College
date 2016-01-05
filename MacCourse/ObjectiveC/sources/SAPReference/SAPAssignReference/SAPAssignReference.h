@@ -8,6 +8,6 @@
 
 #import "SAPReference.h"
 
-@interface SAPWeakReference : SAPReference
+@interface SAPAssignReference : SAPReference
 
 @end

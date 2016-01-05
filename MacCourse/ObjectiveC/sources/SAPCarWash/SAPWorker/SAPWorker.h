@@ -21,11 +21,9 @@ typedef NS_ENUM (NSUInteger, SAPWorkerState) {
 
 @interface SAPWorker : SAPObservableObject <SAPMoneyTransfer, SAPWorkerObservingProtocol>
 
-@property (nonatomic, assign)               NSUInteger              salary;
-@property (nonatomic, assign)               NSUInteger              experienceLevel;
-//@property (nonatomic, assign, readonly)     SAPWorkerState          state;
-@property (nonatomic, assign)               SAPWorkerState          state;
-@property (nonatomic, retain)               id                      object;
+//@property (nonatomic, readonly)     SAPWorkerState          state;
+@property (nonatomic)               SAPWorkerState          state;
+@property (nonatomic, retain)       id                      object;
 
 - (void)makeJobWithObject:(id)object;
 - (void)makeJobWithObjectInBackground:(id)object;

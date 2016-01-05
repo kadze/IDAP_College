@@ -15,9 +15,9 @@
 #import "SAPBoss.h"
 #import "SAPCar.h"
 
-static NSUInteger const kSAPMaxWashersCount = 3; //will be incremented so as to avoid zero value
+static NSUInteger const kSAPWashersCount = 3;
 
-@interface SAPEnterprise()
+@interface SAPEnterprise ()
 
 @property (nonatomic, retain) SAPItemsContainer *staffContainter;
 @property (nonatomic, retain) SAPItemsContainer *carsQueue;
@@ -41,9 +41,16 @@ static NSUInteger const kSAPMaxWashersCount = 3; //will be incremented so as to 
 }
 
 - (instancetype)init {
+    [self initWithStaff];
+    
+    return self;
+}
+
+- (instancetype)initWithStaff {
     self = [super init];
     self.staffContainter = [SAPItemsContainer object];
     self.carsQueue = [SAPItemsContainer object];
+    [self hireStaff];
     
     return self;
 }
@@ -65,20 +72,29 @@ static NSUInteger const kSAPMaxWashersCount = 3; //will be incremented so as to 
 #pragma mark-
 #pragma mark Public Methods
 
+
+- (void)washCars {
+    for (SAPWasher *washer in [self workersOfClass:[SAPWasher class]]) {
+        [self washNextCarWithWasher:washer];
+    }
+}
+
+- (void)addCarsToQueue:(NSArray *)cars {
+    SAPItemsContainer *carsQueue = self.carsQueue;
+    for (SAPCar *car in cars) {
+        [carsQueue addItem:car];
+    }
+}
+
+#pragma mark-
+#pragma mark Private Methods
+
 - (void)hireWorker:(SAPWorker *)worker {
     [self.staffContainter addItem:worker];
 }
 
-- (void)dismissWorker:(SAPWorker *)worker {
-    [self.staffContainter removeItem:worker];
-}
-
--(NSArray *)workersOfClass:(Class)workerClass {
-    return [self.staffContainter itemsOfClass:workerClass];
-}
-
 - (void)hireStaff {
-        
+    
     //carWash has 1 accountant and 1 boss
     
     SAPAccountant *accountant = [SAPAccountant object];
@@ -87,9 +103,7 @@ static NSUInteger const kSAPMaxWashersCount = 3; //will be incremented so as to 
     [self hireWorker:accountant];
     [self hireWorker:boss];
     
-    //car washing has random count of washers
-    NSUInteger washersCount = 1 + arc4random_uniform(kSAPMaxWashersCount) ;
-//    NSUInteger washersCount = 3;
+    NSUInteger washersCount = kSAPWashersCount;
     
     NSLog(@"%lu washers", washersCount);
     
@@ -112,7 +126,29 @@ static NSUInteger const kSAPMaxWashersCount = 3; //will be incremented so as to 
     [accountant addObserver:boss];
 }
 
--(void)washCars:(NSArray *)cars {
+- (void)dismissWorker:(SAPWorker *)worker {
+    [self.staffContainter removeItem:worker];
+}
+
+- (NSArray *)workersOfClass:(Class)workerClass {
+    return [self.staffContainter itemsOfClass:workerClass];
+}
+
+- (SAPWasher *)freeWasher {
+    return (SAPWasher*)[self freeWorkerOfClass:[SAPWasher class]];
+}
+
+- (SAPWorker *)freeWorkerOfClass:(Class)class {
+    for (SAPWorker *worker in [self workersOfClass:class]) {
+        if (kSAPIsReadyToWork == worker.state) {
+            return worker;
+        }
+    }
+    
+    return nil;
+}
+
+- (void)washCars:(NSArray *)cars {
     SAPItemsContainer *carsQueue = self.carsQueue;
     @synchronized(carsQueue) {
         for (SAPCar *car in cars) {
@@ -125,37 +161,9 @@ static NSUInteger const kSAPMaxWashersCount = 3; //will be incremented so as to 
     }
 }
 
-
--(void)washCars {
-    for (SAPWasher *washer in [self workersOfClass:[SAPWasher class]]) {
-        [self washNextCarWithWasher:washer];
-    }
-}
-
--(void)addCarsToQueue:(NSArray *)cars {
-    SAPItemsContainer *carsQueue = self.carsQueue;
-    for (SAPCar *car in cars) {
-        [carsQueue addItem:car];
-    }
-}
-
--(void)washNextCarWithWasher:(SAPWasher *)washer {
+- (void)washNextCarWithWasher:(SAPWasher *)washer {
     washer.object = [[self carsQueue] dequeue];
     [washer start];
-}
-
--(SAPWasher *)freeWasher {
-    return (SAPWasher*)[self freeWorkerOfClass:[SAPWasher class]];
-}
-
--(SAPWorker *)freeWorkerOfClass:(Class)class {
-    for (SAPWorker *worker in [self workersOfClass:class]) {
-        if (kSAPIsReadyToWork == worker.state) {
-            return worker;
-        }
-    }
-    
-    return nil;
 }
 
 @end

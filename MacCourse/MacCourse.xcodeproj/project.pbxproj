@@ -206,7 +206,7 @@
 		CAD9F3E31C04B4F400F80248 /* NSString+SAPStringExtentions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SAPStringExtentions.m"; sourceTree = "<group>"; };
 		CADDCD361C11EF6A003F56CC /* MacCourse */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MacCourse; sourceTree = BUILT_PRODUCTS_DIR; };
 		CADDCD371C11EF6A003F56CC /* ObjectiveC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ObjectiveC; sourceTree = BUILT_PRODUCTS_DIR; };
-		CADDCD381C11EF6A003F56CC /* ObjectiveCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjectiveCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CADDCD381C11EF6A003F56CC /* ObjectiveCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ObjectiveCTests.xctest; path = /Users/yosemiteretail/IDAP_College_Project/MacCourse/build/Debug/ObjectiveCTests.xctest; sourceTree = "<absolute>"; };
 		CADDCD3A1C11F0DA003F56CC /* SAPAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPAlphabet.h; sourceTree = "<group>"; };
 		CADDCD3B1C11F0DA003F56CC /* SAPAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPAlphabet.m; sourceTree = "<group>"; };
 		CADDCD3C1C11F0DA003F56CC /* SAPArrayAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPArrayAlphabet.h; sourceTree = "<group>"; };
@@ -775,7 +775,6 @@
 				81AB617D3C6AE3C16697C917 /* Frameworks */,
 				CADDCD361C11EF6A003F56CC /* MacCourse */,
 				CADDCD371C11EF6A003F56CC /* ObjectiveC */,
-				CADDCD381C11EF6A003F56CC /* ObjectiveCTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};

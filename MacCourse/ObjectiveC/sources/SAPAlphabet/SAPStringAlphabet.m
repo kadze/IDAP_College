@@ -47,7 +47,7 @@
 #pragma mark-
 #pragma mark Public Methods
 
-- (NSArray *)arrayOfLetters {
+- (NSArray *)letters {
     SAPEnumeratedString *enumeratedLetters = [SAPEnumeratedString object];
     enumeratedLetters.string = self.lettersString;
     NSMutableArray *mutableResult = [NSMutableArray arrayWithCapacity:self.lettersString.length];
@@ -59,7 +59,7 @@
 };
 
 - (NSString *)letterAtIndex:(NSUInteger) index {
-    return [[self arrayOfLetters] objectAtIndex:index];
+    return [[self letters] objectAtIndex:index];
 };
 
 - (NSUInteger)count {

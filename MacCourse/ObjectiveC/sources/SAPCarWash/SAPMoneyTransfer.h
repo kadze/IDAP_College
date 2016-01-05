@@ -9,7 +9,7 @@
 
 @protocol SAPMoneyTransfer
 
-@property (nonatomic, assign) NSUInteger money;
+@property (nonatomic) NSUInteger money;
 
 - (BOOL)giveMoney:(NSUInteger)sum toRecipient:(id<SAPMoneyTransfer>)recipient;
 - (BOOL)takeMoney:(NSUInteger)sum fromSender:(id<SAPMoneyTransfer>)sender;

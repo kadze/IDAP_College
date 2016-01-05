@@ -18,8 +18,8 @@ typedef NS_ENUM (NSUInteger, SAPGender) {
 
 @property (nonatomic, copy)             NSString       *name;
 @property (nonatomic, retain, readonly) NSSet          *children;
-@property (nonatomic, assign)           NSUInteger     *mass;
-@property (nonatomic, assign)           NSUInteger     *age;
+@property (nonatomic)                   NSUInteger     *mass;
+@property (nonatomic)                   NSUInteger     *age;
 
 + (instancetype)creatureWithGender:(SAPGender)gender;
 + (Class)classForGender:(SAPGender)gender;

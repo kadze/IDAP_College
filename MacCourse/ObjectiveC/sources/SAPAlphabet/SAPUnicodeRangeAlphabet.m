@@ -10,7 +10,7 @@
 
 @interface SAPUnicodeRangeAlphabet ()
 
-@property (nonatomic, assign) NSRange range;
+@property (nonatomic) NSRange range;
 
 @end
 
@@ -32,7 +32,7 @@
 #pragma mark-
 #pragma mark Public Methods
 
-- (NSArray *)arrayOfLetters {
+- (NSArray *)letters {
     NSMutableArray *result = [NSMutableArray array];
     NSRange range = self.range;
     for (unichar symbol = range.location; symbol < NSMaxRange(range); symbol++) {

@@ -9,7 +9,8 @@
 #import "SAPWasher.h"
 #import "SAPCar.h"
 
-static NSUInteger const kWashPrise = 50;
+static NSUInteger const kSAPWashPrise = 50;
+static BOOL const kSAPturnOnDelay = YES;
 
 @implementation SAPWasher
 
@@ -18,7 +19,9 @@ static NSUInteger const kWashPrise = 50;
 
 - (void)makeJobWithObject:(id)car {
     @autoreleasepool {
-        usleep(arc4random_uniform(10) * 1000); //random delay by tech task
+        if (kSAPturnOnDelay) {
+            usleep(arc4random_uniform(10) * 1000); //random delay by tech task
+        }
         @synchronized(self) {
             NSUInteger moneyBefore = self.money;
             [self washCar:car];
@@ -34,7 +37,7 @@ static NSUInteger const kWashPrise = 50;
 #pragma mark Private Methods
 
 - (void)washCar:(SAPCar *)car {
-    if ([self takeMoney:kWashPrise fromSender:car]) {
+    if ([self takeMoney:kSAPWashPrise fromSender:car]) {
         [car setClean:YES];
     }
 }
