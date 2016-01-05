@@ -49,9 +49,11 @@ static NSUInteger const kSAPWashersCount = 3;
 
 - (instancetype)initWithStaff {
     self = [super init];
-    self.staffContainter = [SAPItemsContainer object];
-    self.carsQueue = [SAPItemsContainer object];
-    [self hireStaff];
+    if (self) {
+        self.staffContainter = [SAPItemsContainer object];
+        self.carsQueue = [SAPItemsContainer object];
+        [self hireStaff];
+    }
     
     return self;
 }
@@ -150,11 +152,9 @@ static NSUInteger const kSAPWashersCount = 3;
 }
 
 - (NSArray *)workersOfClass:(Class)workerClass withState:(NSUInteger)state {
-    @synchronized(self.staffContainter) {
-        NSPredicate *predicate = [[NSPredicate predicateWithFormat:@"state == %lu",state] autorelease];
-        
-        return [[self workersOfClass:workerClass] filteredArrayUsingPredicate:predicate];
-    }
+    NSPredicate *predicate = [[NSPredicate predicateWithFormat:@"state == %lu",state] autorelease];
+    
+    return [[self workersOfClass:workerClass] filteredArrayUsingPredicate:predicate];
 }
 
 - (SAPWorker *)freeWorkerOfClass:(Class)class {
