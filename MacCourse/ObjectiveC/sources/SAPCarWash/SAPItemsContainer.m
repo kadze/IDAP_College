@@ -53,14 +53,16 @@
 }
 
 - (NSArray *)itemsOfClass:(Class)itemClass {
-    NSMutableArray *mutableResult = [NSMutableArray array];
-    for (id item in self.items) {
-        if ([item isMemberOfClass:itemClass]) {
-            [mutableResult addObject:item];
+    @synchronized(self) {
+        NSMutableArray *mutableResult = [NSMutableArray array];
+        for (id item in self.items) {
+            if ([item isMemberOfClass:itemClass]) {
+                [mutableResult addObject:item];
+            }
         }
+        
+        return [[mutableResult copy] autorelease];
     }
-    
-    return [[mutableResult copy] autorelease];
 }
 
 #pragma mark-

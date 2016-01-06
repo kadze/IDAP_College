@@ -12,6 +12,6 @@
 
 @property (nonatomic, readonly)     NSRange range;
 
-- (instancetype) initWithRange:(NSRange)  range;
+- (instancetype)initWithRange:(NSRange)range;
 
 @end

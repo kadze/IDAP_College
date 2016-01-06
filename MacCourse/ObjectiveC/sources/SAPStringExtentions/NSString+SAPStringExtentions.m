@@ -61,7 +61,7 @@ static const unichar kSAPLastNumberSign = '9';
 
 
 //random strings
-+ (NSString *)generateRandomStringWithAlphabetString:(NSString *)alphabet ofSize:(NSUInteger) size {
++ (NSString *)generateRandomStringWithAlphabetString:(NSString *)alphabet ofSize:(NSUInteger)size {
     int alphabetLength = (int)alphabet.length;
     unichar unichars[size];
     for (uint index = 0; index < size; index++) {
@@ -71,7 +71,7 @@ static const unichar kSAPLastNumberSign = '9';
     return [self stringWithCharacters:unichars length:size];
 }
 
-+ (NSString *)generateRandomStringWithAlphabet:(SAPAlphabet *)alphabet ofSize:(NSUInteger) size {
++ (NSString *)generateRandomStringWithAlphabet:(SAPAlphabet *)alphabet ofSize:(NSUInteger)size {
     int alphabetLength = (int)alphabet.count;
     NSMutableString *mutableResult = [NSMutableString string];
     for (NSUInteger index = 0; index < size; index++) {
@@ -107,7 +107,7 @@ static const unichar kSAPLastNumberSign = '9';
     return [[mutableResult copy] autorelease];
 }
 
-- (NSString *)generateRandomStringFromSelfOfSize:(NSUInteger) size {
+- (NSString *)generateRandomStringFromSelfOfSize:(NSUInteger)size {
     return [[self class] generateRandomStringWithAlphabetString:self ofSize:size];
 }
 

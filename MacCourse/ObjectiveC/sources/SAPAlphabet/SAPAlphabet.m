@@ -24,15 +24,15 @@ NSRange SAPMakeAlphabetRange(unichar sign1, unichar sign2) {
 #pragma mark-
 #pragma mark Class Methods
 
-+ (instancetype)alphabetWithArray:(NSArray *) array {
++ (instancetype)alphabetWithArray:(NSArray *)array {
     return [[[SAPArrayAlphabet alloc] initWithArray:array] autorelease];
 }
 
-+ (instancetype)alphabetWithString:(NSString *) string {
++ (instancetype)alphabetWithString:(NSString *)string {
     return [[[SAPStringAlphabet alloc] initWithString:string] autorelease];
 }
 
-+ (instancetype)alphabetWithUnicodeRange:(NSRange) range {
++ (instancetype)alphabetWithUnicodeRange:(NSRange)range {
     return [[[SAPUnicodeRangeAlphabet alloc] initWithRange:range] autorelease];
 }
 
@@ -45,19 +45,19 @@ NSRange SAPMakeAlphabetRange(unichar sign1, unichar sign2) {
     return nil;
 }
 
-- (instancetype)initAlphabetWithArray:(NSArray *) array {
+- (instancetype)initAlphabetWithArray:(NSArray *)array {
     [self release];
     
     return [[SAPArrayAlphabet alloc] initWithArray:array];
 }
 
-- (instancetype)initAlphabetWithString:(NSString *) string {
+- (instancetype)initAlphabetWithString:(NSString *)string {
     [self release];
     
     return [[SAPStringAlphabet alloc] initWithString:string];
 }
 
-- (instancetype)initAlphabetWithUnicodeRange:(NSRange) range {
+- (instancetype)initAlphabetWithUnicodeRange:(NSRange)range {
     [self release];
     
     return [[SAPUnicodeRangeAlphabet alloc] initWithRange:range];
@@ -81,7 +81,7 @@ NSRange SAPMakeAlphabetRange(unichar sign1, unichar sign2) {
     return nil;
 }
 
-- (NSString *)letterAtIndex:(NSUInteger) index{
+- (NSString *)letterAtIndex:(NSUInteger)index{
     [self doesNotRecognizeSelector:_cmd];
     
     return nil;
@@ -93,7 +93,7 @@ NSRange SAPMakeAlphabetRange(unichar sign1, unichar sign2) {
     return 0;
 }
 
-- (NSString *)objectAtIndexedSubscript:(NSUInteger) index{
+- (NSString *)objectAtIndexedSubscript:(NSUInteger)index{
     return [self letterAtIndex:index];
 }
 

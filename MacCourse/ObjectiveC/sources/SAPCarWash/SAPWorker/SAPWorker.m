@@ -15,7 +15,7 @@
 #pragma mark-
 #pragma mark Class Methods
 
-- (SEL) selectorForState:(SAPWorkerState)state {
+- (SEL)selectorForState:(SAPWorkerState)state {
     SEL result = nil;
     switch (state) {
         case kSAPIsBusy:

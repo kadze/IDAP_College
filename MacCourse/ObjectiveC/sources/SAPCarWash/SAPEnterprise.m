@@ -70,7 +70,7 @@ static NSUInteger const kSAPWashersCount = 3;
 #pragma mark Public Methods
 
 - (void)washCar:(SAPCar *)car {
-    SAPWasher *washer = (SAPWasher *)[self freeWorkerOfClass:[SAPWasher class]];
+    SAPWasher *washer = [self freeWorkerOfClass:[SAPWasher class]];
     if (washer) {
         [washer makeJobWithObject:car];
     } else {
@@ -130,16 +130,14 @@ static NSUInteger const kSAPWashersCount = 3;
     return [self.staffContainter itemsOfClass:workerClass];
 }
 
-- (SAPWorker *)freeWorkerOfClass:(Class)class {
-    @synchronized(self) {
-        for (SAPWorker *worker in [self workersOfClass:class]) {
-            if (kSAPIsReadyToWork == worker.state) {
-                return worker;
-            }
+- (id)freeWorkerOfClass:(Class)class {
+    for (SAPWorker *worker in [self workersOfClass:class]) {
+        if (kSAPIsReadyToWork == worker.state) {
+            return worker;
         }
-        
-        return nil;
     }
+    
+    return nil;
 }
 
 - (void)washNextCarWithWasher:(SAPWasher *)washer {

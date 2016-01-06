@@ -23,12 +23,12 @@
 #pragma mark-
 #pragma mark Initializations and Deallocations
 
-- (void) dealloc {
+- (void)dealloc {
     self.lettersString = nil;
     [super dealloc];
 }
 
-- (instancetype) initWithString:(NSString *)string {
+- (instancetype)initWithString:(NSString *)string {
     //self = [super init];
     if (self) {
         self.lettersString = string;
@@ -58,7 +58,7 @@
     return [[mutableResult copy] autorelease];
 };
 
-- (NSString *)letterAtIndex:(NSUInteger) index {
+- (NSString *)letterAtIndex:(NSUInteger)index {
     return [[self letters] objectAtIndex:index];
 };
 

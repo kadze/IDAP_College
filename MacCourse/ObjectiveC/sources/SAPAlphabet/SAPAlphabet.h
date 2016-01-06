@@ -13,19 +13,19 @@ NSRange SAPMakeAlphabetRange(unichar firstSign, unichar length);
 
 @interface SAPAlphabet : NSObject <NSFastEnumeration>
 
-+ (instancetype)alphabetWithArray:(NSArray *) array;
-+ (instancetype)alphabetWithString:(NSString *) string;
-+ (instancetype)alphabetWithUnicodeRange:(NSRange) range;
++ (instancetype)alphabetWithArray:(NSArray *)array;
++ (instancetype)alphabetWithString:(NSString *)string;
++ (instancetype)alphabetWithUnicodeRange:(NSRange)range;
 
-- (instancetype)initAlphabetWithArray:(NSArray *) array;
-- (instancetype)initAlphabetWithString:(NSString *) string;
-- (instancetype)initAlphabetWithUnicodeRange:(NSRange) range;
+- (instancetype)initAlphabetWithArray:(NSArray *)array;
+- (instancetype)initAlphabetWithString:(NSString *)string;
+- (instancetype)initAlphabetWithUnicodeRange:(NSRange)range;
 
 - (NSString *)string;
 
 //the method should be overriden
 - (NSArray *)letters;
-- (NSString *)letterAtIndex:(NSUInteger) index;
+- (NSString *)letterAtIndex:(NSUInteger)index;
 - (NSUInteger)count;
 - (NSString *)objectAtIndexedSubscript:(NSUInteger)index;
 

@@ -41,7 +41,7 @@
 #pragma mark-
 #pragma mark Accessors
 
-- (NSArray *) observers {
+- (NSArray *)observers {
     NSMutableSet *mutableObservers = self.mutableObservers;
     @synchronized(mutableObservers) {
         NSMutableArray *mutableResult = [NSMutableArray arrayWithCapacity:mutableObservers.count];

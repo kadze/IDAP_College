@@ -19,7 +19,7 @@
 #pragma mark-
 #pragma mark Initializations and Deallocations
 
-- (instancetype) initWithRange:(NSRange) range {
+- (instancetype)initWithRange:(NSRange)range {
 //    self = [super init];
     if (self) {
         self.range = range;
@@ -42,7 +42,7 @@
     return [[result copy] autorelease];
 }
 
-- (NSString *)letterAtIndex:(NSUInteger) index {
+- (NSString *)letterAtIndex:(NSUInteger)index {
     NSRange range = self.range;
     NSAssert(index < range.length, NSRangeException);
     return [NSString stringWithFormat:@"%C", (unichar)(range.location + index)];

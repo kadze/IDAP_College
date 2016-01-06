@@ -12,6 +12,6 @@
 
 @property (nonatomic, retain, readonly) NSArray*  letters;
 
-- (instancetype) initWithArray:(NSArray *)  lettersArray;
+- (instancetype)initWithArray:(NSArray *)lettersArray;
 
 @end
