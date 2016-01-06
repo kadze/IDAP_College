@@ -7,12 +7,6 @@
 //
 
 #import "SAPWorker.h"
-//
-//@interface SAPWorker()
-//
-//@property (nonatomic, assign)     SAPWorkerState          state;
-//
-//@end
 
 @implementation SAPWorker
 
@@ -28,10 +22,10 @@
             result = nil;
             break;
         case kSAPFinishedWork:
-            result = @selector(notifyWorkFinished);
+            result = @selector(workerDidFinishWork:);
             break;
         case kSAPIsReadyToWork:
-            result = @selector(notifyIsReadyToWork);
+            result = @selector(workerDidBecomeReadyToWork:);
             break;
         default:
             break;
@@ -56,7 +50,7 @@
         _state = state;
         SEL selectorToPerform = [self selectorForState:state];
         if (selectorToPerform) {
-            [self performSelectorOnMainThread:selectorToPerform withObject:nil waitUntilDone:YES];
+            [self notifyObserversWithSelector:selectorToPerform withObject:self];
         }
     }
 }
@@ -68,43 +62,8 @@
     [self doesNotRecognizeSelector:_cmd];
 }
 
-- (void)makeJobWithObjectInBackground:(id)object {
-    if (object) {
-        NSLog(@"%@ is busy with %@", self, object);
-        [self performSelectorInBackground:@selector(makeJobWithObject:) withObject:object];
-    }
-}
-
 - (void)takeAllMoneyFromSender:(SAPWorker *)sender {
     [sender giveMoney:sender.money toRecipient:self];
-}
-
-#pragma mark-
-#pragma mark Private Methods
-
-- (void)start {
-    self.state = kSAPIsBusy;
-    [self makeJobWithObjectInBackground:self.object];
-}
-
-- (void)finish {
-    self.state = kSAPFinishedWork;
-}
-
-- (void)becomeFree {
-    self.state = kSAPIsReadyToWork;
-}
-
-- (void)notifyWorkFinished {
-    NSLog(@"%@ finised work", self);
-    
-    [self notifyObserversWithSelector:@selector(workerFinishedWork:) withObject:self];
-}
-
-- (void)notifyIsReadyToWork {
-    NSLog(@"%@ is ready to work", self);
-    
-    [self notifyObserversWithSelector:@selector(workerIsReadyToWork:) withObject:self];
 }
 
 #pragma mark-
@@ -144,10 +103,8 @@
 #pragma mark-
 #pragma mark SAPWorkerObservingProtocol
 
-- (void)workerFinishedWork:(SAPWorker *)worker {
-    NSLog(@"%@ is busy with %@", self, worker);
-    self.object = worker;
-    [self start];
+- (void)workerDidFinishWork:(SAPWorker *)worker {
+    [self makeJobWithObject:worker];
 }
 
 @end

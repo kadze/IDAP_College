@@ -7,7 +7,6 @@
 //
 
 #import "SAPAccountant.h"
-#import "SAPWasher.h"
 
 @implementation SAPAccountant
 
@@ -16,9 +15,13 @@
 
 - (void)makeJobWithObject:(id)washer {
     @synchronized(self) {
+        while (kSAPIsReadyToWork != self.state) {
+            //wait
+        }
+        self.state = kSAPIsBusy;
         [self takeAllMoneyFromSender:washer];
-        [self finish];
-        [self becomeFree];
+        [washer setState:kSAPIsReadyToWork];
+        self.state = kSAPFinishedWork;
     }
 }
 

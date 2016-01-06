@@ -19,8 +19,8 @@ static NSUInteger const kSAPWashersCount = 3;
 
 @interface SAPEnterprise ()
 
-@property (nonatomic, retain) SAPItemsContainer *staffContainter;
-@property (nonatomic, retain) SAPItemsContainer *carsQueue;
+@property (nonatomic) SAPItemsContainer *staffContainter;
+@property (nonatomic) SAPItemsContainer *carsQueue;
 
 @end
 
@@ -65,34 +65,17 @@ static NSUInteger const kSAPWashersCount = 3;
     return self.staffContainter.items;
 }
 
-#pragma mark-
-#pragma mark SAPWorkerObservingProtocol
-
-- (void)workerIsReadyToWork:(SAPWorker *)worker {
-    [self washNextCarWithWasher:(SAPWasher*)worker];
-}
 
 #pragma mark-
 #pragma mark Public Methods
 
-
-- (void)washCars {
-    for (SAPWasher *washer in [self workersOfClass:[SAPWasher class]]) {
-        [self washNextCarWithWasher:washer];
-    }
-    
-    //does not work
-//    NSArray *freeWorkers = [self workersOfClass:[SAPWasher class] withState:kSAPIsReadyToWork];
-//    for (SAPWasher *washer in freeWorkers) {
-//        [self washNextCarWithWasher:washer];
-//    }
-}
-
-- (void)addCarsToQueue:(NSArray *)cars {
-    SAPItemsContainer *carsQueue = self.carsQueue;
-    for (SAPCar *car in cars) {
-        [carsQueue addItem:car];
-    }
+- (void)washCar:(SAPCar *)car {
+    SAPWasher *washer = (SAPWasher *)[self freeWorkerOfClass:[SAPWasher class]];
+    if (washer) {
+        [washer makeJobWithObject:car];
+    } else {
+        [self.carsQueue addItem:car];
+    }    
 }
 
 #pragma mark-
@@ -143,46 +126,35 @@ static NSUInteger const kSAPWashersCount = 3;
     [self.staffContainter removeAllItems];
 }
 
-- (void)dismissWorker:(SAPWorker *)worker {
-    [self.staffContainter removeItem:worker];
-}
-
 - (NSArray *)workersOfClass:(Class)workerClass {
     return [self.staffContainter itemsOfClass:workerClass];
 }
 
-- (NSArray *)workersOfClass:(Class)workerClass withState:(NSUInteger)state {
-    NSPredicate *predicate = [[NSPredicate predicateWithFormat:@"state == %lu",state] autorelease];
-    
-    return [[self workersOfClass:workerClass] filteredArrayUsingPredicate:predicate];
-}
-
 - (SAPWorker *)freeWorkerOfClass:(Class)class {
-    for (SAPWorker *worker in [self workersOfClass:class]) {
-        if (kSAPIsReadyToWork == worker.state) {
-            return worker;
-        }
-    }
-    
-    return nil;
-}
-
-- (void)washCars:(NSArray *)cars {
-    SAPItemsContainer *carsQueue = self.carsQueue;
-    @synchronized(carsQueue) {
-        for (SAPCar *car in cars) {
-            [carsQueue addItem:car];
+    @synchronized(self) {
+        for (SAPWorker *worker in [self workersOfClass:class]) {
+            if (kSAPIsReadyToWork == worker.state) {
+                return worker;
+            }
         }
         
-        for (SAPWasher *washer in [self workersOfClass:[SAPWasher class]]) {
-            [self washNextCarWithWasher:washer];
-        }
+        return nil;
     }
 }
 
 - (void)washNextCarWithWasher:(SAPWasher *)washer {
-    washer.object = [[self carsQueue] dequeue];
-    [washer start];
+    SAPCar *car = [[self carsQueue] dequeue];
+    if (car) {
+        [washer makeJobWithObject:car];
+    }
 }
+
+#pragma mark-
+#pragma mark SAPWorkerObservingProtocol
+
+- (void)workerDidBecomeReadyToWork:(SAPWorker *)worker {
+    [self washNextCarWithWasher:(SAPWasher *)worker];
+}
+
 
 @end

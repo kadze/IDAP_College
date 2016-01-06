@@ -11,33 +11,24 @@
 #import "SAPCar.h"
 #import "NSObject+SAPObject.h"
 
-static NSUInteger const kSAPInitialCarMoney1 = 50;
+static NSUInteger const kSAPInitialCarMoney = 50;
 static NSUInteger const kSAPcarsCount = 100;
 
 @implementation SAPCarsGenerator
 
-- (void)sendCarsToCarWash:(SAPEnterprise *)enterprise {
+- (NSArray *)generateCars {
+    NSUInteger carsCount = kSAPcarsCount;
     
-        NSUInteger carsCount = kSAPcarsCount; //temporary testing decision
-        NSLog(@"%lu cars", carsCount);
-        
-        NSMutableArray *cars = [NSMutableArray array];
-        for (NSUInteger carCounter = 0; carCounter < carsCount; carCounter++) {
-            SAPCar *car = [SAPCar object];
-            car.money = kSAPInitialCarMoney1;
-            [cars addObject:car];
-        }
-        
-        NSArray *resultCars = [[cars copy] autorelease];
-        [enterprise addCarsToQueue:resultCars];
-}
-
-- (void)sendCarsAndWashByCarWash:(SAPEnterprise *)enterprise {
+    NSLog(@"%lu cars", carsCount);
     
-    @autoreleasepool {
-        [self sendCarsToCarWash:enterprise];
-        [enterprise washCars];
+    NSMutableArray *cars = [NSMutableArray array];
+    for (NSUInteger carCounter = 0; carCounter < carsCount; carCounter++) {
+        SAPCar *car = [SAPCar object];
+        car.money = kSAPInitialCarMoney;
+        [cars addObject:car];
     }
+    
+    return [[cars copy] autorelease];
 }
 
 @end

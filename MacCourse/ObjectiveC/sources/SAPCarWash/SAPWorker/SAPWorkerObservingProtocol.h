@@ -14,11 +14,11 @@
 
 @optional
 
-- (void)workerFinishedWork:(SAPWorker *)worker;
-- (void)workerIsReadyToWork:(SAPWorker *)worker;
+- (void)workerDidFinishWork:(SAPWorker *)worker;
+- (void)workerDidBecomeReadyToWork:(SAPWorker *)worker;
 
-- (void)start;
-- (void)finish;
-- (void)becomeFree;
+//- (void)start;
+//- (void)finish;
+//- (void)becomeFree;
 
 @end

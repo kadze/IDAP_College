@@ -28,12 +28,11 @@ int main(int argc, const char * argv[]) {
         
         SAPEnterprise *carWashEnterprise = [SAPEnterprise object];
         
-        //car wash gets cars from different threads
         SAPCarsGenerator *carsGenerator = [SAPCarsGenerator object];
-        [carsGenerator performSelectorInBackground:@selector(sendCarsAndWashByCarWash:) withObject:carWashEnterprise];
         
-        [carsGenerator performSelectorInBackground:@selector(sendCarsAndWashByCarWash:) withObject:carWashEnterprise];
-
+        for (SAPCar *car in [carsGenerator generateCars]) {
+            [carWashEnterprise washCar:car];
+        }
         
         [[NSRunLoop currentRunLoop] run];
         

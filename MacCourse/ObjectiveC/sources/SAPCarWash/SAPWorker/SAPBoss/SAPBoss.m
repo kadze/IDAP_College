@@ -15,11 +15,11 @@
 
 -(void)makeJobWithObject:(id)accountant {
     @synchronized(self) {
+        self.state = kSAPIsBusy;
         [self takeAllMoneyFromSender:accountant];
-        [self finish];
-        [self becomeFree];
+        [accountant setState:kSAPIsReadyToWork];
+        self.state = kSAPIsReadyToWork;
         
-        NSLog(@"%@ got all money from %@", self, accountant);
         NSLog(@"now boss has %lu", self.money);
     }
 }
