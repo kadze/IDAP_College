@@ -15,9 +15,6 @@
 
 - (void)makeJobWithObject:(id)washer {
     @synchronized(self) {
-        while (kSAPIsReadyToWork != self.state) {
-            //wait
-        }
         self.state = kSAPIsBusy;
         [self takeAllMoneyFromSender:washer];
         [washer setState:kSAPIsReadyToWork];
