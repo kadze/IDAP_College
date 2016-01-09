@@ -10,8 +10,7 @@
 #import "SAPAssignReference.h"
 
 @interface SAPObservableObject ()
-
-@property(nonatomic, retain) NSMutableSet *mutableObservers;
+@property(nonatomic, retain)    NSMutableSet    *mutableObservers;
 
 @end
 

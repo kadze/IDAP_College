@@ -11,11 +11,12 @@
 @implementation SAPWorker
 
 @synthesize money = _money;
+@synthesize state = _state;
 
 #pragma mark-
 #pragma mark Class Methods
 
-- (SEL)selectorForState:(SAPWorkerState)state {
+- (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
         case kSAPWorkerIsBusy:
             return @selector(workerDidStartWork);
@@ -52,8 +53,8 @@
 #pragma mark-
 #pragma mark Accessors
 
-- (void)setState:(SAPWorkerState)state {
-    if (_state != state) {
+- (void)setState:(NSUInteger)state {
+    if (self.state != state) {
         _state = state;
         SEL selectorToPerform = [self selectorForState:state];
         if (selectorToPerform) {
@@ -112,6 +113,10 @@
 
 - (void)workerDidFinishWork:(SAPWorker *)worker {
     [self makeJobWithObject:worker];
+}
+
+- (void)workerDidStartWork:(SAPWorker *)worker {
+    
 }
 
 @end

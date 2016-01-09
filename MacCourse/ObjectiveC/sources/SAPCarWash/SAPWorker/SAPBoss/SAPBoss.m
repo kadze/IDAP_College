@@ -15,15 +15,15 @@
 
 -(void)makeJobWithObject:(id)accountant {
     @synchronized(self) {
-        self.state = kSAPIsBusy;
+        self.state = kSAPWorkerIsBusy;
         [self performSelectorInBackground:@selector(profitWithWorker:) withObject:accountant];
     }
 }
 
 -(void)profitWithWorker:(SAPWorker *)worker {
     [self takeAllMoneyFromSender:worker];
-    [worker setState:kSAPIsReadyToWork];
-    self.state = kSAPIsReadyToWork;
+    [worker setState:kSAPWorkerIsReadyToWork];
+    self.state = kSAPWorkerIsReadyToWork;
     
     NSLog(@"now boss has %lu", self.money);
 

@@ -131,7 +131,7 @@ static NSUInteger const kSAPWashersCount = 3;
 
 - (id)freeWorkerOfClass:(Class)class {
     for (SAPWorker *worker in [self workersOfClass:class]) {
-        if (kSAPIsReadyToWork == worker.state) {
+        if (kSAPWorkerIsReadyToWork == worker.state) {
             return worker;
         }
     }

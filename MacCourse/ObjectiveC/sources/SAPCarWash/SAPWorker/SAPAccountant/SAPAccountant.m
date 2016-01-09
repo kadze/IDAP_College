@@ -15,17 +15,17 @@
 
 - (void)makeJobWithObject:(id)washer {
     @synchronized(self) {
-        while (kSAPIsReadyToWork != self.state) {
+        while (kSAPWorkerIsReadyToWork != self.state) {
             //wait
         }
-        self.state = kSAPIsBusy;
+        self.state = kSAPWorkerIsBusy;
         [self performSelectorInBackground:@selector(collectMoneyFromWasher:) withObject:washer];
     }
 }
 
 - (void)collectMoneyFromWasher:(SAPWorker *)washer {
     [self takeAllMoneyFromSender:washer];
-    [washer setState:kSAPIsReadyToWork];
-    self.state = kSAPFinishedWork;
+    [washer setState:kSAPWorkerIsReadyToWork];
+    self.state = kSAPWorkerFinishedWork;
 }
 @end

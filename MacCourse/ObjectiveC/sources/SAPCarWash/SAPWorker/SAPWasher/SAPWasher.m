@@ -42,8 +42,8 @@ static BOOL         const kSAPRandomDelayEnabled = YES;
 
 - (void)makeJobWithObject:(id)car {
     @synchronized(self) {
-        if (kSAPIsReadyToWork == self.state) {
-            self.state = kSAPIsBusy;
+        if (kSAPWorkerIsReadyToWork == self.state) {
+            self.state = kSAPWorkerIsBusy;
         }
         
         [self.carsQueue addItem:car];
@@ -70,7 +70,7 @@ static BOOL         const kSAPRandomDelayEnabled = YES;
                 car = [carsQueue dequeue];
             }
             
-            self.state = kSAPFinishedWork;
+            self.state = kSAPWorkerFinishedWork;
         }
     }
 }
