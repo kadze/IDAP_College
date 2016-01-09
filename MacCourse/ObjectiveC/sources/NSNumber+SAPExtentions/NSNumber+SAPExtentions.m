@@ -19,7 +19,7 @@
         return;
     }
     
-    NSArray *array = [SAPNumberGeneratorArray arrayWithRange:NSMakeRange(0, self.unsignedIntegerValue - 1)];
+    NSArray *array = [SAPNumberGeneratorArray arrayWithRange:NSMakeRange(0, self.unsignedIntegerValue)];
     for (NSNumber *value in array) {
         block(value);
     }
