@@ -50,6 +50,8 @@
 		CA3F28C61C21506F0072FC65 /* NSObject+SAPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F28C51C21506F0072FC65 /* NSObject+SAPObject.m */; settings = {ASSET_TAGS = (); }; };
 		CA3F28C71C21506F0072FC65 /* NSObject+SAPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F28C51C21506F0072FC65 /* NSObject+SAPObject.m */; settings = {ASSET_TAGS = (); }; };
 		CA4A33CF1C2DD37200460A57 /* SAPCarsGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4A33CE1C2DD37200460A57 /* SAPCarsGenerator.m */; settings = {ASSET_TAGS = (); }; };
+		CA713CEF1C41512200FF21DC /* SAPItemsQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = CA713CEE1C41512200FF21DC /* SAPItemsQueue.m */; settings = {ASSET_TAGS = (); }; };
+		CA713CF21C41523C00FF21DC /* SAPContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA713CF11C41523C00FF21DC /* SAPContainer.m */; settings = {ASSET_TAGS = (); }; };
 		CAA266991BF48E1000F4FF84 /* SAPAutoReleasingStack in Sources */ = {isa = PBXBuildFile; fileRef = CAA266971BF48E1000F4FF84 /* SAPAutoReleasingStack */; };
 		CAD0E77D1BFCB72900B5DCA9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD0E77C1BFCB72900B5DCA9 /* main.m */; };
 		CAD0E7871BFCC4CB00B5DCA9 /* SAPCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD0E7861BFCC4CB00B5DCA9 /* SAPCreature.m */; };
@@ -178,7 +180,11 @@
 		CA4A33CC1C2DAAB600460A57 /* SAPWorkerObservingProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAPWorkerObservingProtocol.h; path = SAPWorker/SAPWorkerObservingProtocol.h; sourceTree = "<group>"; };
 		CA4A33CD1C2DD37200460A57 /* SAPCarsGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPCarsGenerator.h; sourceTree = "<group>"; };
 		CA4A33CE1C2DD37200460A57 /* SAPCarsGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPCarsGenerator.m; sourceTree = "<group>"; };
-		CA713CEB1C3C195100FF21DC /* ObjectiveCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ObjectiveCTests.xctest; path = /Users/yosemiteretail/IDAP_College_Project/MacCourse/build/Debug/ObjectiveCTests.xctest; sourceTree = "<absolute>"; };
+		CA713CEC1C414CBE00FF21DC /* ObjectiveCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjectiveCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA713CED1C41512200FF21DC /* SAPItemsQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPItemsQueue.h; sourceTree = "<group>"; };
+		CA713CEE1C41512200FF21DC /* SAPItemsQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPItemsQueue.m; sourceTree = "<group>"; };
+		CA713CF01C41523C00FF21DC /* SAPContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPContainer.h; sourceTree = "<group>"; };
+		CA713CF11C41523C00FF21DC /* SAPContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPContainer.m; sourceTree = "<group>"; };
 		CAA266971BF48E1000F4FF84 /* SAPAutoReleasingStack */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = SAPAutoReleasingStack; path = /Users/yosemiteretail/IDAP_CollegeRepo/MacCourse/SAPMacCourse/tests/SAPAutoReleasingStack; sourceTree = "<absolute>"; };
 		CAD0E77C1BFCB72900B5DCA9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CAD0E7851BFCC4CB00B5DCA9 /* SAPCreature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPCreature.h; sourceTree = "<group>"; };
@@ -642,8 +648,12 @@
 			children = (
 				CA3F28961C16376F0072FC65 /* SAPEnterprise.h */,
 				CA3F28971C16376F0072FC65 /* SAPEnterprise.m */,
+				CA713CF01C41523C00FF21DC /* SAPContainer.h */,
+				CA713CF11C41523C00FF21DC /* SAPContainer.m */,
 				CA3F289F1C1657BF0072FC65 /* SAPItemsContainer.h */,
 				CA3F28A01C1657BF0072FC65 /* SAPItemsContainer.m */,
+				CA713CED1C41512200FF21DC /* SAPItemsQueue.h */,
+				CA713CEE1C41512200FF21DC /* SAPItemsQueue.m */,
 				CA3F28A21C1821650072FC65 /* SAPMoneyTransfer.h */,
 				CA4A33CC1C2DAAB600460A57 /* SAPWorkerObservingProtocol.h */,
 				CAD184301C0CA5AF00A97F55 /* SAPCar */,
@@ -771,6 +781,7 @@
 				81AB617D3C6AE3C16697C917 /* Frameworks */,
 				CADDCD361C11EF6A003F56CC /* MacCourse */,
 				CADDCD371C11EF6A003F56CC /* ObjectiveC */,
+				CA713CEC1C414CBE00FF21DC /* ObjectiveCTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -794,7 +805,7 @@
 			);
 			name = ObjectiveCTests;
 			productName = ObjectiveCTests;
-			productReference = CA713CEB1C3C195100FF21DC /* ObjectiveCTests.xctest */;
+			productReference = CA713CEC1C414CBE00FF21DC /* ObjectiveCTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		CAD0E7791BFCB72900B5DCA9 /* ObjectiveC */ = {
@@ -984,8 +995,10 @@
 				9F3F6D4F1C08CA670051F3C6 /* SAPStringExtentionsTests.m in Sources */,
 				CAD184231C08B53F00A97F55 /* SAPEnumeratedString.m in Sources */,
 				CAD9F3DA1BFE27CB00F80248 /* SAPWoman.m in Sources */,
+				CA713CEF1C41512200FF21DC /* SAPItemsQueue.m in Sources */,
 				CAD184431C0CA63100A97F55 /* SAPCar.m in Sources */,
 				CA3F28981C16376F0072FC65 /* SAPEnterprise.m in Sources */,
+				CA713CF21C41523C00FF21DC /* SAPContainer.m in Sources */,
 				CAD9F3D71BFE27B900F80248 /* SAPMan.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

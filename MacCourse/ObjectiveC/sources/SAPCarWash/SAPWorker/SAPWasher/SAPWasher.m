@@ -8,14 +8,14 @@
 
 #import "SAPWasher.h"
 #import "SAPCar.h"
-#import "SAPItemsContainer.h"
+#import "SAPItemsQueue.h"
 #import "NSObject+SAPObject.h"
 
 static NSUInteger   const kSAPWashPrise = 50;
 static BOOL         const kSAPRandomDelayEnabled = YES;
 
 @interface SAPWasher ()
-@property(nonatomic, retain) SAPItemsContainer *carsQueue;
+@property(nonatomic, retain) SAPItemsQueue *carsQueue;
 
 @end
 
@@ -32,7 +32,7 @@ static BOOL         const kSAPRandomDelayEnabled = YES;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.carsQueue = [SAPItemsContainer object];
+        self.carsQueue = [SAPItemsQueue object];
     }
     
     return self;
@@ -46,7 +46,7 @@ static BOOL         const kSAPRandomDelayEnabled = YES;
             self.state = kSAPWorkerIsBusy;
         }
         
-        [self.carsQueue addItem:car];
+        [self.carsQueue enqueue:car];
         [self performSelectorInBackground:@selector(washCars) withObject:nil];
     }
 }
@@ -60,7 +60,7 @@ static BOOL         const kSAPRandomDelayEnabled = YES;
             if (kSAPRandomDelayEnabled) {
                 usleep(arc4random_uniform(10) * 1000);
             }
-            SAPItemsContainer *carsQueue = self.carsQueue;
+            SAPItemsQueue *carsQueue = self.carsQueue;
             SAPCar *car = [carsQueue dequeue];
             while (car) {
                 if ([self takeMoney:kSAPWashPrise fromSender:car]) {

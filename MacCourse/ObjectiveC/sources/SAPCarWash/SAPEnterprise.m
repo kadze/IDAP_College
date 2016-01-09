@@ -9,6 +9,7 @@
 #import "NSObject+SAPObject.h"
 #import "SAPEnterprise.h"
 #import "SAPItemsContainer.h"
+#import "SAPItemsQueue.h"
 #import "SAPWorker.h"
 #import "SAPWasher.h"
 #import "SAPAccountant.h"
@@ -19,7 +20,7 @@ static NSUInteger const kSAPWashersCount = 3;
 
 @interface SAPEnterprise ()
 @property (nonatomic) SAPItemsContainer *staffContainter;
-@property (nonatomic) SAPItemsContainer *carsQueue;
+@property (nonatomic) SAPItemsQueue *carsQueue;
 
 @end
 
@@ -50,7 +51,7 @@ static NSUInteger const kSAPWashersCount = 3;
     self = [super init];
     if (self) {
         self.staffContainter = [SAPItemsContainer object];
-        self.carsQueue = [SAPItemsContainer object];
+        self.carsQueue = [SAPItemsQueue object];
         [self hireStaff];
     }
     
@@ -73,7 +74,7 @@ static NSUInteger const kSAPWashersCount = 3;
     if (washer) {
         [washer makeJobWithObject:car];
     } else {
-        [self.carsQueue addItem:car];
+        [self.carsQueue enqueue:car];
     }    
 }
 

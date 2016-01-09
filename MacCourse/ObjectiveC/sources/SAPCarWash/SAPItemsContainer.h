@@ -6,18 +6,11 @@
 //  Copyright © 2015 Yosemite Retail. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "SAPContainer.h"
 
-@interface SAPItemsContainer : NSObject
-@property (nonatomic, readonly) NSArray     *items;
-@property (nonatomic, readonly) BOOL        isFull;
-
-- (instancetype)initWithCapacity:(NSUInteger)capacity;
+@interface SAPItemsContainer : SAPContainer
 
 - (BOOL)addItem:(id)item;
 - (void)removeItem:(id)item;
-- (void)removeAllItems;
-- (id)dequeue;
-- (NSArray *)itemsOfClass:(Class)itemClass;
 
 @end
