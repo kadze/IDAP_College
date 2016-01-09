@@ -8,7 +8,6 @@
 #import "SAPAssignReference.h"
 
 @interface SAPAssignReference ()
-
 @property (nonatomic, assign) id target;
 
 @end

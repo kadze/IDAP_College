@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface SAPObservableObject : NSObject
-
 @property (nonatomic, retain, readonly) NSArray *observers;
 
 - (void)addObserver:(id)observer;

@@ -9,7 +9,6 @@
 #import "SAPItemsContainer.h"
 
 @interface SAPItemsContainer ()
-
 @property (nonatomic, retain) NSMutableArray    *mutableItems;
 
 @end

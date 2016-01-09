@@ -18,7 +18,6 @@
 static NSUInteger const kSAPWashersCount = 3;
 
 @interface SAPEnterprise ()
-
 @property (nonatomic) SAPItemsContainer *staffContainter;
 @property (nonatomic) SAPItemsContainer *carsQueue;
 

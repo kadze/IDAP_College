@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface SAPItemsContainer : NSObject
-
 @property (nonatomic, readonly) NSArray     *items;
 @property (nonatomic, readonly) BOOL        isFull;
 

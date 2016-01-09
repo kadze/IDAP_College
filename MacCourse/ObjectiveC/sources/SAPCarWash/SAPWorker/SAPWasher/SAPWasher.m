@@ -15,8 +15,7 @@ static NSUInteger   const kSAPWashPrise = 50;
 static BOOL         const kSAPRandomDelayEnabled = YES;
 
 @interface SAPWasher ()
-
-@property(nonatomic) SAPItemsContainer *carsQueue;
+@property(nonatomic, retain) SAPItemsContainer *carsQueue;
 
 @end
 

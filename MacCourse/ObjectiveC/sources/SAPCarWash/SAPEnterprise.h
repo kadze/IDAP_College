@@ -12,7 +12,6 @@
 @class SAPCar;
 
 @interface SAPEnterprise : NSObject <SAPWorkerObservingProtocol>
-
 @property (nonatomic, retain, readonly) NSArray *staff;
 
 - (void)washCar:(SAPCar *)car;

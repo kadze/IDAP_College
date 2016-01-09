@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface SAPReference : NSObject <NSCopying>
-
 @property (nonatomic, retain) id target;
 
 ///override in subclass
