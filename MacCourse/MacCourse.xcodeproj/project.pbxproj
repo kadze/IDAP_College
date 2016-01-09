@@ -51,6 +51,8 @@
 		CA713D001C41630900FF21DC /* SAPItemsQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = CA713CFB1C41629900FF21DC /* SAPItemsQueue.m */; settings = {ASSET_TAGS = (); }; };
 		CA713D011C41630E00FF21DC /* SAPContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA713CF51C41629900FF21DC /* SAPContainer.m */; settings = {ASSET_TAGS = (); }; };
 		CA713D081C41669A00FF21DC /* NSString+SAPStringExtentions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA713D071C41669A00FF21DC /* NSString+SAPStringExtentions.m */; settings = {ASSET_TAGS = (); }; };
+		CA713D0C1C41678D00FF21DC /* NSNumber+SAPExtentions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA713D0B1C41678D00FF21DC /* NSNumber+SAPExtentions.m */; settings = {ASSET_TAGS = (); }; };
+		CA713D0F1C4167E200FF21DC /* SAPNumberGeneratorArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CA713D0E1C4167E200FF21DC /* SAPNumberGeneratorArray.m */; settings = {ASSET_TAGS = (); }; };
 		CAA266991BF48E1000F4FF84 /* SAPAutoReleasingStack in Sources */ = {isa = PBXBuildFile; fileRef = CAA266971BF48E1000F4FF84 /* SAPAutoReleasingStack */; };
 		CAD0E77D1BFCB72900B5DCA9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD0E77C1BFCB72900B5DCA9 /* main.m */; };
 		CAD0E7871BFCC4CB00B5DCA9 /* SAPCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD0E7861BFCC4CB00B5DCA9 /* SAPCreature.m */; };
@@ -185,6 +187,10 @@
 		CA713CFB1C41629900FF21DC /* SAPItemsQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPItemsQueue.m; sourceTree = "<group>"; };
 		CA713D061C41669A00FF21DC /* NSString+SAPStringExtentions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SAPStringExtentions.h"; sourceTree = "<group>"; };
 		CA713D071C41669A00FF21DC /* NSString+SAPStringExtentions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SAPStringExtentions.m"; sourceTree = "<group>"; };
+		CA713D0A1C41678D00FF21DC /* NSNumber+SAPExtentions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+SAPExtentions.h"; sourceTree = "<group>"; };
+		CA713D0B1C41678D00FF21DC /* NSNumber+SAPExtentions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+SAPExtentions.m"; sourceTree = "<group>"; };
+		CA713D0D1C4167E200FF21DC /* SAPNumberGeneratorArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPNumberGeneratorArray.h; sourceTree = "<group>"; };
+		CA713D0E1C4167E200FF21DC /* SAPNumberGeneratorArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPNumberGeneratorArray.m; sourceTree = "<group>"; };
 		CAA266971BF48E1000F4FF84 /* SAPAutoReleasingStack */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = SAPAutoReleasingStack; path = /Users/yosemiteretail/IDAP_CollegeRepo/MacCourse/SAPMacCourse/tests/SAPAutoReleasingStack; sourceTree = "<absolute>"; };
 		CAD0E77C1BFCB72900B5DCA9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CAD0E7851BFCC4CB00B5DCA9 /* SAPCreature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPCreature.h; sourceTree = "<group>"; };
@@ -616,6 +622,17 @@
 			path = "NSString+SAPStringExtentions";
 			sourceTree = "<group>";
 		};
+		CA713D091C41672600FF21DC /* NSNumber+SAPExtentions */ = {
+			isa = PBXGroup;
+			children = (
+				CA713D0A1C41678D00FF21DC /* NSNumber+SAPExtentions.h */,
+				CA713D0B1C41678D00FF21DC /* NSNumber+SAPExtentions.m */,
+				CA713D0D1C4167E200FF21DC /* SAPNumberGeneratorArray.h */,
+				CA713D0E1C4167E200FF21DC /* SAPNumberGeneratorArray.m */,
+			);
+			path = "NSNumber+SAPExtentions";
+			sourceTree = "<group>";
+		};
 		CAD0E77B1BFCB72900B5DCA9 /* ObjectiveC */ = {
 			isa = PBXGroup;
 			children = (
@@ -631,6 +648,7 @@
 			children = (
 				CA3F28C31C21506F0072FC65 /* NSObject+SAPObject */,
 				CA713D051C41669A00FF21DC /* NSString+SAPStringExtentions */,
+				CA713D091C41672600FF21DC /* NSNumber+SAPExtentions */,
 				CAD0E7821BFCC3E400B5DCA9 /* SAPCreature */,
 				CAD9F3D31BFE277100F80248 /* SAPMan */,
 				CAD9F3D41BFE278500F80248 /* SAPWoman */,
@@ -1012,10 +1030,12 @@
 				CAD1844F1C0CA68E00A97F55 /* SAPBoss.m in Sources */,
 				CAD0E7871BFCC4CB00B5DCA9 /* SAPCreature.m in Sources */,
 				9F3F6D4F1C08CA670051F3C6 /* SAPStringExtentionsTests.m in Sources */,
+				CA713D0C1C41678D00FF21DC /* NSNumber+SAPExtentions.m in Sources */,
 				CAD184231C08B53F00A97F55 /* SAPEnumeratedString.m in Sources */,
 				CAD9F3DA1BFE27CB00F80248 /* SAPWoman.m in Sources */,
 				CAD184431C0CA63100A97F55 /* SAPCar.m in Sources */,
 				CA713D001C41630900FF21DC /* SAPItemsQueue.m in Sources */,
+				CA713D0F1C4167E200FF21DC /* SAPNumberGeneratorArray.m in Sources */,
 				CA3F28981C16376F0072FC65 /* SAPEnterprise.m in Sources */,
 				CAD9F3D71BFE27B900F80248 /* SAPMan.m in Sources */,
 				CA713D011C41630E00FF21DC /* SAPContainer.m in Sources */,

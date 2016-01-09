@@ -7,6 +7,7 @@
 //
 
 #import "NSObject+SAPObject.h"
+#import "NSNumber+SAPExtentions.h"
 
 @implementation NSObject (SAPObject)
 
@@ -14,4 +15,10 @@
    return [[[self alloc] init] autorelease];
 }
 
++ (NSArray *)objectsWithCount:(NSUInteger)count {
+    NSMutableArray *array = [[NSMutableArray new] autorelease];
+    [@(count) times:^(NSNumber *value) {[array addObject:value];}];
+    
+    return [[array copy] autorelease];
+}
 @end
