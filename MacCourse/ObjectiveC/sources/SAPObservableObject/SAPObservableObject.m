@@ -57,13 +57,13 @@
 #pragma mark Public Methods
 
 - (void)addObserver:(id)observer {
-    [_mutableObservers addObject:[[[SAPAssignReference alloc] initWithTarget:observer] autorelease]];
+    [self.mutableObservers addObject:[[[SAPAssignReference alloc] initWithTarget:observer] autorelease]];
 }
 
 - (void)removeObserver:(id)observer {
     for (SAPAssignReference *reference in self.observers) {
         if (reference.target == observer) {
-            [_mutableObservers removeObject:reference];
+            [self.mutableObservers removeObject:reference];
             
             break;
         }
@@ -71,7 +71,7 @@
 }
 
 - (void)removeAllObservers {
-    [_mutableObservers removeAllObjects];
+    [self.mutableObservers removeAllObjects];
 }
 
 - (void)notifyObserversWithSelector:(SEL)selector {
