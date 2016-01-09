@@ -18,7 +18,7 @@
 - (SEL)selectorForState:(SAPWorkerState)state {
     switch (state) {
         case kSAPWorkerIsBusy:
-            return NULL;
+            return @selector(workerDidStartWork);
             break;
         case kSAPWorkerFinishedWork:
             return @selector(workerDidFinishWork:);
