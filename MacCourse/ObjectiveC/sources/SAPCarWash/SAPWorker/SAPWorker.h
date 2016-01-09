@@ -14,9 +14,12 @@
 @class SAPRoom;
 
 typedef NS_ENUM (NSUInteger, SAPWorkerState) {
-    kSAPIsReadyToWork,
-    kSAPIsBusy,
-    kSAPFinishedWork
+    kSAPWorkerStateStart = 1,
+    kSAPWorkerIsReadyToWork,
+    kSAPWorkerIsBusy,
+    kSAPWorkerFinishedWork,
+    kSAPWorkerStateEnd,
+    kSAPWorkerStateCount = kSAPWorkerStateEnd - kSAPWorkerStateStart
 };
 
 @interface SAPWorker : SAPObservableObject <SAPMoneyTransfer, SAPWorkerObservingProtocol>
