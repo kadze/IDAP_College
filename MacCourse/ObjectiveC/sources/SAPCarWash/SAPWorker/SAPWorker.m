@@ -16,22 +16,20 @@
 #pragma mark Class Methods
 
 - (SEL)selectorForState:(SAPWorkerState)state {
-    SEL result = nil;
     switch (state) {
         case kSAPIsBusy:
-            result = nil;
+            return NULL;
             break;
         case kSAPFinishedWork:
-            result = @selector(workerDidFinishWork:);
+            return @selector(workerDidFinishWork:);
             break;
         case kSAPIsReadyToWork:
-            result = @selector(workerDidBecomeReadyToWork:);
+            return @selector(workerDidBecomeReadyToWork:);
             break;
         default:
+            return NULL;
             break;
     }
-    
-    return result;
 }
 
 #pragma mark-
