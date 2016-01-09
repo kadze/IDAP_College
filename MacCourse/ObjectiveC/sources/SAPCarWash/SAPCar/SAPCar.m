@@ -9,6 +9,8 @@
 #import "SAPCar.h"
 #import "NSObject+SAPObject.h"
 
+NSUInteger const kSAPInitialCarMoney = 50;
+
 @implementation SAPCar
 
 @synthesize money = _money;
@@ -18,6 +20,18 @@
 
 + (NSArray *)carsWithCount:(NSUInteger)count {
     return [SAPCar objectsWithCount:count];
+}
+
+#pragma mark-
+#pragma mark Initializations and Deallocations
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _money = kSAPInitialCarMoney;
+    }
+        
+    return self;
 }
 
 #pragma mark-
