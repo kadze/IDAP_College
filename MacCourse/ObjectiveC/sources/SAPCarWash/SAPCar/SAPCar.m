@@ -7,10 +7,18 @@
 //
 
 #import "SAPCar.h"
+#import "NSObject+SAPObject.h"
 
 @implementation SAPCar
 
 @synthesize money = _money;
+
+#pragma mark-
+#pragma mark Class Methods
+
++ (NSArray *)carsWithCount:(NSUInteger)count {
+    return [SAPCar objectsWithCount:count];
+}
 
 #pragma mark-
 #pragma mark SAPMoneyTransfer

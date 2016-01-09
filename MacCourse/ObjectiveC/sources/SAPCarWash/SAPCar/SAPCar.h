@@ -11,4 +11,7 @@
 
 @interface SAPCar : NSObject <SAPMoneyTransfer>
 @property (nonatomic, getter=isClean) BOOL clean;
+
++ (NSArray *)carsWithCount:(NSUInteger)count;
+
 @end
