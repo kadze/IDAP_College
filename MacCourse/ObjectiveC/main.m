@@ -8,16 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "NSObject+SAPObject.h"
-
 #import "SAPEnterprise.h"
 #import "SAPCar.h"
 #import "SAPWasher.h"
 #import "SAPWorker.h"
 #import "SAPBoss.h"
 #import "SAPAccountant.h"
-#import "SAPCarsGenerator.h"
 
-NSUInteger const kInitialCarMoney = 50;
 NSUInteger const kAnnualAmountOfCars = 100;
 NSUInteger const kWashPrice = 50;
 
@@ -27,10 +24,8 @@ int main(int argc, const char * argv[]) {
         //=====CAR WASH=====
         
         SAPEnterprise *carWashEnterprise = [SAPEnterprise object];
-        
-        SAPCarsGenerator *carsGenerator = [SAPCarsGenerator object];
-        
-        for (SAPCar *car in [carsGenerator generateCars]) {
+        NSArray *cars = [SAPCar carsWithCount:kAnnualAmountOfCars];
+        for (SAPCar *car in cars) {
             [carWashEnterprise washCar:car];
         }
         

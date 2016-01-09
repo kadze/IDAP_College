@@ -46,7 +46,6 @@
 		CA3F28BD1C213DC20072FC65 /* SAPAssignReference.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F28BB1C213DC20072FC65 /* SAPAssignReference.m */; settings = {ASSET_TAGS = (); }; };
 		CA3F28C61C21506F0072FC65 /* NSObject+SAPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F28C51C21506F0072FC65 /* NSObject+SAPObject.m */; settings = {ASSET_TAGS = (); }; };
 		CA3F28C71C21506F0072FC65 /* NSObject+SAPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F28C51C21506F0072FC65 /* NSObject+SAPObject.m */; settings = {ASSET_TAGS = (); }; };
-		CA4A33CF1C2DD37200460A57 /* SAPCarsGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4A33CE1C2DD37200460A57 /* SAPCarsGenerator.m */; settings = {ASSET_TAGS = (); }; };
 		CA713CFF1C41630200FF21DC /* SAPItemsContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA713CF81C41629900FF21DC /* SAPItemsContainer.m */; settings = {ASSET_TAGS = (); }; };
 		CA713D001C41630900FF21DC /* SAPItemsQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = CA713CFB1C41629900FF21DC /* SAPItemsQueue.m */; settings = {ASSET_TAGS = (); }; };
 		CA713D011C41630E00FF21DC /* SAPContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA713CF51C41629900FF21DC /* SAPContainer.m */; settings = {ASSET_TAGS = (); }; };
@@ -176,8 +175,6 @@
 		CA3F28C41C21506F0072FC65 /* NSObject+SAPObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SAPObject.h"; sourceTree = "<group>"; };
 		CA3F28C51C21506F0072FC65 /* NSObject+SAPObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SAPObject.m"; sourceTree = "<group>"; };
 		CA4A33CC1C2DAAB600460A57 /* SAPWorkerObservingProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAPWorkerObservingProtocol.h; path = SAPWorker/SAPWorkerObservingProtocol.h; sourceTree = "<group>"; };
-		CA4A33CD1C2DD37200460A57 /* SAPCarsGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPCarsGenerator.h; sourceTree = "<group>"; };
-		CA4A33CE1C2DD37200460A57 /* SAPCarsGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPCarsGenerator.m; sourceTree = "<group>"; };
 		CA713CEC1C414CBE00FF21DC /* ObjectiveCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjectiveCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA713CF41C41629900FF21DC /* SAPContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPContainer.h; sourceTree = "<group>"; };
 		CA713CF51C41629900FF21DC /* SAPContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPContainer.m; sourceTree = "<group>"; };
@@ -707,8 +704,6 @@
 				CA713CF31C41629900FF21DC /* SAPContainer */,
 				CAD184301C0CA5AF00A97F55 /* SAPCar */,
 				CAD184311C0CA5AF00A97F55 /* SAPWorker */,
-				CA4A33CD1C2DD37200460A57 /* SAPCarsGenerator.h */,
-				CA4A33CE1C2DD37200460A57 /* SAPCarsGenerator.m */,
 			);
 			path = SAPCarWash;
 			sourceTree = "<group>";
@@ -1013,7 +1008,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CADDCD451C11F0DA003F56CC /* SAPUnicodeRangeAlphabet.m in Sources */,
-				CA4A33CF1C2DD37200460A57 /* SAPCarsGenerator.m in Sources */,
 				CADDCD431C11F0DA003F56CC /* SAPArrayAlphabet.m in Sources */,
 				CAD0E77D1BFCB72900B5DCA9 /* main.m in Sources */,
 				CAD184471C0CA64900A97F55 /* SAPWorker.m in Sources */,
