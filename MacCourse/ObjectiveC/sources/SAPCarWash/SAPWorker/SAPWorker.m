@@ -40,6 +40,15 @@
     [super dealloc];
 }
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.state = kSAPWorkerIsReadyToWork;
+    }
+    
+    return self;
+}
+
 #pragma mark-
 #pragma mark Accessors
 
