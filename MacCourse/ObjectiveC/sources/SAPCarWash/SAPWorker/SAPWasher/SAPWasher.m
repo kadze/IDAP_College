@@ -52,18 +52,11 @@ static BOOL         const kSAPRandomDelayEnabled = YES;
 #pragma mark-
 #pragma mark Private Methods
 
-- (void)performBackgroundWorkWithObject:(id)object {
-    @synchronized(self) {
-        [self washCars];
-        [self performSelectorOnMainThread:@selector(finishedWorkForMainThreadWithObject:) withObject:nil waitUntilDone:NO];
-    }
-}
-
 - (void)finishedWorkForMainThreadWithObject:(id)object {
     self.state = kSAPWorkerFinishedWork;
 }
 
-- (void)washCars {
+- (void)processObject:(id)object {
     if (kSAPRandomDelayEnabled) {
         usleep(arc4random_uniform(10) * 1000);
     }

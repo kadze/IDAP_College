@@ -26,6 +26,9 @@ typedef NS_ENUM (NSUInteger, SAPWorkerState) {
 @property (nonatomic, retain)       id                      object;
 
 - (void)makeJobWithObject:(id)object;
+- (void)performBackgroundWorkWithObject:(id)object;
+- (void)processObject:(id)object;
+
 - (void)takeAllMoneyFromSender:(SAPWorker *)sender;
 
 @end

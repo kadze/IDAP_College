@@ -24,19 +24,7 @@
 #pragma mark-
 #pragma mark Private Methods
 
-- (void)performBackgroundWorkWithObject:(id)object {
-    @synchronized(self) {
-        [self collectMoneyFromWasher:object];
-        [self performSelectorOnMainThread:@selector(finishedWorkForMainThreadWithObject:) withObject:object waitUntilDone:NO];
-    }
-}
-
-- (void)finishedWorkForMainThreadWithObject:(id)object {
-   [object setState:kSAPWorkerIsReadyToWork];
-    self.state = kSAPWorkerFinishedWork;
-}
-
-- (void)collectMoneyFromWasher:(SAPWorker *)washer {
+- (void)processObject:(id)washer {
     [self takeAllMoneyFromSender:washer];
 }
 @end

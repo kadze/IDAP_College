@@ -19,7 +19,7 @@
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
         case kSAPWorkerIsBusy:
-            return @selector(workerDidStartWork);
+            return @selector(workerDidStartWork:);
             break;
         case kSAPWorkerFinishedWork:
             return @selector(workerDidFinishWork:);
@@ -64,7 +64,7 @@
 }
 
 #pragma mark-
-#pragma mark Public Methods
+#pragma mark Public Implementations
 
 - (void)makeJobWithObject:(id)object {
     [self doesNotRecognizeSelector:_cmd];
@@ -72,6 +72,25 @@
 
 - (void)takeAllMoneyFromSender:(SAPWorker *)sender {
     [sender giveMoney:sender.money toRecipient:self];
+}
+
+- (void)performBackgroundWorkWithObject:(id)object {
+    @synchronized(self) {
+        [self processObject:object];
+        [self performSelectorOnMainThread:@selector(finishedWorkForMainThreadWithObject:) withObject:object waitUntilDone:NO];
+    }
+}
+
+- (void)processObject:(id)object {
+    [self doesNotRecognizeSelector:_cmd];
+}
+
+#pragma mark-
+#pragma mark Private Implementations
+
+- (void)finishedWorkForMainThreadWithObject:(SAPObservableObject *)object {
+    object.state = kSAPWorkerIsReadyToWork;
+    self.state = kSAPWorkerFinishedWork;
 }
 
 #pragma mark-
