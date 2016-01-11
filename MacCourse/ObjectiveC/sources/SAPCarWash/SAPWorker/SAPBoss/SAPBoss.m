@@ -14,18 +14,28 @@
 #pragma mark Public Methods
 
 -(void)makeJobWithObject:(id)accountant {
+    self.state = kSAPWorkerIsBusy;
+    [self performSelectorInBackground:@selector(performBackgroundWorkWithObject:) withObject:accountant];
+}
+
+#pragma mark-
+#pragma mark Private Methods
+
+- (void)performBackgroundWorkWithObject:(id)object {
     @synchronized(self) {
-        self.state = kSAPWorkerIsBusy;
-        [self performSelectorInBackground:@selector(profitWithWorker:) withObject:accountant];
+        [self profitWithWorker:object];
+        [self performSelectorOnMainThread:@selector(finishedWorkForMainThreadWithObject:) withObject:object waitUntilDone:NO];
     }
+}
+
+- (void)finishedWorkForMainThreadWithObject:(id)object {
+    [object setState:kSAPWorkerIsReadyToWork];
+    self.state = kSAPWorkerFinishedWork;
 }
 
 -(void)profitWithWorker:(SAPWorker *)worker {
     [self takeAllMoneyFromSender:worker];
-    [worker setState:kSAPWorkerIsReadyToWork];
-    self.state = kSAPWorkerIsReadyToWork;
-    
     NSLog(@"now boss has %lu", self.money);
-
 }
+
 @end

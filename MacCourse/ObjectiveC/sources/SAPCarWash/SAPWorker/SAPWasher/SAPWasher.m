@@ -41,37 +41,40 @@ static BOOL         const kSAPRandomDelayEnabled = YES;
 #pragma mark Public Methods
 
 - (void)makeJobWithObject:(id)car {
-    @synchronized(self) {
-        if (kSAPWorkerIsReadyToWork == self.state) {
-            self.state = kSAPWorkerIsBusy;
-        }
-        
-        [self.carsQueue enqueue:car];
-        [self performSelectorInBackground:@selector(washCars) withObject:nil];
+    if (kSAPWorkerIsReadyToWork == self.state) {
+        self.state = kSAPWorkerIsBusy;
     }
+    
+    [self.carsQueue enqueue:car];
+    [self performSelectorInBackground:@selector(performBackgroundWorkWithObject:) withObject:nil];
 }
 
 #pragma mark-
 #pragma mark Private Methods
 
+- (void)performBackgroundWorkWithObject:(id)object {
+    @synchronized(self) {
+        [self washCars];
+        [self performSelectorOnMainThread:@selector(finishedWorkForMainThreadWithObject:) withObject:nil waitUntilDone:NO];
+    }
+}
+
+- (void)finishedWorkForMainThreadWithObject:(id)object {
+    self.state = kSAPWorkerFinishedWork;
+}
+
 - (void)washCars {
-    @autoreleasepool {
-        @synchronized(self) {
-            if (kSAPRandomDelayEnabled) {
-                usleep(arc4random_uniform(10) * 1000);
-            }
-            SAPItemsQueue *carsQueue = self.carsQueue;
-            SAPCar *car = [carsQueue dequeue];
-            while (car) {
-                if ([self takeMoney:kSAPWashPrise fromSender:car]) {
-                    car.clean = YES;
-                }
-                
-                car = [carsQueue dequeue];
-            }
-            
-            self.state = kSAPWorkerFinishedWork;
+    if (kSAPRandomDelayEnabled) {
+        usleep(arc4random_uniform(10) * 1000);
+    }
+    SAPItemsQueue *carsQueue = self.carsQueue;
+    SAPCar *car = [carsQueue dequeue];
+    while (car) {
+        if ([self takeMoney:kSAPWashPrise fromSender:car]) {
+            car.clean = YES;
         }
+        
+        car = [carsQueue dequeue];
     }
 }
 

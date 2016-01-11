@@ -25,6 +25,7 @@ int main(int argc, const char * argv[]) {
         
         SAPEnterprise *carWashEnterprise = [SAPEnterprise object];
         NSArray *cars = [SAPCar carsWithCount:kAnnualAmountOfCars];
+        NSLog(@"%lu cars", cars.count);
         for (SAPCar *car in cars) {
             [carWashEnterprise washCar:car];
         }
