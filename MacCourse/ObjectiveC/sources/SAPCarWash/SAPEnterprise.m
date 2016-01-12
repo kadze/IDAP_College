@@ -72,7 +72,7 @@ static NSUInteger const kSAPWashersCount = 3;
 - (void)washCar:(SAPCar *)car {
     SAPWasher *washer = [self freeWorkerOfClass:[SAPWasher class]];
     if (washer) {
-        [washer makeJobWithObject:car];
+        [washer performWorkWithObject:car];
     } else {
         [self.carsQueue enqueue:car];
     }    
@@ -143,7 +143,7 @@ static NSUInteger const kSAPWashersCount = 3;
 - (void)washNextCarWithWasher:(SAPWasher *)washer {
     SAPCar *car = [[self carsQueue] dequeue];
     if (car) {
-        [washer makeJobWithObject:car];
+        [washer performWorkWithObject:car];
     }
 }
 

@@ -66,7 +66,7 @@
 #pragma mark-
 #pragma mark Public Implementations
 
-- (void)makeJobWithObject:(id)object {
+- (void)performWorkWithObject:(id)object {
     [self doesNotRecognizeSelector:_cmd];
 }
 
@@ -131,7 +131,7 @@
 #pragma mark SAPWorkerObservingProtocol
 
 - (void)workerDidFinishWork:(SAPWorker *)worker {
-    [self makeJobWithObject:worker];
+    [self performWorkWithObject:worker];
 }
 
 - (void)workerDidStartWork:(SAPWorker *)worker {

@@ -13,7 +13,7 @@
 #pragma mark-
 #pragma mark Public Methods
 
--(void)makeJobWithObject:(id)accountant {
+-(void)performWorkWithObject:(id)accountant {
     self.state = kSAPWorkerIsBusy;
     [self performSelectorInBackground:@selector(performBackgroundWorkWithObject:) withObject:accountant];
 }

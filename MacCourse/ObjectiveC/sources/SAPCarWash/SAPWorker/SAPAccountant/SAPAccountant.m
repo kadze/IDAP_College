@@ -13,7 +13,7 @@
 #pragma mark-
 #pragma mark Public Methods
 
-- (void)makeJobWithObject:(id)washer {
+- (void)performWorkWithObject:(id)washer {
     while (kSAPWorkerIsReadyToWork != self.state) {
         //wait
     }

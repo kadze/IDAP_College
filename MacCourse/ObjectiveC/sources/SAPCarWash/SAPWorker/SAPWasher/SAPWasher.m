@@ -40,7 +40,7 @@ static BOOL         const kSAPRandomDelayEnabled = YES;
 #pragma mark-
 #pragma mark Public Methods
 
-- (void)makeJobWithObject:(id)car {
+- (void)performWorkWithObject:(id)car {
     if (kSAPWorkerIsReadyToWork == self.state) {
         self.state = kSAPWorkerIsBusy;
     }
