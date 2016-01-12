@@ -14,26 +14,6 @@
 @synthesize state = _state;
 
 #pragma mark-
-#pragma mark Class Methods
-
-- (SEL)selectorForState:(NSUInteger)state {
-    switch (state) {
-        case kSAPWorkerIsBusy:
-            return @selector(workerDidStartWork:);
-            break;
-        case kSAPWorkerFinishedWork:
-            return @selector(workerDidFinishWork:);
-            break;
-        case kSAPWorkerIsReadyToWork:
-            return @selector(workerDidBecomeReadyToWork:);
-            break;
-        default:
-            return NULL;
-            break;
-    }
-}
-
-#pragma mark-
 #pragma mark Initializatinos and Deallocations
 
 - (void)dealloc {
@@ -56,9 +36,9 @@
 - (void)setState:(NSUInteger)state {
     if (self.state != state) {
         _state = state;
-        SEL selectorToPerform = [self selectorForState:state];
-        if (selectorToPerform) {
-            [self notifyObserversWithSelector:selectorToPerform withObject:self];
+        SEL selector = [self selectorForState:state];
+        if (selector) {
+            [self notifyObserversWithSelector:selector withObject:self];
         }
     }
 }
@@ -87,6 +67,23 @@
 
 #pragma mark-
 #pragma mark Private Implementations
+
+- (SEL)selectorForState:(NSUInteger)state {
+    switch (state) {
+        case kSAPWorkerIsBusy:
+            return @selector(workerDidStartWork:);
+            break;
+        case kSAPWorkerFinishedWork:
+            return @selector(workerDidFinishWork:);
+            break;
+        case kSAPWorkerIsReadyToWork:
+            return @selector(workerDidBecomeReadyToWork:);
+            break;
+        default:
+            return NULL;
+            break;
+    }
+}
 
 - (void)finishProcessingOnMainThreadWithObject:(SAPObservableObject *)object {
     object.state = kSAPWorkerIsReadyToWork;
