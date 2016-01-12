@@ -54,16 +54,14 @@
 #pragma mark Public Methods
 
 - (NSArray *)itemsOfClass:(Class)itemClass {
-    @synchronized(self) {
-        NSMutableArray *mutableResult = [NSMutableArray array];
-        for (id item in self.items) {
-            if ([item isMemberOfClass:itemClass]) {
-                [mutableResult addObject:item];
-            }
+    NSMutableArray *mutableResult = [NSMutableArray array];
+    for (id item in self.items) {
+        if ([item isMemberOfClass:itemClass]) {
+            [mutableResult addObject:item];
         }
-        
-        return [[mutableResult copy] autorelease];
     }
+    
+    return [[mutableResult copy] autorelease];
 }
 
 - (void)removeAllItems {
