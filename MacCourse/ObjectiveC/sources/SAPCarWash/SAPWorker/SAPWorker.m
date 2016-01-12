@@ -6,6 +6,7 @@
 //  Copyright © 2015 Yosemite Retail. All rights reserved.
 //
 
+#import "NSObject+SAPObject.h"
 #import "SAPWorker.h"
 #import "SAPWorker_Private.h"
 #import "SAPItemsQueue.h"
@@ -20,7 +21,7 @@
 #pragma mark Initializatinos and Deallocations
 
 - (void)dealloc {
-    
+    self.objectsQueue = nil;
     [super dealloc];
 }
 
@@ -28,6 +29,7 @@
     self = [super init];
     if (self) {
         self.state = kSAPWorkerIsReadyToWork;
+        self.objectsQueue = [SAPItemsQueue object];
     }
     
     return self;

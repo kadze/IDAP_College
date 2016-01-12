@@ -19,27 +19,6 @@ static BOOL         const kSAPRandomDelayEnabled = YES;
 @synthesize objectsQueue;
 
 #pragma mark-
-#pragma mark Initializatinos and Deallocations
-
-- (void)dealloc {
-    self.objectsQueue = nil;
-    [super dealloc];
-}
-
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        self.objectsQueue = [SAPItemsQueue object];
-    }
-    
-    return self;
-}
-#pragma mark-
-#pragma mark Public Methods
-
-
-
-#pragma mark-
 #pragma mark Private Methods
 
 - (void)finishProcessingOnMainThreadWithObject:(SAPObservableObject *)object {
