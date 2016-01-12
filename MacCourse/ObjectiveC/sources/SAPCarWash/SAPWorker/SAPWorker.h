@@ -23,10 +23,11 @@ typedef NS_ENUM (NSUInteger, SAPWorkerState) {
 };
 
 @interface SAPWorker : SAPObservableObject <SAPMoneyTransfer, SAPWorkerObservingProtocol>
-@property (nonatomic, retain)       id                      object;
 
 - (void)performWorkWithObject:(id)object;
 - (void)performBackgroundWorkWithObject:(id)object;
+
+//this method should be overrided in subclasses
 - (void)processObject:(id)object;
 
 - (void)takeAllMoneyFromSender:(SAPWorker *)sender;
