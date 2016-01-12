@@ -60,13 +60,11 @@ static BOOL         const kSAPRandomDelayEnabled = YES;
     if (kSAPRandomDelayEnabled) {
         usleep(arc4random_uniform(10) * 1000);
     }
+    
     SAPItemsQueue *carsQueue = self.carsQueue;
     SAPCar *car = [carsQueue dequeue];
     while (car) {
-        if ([self takeMoney:kSAPWashPrise fromSender:car]) {
-            car.clean = YES;
-        }
-        
+        car.clean = YES;
         car = [carsQueue dequeue];
     }
 }
