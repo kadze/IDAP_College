@@ -64,6 +64,7 @@ static BOOL         const kSAPRandomDelayEnabled = YES;
     SAPItemsQueue *carsQueue = self.carsQueue;
     SAPCar *car = [carsQueue dequeue];
     while (car) {
+        [self takeMoney:kSAPWashPrise fromSender:car];
         car.clean = YES;
         car = [carsQueue dequeue];
     }

@@ -7,11 +7,7 @@
 //
 
 #import "SAPItemsQueue.h"
-
-@interface SAPItemsQueue ()
-@property (nonatomic, retain) NSMutableArray    *mutableItems;
-
-@end
+#import "SAPContainer+Private.h"
 
 @implementation SAPItemsQueue
 

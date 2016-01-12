@@ -221,6 +221,7 @@
 		CADDCD401C11F0DA003F56CC /* SAPUnicodeRangeAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPUnicodeRangeAlphabet.h; sourceTree = "<group>"; };
 		CADDCD411C11F0DA003F56CC /* SAPUnicodeRangeAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPUnicodeRangeAlphabet.m; sourceTree = "<group>"; };
 		CADDCD4E1C15B54D003F56CC /* SAPStringExtentionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPStringExtentionsTests.m; sourceTree = "<group>"; };
+		CAE453211C45092F00D48B15 /* SAPContainer+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAPContainer+Private.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -585,6 +586,7 @@
 			isa = PBXGroup;
 			children = (
 				CA713CF41C41629900FF21DC /* SAPContainer.h */,
+				CAE453211C45092F00D48B15 /* SAPContainer+Private.h */,
 				CA713CF51C41629900FF21DC /* SAPContainer.m */,
 				CA713CF61C41629900FF21DC /* SAPItemsContainer */,
 				CA713CF91C41629900FF21DC /* SAPItemsQueue */,
