@@ -14,9 +14,6 @@
 #pragma mark Public Methods
 
 - (void)performWorkWithObject:(id)washer {
-    while (kSAPWorkerIsReadyToWork != self.state) {
-        //wait
-    }
     self.state = kSAPWorkerIsBusy;
     [self performSelectorInBackground:@selector(performBackgroundWorkWithObject:) withObject:washer];
 }
