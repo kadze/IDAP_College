@@ -10,16 +10,13 @@
 #import "SAPCar.h"
 #import "SAPItemsQueue.h"
 #import "NSObject+SAPObject.h"
+#import "SAPWorker_Private.h"
 
 static NSUInteger   const kSAPWashPrise = 50;
 static BOOL         const kSAPRandomDelayEnabled = YES;
 
-@interface SAPWasher ()
-@property(nonatomic, retain) SAPItemsQueue *objectsQueue;
-
-@end
-
 @implementation SAPWasher
+@synthesize objectsQueue;
 
 #pragma mark-
 #pragma mark Initializatinos and Deallocations
@@ -40,20 +37,14 @@ static BOOL         const kSAPRandomDelayEnabled = YES;
 #pragma mark-
 #pragma mark Public Methods
 
-- (void)performWorkWithObject:(id)car {
-    if (kSAPWorkerIsReadyToWork == self.state) {
-        self.state = kSAPWorkerIsBusy;
-        [self performSelectorInBackground:@selector(performBackgroundWorkWithObject:) withObject:car];
-    } else {
-        [self.objectsQueue enqueue:car];
-    }
-}
+
 
 #pragma mark-
 #pragma mark Private Methods
 
 - (void)finishProcessingOnMainThreadWithObject:(SAPObservableObject *)object {
     self.state = kSAPWorkerFinishedWork;
+    self.state = kSAPWorkerIsReadyToWork;
 }
 
 - (void)processObject:(id)car {

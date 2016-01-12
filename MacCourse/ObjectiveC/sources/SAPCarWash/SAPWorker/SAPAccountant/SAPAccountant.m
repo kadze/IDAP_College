@@ -7,21 +7,21 @@
 //
 
 #import "SAPAccountant.h"
+#import "SAPWorker_Private.h"
+#import "SAPItemsQueue.h"
+
 
 @implementation SAPAccountant
-
-#pragma mark-
-#pragma mark Public Methods
-
-- (void)performWorkWithObject:(id)washer {
-    self.state = kSAPWorkerIsBusy;
-    [self performSelectorInBackground:@selector(performBackgroundWorkWithObject:) withObject:washer];
-}
+@synthesize objectsQueue = _objectsQueue;
 
 #pragma mark-
 #pragma mark Private Methods
 
-- (void)processObject:(id)washer {
-    [self takeAllMoneyFromSender:washer];
+- (void)processObject:(SAPWorker *)washer {
+    SAPItemsQueue *objectsQueue = self.objectsQueue;
+    while (washer) {
+        [self takeAllMoneyFromSender:washer];
+        washer = [objectsQueue dequeue];
+    }
 }
 @end

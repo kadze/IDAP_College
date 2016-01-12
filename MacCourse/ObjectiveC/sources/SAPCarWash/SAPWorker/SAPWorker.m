@@ -7,11 +7,14 @@
 //
 
 #import "SAPWorker.h"
+#import "SAPWorker_Private.h"
+#import "SAPItemsQueue.h"
 
 @implementation SAPWorker
 
 @synthesize money = _money;
 @synthesize state = _state;
+@synthesize objectsQueue = _objectsQueue;
 
 #pragma mark-
 #pragma mark Initializatinos and Deallocations
@@ -44,10 +47,15 @@
 }
 
 #pragma mark-
-#pragma mark Public Implementations
+#pragma mark Public Methods
 
 - (void)performWorkWithObject:(id)object {
-    [self doesNotRecognizeSelector:_cmd];
+    if (kSAPWorkerIsReadyToWork == self.state) {
+        self.state = kSAPWorkerIsBusy;
+        [self performSelectorInBackground:@selector(performBackgroundWorkWithObject:) withObject:object];
+    } else {
+        [self.objectsQueue enqueue:object];
+    }
 }
 
 - (void)performBackgroundWorkWithObject:(id)object {
@@ -86,8 +94,8 @@
 }
 
 - (void)finishProcessingOnMainThreadWithObject:(SAPObservableObject *)object {
-    object.state = kSAPWorkerIsReadyToWork;
     self.state = kSAPWorkerFinishedWork;
+    self.state = kSAPWorkerIsReadyToWork;
 }
 
 #pragma mark-

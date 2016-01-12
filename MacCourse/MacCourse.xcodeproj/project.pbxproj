@@ -222,6 +222,7 @@
 		CADDCD411C11F0DA003F56CC /* SAPUnicodeRangeAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPUnicodeRangeAlphabet.m; sourceTree = "<group>"; };
 		CADDCD4E1C15B54D003F56CC /* SAPStringExtentionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPStringExtentionsTests.m; sourceTree = "<group>"; };
 		CAE453211C45092F00D48B15 /* SAPContainer+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAPContainer+Private.h"; sourceTree = "<group>"; };
+		CAE453221C45341B00D48B15 /* SAPWorker_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPWorker_Private.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -723,6 +724,7 @@
 			isa = PBXGroup;
 			children = (
 				CAD184451C0CA64900A97F55 /* SAPWorker.h */,
+				CAE453221C45341B00D48B15 /* SAPWorker_Private.h */,
 				CAD184461C0CA64900A97F55 /* SAPWorker.m */,
 				CAD184321C0CA5AF00A97F55 /* SAPAccountant */,
 				CAD184331C0CA5AF00A97F55 /* SAPBoss */,
