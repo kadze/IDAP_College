@@ -109,22 +109,18 @@
 
 - (BOOL)takeMoney:(NSUInteger)sum fromSender:(id<SAPMoneyTransfer>)sender {
     return [sender giveMoney:sum toRecipient:self]; //if sender nil anyway return nil, hence NO
-    
-    return NO;
 }
 
 - (void)addMoney:(NSUInteger)sum {
-    NSLock *locker = [[[NSLock alloc] init] autorelease];
-    [locker lock];
-    _money +=sum;
-    [locker unlock];
+    @synchronized(self) {
+        _money +=sum;
+    }
 }
 
 - (void)substractMoney:(NSUInteger)sum {
-    NSLock *locker = [[[NSLock alloc] init] autorelease];
-    [locker lock];
-    _money -=sum;
-    [locker unlock];
+    @synchronized(self) {
+        _money -=sum;
+    }
 }
 
 #pragma mark-

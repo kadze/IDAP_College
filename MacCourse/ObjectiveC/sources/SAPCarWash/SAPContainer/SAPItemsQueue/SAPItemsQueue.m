@@ -21,10 +21,6 @@
 - (id)dequeue {
     NSMutableArray *items = self.mutableItems;
     @synchronized(items) {
-        if (items != self.mutableItems) {
-            items = self.mutableItems;
-        }
-        
         id result = nil;
         if (0 != items.count) {
             result = [[items[0] retain] autorelease];
