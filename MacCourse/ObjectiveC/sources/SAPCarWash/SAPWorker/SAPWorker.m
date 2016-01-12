@@ -50,10 +50,6 @@
     [self doesNotRecognizeSelector:_cmd];
 }
 
-- (void)takeAllMoneyFromSender:(SAPWorker *)sender {
-    [sender giveMoney:sender.money toRecipient:self];
-}
-
 - (void)performBackgroundWorkWithObject:(id)object {
     @synchronized(self) {
         [self processObject:object];
@@ -63,6 +59,10 @@
 
 - (void)processObject:(id)object {
     [self doesNotRecognizeSelector:_cmd];
+}
+
+- (void)takeAllMoneyFromSender:(SAPWorker *)sender {
+    [sender giveMoney:sender.money toRecipient:self];
 }
 
 #pragma mark-
