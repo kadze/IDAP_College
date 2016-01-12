@@ -77,7 +77,7 @@
 - (void)performBackgroundWorkWithObject:(id)object {
     @synchronized(self) {
         [self processObject:object];
-        [self performSelectorOnMainThread:@selector(finishedWorkForMainThreadWithObject:) withObject:object waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(finishProcessingOnMainThreadWithObject:) withObject:object waitUntilDone:NO];
     }
 }
 
@@ -88,7 +88,7 @@
 #pragma mark-
 #pragma mark Private Implementations
 
-- (void)finishedWorkForMainThreadWithObject:(SAPObservableObject *)object {
+- (void)finishProcessingOnMainThreadWithObject:(SAPObservableObject *)object {
     object.state = kSAPWorkerIsReadyToWork;
     self.state = kSAPWorkerFinishedWork;
 }

@@ -52,7 +52,7 @@ static BOOL         const kSAPRandomDelayEnabled = YES;
 #pragma mark-
 #pragma mark Private Methods
 
-- (void)finishedWorkForMainThreadWithObject:(id)object {
+- (void)finishProcessingOnMainThreadWithObject:(id)object {
     self.state = kSAPWorkerFinishedWork;
 }
 
