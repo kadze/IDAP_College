@@ -80,6 +80,7 @@
 		CADDCD4C1C15B4CC003F56CC /* SAPUnicodeRangeAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = CADDCD411C11F0DA003F56CC /* SAPUnicodeRangeAlphabet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CADDCD4F1C15B54D003F56CC /* SAPStringExtentionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CADDCD4E1C15B54D003F56CC /* SAPStringExtentionsTests.m */; };
 		CAE453261C464FB400D48B15 /* SAPMutableArrayThreadSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE453251C464FB400D48B15 /* SAPMutableArrayThreadSafe.m */; settings = {ASSET_TAGS = (); }; };
+		CAE4532B1C4656A300D48B15 /* NSArray+SAPExtentions.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE4532A1C4656A300D48B15 /* NSArray+SAPExtentions.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -226,6 +227,8 @@
 		CAE453221C45341B00D48B15 /* SAPWorker_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPWorker_Private.h; sourceTree = "<group>"; };
 		CAE453241C464FB400D48B15 /* SAPMutableArrayThreadSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPMutableArrayThreadSafe.h; sourceTree = "<group>"; };
 		CAE453251C464FB400D48B15 /* SAPMutableArrayThreadSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPMutableArrayThreadSafe.m; sourceTree = "<group>"; };
+		CAE453291C4656A300D48B15 /* NSArray+SAPExtentions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+SAPExtentions.h"; sourceTree = "<group>"; };
+		CAE4532A1C4656A300D48B15 /* NSArray+SAPExtentions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+SAPExtentions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -652,6 +655,7 @@
 				CA3F28C31C21506F0072FC65 /* NSObject+SAPObject */,
 				CA713D051C41669A00FF21DC /* NSString+SAPStringExtentions */,
 				CA713D091C41672600FF21DC /* NSNumber+SAPExtentions */,
+				CAE453271C4655D900D48B15 /* NSArray+SAPExtentions */,
 				CAD0E7821BFCC3E400B5DCA9 /* SAPCreature */,
 				CAD9F3D31BFE277100F80248 /* SAPMan */,
 				CAD9F3D41BFE278500F80248 /* SAPWoman */,
@@ -812,6 +816,15 @@
 				CAE453251C464FB400D48B15 /* SAPMutableArrayThreadSafe.m */,
 			);
 			path = SAPMutableArrayThreadSafe;
+			sourceTree = "<group>";
+		};
+		CAE453271C4655D900D48B15 /* NSArray+SAPExtentions */ = {
+			isa = PBXGroup;
+			children = (
+				CAE453291C4656A300D48B15 /* NSArray+SAPExtentions.h */,
+				CAE4532A1C4656A300D48B15 /* NSArray+SAPExtentions.m */,
+			);
+			path = "NSArray+SAPExtentions";
 			sourceTree = "<group>";
 		};
 		E7DDE7C0782CDF9836CFB5C2 /* Pods */ = {
@@ -1028,6 +1041,7 @@
 				CADDCD431C11F0DA003F56CC /* SAPArrayAlphabet.m in Sources */,
 				CAD0E77D1BFCB72900B5DCA9 /* main.m in Sources */,
 				CAD184471C0CA64900A97F55 /* SAPWorker.m in Sources */,
+				CAE4532B1C4656A300D48B15 /* NSArray+SAPExtentions.m in Sources */,
 				CA3F28AD1C1AC5B20072FC65 /* SAPReference.m in Sources */,
 				CA3F28C61C21506F0072FC65 /* NSObject+SAPObject.m in Sources */,
 				CADDCD441C11F0DA003F56CC /* SAPStringAlphabet.m in Sources */,
