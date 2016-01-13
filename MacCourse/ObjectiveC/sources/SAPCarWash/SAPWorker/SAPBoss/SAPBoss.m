@@ -7,23 +7,22 @@
 //
 
 #import "SAPBoss.h"
-#import "SAPWorker_Private.h"
 #import "SAPQueue.h"
 
 @implementation SAPBoss
-@synthesize objectsQueue = _objectsQueue;
 
 #pragma mark-
 #pragma mark Private Methods
 
 -(void)processObject:(SAPWorker *)worker {
-    //profit
-    SAPQueue *objectsQueue = self.objectsQueue;
-    while (worker) {
-        [self takeAllMoneyFromSender:worker];
-        worker = [objectsQueue dequeue];
-    }
+    [self takeAllMoneyFromSender:worker];
     NSLog(@"now boss has %lu", self.money);
+}
+
+- (void)cleanupAfterProcessing {
+    @synchronized(self) {
+        self.state = kSAPWorkerIsReadyToWork;
+    }
 }
 
 @end

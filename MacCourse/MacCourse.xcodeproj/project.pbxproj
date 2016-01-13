@@ -215,7 +215,6 @@
 		CADDCD401C11F0DA003F56CC /* SAPUnicodeRangeAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPUnicodeRangeAlphabet.h; sourceTree = "<group>"; };
 		CADDCD411C11F0DA003F56CC /* SAPUnicodeRangeAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPUnicodeRangeAlphabet.m; sourceTree = "<group>"; };
 		CADDCD4E1C15B54D003F56CC /* SAPStringExtentionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPStringExtentionsTests.m; sourceTree = "<group>"; };
-		CAE453221C45341B00D48B15 /* SAPWorker_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPWorker_Private.h; sourceTree = "<group>"; };
 		CAE453241C464FB400D48B15 /* SAPMutableArrayThreadSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPMutableArrayThreadSafe.h; sourceTree = "<group>"; };
 		CAE453251C464FB400D48B15 /* SAPMutableArrayThreadSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPMutableArrayThreadSafe.m; sourceTree = "<group>"; };
 		CAE453291C4656A300D48B15 /* NSArray+SAPExtentions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+SAPExtentions.h"; sourceTree = "<group>"; };
@@ -695,7 +694,6 @@
 			isa = PBXGroup;
 			children = (
 				CAD184451C0CA64900A97F55 /* SAPWorker.h */,
-				CAE453221C45341B00D48B15 /* SAPWorker_Private.h */,
 				CAD184461C0CA64900A97F55 /* SAPWorker.m */,
 				CAD184321C0CA5AF00A97F55 /* SAPAccountant */,
 				CAD184331C0CA5AF00A97F55 /* SAPBoss */,

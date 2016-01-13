@@ -18,8 +18,4 @@
 - (void)workerDidFinishWork:(SAPWorker *)worker;
 - (void)workerDidBecomeReadyToWork:(SAPWorker *)worker;
 
-//- (void)start;
-//- (void)finish;
-//- (void)becomeFree;
-
 @end

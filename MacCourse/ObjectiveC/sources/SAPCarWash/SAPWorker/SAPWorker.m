@@ -8,8 +8,12 @@
 
 #import "NSObject+SAPObject.h"
 #import "SAPWorker.h"
-#import "SAPWorker_Private.h"
 #import "SAPQueue.h"
+
+@interface SAPWorker()
+@property(nonatomic, retain) SAPQueue *objectsQueue;
+
+@end
 
 @implementation SAPWorker
 
@@ -46,13 +50,6 @@
     }
 }
 
-- (void)performBackgroundWorkWithObject:(id)object {
-    @synchronized(self) {
-        [self processObject:object];
-        [self performSelectorOnMainThread:@selector(finishProcessingOnMainThreadWithObject:) withObject:object waitUntilDone:NO];
-    }
-}
-
 - (void)processObject:(id)object {
     [self doesNotRecognizeSelector:_cmd];
 }
@@ -62,7 +59,14 @@
 }
 
 #pragma mark-
-#pragma mark Private Implementations
+#pragma mark Private Methods
+
+- (void)performBackgroundWorkWithObject:(id)object {
+    @synchronized(self) {
+        [self processObject:object];
+        [self performSelectorOnMainThread:@selector(finishProcessingOnMainThreadWithObject:) withObject:object waitUntilDone:NO];
+    }
+}
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
@@ -78,8 +82,30 @@
 }
 
 - (void)finishProcessingOnMainThreadWithObject:(SAPObservableObject *)object {
-    self.state = kSAPWorkerFinishedWork;
-    self.state = kSAPWorkerIsReadyToWork;
+    [self completeProcessingObject:object];
+    [self checkObjectsQueue];
+//    [self cleanupAfterProcessing];
+}
+
+- (void)completeProcessingObject:(SAPObservableObject *)object {
+    @synchronized(object) {
+        object.state = kSAPWorkerIsReadyToWork;
+    }
+}
+
+- (void)cleanupAfterProcessing {
+    @synchronized(self) {
+        self.state = kSAPWorkerFinishedWork;
+    }
+}
+
+- (void)checkObjectsQueue {
+    id object = [self.objectsQueue dequeue];
+    if (object) {
+        [self performSelectorInBackground:@selector(performBackgroundWorkWithObject:) withObject:object];
+    } else {
+        [self cleanupAfterProcessing];
+    }
 }
 
 #pragma mark-

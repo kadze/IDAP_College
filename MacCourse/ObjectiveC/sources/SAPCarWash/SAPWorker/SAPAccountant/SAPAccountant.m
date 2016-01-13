@@ -7,21 +7,15 @@
 //
 
 #import "SAPAccountant.h"
-#import "SAPWorker_Private.h"
 #import "SAPQueue.h"
 
 
 @implementation SAPAccountant
-@synthesize objectsQueue = _objectsQueue;
 
 #pragma mark-
 #pragma mark Private Methods
 
 - (void)processObject:(SAPWorker *)washer {
-    SAPQueue *objectsQueue = self.objectsQueue;
-    while (washer) {
-        [self takeAllMoneyFromSender:washer];
-        washer = [objectsQueue dequeue];
-    }
+    [self takeAllMoneyFromSender:washer];
 }
 @end
