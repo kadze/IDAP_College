@@ -89,13 +89,9 @@
 }
 
 - (void)notifyObserversWithSelector:(SEL)selector withObject:(id)object {
-    [self notifyObserversWithSelector:(SEL)selector withObject:(id)object withObject:(id)nil];
-}
-
-- (void)notifyObserversWithSelector:(SEL)selector withObject:(id)object withObject:(id)object2 {
     for (id observer in self.observers) {
         if ([observer respondsToSelector:selector]) {
-            [observer performSelector:selector withObject:object withObject:object2];
+            [observer performSelector:selector withObject:object ];
         }
     }
 }
