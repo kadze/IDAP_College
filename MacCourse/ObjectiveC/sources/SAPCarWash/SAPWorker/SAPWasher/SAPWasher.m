@@ -9,7 +9,6 @@
 #import "SAPWasher.h"
 #import "SAPCar.h"
 #import "SAPQueue.h"
-#import "NSObject+SAPObject.h"
 
 static NSUInteger   const kSAPWashPrise = 50;
 static BOOL         const kSAPRandomDelayEnabled = YES;

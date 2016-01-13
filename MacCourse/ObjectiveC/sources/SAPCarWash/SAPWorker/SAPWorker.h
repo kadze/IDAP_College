@@ -11,8 +11,6 @@
 #import "SAPObservableObject.h"
 #import "SAPWorkerObservingProtocol.h"
 
-@class SAPRoom;
-
 typedef NS_ENUM (NSUInteger, SAPWorkerState) {
     kSAPWorkerStateStart = 1,
     kSAPWorkerIsReadyToWork,
