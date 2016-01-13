@@ -26,7 +26,7 @@ static BOOL         const kSAPRandomDelayEnabled = YES;
     self.state = kSAPWorkerIsReadyToWork;
 }
 
-- (void)processObject:(id)car {
+- (void)processObject:(SAPCar *)car {
     if (kSAPRandomDelayEnabled) {
         usleep(arc4random_uniform(10) * 1000);
     }
@@ -34,7 +34,7 @@ static BOOL         const kSAPRandomDelayEnabled = YES;
     SAPItemsQueue *carsQueue = self.objectsQueue;
     while (car) {
         [self takeMoney:kSAPWashPrise fromSender:car];
-        ((SAPCar *)car).clean = YES;
+        car.clean = YES;
         car = [carsQueue dequeue];
     }
 }

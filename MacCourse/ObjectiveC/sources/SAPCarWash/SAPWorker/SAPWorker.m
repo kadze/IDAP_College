@@ -82,16 +82,12 @@
     switch (state) {
         case kSAPWorkerIsBusy:
             return @selector(workerDidStartWork:);
-            break;
         case kSAPWorkerFinishedWork:
             return @selector(workerDidFinishWork:);
-            break;
         case kSAPWorkerIsReadyToWork:
             return @selector(workerDidBecomeReadyToWork:);
-            break;
         default:
             return NULL;
-            break;
     }
 }
 
@@ -103,30 +99,24 @@
 #pragma mark-
 #pragma mark SAPMoneyTransfer
 
-- (BOOL)giveMoney:(NSUInteger)sum toRecipient:(id<SAPMoneyTransfer>)recipient {
-    if (recipient && self.money >= sum) {
-        [self substractMoney:sum];
-        [recipient addMoney:sum];
-        
-        return YES;
-    }
-    
-    return NO;
+- (void)giveMoney:(NSUInteger)sum toRecipient:(id<SAPMoneyTransfer>)recipient {
+    [self substractMoney:sum];
+    [recipient addMoney:sum];
 }
 
-- (BOOL)takeMoney:(NSUInteger)sum fromSender:(id<SAPMoneyTransfer>)sender {
-    return [sender giveMoney:sum toRecipient:self]; //if sender nil anyway return nil, hence NO
+- (void)takeMoney:(NSUInteger)sum fromSender:(id<SAPMoneyTransfer>)sender {
+    [sender giveMoney:sum toRecipient:self]; //if sender nil anyway return nil, hence NO
 }
 
 - (void)addMoney:(NSUInteger)sum {
     @synchronized(self) {
-        _money +=sum;
+        self.money +=sum;
     }
 }
 
 - (void)substractMoney:(NSUInteger)sum {
     @synchronized(self) {
-        _money -=sum;
+        self.money -=sum;
     }
 }
 
@@ -135,10 +125,6 @@
 
 - (void)workerDidFinishWork:(SAPWorker *)worker {
     [self performWorkWithObject:worker];
-}
-
-- (void)workerDidStartWork:(SAPWorker *)worker {
-    
 }
 
 @end

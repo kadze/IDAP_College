@@ -28,7 +28,7 @@ NSUInteger const kSAPInitialCarMoney = 50;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _money = kSAPInitialCarMoney;
+        self.money = kSAPInitialCarMoney;
     }
         
     return self;
@@ -37,31 +37,26 @@ NSUInteger const kSAPInitialCarMoney = 50;
 #pragma mark-
 #pragma mark SAPMoneyTransfer
 
-- (BOOL)giveMoney:(NSUInteger)sum toRecipient:(id<SAPMoneyTransfer>)recipient {
-    if (recipient && self.money >= sum) {
+- (void)giveMoney:(NSUInteger)sum toRecipient:(id<SAPMoneyTransfer>)recipient {
         [self substractMoney:sum];
         [recipient addMoney:sum];
-        
-        return YES;
-    }
-    
-    return NO;
 }
 
-- (BOOL)takeMoney:(NSUInteger)sum fromSender:(id<SAPMoneyTransfer>)sender {
-    if (sender) {
-        return [sender giveMoney:sum toRecipient:self];
-    }
-    
-    return NO;
+- (void)takeMoney:(NSUInteger)sum fromSender:(id<SAPMoneyTransfer>)sender {
+    [sender giveMoney:sum toRecipient:self]; //if sender nil anyway return nil, hence NO
 }
+
 
 - (void)addMoney:(NSUInteger)sum {
-    _money +=sum;
+    @synchronized(self) {
+        self.money +=sum;
+    }
 }
 
 - (void)substractMoney:(NSUInteger)sum {
-    _money -=sum;
+    @synchronized(self) {
+        self.money -=sum;
+    }
 }
 
 @end

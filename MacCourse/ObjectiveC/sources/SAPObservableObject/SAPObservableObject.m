@@ -60,9 +60,10 @@
 }
 
 - (void)removeObserver:(id)observer {
+    NSMutableSet *observers = self.mutableObservers;
     for (SAPAssignReference *reference in self.observers) {
         if (reference.target == observer) {
-            [self.mutableObservers removeObject:reference];
+            [observers removeObject:reference];
             
             break;
         }

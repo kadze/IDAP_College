@@ -19,8 +19,8 @@
 static NSUInteger const kSAPWashersCount = 3;
 
 @interface SAPEnterprise ()
-@property (nonatomic) SAPItemsContainer *staffContainter;
-@property (nonatomic) SAPItemsQueue *carsQueue;
+@property (nonatomic, retain) SAPItemsContainer *staffContainter;
+@property (nonatomic, retain) SAPItemsQueue *carsQueue;
 
 @end
 
@@ -95,13 +95,9 @@ static NSUInteger const kSAPWashersCount = 3;
     [self hireWorker:accountant];
     [self hireWorker:boss];
     
-    NSUInteger washersCount = kSAPWashersCount;
-    
-    NSLog(@"%lu washers", washersCount);
-    
-    while (washersCount > 0) {
-        SAPWasher *washer =[SAPWasher object];
-        
+    NSLog(@"%lu washers", kSAPWashersCount);
+    NSArray *washers = [SAPWasher objectsWithCount:kSAPWashersCount];
+    for (SAPWasher *washer in washers) {
         //hiring washers
         [self hireWorker:washer];
         
@@ -110,8 +106,6 @@ static NSUInteger const kSAPWashersCount = 3;
         
         //setting Enterprise as an observer for each washer to observe when isReadyToWork
         [washer addObserver:self];
-        
-        washersCount--;
     }
     
     //boss observes the accountant
@@ -150,8 +144,8 @@ static NSUInteger const kSAPWashersCount = 3;
 #pragma mark-
 #pragma mark SAPWorkerObservingProtocol
 
-- (void)workerDidBecomeReadyToWork:(SAPWorker *)worker {
-    [self washNextCarWithWasher:(SAPWasher *)worker];
+- (void)workerDidBecomeReadyToWork:(SAPWasher *)worker {
+    [self washNextCarWithWasher:worker];
 }
 
 
