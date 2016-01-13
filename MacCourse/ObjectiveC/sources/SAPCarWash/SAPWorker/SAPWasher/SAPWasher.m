@@ -8,7 +8,7 @@
 
 #import "SAPWasher.h"
 #import "SAPCar.h"
-#import "SAPItemsQueue.h"
+#import "SAPQueue.h"
 #import "NSObject+SAPObject.h"
 #import "SAPWorker_Private.h"
 
@@ -31,7 +31,7 @@ static BOOL         const kSAPRandomDelayEnabled = YES;
         usleep(arc4random_uniform(10) * 1000);
     }
     
-    SAPItemsQueue *carsQueue = self.objectsQueue;
+    SAPQueue *carsQueue = self.objectsQueue;
     while (car) {
         [self takeMoney:kSAPWashPrise fromSender:car];
         car.clean = YES;

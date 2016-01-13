@@ -9,7 +9,7 @@
 #import "NSObject+SAPObject.h"
 #import "NSArray+SAPExtentions.h"
 #import "SAPEnterprise.h"
-#import "SAPItemsQueue.h"
+#import "SAPQueue.h"
 #import "SAPWorker.h"
 #import "SAPWasher.h"
 #import "SAPAccountant.h"
@@ -20,7 +20,7 @@ static NSUInteger const kSAPWashersCount = 3;
 
 @interface SAPEnterprise ()
 @property (nonatomic, retain) NSMutableArray *mutableStaff;
-@property (nonatomic, retain) SAPItemsQueue *carsQueue;
+@property (nonatomic, retain) SAPQueue *carsQueue;
 
 @end
 
@@ -51,7 +51,7 @@ static NSUInteger const kSAPWashersCount = 3;
     self = [super init];
     if (self) {
         self.mutableStaff = [NSMutableArray object];
-        self.carsQueue = [SAPItemsQueue object];
+        self.carsQueue = [SAPQueue object];
         [self hireStaff];
     }
     

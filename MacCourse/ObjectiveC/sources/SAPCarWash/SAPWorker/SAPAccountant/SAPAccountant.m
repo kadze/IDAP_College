@@ -8,7 +8,7 @@
 
 #import "SAPAccountant.h"
 #import "SAPWorker_Private.h"
-#import "SAPItemsQueue.h"
+#import "SAPQueue.h"
 
 
 @implementation SAPAccountant
@@ -18,7 +18,7 @@
 #pragma mark Private Methods
 
 - (void)processObject:(SAPWorker *)washer {
-    SAPItemsQueue *objectsQueue = self.objectsQueue;
+    SAPQueue *objectsQueue = self.objectsQueue;
     while (washer) {
         [self takeAllMoneyFromSender:washer];
         washer = [objectsQueue dequeue];

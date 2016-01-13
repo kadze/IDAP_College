@@ -9,7 +9,7 @@
 #import "NSObject+SAPObject.h"
 #import "SAPWorker.h"
 #import "SAPWorker_Private.h"
-#import "SAPItemsQueue.h"
+#import "SAPQueue.h"
 
 @implementation SAPWorker
 
@@ -28,7 +28,7 @@
     self = [super init];
     if (self) {
         self.state = kSAPWorkerIsReadyToWork;
-        self.objectsQueue = [SAPItemsQueue object];
+        self.objectsQueue = [SAPQueue object];
     }
     
     return self;

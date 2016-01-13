@@ -8,7 +8,7 @@
 
 #import "SAPBoss.h"
 #import "SAPWorker_Private.h"
-#import "SAPItemsQueue.h"
+#import "SAPQueue.h"
 
 @implementation SAPBoss
 @synthesize objectsQueue = _objectsQueue;
@@ -18,7 +18,7 @@
 
 -(void)processObject:(SAPWorker *)worker {
     //profit
-    SAPItemsQueue *objectsQueue = self.objectsQueue;
+    SAPQueue *objectsQueue = self.objectsQueue;
     while (worker) {
         [self takeAllMoneyFromSender:worker];
         worker = [objectsQueue dequeue];

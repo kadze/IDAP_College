@@ -6,10 +6,14 @@
 //  Copyright © 2016 Yosemite Retail. All rights reserved.
 //
 
-#import "SAPContainer.h"
-#import "SAPContainer+Private.h"
+#import "SAPQueue.h"
 
-@implementation SAPContainer
+@interface SAPQueue ()
+@property (nonatomic, retain) NSMutableArray    *mutableItems;
+
+@end
+
+@implementation SAPQueue
 
 @dynamic items;
 
@@ -49,22 +53,28 @@
 #pragma mark-
 #pragma mark Public Methods
 
-- (NSArray *)itemsOfClass:(Class)itemClass {
-    NSMutableArray *mutableResult = [NSMutableArray array];
-    for (id item in self.items) {
-        if ([item isMemberOfClass:itemClass]) {
-            [mutableResult addObject:item];
-        }
-    }
-    
-    return [[mutableResult copy] autorelease];
-}
-
-- (void)removeAllItems {
+- (void)enqueue:(id)item {
     NSMutableArray *mutableItems = self.mutableItems;
     @synchronized(mutableItems) {
-        [self.mutableItems removeAllObjects];
+        [self.mutableItems addObject:item];
     }
+}
+
+- (id)dequeue {
+    NSMutableArray *items = self.mutableItems;
+    @synchronized(items) {
+        id result = nil;
+        if (0 != items.count) {
+            result = [[items[0] retain] autorelease];
+            [items removeObjectAtIndex:0];
+        }
+        
+        return result;
+    }
+}
+
+- (NSUInteger)count {
+    return [[self items] count];
 }
 
 @end
