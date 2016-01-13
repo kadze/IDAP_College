@@ -14,7 +14,6 @@
 @implementation SAPWorker
 
 @synthesize money = _money;
-@synthesize state = _state;
 @synthesize objectsQueue = _objectsQueue;
 
 #pragma mark-
@@ -33,19 +32,6 @@
     }
     
     return self;
-}
-
-#pragma mark-
-#pragma mark Accessors
-
-- (void)setState:(NSUInteger)state {
-    if (self.state != state) {
-        _state = state;
-        SEL selector = [self selectorForState:state];
-        if (selector) {
-            [self notifyObserversWithSelector:selector withObject:self];
-        }
-    }
 }
 
 #pragma mark-

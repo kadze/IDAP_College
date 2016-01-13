@@ -52,6 +52,16 @@
     }
 }
 
+- (void)setState:(NSUInteger)state {
+    if (self.state != state) {
+        _state = state;
+        SEL selector = [self selectorForState:state];
+        if (selector) {
+            [self notifyObserversWithSelector:selector withObject:self];
+        }
+    }
+}
+
 #pragma mark-
 #pragma mark Public Methods
 
@@ -88,6 +98,13 @@
             [observer performSelector:selector withObject:object withObject:object2];
         }
     }
+}
+
+#pragma mark-
+#pragma mark Private Methods
+
+- (SEL)selectorForState:(NSUInteger)state {
+    return nil;
 }
 
 @end
