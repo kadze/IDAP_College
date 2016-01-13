@@ -51,7 +51,7 @@
 }
 
 - (void)processObject:(id)object {
-    [self doesNotRecognizeSelector:_cmd];
+    [self takeAllMoneyFromSender:object];
 }
 
 - (void)takeAllMoneyFromSender:(SAPWorker *)sender {

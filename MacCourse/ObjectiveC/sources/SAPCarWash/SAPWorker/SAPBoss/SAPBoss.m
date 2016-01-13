@@ -15,7 +15,7 @@
 #pragma mark Private Methods
 
 -(void)processObject:(SAPWorker *)worker {
-    [self takeAllMoneyFromSender:worker];
+    [super processObject:worker];
     NSLog(@"now boss has %lu", self.money);
 }
 
