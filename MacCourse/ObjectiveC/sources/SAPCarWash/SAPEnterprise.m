@@ -7,8 +7,8 @@
 //
 
 #import "NSObject+SAPObject.h"
+#import "NSArray+SAPExtentions.h"
 #import "SAPEnterprise.h"
-#import "SAPItemsContainer.h"
 #import "SAPItemsQueue.h"
 #import "SAPWorker.h"
 #import "SAPWasher.h"
@@ -19,7 +19,7 @@
 static NSUInteger const kSAPWashersCount = 3;
 
 @interface SAPEnterprise ()
-@property (nonatomic, retain) SAPItemsContainer *staffContainter;
+@property (nonatomic, retain) NSMutableArray *mutableStaff;
 @property (nonatomic, retain) SAPItemsQueue *carsQueue;
 
 @end
@@ -35,7 +35,7 @@ static NSUInteger const kSAPWashersCount = 3;
 
 - (void)dealloc {
     [self dismissStaff];
-    self.staffContainter = nil;
+    self.mutableStaff = nil;
     self.carsQueue = nil;
     
     [super dealloc];
@@ -50,7 +50,7 @@ static NSUInteger const kSAPWashersCount = 3;
 - (instancetype)initWithStaff {
     self = [super init];
     if (self) {
-        self.staffContainter = [SAPItemsContainer object];
+        self.mutableStaff = [NSMutableArray object];
         self.carsQueue = [SAPItemsQueue object];
         [self hireStaff];
     }
@@ -62,7 +62,7 @@ static NSUInteger const kSAPWashersCount = 3;
 #pragma mark Accessors
 
 - (NSArray *)staff {
-    return self.staffContainter.items;
+    return [[self.mutableStaff copy] autorelease];
 }
 
 
@@ -82,7 +82,7 @@ static NSUInteger const kSAPWashersCount = 3;
 #pragma mark Private Methods
 
 - (void)hireWorker:(SAPWorker *)worker {
-    [self.staffContainter addItem:worker];
+    [self.mutableStaff addObject:worker];
 }
 
 - (void)hireStaff {
@@ -117,11 +117,11 @@ static NSUInteger const kSAPWashersCount = 3;
         [worker removeAllObservers];
     }
     
-    [self.staffContainter removeAllItems];
+    [self.mutableStaff removeAllObjects];
 }
 
 - (NSArray *)workersOfClass:(Class)workerClass {
-    return [self.staffContainter itemsOfClass:workerClass];
+    return [self.mutableStaff objectsOfClass:workerClass];
 }
 
 - (id)freeWorkerOfClass:(Class)class {
@@ -147,6 +147,5 @@ static NSUInteger const kSAPWashersCount = 3;
 - (void)workerDidBecomeReadyToWork:(SAPWasher *)worker {
     [self washNextCarWithWasher:worker];
 }
-
 
 @end
