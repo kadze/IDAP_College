@@ -44,11 +44,15 @@
 #pragma mark NSArray
 
 - (NSUInteger)count {
-    return [self.array count];
+    @synchronized(self) {
+        return [self.array count];
+    }
 }
 
 - (id)objectAtIndex:(NSUInteger)index {
-    return [self.array objectAtIndex:index];
+    @synchronized(self) {
+        return [self.array objectAtIndex:index];
+    }
 }
 
 #pragma mark -
