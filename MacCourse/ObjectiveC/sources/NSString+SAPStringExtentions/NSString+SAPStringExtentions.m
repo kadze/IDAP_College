@@ -59,7 +59,6 @@ static const unichar kSAPLastNumberSign = '9';
     return [self stringWithString:result];
 }
 
-
 //random strings
 + (NSString *)generateRandomStringWithAlphabetString:(NSString *)alphabet ofSize:(NSUInteger)size {
     int alphabetLength = (int)alphabet.length;

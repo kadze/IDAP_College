@@ -11,7 +11,6 @@
 #import "SAPUnicodeRangeAlphabet.h"
 #import "SAPArrayAlphabet.h"
 
-
 NSRange SAPMakeAlphabetRange(unichar sign1, unichar sign2) {
     unichar maxSign = MAX(sign1, sign2);
     unichar minSign = MIN(sign1, sign2);
@@ -97,7 +96,6 @@ NSRange SAPMakeAlphabetRange(unichar sign1, unichar sign2) {
     return [self letterAtIndex:index];
 }
 
-
 #pragma mark-
 #pragma mark NSFastEnumeration
 
@@ -118,8 +116,6 @@ NSRange SAPMakeAlphabetRange(unichar sign1, unichar sign2) {
     state->state += len;
     
     return len;
-    
 }
-
 
 @end

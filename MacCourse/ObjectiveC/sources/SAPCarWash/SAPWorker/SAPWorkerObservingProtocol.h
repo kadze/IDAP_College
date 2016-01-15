@@ -13,7 +13,6 @@
 @protocol SAPWorkerObservingProtocol <NSObject>
 
 @optional
-
 - (void)workerDidStartWork:(SAPWorker *)worker;
 - (void)workerDidFinishWork:(SAPWorker *)worker;
 - (void)workerDidBecomeReadyToWork:(SAPWorker *)worker;

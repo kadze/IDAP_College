@@ -9,7 +9,6 @@
 #import "SAPUnicodeRangeAlphabet.h"
 
 @interface SAPUnicodeRangeAlphabet ()
-
 @property (nonatomic) NSRange range;
 
 @end
@@ -26,7 +25,6 @@
     }
     
     return self;
-
 }
 
 #pragma mark-

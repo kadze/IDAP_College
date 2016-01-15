@@ -72,10 +72,13 @@
     switch (state) {
         case kSAPWorkerIsBusy:
             return @selector(workerDidStartWork:);
+            
         case kSAPWorkerFinishedWork:
             return @selector(workerDidFinishWork:);
+            
         case kSAPWorkerIsReadyToWork:
             return @selector(workerDidBecomeReadyToWork:);
+            
         default:
             return NULL;
     }
@@ -84,7 +87,6 @@
 - (void)finishProcessingOnMainThreadWithObject:(SAPObservableObject *)object {
     [self completeProcessingObject:object];
     [self checkObjectsQueue];
-//    [self cleanupAfterProcessing];
 }
 
 - (void)completeProcessingObject:(SAPObservableObject *)object {

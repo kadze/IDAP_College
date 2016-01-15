@@ -9,7 +9,6 @@
 #import "SAPCreature.h"
 
 @interface SAPCreature ()
-
 @property (nonatomic, retain) NSMutableSet *mutableChildren;
 
 @end
@@ -98,9 +97,5 @@
     //overload in descendants
     return nil;
 }
-         
-#pragma mark-
-#pragma mark Private Methods
-
 
 @end

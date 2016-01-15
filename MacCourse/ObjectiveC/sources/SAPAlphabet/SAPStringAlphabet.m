@@ -11,11 +11,9 @@
 #import "SAPEnumeratedString.h"
 
 @interface SAPStringAlphabet ()
-
 @property (nonatomic, retain) NSString *lettersString;
 
 @end
-
 
 @implementation SAPStringAlphabet
 
@@ -36,13 +34,6 @@
     return self;
 }
 
-//#pragma mark-
-//#pragma mark Accessors
-//
-//- (NSString *) letters {
-//    return self.lettersString;
-//}
-
 #pragma mark-
 #pragma mark Public Methods
 
@@ -55,13 +46,14 @@
     }
     
     return [[mutableResult copy] autorelease];
-};
+}
 
 - (NSString *)letterAtIndex:(NSUInteger)index {
     return [[self letters] objectAtIndex:index];
-};
+}
 
 - (NSUInteger)count {
     return [self lettersString].length;
 }
+
 @end

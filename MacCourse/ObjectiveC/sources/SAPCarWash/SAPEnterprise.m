@@ -24,11 +24,9 @@ static NSUInteger const kSAPWashersCount = 3;
 
 @end
 
-
 @implementation SAPEnterprise
 
 @dynamic staff;
-
 
 #pragma mark-
 #pragma mark Initializatinos and Deallocations
@@ -98,17 +96,11 @@ static NSUInteger const kSAPWashersCount = 3;
     NSLog(@"%lu washers", kSAPWashersCount);
     NSArray *washers = [SAPWasher objectsWithCount:kSAPWashersCount];
     for (SAPWasher *washer in washers) {
-        //hiring washers
         [self hireWorker:washer];
-        
-        //setting accountant as an observer for each washer
         [washer addObserver:accountant];
-        
-        //setting Enterprise as an observer for each washer to observe when isReadyToWork
         [washer addObserver:self];
     }
     
-    //boss observes the accountant
     [accountant addObserver:boss];
 }
 

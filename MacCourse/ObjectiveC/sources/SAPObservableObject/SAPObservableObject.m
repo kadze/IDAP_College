@@ -27,8 +27,7 @@
     [super dealloc];
 }
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.mutableObservers = [NSMutableSet set];

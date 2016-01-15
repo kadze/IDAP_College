@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface SAPEnumeratedString : NSObject <NSFastEnumeration>
-
 @property(nonatomic, retain) NSString *string;
 
 @end

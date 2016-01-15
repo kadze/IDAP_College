@@ -9,15 +9,11 @@
 #import "SAPArrayAlphabet.h"
 
 @interface SAPArrayAlphabet ()
-
 @property (nonatomic, retain) NSArray *lettersArray;
 
 @end
 
-
-
 @implementation SAPArrayAlphabet
-//@dynamic letters;
 
 #pragma mark-
 #pragma mark Initializations and Deallocations
@@ -35,13 +31,6 @@
     
     return self;
 }
-
-//#pragma mark-
-//#pragma mark Accessors
-//
-//- (NSArray *) letters {
-//    return self.lettersArray;
-//}
 
 #pragma mark-
 #pragma mark Public Methods

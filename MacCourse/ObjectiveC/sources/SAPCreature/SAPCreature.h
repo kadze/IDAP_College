@@ -15,7 +15,6 @@ typedef NS_ENUM (NSUInteger, SAPGender) {
 };
 
 @interface SAPCreature : NSObject
-
 @property (nonatomic, copy)             NSString       *name;
 @property (nonatomic, readonly)         NSSet          *children;
 @property (nonatomic, assign)           NSUInteger     *mass;

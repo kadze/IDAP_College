@@ -9,7 +9,6 @@
 #import "SAPAlphabet.h"
 
 @interface SAPUnicodeRangeAlphabet : SAPAlphabet
-
 @property (nonatomic, readonly)     NSRange range;
 
 - (instancetype)initWithRange:(NSRange)range;
