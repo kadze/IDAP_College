@@ -38,8 +38,8 @@ NSUInteger const kSAPInitialCarMoney = 50;
 #pragma mark SAPMoneyTransfer
 
 - (void)giveMoney:(NSUInteger)sum toRecipient:(id<SAPMoneyTransfer>)recipient {
-        [self substractMoney:sum];
-        [recipient addMoney:sum];
+    [self substractMoney:sum];
+    [recipient addMoney:sum];
 }
 
 - (void)takeMoney:(NSUInteger)sum fromSender:(id<SAPMoneyTransfer>)sender {
