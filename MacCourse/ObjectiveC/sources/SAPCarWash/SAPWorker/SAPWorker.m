@@ -23,7 +23,6 @@
 @implementation SAPWorker
 
 @synthesize money = _money;
-@synthesize objectsQueue = _objectsQueue;
 
 #pragma mark-
 #pragma mark Initializatinos and Deallocations
