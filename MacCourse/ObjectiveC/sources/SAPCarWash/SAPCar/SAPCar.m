@@ -7,20 +7,12 @@
 //
 
 #import "SAPCar.h"
-#import "NSObject+SAPObject.h"
 
 NSUInteger const kSAPInitialCarMoney = 50;
 
 @implementation SAPCar
 
 @synthesize money = _money;
-
-#pragma mark-
-#pragma mark Class Methods
-
-+ (NSArray *)carsWithCount:(NSUInteger)count {
-    return [SAPCar objectsWithCount:count];
-}
 
 #pragma mark-
 #pragma mark Initializations and Deallocations

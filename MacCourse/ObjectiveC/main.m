@@ -10,10 +10,6 @@
 #import "NSObject+SAPObject.h"
 #import "SAPEnterprise.h"
 #import "SAPCar.h"
-#import "SAPWasher.h"
-#import "SAPWorker.h"
-#import "SAPBoss.h"
-#import "SAPAccountant.h"
 
 NSUInteger const kAnnualAmountOfCars = 100;
 NSUInteger const kWashPrice = 50;
@@ -24,7 +20,7 @@ int main(int argc, const char * argv[]) {
         //=====CAR WASH=====
         
         SAPEnterprise *carWashEnterprise = [SAPEnterprise object];
-        NSArray *cars = [SAPCar carsWithCount:kAnnualAmountOfCars];
+        NSArray *cars = [SAPCar objectsWithCount:kAnnualAmountOfCars];
         NSLog(@"%lu cars", cars.count);
         for (SAPCar *car in cars) {
             [carWashEnterprise washCar:car];
