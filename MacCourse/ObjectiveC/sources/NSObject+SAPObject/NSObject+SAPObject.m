@@ -21,8 +21,7 @@
 + (NSArray *)objectsWithCount:(NSUInteger)count {
     NSMutableArray *array = [[NSMutableArray new] autorelease];
     [@(count) times:^(NSNumber *value) {
-        id object = [[[self alloc] init] autorelease];
-        [array addObject:object];
+        [array addObject:[self object]];
     }];
     
     return [[array copy] autorelease];
