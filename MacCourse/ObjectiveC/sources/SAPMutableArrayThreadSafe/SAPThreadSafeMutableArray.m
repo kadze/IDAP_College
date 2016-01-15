@@ -24,12 +24,12 @@
     [super dealloc];
 }
 
-//#pragma clang diagnostic push
-//#pragma clang diagnostic ignored "-Wobjc-designated-initializers"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-designated-initializers"
 - (id)init {
     return [self initWithCapacity:1];
 }
-//#pragma clang diagnistic pop
+#pragma clang diagnistic pop
 
 - (id)initWithCapacity:(NSUInteger)numItems {
     self = [super init];
