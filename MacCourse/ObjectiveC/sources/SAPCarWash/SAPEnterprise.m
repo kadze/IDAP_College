@@ -22,6 +22,13 @@ static NSUInteger const kSAPWashersCount = 3;
 @property (nonatomic, retain) NSMutableArray *mutableStaff;
 @property (nonatomic, retain) SAPQueue *carsQueue;
 
+- (void)hireWorker:(SAPWorker *)worker;
+- (void)hireStaff;
+- (void)dismissStaff;
+- (NSArray *)workersOfClass:(Class)workerClass;
+- (id)freeWorkerOfClass:(Class)class;
+- (void)washNextCarWithWasher:(SAPWasher *)washer;
+
 @end
 
 @implementation SAPEnterprise
