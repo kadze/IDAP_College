@@ -106,10 +106,20 @@ static NSUInteger const kSAPWashersCount = 3;
 
 - (void)dismissStaff {
     for (SAPWorker *worker in self.staff) {
-        [worker removeAllObservers];
+        [worker removeObserver:self];
+        [self removeStaffObserversFromWorker:worker];
     }
     
     [self.mutableStaff removeAllObjects];
+}
+
+- (void)removeStaffObserversFromWorker:(SAPWorker *)worker {
+    NSArray *classes = @[[SAPAccountant class], [SAPBoss class]];
+    for (Class class in classes) {
+        for (SAPWorker *observer in [self workersOfClass:class]) {
+            [worker removeObserver:observer];
+        }
+    }
 }
 
 - (NSArray *)workersOfClass:(Class)workerClass {
