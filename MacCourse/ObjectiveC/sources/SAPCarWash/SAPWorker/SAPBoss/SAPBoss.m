@@ -12,7 +12,7 @@
 @implementation SAPBoss
 
 #pragma mark-
-#pragma mark Private Methods
+#pragma mark Public Methods
 
 -(void)processObject:(SAPWorker *)worker {
     [super processObject:worker];

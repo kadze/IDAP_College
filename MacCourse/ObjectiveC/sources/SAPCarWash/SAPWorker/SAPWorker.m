@@ -15,7 +15,6 @@
 
 - (void)performBackgroundWorkWithObject:(id)object;
 - (void)finishProcessingOnMainThreadWithObject:(SAPObservableObject *)object;
-- (void)completeProcessingObject:(SAPObservableObject *)object;
 - (void)checkObjectsQueue;
 
 @end

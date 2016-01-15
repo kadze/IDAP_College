@@ -16,11 +16,7 @@ static BOOL         const kSAPRandomDelayEnabled = YES;
 @implementation SAPWasher
 
 #pragma mark-
-#pragma mark Private Methods
-
-- (void)completeProcessingObject:(id)object {
-    //nothing to do with car
-}
+#pragma mark Public Methods
 
 - (void)processObject:(SAPCar *)car {
     if (kSAPRandomDelayEnabled) {
@@ -29,6 +25,10 @@ static BOOL         const kSAPRandomDelayEnabled = YES;
     
     [self takeMoney:kSAPWashPrise fromSender:car];
     car.clean = YES;
+}
+
+- (void)completeProcessingObject:(id)object {
+    //nothing to do with car
 }
 
 @end

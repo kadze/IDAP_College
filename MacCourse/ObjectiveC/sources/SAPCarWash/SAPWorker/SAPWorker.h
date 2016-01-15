@@ -29,5 +29,6 @@ typedef NS_ENUM (NSUInteger, SAPWorkerState) {
 
 - (void)takeAllMoneyFromSender:(SAPWorker *)sender;
 - (void)cleanupAfterProcessing;
+- (void)completeProcessingObject:(SAPObservableObject *)object;
 
 @end
