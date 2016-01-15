@@ -1,5 +1,5 @@
 //
-//  SAPMutableArrayThreadSafe.h
+//  SAPThreadSafeMutableArray.h
 //  MacCourse
 //
 //  Created by S A P on 1/13/16.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SAPMutableArrayThreadSafe : NSMutableArray
+@interface SAPThreadSafeMutableArray : NSMutableArray
 
 - (NSUInteger)count;
 - (id)objectAtIndex:(NSUInteger)index;

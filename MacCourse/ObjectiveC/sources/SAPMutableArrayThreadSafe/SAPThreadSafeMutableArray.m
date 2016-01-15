@@ -1,21 +1,19 @@
 //
-//  SAPMutableArrayThreadSafe.m
+//  SAPThreadSafeMutableArray.m
 //  MacCourse
 //
 //  Created by S A P on 1/13/16.
 //  Copyright © 2016 Yosemite Retail. All rights reserved.
 //
 
-#import "SAPMutableArrayThreadSafe.h"
+#import "SAPThreadSafeMutableArray.h"
 
-@interface SAPMutableArrayThreadSafe ()
+@interface SAPThreadSafeMutableArray ()
 @property (nonatomic, retain)   NSMutableArray      *array;
 
 @end
 
-@implementation SAPMutableArrayThreadSafe
-
-@synthesize array           = _array;
+@implementation SAPThreadSafeMutableArray
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -26,9 +24,12 @@
     [super dealloc];
 }
 
+//#pragma clang diagnostic push
+//#pragma clang diagnostic ignored "-Wobjc-designated-initializers"
 - (id)init {
     return [self initWithCapacity:1];
 }
+//#pragma clang diagnistic pop
 
 - (id)initWithCapacity:(NSUInteger)numItems {
     self = [super init];
