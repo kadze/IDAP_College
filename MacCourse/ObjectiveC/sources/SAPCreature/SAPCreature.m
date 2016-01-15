@@ -10,7 +10,7 @@
 
 @interface SAPCreature ()
 
-@property (nonatomic) NSMutableSet *mutableChildren;
+@property (nonatomic, retain) NSMutableSet *mutableChildren;
 
 @end
 

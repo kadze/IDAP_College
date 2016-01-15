@@ -18,7 +18,6 @@
 
 
 @implementation SAPStringAlphabet
-//@dynamic letters;
 
 #pragma mark-
 #pragma mark Initializations and Deallocations

@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface SAPObservableObject : NSObject
-@property (nonatomic, assign)   NSUInteger      state;
-@property (nonatomic, retain, readonly) NSArray *observers;
+@property (nonatomic, assign)   NSUInteger  state;
+@property (nonatomic, readonly) NSArray     *observers;
 
 - (void)addObserver:(id)observer;
 - (void)removeObserver:(id)observer;
@@ -18,5 +18,4 @@
 
 - (void)notifyObserversWithSelector:(SEL)selector;
 - (void)notifyObserversWithSelector:(SEL)selector withObject:(id)object;
-- (void)notifyObserversWithSelector:(SEL)selector withObject:(id)object withObject:(id)object2;
 @end

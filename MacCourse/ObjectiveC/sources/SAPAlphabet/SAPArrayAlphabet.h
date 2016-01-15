@@ -10,7 +10,7 @@
 
 @interface SAPArrayAlphabet : SAPAlphabet
 
-@property (nonatomic, retain, readonly) NSArray*  letters;
+@property (nonatomic, readonly) NSArray*  letters;
 
 - (instancetype)initWithArray:(NSArray *)lettersArray;
 
