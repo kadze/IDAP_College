@@ -16,6 +16,7 @@
 @implementation SAPQueue
 
 @dynamic items;
+@dynamic count;
 
 #pragma mark-
 #pragma mark Initializatinos and Deallocations
@@ -50,6 +51,10 @@
     
 }
 
+- (NSUInteger)count {
+    return [[self items] count];
+}
+
 #pragma mark-
 #pragma mark Public Methods
 
@@ -71,10 +76,6 @@
         
         return result;
     }
-}
-
-- (NSUInteger)count {
-    return [[self items] count];
 }
 
 @end
