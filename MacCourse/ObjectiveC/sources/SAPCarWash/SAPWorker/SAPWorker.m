@@ -13,6 +13,11 @@
 @interface SAPWorker()
 @property(nonatomic, retain) SAPQueue *objectsQueue;
 
+- (void)performBackgroundWorkWithObject:(id)object;
+- (void)finishProcessingOnMainThreadWithObject:(SAPObservableObject *)object;
+- (void)completeProcessingObject:(SAPObservableObject *)object;
+- (void)checkObjectsQueue;
+
 @end
 
 @implementation SAPWorker
@@ -58,15 +63,15 @@
     [sender giveMoney:sender.money toRecipient:self];
 }
 
-#pragma mark-
-#pragma mark Private Methods
-
-- (void)performBackgroundWorkWithObject:(id)object {
+- (void)cleanupAfterProcessing {
     @synchronized(self) {
-        [self processObject:object];
-        [self performSelectorOnMainThread:@selector(finishProcessingOnMainThreadWithObject:) withObject:object waitUntilDone:NO];
+        self.state = kSAPWorkerFinishedWork;
     }
 }
+
+
+#pragma mark-
+#pragma mark SAPObservableObject
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
@@ -84,6 +89,16 @@
     }
 }
 
+#pragma mark-
+#pragma mark Private Methods
+
+- (void)performBackgroundWorkWithObject:(id)object {
+    @synchronized(self) {
+        [self processObject:object];
+        [self performSelectorOnMainThread:@selector(finishProcessingOnMainThreadWithObject:) withObject:object waitUntilDone:NO];
+    }
+}
+
 - (void)finishProcessingOnMainThreadWithObject:(SAPObservableObject *)object {
     [self completeProcessingObject:object];
     [self checkObjectsQueue];
@@ -92,12 +107,6 @@
 - (void)completeProcessingObject:(SAPObservableObject *)object {
     @synchronized(object) {
         object.state = kSAPWorkerIsReadyToWork;
-    }
-}
-
-- (void)cleanupAfterProcessing {
-    @synchronized(self) {
-        self.state = kSAPWorkerFinishedWork;
     }
 }
 
