@@ -66,22 +66,28 @@
 #pragma mark Public Methods
 
 - (void)addObserver:(id)observer {
-    [self.mutableObservers addObject:[[[SAPAssignReference alloc] initWithTarget:observer] autorelease]];
+    @synchronized(self) {
+            [self.mutableObservers addObject:[[[SAPAssignReference alloc] initWithTarget:observer] autorelease]];
+    }
 }
 
 - (void)removeObserver:(id)observer {
-    NSMutableSet *observers = self.mutableObservers;
-    for (SAPAssignReference *reference in self.observers) {
-        if (reference.target == observer) {
-            [observers removeObject:reference];
-            
-            break;
+    @synchronized(self) {
+        NSMutableSet *observers = self.mutableObservers;
+        for (SAPAssignReference *reference in self.observers) {
+            if (reference.target == observer) {
+                [observers removeObject:reference];
+                
+                break;
+            }
         }
     }
 }
 
 - (void)removeAllObservers {
-    [self.mutableObservers removeAllObjects];
+    @synchronized(self) {
+        [self.mutableObservers removeAllObjects];
+    }
 }
 
 - (void)notifyObserversWithSelector:(SEL)selector {
@@ -89,9 +95,12 @@
 }
 
 - (void)notifyObserversWithSelector:(SEL)selector withObject:(id)object {
-    for (id observer in self.observers) {
-        if ([observer respondsToSelector:selector]) {
-            [observer performSelector:selector withObject:object ];
+    @synchronized(self) {
+        for (SAPAssignReference *reference in self.mutableObservers) {
+            id observer = reference.target;
+            if ([observer respondsToSelector:selector]) {
+                [observer performSelector:selector withObject:object ];
+            }
         }
     }
 }
