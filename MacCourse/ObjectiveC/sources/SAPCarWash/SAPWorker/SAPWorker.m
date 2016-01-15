@@ -68,10 +68,6 @@
     }
 }
 
-
-#pragma mark-
-#pragma mark SAPObservableObject
-
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
         case kSAPWorkerIsBusy:
