@@ -80,7 +80,7 @@
             return @selector(workerDidBecomeReadyToWork:);
             
         default:
-            return NULL;
+            return [super selectorForState:state];
     }
 }
 

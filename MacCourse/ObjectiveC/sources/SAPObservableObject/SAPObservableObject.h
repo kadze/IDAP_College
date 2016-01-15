@@ -19,4 +19,6 @@
 - (void)notifyObserversWithSelector:(SEL)selector;
 - (void)notifyObserversWithSelector:(SEL)selector withObject:(id)object;
 
+- (SEL)selectorForState:(NSUInteger)state;
+
 @end

@@ -104,9 +104,6 @@
     }
 }
 
-#pragma mark-
-#pragma mark Private Methods
-
 - (SEL)selectorForState:(NSUInteger)state {
     return nil;
 }
