@@ -25,8 +25,8 @@ static NSUInteger const kSAPWashersCount = 3;
 - (void)hireWorker:(SAPWorker *)worker;
 - (void)hireStaff;
 - (void)dismissStaff;
-- (NSArray *)workersOfClass:(Class)workerClass;
-- (id)freeWorkerOfClass:(Class)class;
+- (NSArray *)workersOfClass:(Class)aClass;
+- (id)freeWorkerOfClass:(Class)aClass;
 - (void)washNextCarWithWasher:(SAPWasher *)washer;
 
 @end

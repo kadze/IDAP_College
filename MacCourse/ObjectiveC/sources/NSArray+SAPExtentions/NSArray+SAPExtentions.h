@@ -10,6 +10,6 @@
 
 @interface NSArray (SAPExtentions)
 
-- (NSArray *)objectsOfClass:(Class)class;
+- (NSArray *)objectsOfClass:(Class)cls;
 
 @end

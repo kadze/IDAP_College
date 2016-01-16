@@ -12,12 +12,12 @@
 #import "SAPWorkerObservingProtocol.h"
 
 typedef NS_ENUM (NSUInteger, SAPWorkerState) {
-    kSAPWorkerStateStart = 1,
+    kSAPWorkerStateStart,
     kSAPWorkerIsReadyToWork,
     kSAPWorkerIsBusy,
     kSAPWorkerFinishedWork,
     kSAPWorkerStateEnd,
-    kSAPWorkerStateCount = kSAPWorkerStateEnd - kSAPWorkerStateStart
+    kSAPWorkerStateCount = kSAPWorkerStateEnd - kSAPWorkerStateStart - 1
 };
 
 @interface SAPWorker : SAPObservableObject <SAPMoneyTransfer, SAPWorkerObservingProtocol>

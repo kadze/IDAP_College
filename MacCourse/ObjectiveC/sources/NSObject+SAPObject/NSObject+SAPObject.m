@@ -19,7 +19,7 @@
 }
 
 + (NSArray *)objectsWithCount:(NSUInteger)count {
-    NSMutableArray *array = [[NSMutableArray new] autorelease];
+    NSMutableArray *array = [NSMutableArray object];
     [@(count) times:^(NSNumber *value) {
         [array addObject:[self object]];
     }];
