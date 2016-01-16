@@ -50,7 +50,19 @@
 }
 
 - (BOOL)isEqual:(SAPReference *)object {
-    return [object isMemberOfClass:[self class]] && object.target == self.target;
+    if (object == self) {
+        return YES;
+    }
+    
+    if (object.hash == self.hash && [object isMemberOfClass:[self class]]) {
+        return [self isEqualToReference:object];
+    }
+    
+    return NO;
+}
+
+- (BOOL)isEqualToReference:(SAPReference *)object {
+    return object.target == self.target;
 }
 
 @end
