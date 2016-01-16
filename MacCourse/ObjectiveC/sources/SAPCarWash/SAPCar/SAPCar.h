@@ -10,6 +10,6 @@
 #import "SAPMoneyTransfer.h"
 
 @interface SAPCar : NSObject <SAPMoneyTransfer>
-@property (nonatomic, getter=isClean) BOOL clean;
+@property (nonatomic, assign, getter=isClean) BOOL clean;
 
 @end
