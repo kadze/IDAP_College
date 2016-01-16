@@ -47,9 +47,7 @@ static NSUInteger const kSAPWashersCount = 3;
 }
 
 - (instancetype)init {
-    [self initWithStaff];
-    
-    return self;
+    return [self initWithStaff];    
 }
 
 - (instancetype)initWithStaff {
@@ -112,14 +110,13 @@ static NSUInteger const kSAPWashersCount = 3;
 }
 
 - (void)dismissStaff {
-    for (SAPWorker *worker in self.staff) {
+    NSMutableArray *staff = self.mutableStaff;
+    for (SAPWorker *worker in staff) {
         [worker removeObserver:self];
-        for (SAPWorker *observer in self.mutableStaff) {
-            [worker removeObserver:observer];
-        }
+        [worker removeObserversFromArray:staff];
     }
     
-    [self.mutableStaff removeAllObjects];
+    [staff removeAllObjects];
 }
 
 - (NSArray *)workersOfClass:(Class)workerClass {
