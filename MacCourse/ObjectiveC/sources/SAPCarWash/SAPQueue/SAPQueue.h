@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface SAPQueue : NSObject
-@property (nonatomic, readonly) NSArray     *items;
 @property (nonatomic, readonly) NSUInteger  count;
 
 - (void)enqueue:(id)item;

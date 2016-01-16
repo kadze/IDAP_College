@@ -7,6 +7,7 @@
 //
 
 #import "SAPQueue.h"
+#import "NSObject+SAPObject.h"
 
 @interface SAPQueue ()
 @property (nonatomic, retain) NSMutableArray    *mutableItems;
@@ -15,7 +16,6 @@
 
 @implementation SAPQueue
 
-@dynamic items;
 @dynamic count;
 
 #pragma mark-
@@ -28,14 +28,8 @@
 }
 
 - (instancetype)init {
-    [self initWithCapacity:0];
-    
-    return self;
-}
-
-- (instancetype)initWithCapacity:(NSUInteger)capacity {
     self = [super init];
-    self.mutableItems = [[[NSMutableArray alloc] initWithCapacity:capacity] autorelease];
+    self.mutableItems = [NSMutableArray object];
     
     return self;
 }
@@ -43,16 +37,10 @@
 #pragma mark-
 #pragma mark Accessors
 
-- (NSArray *)items {
-    NSMutableArray *mutableItems = self.mutableItems;
-    @synchronized(mutableItems) {
-        return [[self.mutableItems copy] autorelease];
-    }
-    
-}
-
 - (NSUInteger)count {
-    return [[self items] count];
+    @synchronized(self) {
+        return [self.mutableItems count];
+    }
 }
 
 #pragma mark-
