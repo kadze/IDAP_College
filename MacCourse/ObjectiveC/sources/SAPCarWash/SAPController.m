@@ -76,9 +76,11 @@ NSUInteger const kSAPAnnualAmountOfCars = 100;
 }
 
 - (void)performWork {
-    NSArray *cars = [SAPCar objectsWithCount:kSAPAnnualAmountOfCars];
-    for (SAPCar *car in cars) {
-        [self performWorkWithObject:car];
+    @autoreleasepool {
+        NSArray *cars = [SAPCar objectsWithCount:kSAPAnnualAmountOfCars];
+        for (SAPCar *car in cars) {
+            [self performWorkWithObject:car];
+        }
     }
 }
 

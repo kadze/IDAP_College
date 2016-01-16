@@ -632,6 +632,7 @@
 				CA3F28A61C19D5120072FC65 /* SAPObservableObject */,
 				CA3F28AA1C1AC5940072FC65 /* SAPReference */,
 				CAE453231C464F7E00D48B15 /* SAPMutableArrayThreadSafe */,
+				CAE4532C1C4672DB00D48B15 /* SAPQueue */,
 				CAD1842C1C0CA5AF00A97F55 /* SAPCarWash */,
 			);
 			path = sources;
@@ -684,7 +685,6 @@
 				CA3B0F431C4ABDD50099017F /* SAPController.m */,
 				CA3F28A21C1821650072FC65 /* SAPMoneyTransfer.h */,
 				CA4A33CC1C2DAAB600460A57 /* SAPWorkerObservingProtocol.h */,
-				CAE4532C1C4672DB00D48B15 /* SAPQueue */,
 				CAD184301C0CA5AF00A97F55 /* SAPCar */,
 				CAD184311C0CA5AF00A97F55 /* SAPWorker */,
 			);
@@ -804,7 +804,8 @@
 				CAE4532D1C4672DB00D48B15 /* SAPQueue.h */,
 				CAE4532E1C4672DB00D48B15 /* SAPQueue.m */,
 			);
-			path = SAPQueue;
+			name = SAPQueue;
+			path = SAPCarWash/SAPQueue;
 			sourceTree = "<group>";
 		};
 		E7DDE7C0782CDF9836CFB5C2 /* Pods */ = {
