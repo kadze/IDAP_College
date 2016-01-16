@@ -15,7 +15,7 @@
 
 - (void)performBackgroundWorkWithObject:(id)object;
 - (void)finishProcessingOnMainThreadWithObject:(SAPObservableObject *)object;
-- (void)checkObjectsQueue;
+- (void)processObjectsQueue;
 
 @end
 
@@ -45,11 +45,13 @@
 #pragma mark Public Methods
 
 - (void)performWorkWithObject:(id)object {
-    if (kSAPWorkerIsReadyToWork == self.state) {
-        self.state = kSAPWorkerIsBusy;
-        [self performSelectorInBackground:@selector(performBackgroundWorkWithObject:) withObject:object];
-    } else {
-        [self.objectsQueue enqueue:object];
+    @synchronized(self) {
+        if (kSAPWorkerIsReadyToWork == self.state) {
+            self.state = kSAPWorkerIsBusy;
+            [self performSelectorInBackground:@selector(performBackgroundWorkWithObject:) withObject:object];
+        } else {
+            [self.objectsQueue enqueue:object];
+        }
     }
 }
 
@@ -95,7 +97,7 @@
 
 - (void)finishProcessingOnMainThreadWithObject:(SAPObservableObject *)object {
     [self completeProcessingObject:object];
-    [self checkObjectsQueue];
+    [self processObjectsQueue];
 }
 
 - (void)completeProcessingObject:(SAPObservableObject *)object {
@@ -104,12 +106,14 @@
     }
 }
 
-- (void)checkObjectsQueue {
-    id object = [self.objectsQueue dequeue];
-    if (object) {
-        [self performSelectorInBackground:@selector(performBackgroundWorkWithObject:) withObject:object];
-    } else {
-        [self cleanupAfterProcessing];
+- (void)processObjectsQueue {
+    @synchronized(self) {
+        id object = [self.objectsQueue dequeue];
+        if (object) {
+            [self performSelectorInBackground:@selector(performBackgroundWorkWithObject:) withObject:object];
+        } else {
+            [self cleanupAfterProcessing];
+        }
     }
 }
 

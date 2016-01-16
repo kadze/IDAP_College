@@ -10,7 +10,7 @@
 #import "SAPCar.h"
 #import "SAPQueue.h"
 
-static NSUInteger   const kSAPWashPrise = 50;
+static NSUInteger   const kSAPWashPrice = 50;
 static BOOL         const kSAPRandomDelayEnabled = YES;
 
 @implementation SAPWasher
@@ -23,7 +23,7 @@ static BOOL         const kSAPRandomDelayEnabled = YES;
         usleep(arc4random_uniform(10) * 1000);
     }
     
-    [self takeMoney:kSAPWashPrise fromSender:car];
+    [self takeMoney:kSAPWashPrice fromSender:car];
     car.clean = YES;
 }
 
