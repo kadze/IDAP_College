@@ -7,16 +7,15 @@
 //
 
 #import "SAPCreature.h"
+#import "SAPMan.h"
+#import "SAPWoman.h"
 
 @interface SAPCreature ()
-
 @property (nonatomic, retain) NSMutableSet *mutableChildren;
 
 @end
 
 @implementation SAPCreature
-@class SAPMan;
-@class SAPWoman;
 @dynamic children;
 
 #pragma mark-
@@ -66,7 +65,7 @@
 #pragma mark-
 #pragma mark Accessors
 
-- (NSSet *) children {
+- (NSSet *)children {
     return [[self.mutableChildren copy] autorelease];
 }
 
@@ -98,9 +97,5 @@
     //overload in descendants
     return nil;
 }
-         
-#pragma mark-
-#pragma mark Private Methods
-
 
 @end

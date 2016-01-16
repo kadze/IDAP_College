@@ -9,5 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface NSObject (SAPObject)
-    +(instancetype)object;
+
++ (instancetype)object;
++ (NSArray *)objectsWithCount:(NSUInteger)count;
+
 @end

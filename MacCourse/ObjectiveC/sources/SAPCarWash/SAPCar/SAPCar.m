@@ -8,30 +8,47 @@
 
 #import "SAPCar.h"
 
+NSUInteger const kSAPInitialCarMoney = 50;
+
 @implementation SAPCar
 
 @synthesize money = _money;
 
 #pragma mark-
-#pragma mark SAPMoneyTransfer
+#pragma mark Initializations and Deallocations
 
-- (BOOL)giveMoney:(NSUInteger)sum toRecipient:(id<SAPMoneyTransfer>)recipient {
-    if (self.money >= sum && (recipient)) {
-        self.money      -= sum;
-        recipient.money += sum;
-        
-        return YES;
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.money = kSAPInitialCarMoney;
     }
-    
-    return NO;
+        
+    return self;
 }
 
-- (BOOL)takeMoney:(NSUInteger)sum fromSender:(id<SAPMoneyTransfer>)sender {
-    if (sender) {
-        return [sender giveMoney:sum toRecipient:self];
+#pragma mark-
+#pragma mark SAPMoneyTransfer
+
+- (void)giveMoney:(NSUInteger)sum toRecipient:(id<SAPMoneyTransfer>)recipient {
+    [self substractMoney:sum];
+    [recipient addMoney:sum];
+}
+
+- (void)takeMoney:(NSUInteger)sum fromSender:(id<SAPMoneyTransfer>)sender {
+    [sender giveMoney:sum toRecipient:self]; //if sender nil anyway return nil, hence NO
+}
+
+
+- (void)addMoney:(NSUInteger)sum {
+    @synchronized(self) {
+        self.money +=sum;
     }
-    
-    return NO;
+}
+
+- (void)substractMoney:(NSUInteger)sum {
+    @synchronized(self) {
+        self.money -=sum;
+    }
 }
 
 @end

@@ -11,24 +11,21 @@
 #import "SAPEnumeratedString.h"
 
 @interface SAPStringAlphabet ()
-
 @property (nonatomic, retain) NSString *lettersString;
 
 @end
 
-
 @implementation SAPStringAlphabet
-//@dynamic letters;
 
 #pragma mark-
 #pragma mark Initializations and Deallocations
 
-- (void) dealloc {
+- (void)dealloc {
     self.lettersString = nil;
     [super dealloc];
 }
 
-- (instancetype) initWithString:(NSString *)string {
+- (instancetype)initWithString:(NSString *)string {
     //self = [super init];
     if (self) {
         self.lettersString = string;
@@ -37,17 +34,10 @@
     return self;
 }
 
-//#pragma mark-
-//#pragma mark Accessors
-//
-//- (NSString *) letters {
-//    return self.lettersString;
-//}
-
 #pragma mark-
 #pragma mark Public Methods
 
-- (NSArray *)arrayOfLetters {
+- (NSArray *)letters {
     SAPEnumeratedString *enumeratedLetters = [SAPEnumeratedString object];
     enumeratedLetters.string = self.lettersString;
     NSMutableArray *mutableResult = [NSMutableArray arrayWithCapacity:self.lettersString.length];
@@ -56,13 +46,14 @@
     }
     
     return [[mutableResult copy] autorelease];
-};
+}
 
-- (NSString *)letterAtIndex:(NSUInteger) index {
-    return [[self arrayOfLetters] objectAtIndex:index];
-};
+- (NSString *)letterAtIndex:(NSUInteger)index {
+    return [[self letters] objectAtIndex:index];
+}
 
 - (NSUInteger)count {
     return [self lettersString].length;
 }
+
 @end

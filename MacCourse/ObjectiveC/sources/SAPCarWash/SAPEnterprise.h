@@ -7,24 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SAPWorkerObservingProtocol.h"
 
-@class SAPWorker;
-@class SAPItemsContainer;
-@class SAPWasher;
+@class SAPCar;
 
-@interface SAPEnterprise : NSObject
+@interface SAPEnterprise : NSObject <SAPWorkerObservingProtocol>
+@property (nonatomic, readonly) NSArray *staff;
 
-@property (nonatomic, retain) NSArray *staff;
-
-- (void)hireStaff;
-- (void)hireWorker:(SAPWorker *)worker;
-- (void)dismissWorker:(SAPWorker *)worker;
-
--(NSArray *)workersOfClass:(Class)workerClass;
-
--(void)washCars:(NSArray *)cars;
--(SAPWasher *)freeWasher;
-
--(SAPWorker *)freeWorkerOfClass:(Class)class;
+- (void)washCar:(SAPCar *)car;
 
 @end

@@ -10,8 +10,6 @@
 
 @interface SAPStringAlphabet : SAPAlphabet
 
-//@property (nonatomic, retain, readonly)     NSString*  letters;
-
-- (instancetype) initWithString:(NSString *)  string;
+- (instancetype)initWithString:(NSString *)string;
 
 @end

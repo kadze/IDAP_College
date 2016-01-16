@@ -8,46 +8,27 @@
 
 #import "SAPWasher.h"
 #import "SAPCar.h"
+#import "SAPQueue.h"
 
-static NSUInteger const kWashPrise = 50;
+static NSUInteger   const kSAPWashPrice = 50;
+static BOOL         const kSAPRandomDelayEnabled = YES;
 
 @implementation SAPWasher
 
 #pragma mark-
 #pragma mark Public Methods
 
-- (void)makeJobWithObject:(id)car {
-    self.state = kSAPIsBusy;
-    NSUInteger moneyBefore = self.money;
-    [self washCar:car];
-    if (self.money > moneyBefore) {
-        self.state = kSAPFinishedWork;
+- (void)processObject:(SAPCar *)car {
+    if (kSAPRandomDelayEnabled) {
+        usleep(arc4random_uniform(10) * 1000);
     }
     
-    self.state = kSAPIsReadyToWork;
+    [self takeMoney:kSAPWashPrice fromSender:car];
+    car.clean = YES;
 }
 
-#pragma mark-
-#pragma mark Accessors
-
-- (void)setState:(SAPWorkerState)state {
-    [super setState:state];
-    if (kSAPFinishedWork == state) {
-        [self notifyObserversWithSelector:@selector(makeJobWithObject:) withObject:self];
-    }
-}
-
-#pragma mark-
-#pragma mark Private Methods
-
-- (void)washCar:(SAPCar *)car {
-    if (!car) {
-        return;
-    }
-    
-    if ([self takeMoney:kWashPrise fromSender:car]) {
-        [car setClean:YES];
-    }
+- (void)completeProcessingObject:(id)object {
+    //nothing to do with car
 }
 
 @end

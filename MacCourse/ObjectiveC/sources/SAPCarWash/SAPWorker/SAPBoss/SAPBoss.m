@@ -7,12 +7,22 @@
 //
 
 #import "SAPBoss.h"
+#import "SAPQueue.h"
 
 @implementation SAPBoss
 
--(void)makeJobWithObject:(id)accountant {
-    [self takeAllMoneyFromSender:accountant];
+#pragma mark-
+#pragma mark Public Methods
+
+-(void)processObject:(SAPWorker *)worker {
+    [super processObject:worker];
+    NSLog(@"now boss has %lu", self.money);
 }
 
+- (void)cleanupAfterProcessing {
+    @synchronized(self) {
+        self.state = kSAPWorkerIsReadyToWork;
+    }
+}
 
 @end

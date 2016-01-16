@@ -18,12 +18,12 @@
 + (NSString *)capitalizedCaseLetterAlphabet;
 + (NSString *)alphabetWithUnicodeRange:(NSRange)range;
 
-+ (NSString *)sap_generateRandomStringWithString:(NSString *)alphabet ofSize:(NSUInteger) size;
-+ (NSString *)sap_generateRandomStringWithAlphabet:(SAPAlphabet *)alphabet ofSize:(NSUInteger) size;
++ (NSString *)generateRandomStringWithAlphabetString:(NSString *)alphabet ofSize:(NSUInteger)size;
++ (NSString *)generateRandomStringWithAlphabet:(SAPAlphabet *)alphabet ofSize:(NSUInteger)size;
 
-- (NSString *)sap_generateRandomStringFromSelfOfSize:(NSUInteger) size;
+- (NSString *)generateRandomStringFromSelfOfSize:(NSUInteger)size;
 
-- (instancetype)sap_separateWithSpaces;
+- (instancetype)separateWithSpaces;
 - (NSArray *)symbols;
 
 @end

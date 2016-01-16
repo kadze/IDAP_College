@@ -13,7 +13,7 @@
 #pragma mark-
 #pragma mark Initializations and Deallocations
 
-- (void) dealloc {
+- (void)dealloc {
     self.string = nil;
     
     [super dealloc];
@@ -22,8 +22,8 @@
 #pragma mark-
 #pragma mark NSFastEnumeration
 
-- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *) state
-                        objects:(id []) buffer
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
+                        objects:(id [])buffer
                         count:(NSUInteger)len
 {
     NSString *string = self.string;
@@ -46,6 +46,5 @@
     
     return result;
 }
-
 
 @end

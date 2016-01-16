@@ -9,9 +9,8 @@
 #import "SAPObservableObject.h"
 #import "SAPAssignReference.h"
 
-@interface SAPObservableObject()
-
-@property(nonatomic, retain) NSMutableSet *mutableObservers;
+@interface SAPObservableObject ()
+@property(nonatomic, retain)    NSMutableSet    *mutableObservers;
 
 @end
 
@@ -28,8 +27,7 @@
     [super dealloc];
 }
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.mutableObservers = [NSMutableSet set];
@@ -41,29 +39,62 @@
 #pragma mark-
 #pragma mark Accessors
 
-- (NSArray *) observers {
+- (NSArray *)observers {
     NSMutableSet *mutableObservers = self.mutableObservers;
-    NSMutableArray *mutableResult = [NSMutableArray arrayWithCapacity:mutableObservers.count];
-    for (SAPWeakReference *observer in mutableObservers) {
-        [mutableResult addObject:observer.target];
+    @synchronized(mutableObservers) {
+        NSMutableArray *mutableResult = [NSMutableArray arrayWithCapacity:mutableObservers.count];
+        for (SAPAssignReference *observer in mutableObservers) {
+            [mutableResult addObject:observer.target];
+        }
+        
+        return [[mutableResult copy] autorelease];
     }
-    
-    return [[mutableResult copy] autorelease];
+}
+
+- (void)setState:(NSUInteger)state {
+    if (self.state != state) {
+        _state = state;
+        SEL selector = [self selectorForState:state];
+        if (selector) {
+            [self notifyObserversWithSelector:selector withObject:self];
+        }
+    }
 }
 
 #pragma mark-
 #pragma mark Public Methods
 
 - (void)addObserver:(id)observer {
-    [_mutableObservers addObject:[[[SAPWeakReference alloc] initWithTarget:observer] autorelease]];
+    @synchronized(self) {
+        [self.mutableObservers addObject:[[[SAPAssignReference alloc] initWithTarget:observer] autorelease]];
+    }
 }
 
 - (void)removeObserver:(id)observer {
-    for (SAPWeakReference *reference in self.observers) {
-        if (reference.target == observer) {
-            [_mutableObservers removeObject:reference];
-            
-            break;
+    @synchronized(self) {
+        NSMutableSet *observers = self.mutableObservers;
+        for (SAPAssignReference *reference in observers) {
+            if (reference.target == observer) {
+                [observers removeObject:reference];
+                
+                break;
+            }
+        }
+    }
+}
+
+- (void)removeObserversFromArray:(NSArray *)array {
+    @synchronized(self) {
+        for (id observer in array) {
+            [self removeObserver:observer];
+        }
+    }
+}
+
+- (void)addObserversFromArray:(NSArray *)array {
+    @synchronized(self) {
+        for (id observer in array) {
+            [self addObserver:observer];
         }
     }
 }
@@ -73,15 +104,18 @@
 }
 
 - (void)notifyObserversWithSelector:(SEL)selector withObject:(id)object {
-    [self notifyObserversWithSelector:(SEL)selector withObject:(id)object withObject:(id)nil];
-}
-
-- (void)notifyObserversWithSelector:(SEL)selector withObject:(id)object withObject:(id)object2 {
-    for (id observer in self.observers) {
-        if ([observer respondsToSelector:selector]) {
-            [observer performSelector:selector withObject:object withObject:object2];
+    @synchronized(self) {
+        for (SAPAssignReference *reference in self.mutableObservers) {
+            id observer = reference.target;
+            if ([observer respondsToSelector:selector]) {
+                [observer performSelector:selector withObject:object ];
+            }
         }
     }
+}
+
+- (SEL)selectorForState:(NSUInteger)state {
+    return nil;
 }
 
 @end

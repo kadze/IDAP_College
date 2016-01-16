@@ -7,22 +7,29 @@
 //
 
 #import "NSObject+SAPObject.h"
+#import "NSArray+SAPExtentions.h"
 #import "SAPEnterprise.h"
-#import "SAPItemsContainer.h"
+#import "SAPQueue.h"
 #import "SAPWorker.h"
 #import "SAPWasher.h"
 #import "SAPAccountant.h"
 #import "SAPBoss.h"
 #import "SAPCar.h"
 
-static NSUInteger const maxWashersCount = 100;
+static NSUInteger const kSAPWashersCount = 3;
 
-@interface SAPEnterprise()
+@interface SAPEnterprise ()
+@property (nonatomic, retain) NSMutableArray *mutableStaff;
+@property (nonatomic, retain) SAPQueue *carsQueue;
 
-@property (nonatomic, retain) SAPItemsContainer *staffContainter;
+- (void)hireWorker:(SAPWorker *)worker;
+- (void)hireStaff;
+- (void)dismissStaff;
+- (NSArray *)workersOfClass:(Class)aClass;
+- (id)freeWorkerOfClass:(Class)aClass;
+- (void)washNextCarWithWasher:(SAPWasher *)washer;
 
 @end
-
 
 @implementation SAPEnterprise
 
@@ -32,14 +39,24 @@ static NSUInteger const maxWashersCount = 100;
 #pragma mark Initializatinos and Deallocations
 
 - (void)dealloc {
-    self.staffContainter = nil;
+    [self dismissStaff];
+    self.mutableStaff = nil;
+    self.carsQueue = nil;
     
     [super dealloc];
 }
 
 - (instancetype)init {
+    return [self initWithStaff];    
+}
+
+- (instancetype)initWithStaff {
     self = [super init];
-    self.staffContainter = [SAPItemsContainer object];
+    if (self) {
+        self.mutableStaff = [NSMutableArray object];
+        self.carsQueue = [SAPQueue object];
+        [self hireStaff];
+    }
     
     return self;
 }
@@ -48,25 +65,31 @@ static NSUInteger const maxWashersCount = 100;
 #pragma mark Accessors
 
 - (NSArray *)staff {
-    return self.staffContainter.items;
+    return [[self.mutableStaff copy] autorelease];
 }
 
+
+#pragma mark-
 #pragma mark Public Methods
 
+- (void)washCar:(SAPCar *)car {
+    SAPWasher *washer = [self freeWorkerOfClass:[SAPWasher class]];
+    if (washer) {
+        [washer performWorkWithObject:car];
+    } else {
+        [self.carsQueue enqueue:car];
+    }    
+}
+
+#pragma mark-
+#pragma mark Private Methods
+
 - (void)hireWorker:(SAPWorker *)worker {
-    [self.staffContainter extendWithItem:worker];
-}
-
-- (void)dismissWorker:(SAPWorker *)worker {
-    [self.staffContainter removeItemShrinkCapacity:worker];
-}
-
--(NSArray *)workersOfClass:(Class)workerClass {
-    return [self.staffContainter itemsOfClass:workerClass];
+    [self.mutableStaff addObject:worker];
 }
 
 - (void)hireStaff {
-        
+    
     //carWash has 1 accountant and 1 boss
     
     SAPAccountant *accountant = [SAPAccountant object];
@@ -75,52 +98,53 @@ static NSUInteger const maxWashersCount = 100;
     [self hireWorker:accountant];
     [self hireWorker:boss];
     
-    //car washing has random count of washers
-    NSUInteger washersCount = arc4random_uniform(maxWashersCount);
-    while (washersCount > 0) {
-        SAPWasher *washer =[SAPWasher object];
-        
-        //hiring washers
+    NSLog(@"%lu washers", kSAPWashersCount);
+    NSArray *washers = [SAPWasher objectsWithCount:kSAPWashersCount];
+    for (SAPWasher *washer in washers) {
         [self hireWorker:washer];
-        
-        //setting accountant as an observer for each washer
         [washer addObserver:accountant];
-        
-        washersCount--;
+        [washer addObserver:self];
     }
     
-    //boss observes the accountant
     [accountant addObserver:boss];
+}
+
+- (void)dismissStaff {
+    NSMutableArray *staff = self.mutableStaff;
+    for (SAPWorker *worker in staff) {
+        [worker removeObserver:self];
+        [worker removeObserversFromArray:staff];
+    }
     
+    [staff removeAllObjects];
 }
 
--(void)washCars:(NSArray *)cars {
-//    while (true) {
-//        if (0 == cars.count) {
-//            break;
-//        }
-    
-        for (SAPCar *car in cars) {
-            SAPWasher *washer = [self freeWasher];
-            if (washer) {
-                [washer makeJobWithObject:car];
-            }
-        }
-//    }
+- (NSArray *)workersOfClass:(Class)workerClass {
+    return [self.mutableStaff objectsOfClass:workerClass];
 }
 
--(SAPWasher *)freeWasher {
-    return (SAPWasher*)[self freeWorkerOfClass:[SAPWasher class]];
-}
-
--(SAPWorker *)freeWorkerOfClass:(Class)class {
+- (id)freeWorkerOfClass:(Class)class {
     for (SAPWorker *worker in [self workersOfClass:class]) {
-        if (kSAPIsReadyToWork == worker.state) {
+        if (kSAPWorkerIsReadyToWork == worker.state) {
             return worker;
         }
     }
     
     return nil;
+}
+
+- (void)washNextCarWithWasher:(SAPWasher *)washer {
+    SAPCar *car = [[self carsQueue] dequeue];
+    if (car) {
+        [washer performWorkWithObject:car];
+    }
+}
+
+#pragma mark-
+#pragma mark SAPWorkerObservingProtocol
+
+- (void)workerDidBecomeReadyToWork:(SAPWasher *)worker {
+    [self washNextCarWithWasher:worker];
 }
 
 @end

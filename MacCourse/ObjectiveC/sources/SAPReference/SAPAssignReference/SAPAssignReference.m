@@ -7,13 +7,12 @@
 //
 #import "SAPAssignReference.h"
 
-@interface SAPWeakReference()
-
+@interface SAPAssignReference ()
 @property (nonatomic, assign) id target;
 
 @end
 
-@implementation SAPWeakReference
+@implementation SAPAssignReference
 
 @synthesize target = _target;
 

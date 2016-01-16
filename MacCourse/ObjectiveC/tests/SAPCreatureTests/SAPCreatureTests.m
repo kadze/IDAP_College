@@ -72,7 +72,7 @@
         NSUInteger initialChildrenCount = [[creature children] count];
         [creature performGengerSpecificOperation];
         if ([creature isMemberOfClass:[SAPWoman class]]) {
-            assert((initialChildrenCount + 1) ==[[creature children] count]);
+            assert((initialChildrenCount + 1) == [[creature children] count]);
         }
     }
     

@@ -16,9 +16,9 @@
 }
 
 + (void)performSap_separateWithSpaces {
-    NSString *start = @"lalalalalala";
-    NSString *finish = [start sap_separateWithSpaces];
-    NSAssert([finish isEqualToString:@"l a l a l a l a l a l a"], @"result of separation with spaces isn't right");
+    NSString *source = @"lalalalalala";
+    NSString *resultString = [source separateWithSpaces];
+    NSAssert([resultString isEqualToString:@"l a l a l a l a l a l a"], @"result of separation with spaces isn't right");
 }
 
 @end

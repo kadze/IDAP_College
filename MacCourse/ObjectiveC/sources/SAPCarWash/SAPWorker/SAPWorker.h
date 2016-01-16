@@ -9,23 +9,23 @@
 #import <Foundation/Foundation.h>
 #import "SAPMoneyTransfer.h"
 #import "SAPObservableObject.h"
-
-@class SAPRoom;
+#import "SAPWorkerObservingProtocol.h"
 
 typedef NS_ENUM (NSUInteger, SAPWorkerState) {
-    kSAPIsReadyToWork,
-    kSAPIsBusy,
-    kSAPFinishedWork
+    kSAPWorkerStateStart,
+    kSAPWorkerIsReadyToWork,
+    kSAPWorkerIsBusy,
+    kSAPWorkerFinishedWork,
+    kSAPWorkerStateEnd,
+    kSAPWorkerStateCount = kSAPWorkerStateEnd - kSAPWorkerStateStart - 1
 };
 
-@interface SAPWorker : SAPObservableObject <SAPMoneyTransfer>
+@interface SAPWorker : SAPObservableObject <SAPMoneyTransfer, SAPWorkerObservingProtocol>
 
-@property (nonatomic, assign)   NSUInteger              salary;
-@property (nonatomic, assign)   NSUInteger              experienceLevel;
-@property (nonatomic, assign)   SAPWorkerState          state;
-
-- (void)makeJobWithObject:(id)object;
-- (void)giveAllMoneyToRecipient:(id<SAPMoneyTransfer>)recipient;
-- (void)takeAllMoneyFromSender:(id<SAPMoneyTransfer>)sender;
+- (void)performWorkWithObject:(id)object;
+- (void)processObject:(id)object;
+- (void)takeAllMoneyFromSender:(SAPWorker *)sender;
+- (void)cleanupAfterProcessing;
+- (void)completeProcessingObject:(SAPObservableObject *)object;
 
 @end

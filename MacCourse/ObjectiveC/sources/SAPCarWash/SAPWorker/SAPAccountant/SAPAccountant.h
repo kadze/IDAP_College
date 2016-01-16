@@ -8,8 +8,6 @@
 
 #import "SAPWorker.h"
 
-@class SAPWasher;
-
 @interface SAPAccountant : SAPWorker
 
 @end

@@ -9,8 +9,7 @@
 #import "SAPUnicodeRangeAlphabet.h"
 
 @interface SAPUnicodeRangeAlphabet ()
-
-@property (nonatomic, assign) NSRange range;
+@property (nonatomic) NSRange range;
 
 @end
 
@@ -19,20 +18,19 @@
 #pragma mark-
 #pragma mark Initializations and Deallocations
 
-- (instancetype) initWithRange:(NSRange) range {
+- (instancetype)initWithRange:(NSRange)range {
 //    self = [super init];
     if (self) {
         self.range = range;
     }
     
     return self;
-
 }
 
 #pragma mark-
 #pragma mark Public Methods
 
-- (NSArray *)arrayOfLetters {
+- (NSArray *)letters {
     NSMutableArray *result = [NSMutableArray array];
     NSRange range = self.range;
     for (unichar symbol = range.location; symbol < NSMaxRange(range); symbol++) {
@@ -42,7 +40,7 @@
     return [[result copy] autorelease];
 }
 
-- (NSString *)letterAtIndex:(NSUInteger) index {
+- (NSString *)letterAtIndex:(NSUInteger)index {
     NSRange range = self.range;
     NSAssert(index < range.length, NSRangeException);
     return [NSString stringWithFormat:@"%C", (unichar)(range.location + index)];
