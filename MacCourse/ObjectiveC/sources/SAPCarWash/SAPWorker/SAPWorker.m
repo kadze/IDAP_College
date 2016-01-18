@@ -11,11 +11,11 @@
 #import "SAPQueue.h"
 
 @interface SAPWorker()
-@property(nonatomic, retain) SAPQueue *objectsQueue;
+//@property(nonatomic, retain) SAPQueue *objectsQueue;
 
 - (void)performBackgroundWorkWithObject:(id)object;
 - (void)finishProcessingOnMainThreadWithObject:(SAPObservableObject *)object;
-- (void)processObjectsQueue;
+//- (void)processObjectsQueue;
 
 @end
 
@@ -27,7 +27,7 @@
 #pragma mark Initializatinos and Deallocations
 
 - (void)dealloc {
-    self.objectsQueue = nil;
+//    self.objectsQueue = nil;
     [super dealloc];
 }
 
@@ -35,7 +35,7 @@
     self = [super init];
     if (self) {
         self.state = kSAPWorkerIsReadyToWork;
-        self.objectsQueue = [SAPQueue object];
+//        self.objectsQueue = [SAPQueue object];
     }
     
     return self;
@@ -46,12 +46,12 @@
 
 - (void)performWorkWithObject:(id)object {
     @synchronized(self) {
-        if (kSAPWorkerIsReadyToWork == self.state) {
+//        if (kSAPWorkerIsReadyToWork == self.state) {
             self.state = kSAPWorkerIsBusy;
             [self performSelectorInBackground:@selector(performBackgroundWorkWithObject:) withObject:object];
-        } else {
-            [self.objectsQueue enqueue:object];
-        }
+//        } else {
+//            [self.objectsQueue enqueue:object];
+//        }
     }
 }
 
@@ -97,7 +97,8 @@
 
 - (void)finishProcessingOnMainThreadWithObject:(SAPObservableObject *)object {
     [self completeProcessingObject:object];
-    [self processObjectsQueue];
+    [self cleanupAfterProcessing];
+//    [self processObjectsQueue];
 }
 
 - (void)completeProcessingObject:(SAPObservableObject *)object {
@@ -106,16 +107,16 @@
     }
 }
 
-- (void)processObjectsQueue {
-    @synchronized(self) {
-        id object = [self.objectsQueue dequeue];
-        if (object) {
-            [self performSelectorInBackground:@selector(performBackgroundWorkWithObject:) withObject:object];
-        } else {
-            [self cleanupAfterProcessing];
-        }
-    }
-}
+//- (void)processObjectsQueue {
+//    @synchronized(self) {
+//        id object = [self.objectsQueue dequeue];
+//        if (object) {
+//            [self performSelectorInBackground:@selector(performBackgroundWorkWithObject:) withObject:object];
+//        } else {
+//            [self cleanupAfterProcessing];
+//        }
+//    }
+//}
 
 #pragma mark-
 #pragma mark SAPMoneyTransfer
