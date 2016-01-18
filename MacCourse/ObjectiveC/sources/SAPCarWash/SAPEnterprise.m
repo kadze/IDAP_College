@@ -31,9 +31,7 @@ static NSUInteger const kSAPBossCount = 1;
 - (void)hireStaff;
 - (void)hireWorkers:(NSArray *)workers withDispatcher:(SAPDispatcher *)dispatcher;
 - (void)dismissStaff;
-//- (NSArray *)workersOfClass:(Class)aClass;
-//- (id)freeWorkerOfClass:(Class)aClass;
-//- (void)washNextCarWithWasher:(SAPWasher *)washer;
+- (SAPDispatcher *)dispatcherHandlerForClass:(Class)aClass;
 
 @end
 
@@ -74,7 +72,6 @@ static NSUInteger const kSAPBossCount = 1;
     return [[self.mutableStaff copy] autorelease];
 }
 
-
 #pragma mark-
 #pragma mark Public Methods
 
@@ -84,7 +81,6 @@ static NSUInteger const kSAPBossCount = 1;
 
 #pragma mark-
 #pragma mark Private Methods
-
 
 - (void)hireStaff {
     
@@ -117,46 +113,21 @@ static NSUInteger const kSAPBossCount = 1;
     [staff removeAllObjects];
 }
 
-- (SAPDispatcher *)dispatcherForClass:(Class)aClass {
+- (SAPDispatcher *)dispatcherHandlerForClass:(Class)aClass {
     if (aClass == [SAPAccountant class]) {
-        return self.accountantsDispatcher;
-    } else if (aClass == [SAPBoss class]) {
         return self.BossDispatcher;
     } else if (aClass == [SAPWasher class]) {
-        return self.washersDispatcher;
+        return self.accountantsDispatcher;
     } else {
         return nil;
     }
 }
 
-
-//- (NSArray *)workersOfClass:(Class)workerClass {
-//    return [self.mutableStaff objectsOfClass:workerClass];
-//}
-//
-//- (id)freeWorkerOfClass:(Class)class {
-//    for (SAPWorker *worker in [self workersOfClass:class]) {
-//        if (kSAPWorkerIsReadyToWork == worker.state) {
-//            return worker;
-//        }
-//    }
-//    
-//    return nil;
-//}
-
-//- (void)washNextCarWithWasher:(SAPWasher *)washer {
-//    SAPCar *car = [[self carsQueue] dequeue];
-//    if (car) {
-//        [washer performWorkWithObject:car];
-//    }
-//}
-
 #pragma mark-
 #pragma mark SAPWorkerObservingProtocol
 
-- (void)workerDidBecomeReadyToWork:(SAPWasher *)worker {
-    [[self dispatcherForClass:[worker class]] performWorkWithObject:worker];
+- (void)workerDidFinishWork:(SAPWorker *)worker {
+    [[self dispatcherHandlerForClass:[worker class]] performWorkWithObject:worker];
 }
-
 
 @end
