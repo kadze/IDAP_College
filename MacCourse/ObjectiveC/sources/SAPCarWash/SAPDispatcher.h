@@ -13,8 +13,8 @@
 @interface SAPDispatcher : NSObject
 @property(nonatomic, readonly) NSArray *handlers;
 
--(void)addHandler:(id)handler;
--(void)removeHandler:(id)handler;
--(void)performWorkWithObject:(id)object;
+- (void)addHandler:(id)handler;
+- (void)removeHandler:(id)handler;
+- (void)performWorkWithObject:(id)object;
 
 @end
