@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SAPWorkerObservingProtocol.h"
 
 @class SAPQueue;
 
-@interface SAPDispatcher : NSObject
+@interface SAPDispatcher : NSObject <SAPWorkerObservingProtocol>
 @property(nonatomic, readonly) NSArray *handlers;
 
 - (void)addHandler:(id)handler;
