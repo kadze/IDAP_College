@@ -72,14 +72,7 @@
 
 - (void)removeObserver:(id)observer {
     @synchronized(self) {
-        NSMutableSet *observers = self.mutableObservers;
-        for (SAPAssignReference *reference in observers) {
-            if (reference.target == observer) {
-                [observers removeObject:reference];
-                
-                break;
-            }
-        }
+        [self.mutableObservers addObject:[[[SAPAssignReference alloc] initWithTarget:observer] autorelease]];
     }
 }
 
