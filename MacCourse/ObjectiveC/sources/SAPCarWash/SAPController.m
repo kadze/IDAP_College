@@ -17,6 +17,10 @@ NSUInteger const kSAPAnnualAmountOfCars = 100;
 @property (nonatomic, retain) SAPEnterprise *enterprise;
 @property (nonatomic, retain) NSTimer *timer;
 
+- (void)startBackgroundWork;
+- (void)performWork;
+- (void)performWorkWithObject:(id)object;
+
 @end
 
 @implementation SAPController
