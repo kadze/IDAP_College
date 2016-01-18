@@ -15,6 +15,8 @@
 @property(nonatomic, retain) SAPQueue *objectsQueue;
 @property (nonatomic, retain) NSMutableArray *mutableHandlers;
 
+- (SAPWorker *)freeHandler;
+
 @end
 
 @implementation SAPDispatcher
@@ -75,6 +77,9 @@
     }
 }
 
+#pragma mark-
+#pragma mark Private Methods
+
 - (SAPWorker *)freeHandler {
     for (SAPWorker *handler in self.handlers) {
         if (kSAPWorkerIsReadyToWork == handler.state) {
@@ -88,11 +93,7 @@
 #pragma mark-
 #pragma mark SAPWorkerObservingProtocol
 
-- (void)workerDidFinishWork:(SAPWorker *)worker {
-    [self performWorkWithObject:worker];
-}
-
-- (void)workerDidBecomeFree:(SAPWorker *)worker {
+- (void)workerDidBecomeReadyToWork:(SAPWorker *)worker {
     id object = [self.objectsQueue dequeue];
     if (object) {
         [worker performWorkWithObject:object];
