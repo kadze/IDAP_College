@@ -10,9 +10,6 @@
 #import "NSObject+SAPObject.h"
 #import "SAPController.h"
 
-NSUInteger const kAnnualAmountOfCars = 100;
-NSUInteger const kWashPrice = 50;
-
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
