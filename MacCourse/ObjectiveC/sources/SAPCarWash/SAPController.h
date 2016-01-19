@@ -9,9 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface SAPController : NSObject
-@property (nonatomic, readonly, getter=isWorking) BOOL working;
-
-- (void)startWork;
-- (void)stopWork;
+@property (nonatomic, assign, getter=isWorking) BOOL working;
 
 @end

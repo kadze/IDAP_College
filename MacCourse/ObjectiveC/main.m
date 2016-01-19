@@ -19,7 +19,7 @@ int main(int argc, const char * argv[]) {
         //=====CAR WASH=====
         
         SAPController *controller = [SAPController object];
-        [controller startWork];
+        controller.working = YES;
         [[NSRunLoop currentRunLoop] run];
         
     }

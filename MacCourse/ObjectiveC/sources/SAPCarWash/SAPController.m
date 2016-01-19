@@ -26,7 +26,7 @@ NSTimeInterval const kSAPTimeInterval = 2.0;
 
 @implementation SAPController
 
-@dynamic working;
+@synthesize working = _working;
 
 #pragma mark-
 #pragma mark Initializatinos and Deallocations
@@ -39,10 +39,6 @@ NSTimeInterval const kSAPTimeInterval = 2.0;
 }
 
 - (instancetype)init {
-    return [self initWithEnterprise];
-}
-
-- (instancetype)initWithEnterprise {
     self = [super init];
     if (self) {
         self.enterprise = [SAPEnterprise object];
@@ -58,19 +54,28 @@ NSTimeInterval const kSAPTimeInterval = 2.0;
     return self.timer;
 }
 
-#pragma mark- 
-#pragma mark Public Methods
-
-- (void)startWork {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:kSAPTimeInterval
-                                                  target:self
-                                                selector:@selector(startBackgroundWork)
-                                                userInfo:nil
-                                                 repeats:YES];
+- (void)setWorking:(BOOL)working {
+    _working = working;
+    if (working) {
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:kSAPTimeInterval
+                                                      target:self
+                                                    selector:@selector(startBackgroundWork)
+                                                    userInfo:nil
+                                                     repeats:YES];
+    } else {
+        self.timer = nil;
+    }
 }
 
-- (void)stopWork {
-    [self.timer invalidate];
+- (void)setTimer:(NSTimer *)timer {
+    if (timer != _timer) {
+        if (timer) {
+            _timer = timer;
+        } else {
+            [_timer invalidate];
+            
+        }
+    }
 }
 
 #pragma mark-
