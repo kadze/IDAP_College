@@ -73,11 +73,10 @@
 }
 
 - (void)performWorkWithObject:(id)object {
+    [self.objectsQueue enqueue:object];
     SAPWorker *handler = [self freeHandler];
     if (handler) {
-        [handler performWorkWithObject:object];
-    } else {
-        [self.objectsQueue enqueue:object];
+        [self workerDidBecomeReadyToWork:handler];
     }
 }
 
