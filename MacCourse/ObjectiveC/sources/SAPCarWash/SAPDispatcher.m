@@ -105,7 +105,9 @@
             
             [worker performWorkWithObject:object];
         } else {
-            worker.state = kSAPWorkerIsReadyToWork;
+            if (kSAPWorkerIsBusy == worker.state) {
+                worker.state = kSAPWorkerIsReadyToWork;
+            }
         }
     }
 }
