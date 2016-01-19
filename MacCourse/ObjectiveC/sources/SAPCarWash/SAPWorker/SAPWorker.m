@@ -89,10 +89,8 @@
 #pragma mark Private Methods
 
 - (void)performBackgroundWorkWithObject:(id)object {
-    @synchronized(self) {
-        [self processObject:object];
-        [self performSelectorOnMainThread:@selector(finishProcessingOnMainThreadWithObject:) withObject:object waitUntilDone:NO];
-    }
+    [self processObject:object];
+    [self performSelectorOnMainThread:@selector(finishProcessingOnMainThreadWithObject:) withObject:object waitUntilDone:NO];
 }
 
 - (void)finishProcessingOnMainThreadWithObject:(SAPObservableObject *)object {
