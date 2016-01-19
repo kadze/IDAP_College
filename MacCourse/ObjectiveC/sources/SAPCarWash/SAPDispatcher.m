@@ -12,8 +12,8 @@
 #import "SAPWorker.h"
 
 @interface SAPDispatcher ()
-@property(nonatomic, retain) SAPQueue *objectsQueue;
-@property (nonatomic, retain) NSMutableArray *mutableHandlers;
+@property(nonatomic, retain)    SAPQueue        *objectsQueue;
+@property (nonatomic, retain)   NSMutableArray  *mutableHandlers;
 
 - (SAPWorker *)freeHandler;
 

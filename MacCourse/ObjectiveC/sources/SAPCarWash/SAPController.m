@@ -12,6 +12,7 @@
 #import "SAPCar.h"
 
 NSUInteger const kSAPAnnualAmountOfCars = 100;
+NSTimeInterval const kSAPTimeInterval = 2.0;
 
 @interface SAPController ()
 @property (nonatomic, retain) SAPEnterprise *enterprise;
@@ -61,7 +62,7 @@ NSUInteger const kSAPAnnualAmountOfCars = 100;
 #pragma mark Public Methods
 
 - (void)startWork {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:kSAPTimeInterval
                                                   target:self
                                                 selector:@selector(startBackgroundWork)
                                                 userInfo:nil
