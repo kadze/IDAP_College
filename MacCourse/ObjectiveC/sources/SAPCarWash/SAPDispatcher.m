@@ -68,6 +68,10 @@
     }
 }
 
+- (BOOL)containsHandler:(id)handler {
+    return [self.mutableHandlers containsObject:handler];
+}
+
 - (void)performWorkWithObject:(id)object {
     SAPWorker *handler = [self freeHandler];
     if (handler) {

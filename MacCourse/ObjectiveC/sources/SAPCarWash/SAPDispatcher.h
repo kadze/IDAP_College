@@ -17,6 +17,9 @@
 - (void)addHandler:(id)handler;
 - (void)removeHandler:(id)handler;
 
+- (BOOL)containsHandler:(id)handler;
+
 - (void)performWorkWithObject:(id)object;
+
 
 @end

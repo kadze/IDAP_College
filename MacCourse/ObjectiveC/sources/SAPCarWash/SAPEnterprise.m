@@ -24,14 +24,14 @@ static NSUInteger const kSAPBossCount = 1;
 @interface SAPEnterprise ()
 @property (nonatomic, retain) SAPDispatcher *washersDispatcher;
 @property (nonatomic, retain) SAPDispatcher *accountantsDispatcher;
-@property (nonatomic, retain) SAPDispatcher *BossDispatcher;
+@property (nonatomic, retain) SAPDispatcher *bossDispatcher;
 @property (nonatomic, retain) NSMutableArray *mutableStaff;
 @property (nonatomic, retain) SAPQueue *carsQueue;
 
 - (void)hireStaff;
 - (void)hireWorkers:(NSArray *)workers withDispatcher:(SAPDispatcher *)dispatcher;
 - (void)dismissStaff;
-- (SAPDispatcher *)dispatcherHandlerForClass:(Class)aClass;
+- (SAPDispatcher *)dispatcherHandlerForWorker:(SAPWorker *)worker;
 
 @end
 
@@ -56,7 +56,7 @@ static NSUInteger const kSAPBossCount = 1;
     if (self) {
         self.washersDispatcher = [SAPDispatcher object];
         self.accountantsDispatcher = [SAPDispatcher object];
-        self.BossDispatcher = [SAPDispatcher object];
+        self.bossDispatcher = [SAPDispatcher object];
         self.mutableStaff = [NSMutableArray object];
         self.carsQueue = [SAPQueue object];
         [self hireStaff];
@@ -91,7 +91,7 @@ static NSUInteger const kSAPBossCount = 1;
     
     [self hireWorkers:washers withDispatcher:self.washersDispatcher];
     [self hireWorkers:accountants withDispatcher:self.accountantsDispatcher];
-    [self hireWorkers:bosses withDispatcher:self.BossDispatcher];
+    [self hireWorkers:bosses withDispatcher:self.bossDispatcher];
 }
 
 - (void)hireWorkers:(NSArray *)workers withDispatcher:(SAPDispatcher *)dispatcher {
@@ -113,10 +113,10 @@ static NSUInteger const kSAPBossCount = 1;
     [staff removeAllObjects];
 }
 
-- (SAPDispatcher *)dispatcherHandlerForClass:(Class)aClass {
-    if (aClass == [SAPAccountant class]) {
-        return self.BossDispatcher;
-    } else if (aClass == [SAPWasher class]) {
+- (SAPDispatcher *)dispatcherHandlerForWorker:(SAPWorker *)worker {
+    if ([self.accountantsDispatcher containsHandler:worker]) {
+        return self.bossDispatcher;
+    } else if ([self.washersDispatcher containsHandler:worker]) {
         return self.accountantsDispatcher;
     } else {
         return nil;
@@ -127,7 +127,7 @@ static NSUInteger const kSAPBossCount = 1;
 #pragma mark SAPWorkerObservingProtocol
 
 - (void)workerDidFinishWork:(SAPWorker *)worker {
-    [[self dispatcherHandlerForClass:[worker class]] performWorkWithObject:worker];
+    [[self dispatcherHandlerForWorker:worker] performWorkWithObject:worker];
 }
 
 @end
