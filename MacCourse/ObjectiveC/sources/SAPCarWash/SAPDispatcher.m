@@ -75,8 +75,10 @@
 - (void)performWorkWithObject:(id)object {
     [self.objectsQueue enqueue:object];
     SAPWorker *handler = [self freeHandler];
-    if (handler) {
-        [self workerDidBecomeReadyToWork:handler];
+    @synchronized(handler) {
+        if (handler) {
+            [self workerDidBecomeReadyToWork:handler];
+        }
     }
 }
 
