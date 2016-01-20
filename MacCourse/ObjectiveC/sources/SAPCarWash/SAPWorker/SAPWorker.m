@@ -45,14 +45,14 @@
 #pragma mark Public Methods
 
 - (void)performWorkWithObject:(id)object {
-    @synchronized(self) {
+//    @synchronized(self) {
 //        if (kSAPWorkerIsReadyToWork == self.state) {
-            self.state = kSAPWorkerIsBusy;
+           // self.state = kSAPWorkerIsBusy;
             [self performSelectorInBackground:@selector(performBackgroundWorkWithObject:) withObject:object];
 //        } else {
 //            [self.objectsQueue enqueue:object];
 //        }
-    }
+//    }
 }
 
 - (void)processObject:(id)object {

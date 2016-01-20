@@ -73,11 +73,9 @@
 
 - (void)performWorkWithObject:(id)object {
     [self.objectsQueue enqueue:object];
-    @synchronized(self){
-        SAPWorker *handler = [self reserveHandler];
-        if (handler) {
-            [self processNextObjectWithWorker:handler];
-        }
+    SAPWorker *handler = [self reserveHandler];
+    if (handler) {
+        [self processNextObjectWithWorker:handler];
     }
 }
 
@@ -86,9 +84,11 @@
 
 - (SAPWorker *)reserveHandler {
     for (SAPWorker *handler in self.handlers) {
-        if (kSAPWorkerIsReadyToWork == handler.state) {
-            handler.state = kSAPWorkerIsBusy;
-            return handler;
+        @synchronized(handler) {
+            if (kSAPWorkerIsReadyToWork == handler.state) {
+                handler.state = kSAPWorkerIsBusy;
+                return handler;
+            }
         }
     }
     
@@ -97,8 +97,16 @@
 
 - (void)processNextObjectWithWorker:(SAPWorker *)worker {
     id object = [self.objectsQueue dequeue];
-    if (object) {
-        [worker performWorkWithObject:object];
+    @synchronized(worker) {
+        if (object) {
+            if (kSAPWorkerIsReadyToWork == worker.state) {
+                worker.state = kSAPWorkerIsBusy;
+            }
+            
+            [worker performWorkWithObject:object];
+        } else {
+            worker.state = kSAPWorkerIsReadyToWork;
+        }
     }
 }
 
