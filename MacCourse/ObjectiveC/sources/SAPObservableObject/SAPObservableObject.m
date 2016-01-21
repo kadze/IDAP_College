@@ -72,7 +72,7 @@
 
 - (void)removeObserver:(id)observer {
     @synchronized(self) {
-        [self.mutableObservers addObject:[[[SAPAssignReference alloc] initWithTarget:observer] autorelease]];
+        [self.mutableObservers removeObject:[[[SAPAssignReference alloc] initWithTarget:observer] autorelease]];
     }
 }
 
