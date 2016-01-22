@@ -11,8 +11,8 @@
 #import "SAPEnterprise.h"
 #import "NSObject+SAPObject.h"
 
-NSUInteger      const kSAPAnnualAmountOfCars = 1000;
-NSTimeInterval  const kSAPTimeInterval       = 2.0;
+static NSUInteger      const kSAPAnnualAmountOfCars = 1000;
+static NSTimeInterval  const kSAPTimeInterval       = 2.0;
 
 @interface SAPController ()
 @property (nonatomic, retain) SAPEnterprise *enterprise;

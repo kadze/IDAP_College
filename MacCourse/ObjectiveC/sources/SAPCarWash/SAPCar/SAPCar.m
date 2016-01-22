@@ -8,7 +8,7 @@
 
 #import "SAPCar.h"
 
-NSUInteger const kSAPInitialCarMoney = 50;
+static NSUInteger const kSAPInitialCarMoney = 50;
 
 @implementation SAPCar
 
