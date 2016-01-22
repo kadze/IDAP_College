@@ -41,7 +41,9 @@
 #pragma mark Public Methods
 
 - (void)performWorkWithObject:(id)object {
-    [self performSelectorInBackground:@selector(performBackgroundWorkWithObject:) withObject:object];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self performBackgroundWorkWithObject:object];
+    });
 }
 
 - (void)processObject:(id)object {
@@ -80,7 +82,9 @@
 - (void)performBackgroundWorkWithObject:(id)object {
     @autoreleasepool {
         [self processObject:object];
-        [self performSelectorOnMainThread:@selector(finishProcessingOnMainThreadWithObject:) withObject:object waitUntilDone:NO];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self finishProcessingOnMainThreadWithObject:object];
+        });
     }
 }
 

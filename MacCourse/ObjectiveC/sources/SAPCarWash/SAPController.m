@@ -12,7 +12,7 @@
 #import "NSObject+SAPObject.h"
 
 NSUInteger      const kSAPAnnualAmountOfCars = 1000;
-NSTimeInterval  const kSAPTimeInterval       = 6.0;
+NSTimeInterval  const kSAPTimeInterval       = 2.0;
 
 @interface SAPController ()
 @property (nonatomic, retain) SAPEnterprise *enterprise;
@@ -76,7 +76,9 @@ NSTimeInterval  const kSAPTimeInterval       = 6.0;
 #pragma mark Private Methods
 
 - (void)startBackgroundWork {
-    [self performSelectorInBackground:@selector(performWork) withObject:nil];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self performWork];
+    });
 }
 
 - (void)performWork {
