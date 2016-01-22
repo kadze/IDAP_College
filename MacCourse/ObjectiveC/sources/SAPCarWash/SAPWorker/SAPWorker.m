@@ -12,7 +12,6 @@
 
 @interface SAPWorker()
 
-- (void)performBackgroundWorkWithObject:(id)object;
 - (void)finishProcessingOnMainThreadWithObject:(SAPObservableObject *)object;
 
 @end
@@ -42,7 +41,12 @@
 
 - (void)performWorkWithObject:(id)object {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self performBackgroundWorkWithObject:object];
+        @autoreleasepool {
+            [self processObject:object];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self finishProcessingOnMainThreadWithObject:object];
+            });
+        }
     });
 }
 
@@ -57,6 +61,12 @@
 - (void)cleanupAfterProcessing {
     @synchronized(self) {
         self.state = kSAPWorkerFinishedWork;
+    }
+}
+
+- (void)completeProcessingObject:(SAPObservableObject *)object {
+    @synchronized(object) {
+        object.state = kSAPWorkerIsReadyToWork;
     }
 }
 
@@ -79,24 +89,9 @@
 #pragma mark -
 #pragma mark Private Methods
 
-- (void)performBackgroundWorkWithObject:(id)object {
-    @autoreleasepool {
-        [self processObject:object];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self finishProcessingOnMainThreadWithObject:object];
-        });
-    }
-}
-
 - (void)finishProcessingOnMainThreadWithObject:(SAPObservableObject *)object {
     [self completeProcessingObject:object];
     [self cleanupAfterProcessing];
-}
-
-- (void)completeProcessingObject:(SAPObservableObject *)object {
-    @synchronized(object) {
-        object.state = kSAPWorkerIsReadyToWork;
-    }
 }
 
 #pragma mark -
