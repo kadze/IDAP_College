@@ -16,8 +16,8 @@
 @property (nonatomic, retain) SAPQueue                    *objectsQueue;
 @property (nonatomic, retain) SAPThreadSafeMutableArray   *mutableHandlers;
 
-- (SAPWorker *)freeHandler;
-- (void)processNextObjectWithWorker:(SAPWorker *)worker;
+- (SAPWorker *)reserveHandler;
+- (void)processNextObjectWithFreeHandler;
 
 @end
 
@@ -73,10 +73,7 @@
 
 - (void)performWorkWithObject:(id)object {
     [self.objectsQueue enqueue:object];
-    SAPWorker *handler = [self reserveHandler];
-    if (handler) {
-        [self processNextObjectWithWorker:handler];
-    }
+    [self processNextObjectWithFreeHandler];
 }
 
 #pragma mark -
@@ -87,6 +84,7 @@
         @synchronized(handler) {
             if (kSAPWorkerIsReadyToWork == handler.state) {
                 handler.state = kSAPWorkerIsBusy;
+                
                 return handler;
             }
         }
@@ -95,19 +93,15 @@
     return nil;
 }
 
-- (void)processNextObjectWithWorker:(SAPWorker *)worker {
-    id object = [self.objectsQueue dequeue];
-    @synchronized(worker) {
-        if (object) {
-            if (kSAPWorkerIsReadyToWork == worker.state) {
-                worker.state = kSAPWorkerIsBusy;
-            }
-            
-            [worker performWorkWithObject:object];
+- (void)processNextObjectWithFreeHandler {
+    SAPQueue *queue = self.objectsQueue;
+    id object = [queue dequeue];
+    if (object) {
+        SAPWorker *handler = [self reserveHandler];
+        if (handler) {
+            [handler performWorkWithObject:object];
         } else {
-            if (kSAPWorkerIsBusy == worker.state) {
-                worker.state = kSAPWorkerIsReadyToWork;
-            }
+            [queue enqueue:object];
         }
     }
 }
@@ -116,7 +110,7 @@
 #pragma mark SAPWorkerObservingProtocol
 
 - (void)workerDidBecomeReadyToWork:(SAPWorker *)worker {
-    [self processNextObjectWithWorker:worker];
+    [self processNextObjectWithFreeHandler];
 }
 
 @end
