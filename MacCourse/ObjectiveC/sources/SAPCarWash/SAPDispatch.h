@@ -7,9 +7,9 @@
 //
 #import <dispatch/dispatch.h>
 
-void SAPDispatchAssyncOnMainQueue(dispatch_block_t block);
+void SAPDispatchAsyncOnMainQueue(dispatch_block_t block);
 void SAPDispatchSyncOnMainQueue(dispatch_block_t block);
-void SAPDispatchAssyncOnGlobalQueue(dispatch_queue_priority_t priority, dispatch_block_t block);
+void SAPDispatchAsyncOnGlobalQueue(dispatch_queue_priority_t priority, dispatch_block_t block);
 void SAPDispatchSyncOnGlobalQueue(dispatch_queue_priority_t priority, dispatch_block_t block);
-void SAPDispatchAssyncOnQueue(dispatch_queue_t queue, dispatch_block_t block);
+void SAPDispatchAsyncOnQueue(dispatch_queue_t queue, dispatch_block_t block);
 void SAPDispatchSyncOnQueue(dispatch_queue_t queue, dispatch_block_t block);

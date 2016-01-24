@@ -10,6 +10,7 @@
 #import "SAPController.h"
 #import "SAPEnterprise.h"
 #import "NSObject+SAPObject.h"
+#import "SAPDispatch.h"
 
 static NSUInteger      const kSAPAnnualAmountOfCars = 1000;
 static NSTimeInterval  const kSAPTimeInterval       = 2.0;
@@ -76,7 +77,7 @@ static NSTimeInterval  const kSAPTimeInterval       = 2.0;
 #pragma mark Private Methods
 
 - (void)startBackgroundWork {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    SAPDispatchSyncOnGlobalQueue(DISPATCH_QUEUE_PRIORITY_DEFAULT, ^{
         [self performWork];
     });
 }

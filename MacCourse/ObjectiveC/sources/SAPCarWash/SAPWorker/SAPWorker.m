@@ -8,6 +8,7 @@
 
 #import "SAPWorker.h"
 #import "SAPQueue.h"
+#import "SAPDispatch.h"
 #import "NSObject+SAPObject.h"
 
 @interface SAPWorker()
@@ -40,10 +41,10 @@
 #pragma mark Public Methods
 
 - (void)performWorkWithObject:(id)object {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    SAPDispatchAsyncOnGlobalQueue(DISPATCH_QUEUE_PRIORITY_DEFAULT, ^{
         @autoreleasepool {
             [self processObject:object];
-            dispatch_async(dispatch_get_main_queue(), ^{
+            SAPDispatchAsyncOnMainQueue(^{
                 [self finishProcessingOnMainThreadWithObject:object];
             });
         }
