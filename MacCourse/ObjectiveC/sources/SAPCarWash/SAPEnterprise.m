@@ -102,7 +102,6 @@ static NSUInteger const kSAPBossCount = 1;
 - (void)hireWorkers:(NSArray *)workers withDispatcher:(SAPDispatcher *)dispatcher {
     for (SAPWorker *worker in workers) {
         [dispatcher addHandler:worker];
-        [worker addObserver:dispatcher];
         [worker addObserver:self];
         [self.mutableStaff addObject:worker];
     }

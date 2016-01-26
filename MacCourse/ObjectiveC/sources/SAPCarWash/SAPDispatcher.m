@@ -56,8 +56,9 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)addHandler:(id)handler {
+- (void)addHandler:(SAPObservableObject *)handler {
     [self.mutableHandlers addObject:handler];
+    [handler addObserver:self];
 }
 
 - (void)removeHandler:(id)handler {
