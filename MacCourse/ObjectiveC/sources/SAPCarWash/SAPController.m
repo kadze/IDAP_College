@@ -66,10 +66,9 @@ static NSTimeInterval  const kSAPTimeInterval       = 2.0;
 
 - (void)setTimer:(NSTimer *)timer {
     if (timer != _timer) {
-        [timer retain];
         [_timer invalidate];
         [_timer release];
-        _timer = timer;
+        _timer = [timer retain];
     }
 }
 
