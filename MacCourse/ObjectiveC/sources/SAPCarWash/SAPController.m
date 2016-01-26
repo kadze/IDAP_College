@@ -77,7 +77,7 @@ static NSTimeInterval  const kSAPTimeInterval       = 2.0;
 #pragma mark Private Methods
 
 - (void)startBackgroundWork {
-    SAPDispatchSyncOnGlobalQueue(DISPATCH_QUEUE_PRIORITY_DEFAULT, ^{
+    SAPDispatchSyncOnDefaultQueue(^{
         [self performWork];
     });
 }

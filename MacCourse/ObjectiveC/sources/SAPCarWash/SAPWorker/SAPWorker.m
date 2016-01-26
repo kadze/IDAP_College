@@ -13,8 +13,6 @@
 
 @interface SAPWorker()
 
-- (void)finishProcessingOnMainThreadWithObject:(SAPObservableObject *)object;
-
 @end
 
 @implementation SAPWorker
@@ -41,13 +39,12 @@
 #pragma mark Public Methods
 
 - (void)performWorkWithObject:(id)object {
-    SAPDispatchAsyncOnGlobalQueue(DISPATCH_QUEUE_PRIORITY_DEFAULT, ^{
-        @autoreleasepool {
-            [self processObject:object];
-            SAPDispatchAsyncOnMainQueue(^{
-                [self finishProcessingOnMainThreadWithObject:object];
-            });
-        }
+    SAPDispatchAsyncOnDefaultQueue(^{
+        [self processObject:object];
+        SAPDispatchAsyncOnMainQueue(^{
+            [self completeProcessingObject:object];
+            [self cleanupAfterProcessing];
+        });
     });
 }
 
@@ -85,14 +82,6 @@
         default:
             return [super selectorForState:state];
     }
-}
-
-#pragma mark -
-#pragma mark Private Methods
-
-- (void)finishProcessingOnMainThreadWithObject:(SAPObservableObject *)object {
-    [self completeProcessingObject:object];
-    [self cleanupAfterProcessing];
 }
 
 #pragma mark -
