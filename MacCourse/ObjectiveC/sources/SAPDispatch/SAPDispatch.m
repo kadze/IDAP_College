@@ -45,6 +45,6 @@ void SAPDispatchSyncOnDefaultQueue(dispatch_block_t block) {
 #pragma mark-
 #pragma mark Private Implementations
 
-dispatch_queue_t getDefaultQueue(void) {
+dispatch_queue_t SAPGetDefaultQueue(void) {
     return dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 }

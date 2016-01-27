@@ -57,12 +57,17 @@
 #pragma mark Public Methods
 
 - (void)addHandler:(SAPObservableObject *)handler {
-    [self.mutableHandlers addObject:handler];
-    [handler addObserver:self];
+    @synchronized(self) {
+        [self.mutableHandlers addObject:handler];
+        [handler addObserver:self];
+    }
 }
 
 - (void)removeHandler:(id)handler {
-    [self.mutableHandlers removeObject:handler];
+    @synchronized(self) {
+        [self.mutableHandlers removeObject:handler];
+        [handler removeObserver:self];
+    }
 }
 
 - (BOOL)containsHandler:(id)handler {
